@@ -1,5 +1,7 @@
 import { Plan, Workout, ScheduledPlan, ScheduledWorkout, Units } from "./workout";
 
+// TODO: Add unit tests for util methods
+
 export function chunkArray<T>(array: T[], chunkSize: number): T[][] {
   const arrayCopy = [...array];
   var chunks = [];
@@ -53,8 +55,7 @@ export function scheduleWorkouts(
   return workouts.map((workout, index) => {
     return {
       ...workout,
-      // TODO: this is incorrect. Fix and add unit tests
-      date: addDays(goalDate, -1 * (workouts.length - index)),
+      date: addDays(goalDate, -1 * (workouts.length - index - 1)),
       units: units,
       displayUnits,
     };

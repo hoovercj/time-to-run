@@ -17,7 +17,9 @@ function App() {
 
   const selectedPlan = plans[selectedPlanTitle];
 
-  const defaultGoalDate = addDays(new Date(), selectedPlan.workouts.length);
+  const today = new Date();
+  const todayWithoutTime = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+  const defaultGoalDate = addDays(todayWithoutTime, selectedPlan.workouts.length);
   const [goalDate, setGoalDate] = useState(defaultGoalDate);
 
   const defaultUnits = selectedPlan.units;
@@ -53,9 +55,6 @@ function downloadPlan(plan: ScheduledPlan): void {
   const weeks = chunkArray(plan.workouts, 7);
 
   weeks.forEach((week, index) => {
-    // TODO: add total mileage
-    // TODO: fix event dates. Currently they have times,
-    // but the events should be "all day" without any times
     const weekTitle = `${weeks.length - index} Weeks to Goal`;
     calendar.addEvent(
       weekTitle,
