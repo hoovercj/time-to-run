@@ -1,6 +1,6 @@
-import { units } from "./workout";
+import { Units } from "./workout";
 
-export const formatWorkout = (template: string, inputUnits: units = units.miles, outputUnits: units = inputUnits): string => {
+export const formatWorkout = (template: string, inputUnits: Units = Units.miles, outputUnits: Units = inputUnits): string => {
     const replacer = (match: string, number: string, _2: string, _3: string, _4: string, units: string, offset: number, string: string): string => {
         if (!match) {
             return string;
@@ -23,27 +23,27 @@ export const formatWorkout = (template: string, inputUnits: units = units.miles,
 // Regex from: https://stackoverflow.com/questions/12117024/decimal-number-regular-expression-where-digit-after-decimal-is-optional/12117060
 const REGEX = /#((\d+(\.\d*)?)?|(\.\d+))?(D|d)?/g;
 
-const LONG_UNITS: {[key in units]: string} = {
+const LONG_UNITS: {[key in Units]: string} = {
     "kilometers": "kilometers",
     "miles": "miles",
 }
 
-const SHORT_UNITS: {[key in units]: string} = {
+const SHORT_UNITS: {[key in Units]: string} = {
     "kilometers": "km",
     "miles": "mi",
 }
 
-const getScaleFactor = (inputUnits: units, outputUnits: units): number => {
+const getScaleFactor = (inputUnits: Units, outputUnits: Units): number => {
     if (inputUnits === outputUnits) {
         return 1;
-    } else if (outputUnits === units.kilometers) {
+    } else if (outputUnits === Units.kilometers) {
         return 1.60934;
     } else {
         return 0.621371;
     }
 }
 
-const formatNumber = (input: string, inputUnits: units, outputUnits: units): string => {
+const formatNumber = (input: string, inputUnits: Units, outputUnits: Units): string => {
     if (!input) {
         return "";
     }
@@ -58,7 +58,7 @@ const formatNumber = (input: string, inputUnits: units, outputUnits: units): str
     return Math.round(scaledInput).toString(10);
 }
 
-const formatUnits = (input: string, outputUnits: units) => {
+const formatUnits = (input: string, outputUnits: Units) => {
     if (input === "D") {
         return " " + LONG_UNITS[outputUnits];
     } else if (input === "d") {

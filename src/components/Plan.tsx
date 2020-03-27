@@ -15,7 +15,6 @@ export function Plan({ plan }: PlanProps) {
   const { workouts, goalDate, title } = plan;
   const weeks: ScheduledWorkout[][] = chunkArray(workouts, 7);
 
-
   return (
     <div>
       <h2>{title}</h2>
@@ -46,11 +45,11 @@ export interface WorkoutProps {
 }
 
 export function Workout({ workout }: WorkoutProps) {
-  const { description, date } = workout;
+  const { description, date, inputUnits, outputUnits } = workout;
   return (
     <div className="workout">
       <div className="date">{getDayOfWeekString(date)} - {getShortDateString(date)}</div>
-      <div className="description">{formatWorkout(description)}</div>
+      <div className="description">{formatWorkout(description, inputUnits, outputUnits)}</div>
     </div>
   );
 }

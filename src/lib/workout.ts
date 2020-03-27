@@ -1,4 +1,4 @@
-export enum units {
+export enum Units {
     kilometers = "kilometers",
     miles = "miles",
 }
@@ -7,7 +7,7 @@ export interface Plan {
     title: string;
     raceType: string;
     raceDistance: number;
-    units: units;
+    units: Units;
     workouts: Workout[];
 }
 
@@ -23,4 +23,6 @@ export interface ScheduledPlan extends Plan {
 
 export interface ScheduledWorkout extends Workout {
     date: Date;
+    inputUnits: Units;
+    outputUnits: Units;
 }

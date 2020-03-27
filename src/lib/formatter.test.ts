@@ -1,5 +1,5 @@
 import { formatWorkout } from "./formatter";
-import { units } from "./workout";
+import { Units } from "./workout";
 
 describe("formatWorkout", () => {
     it("returns the input string if no placeholders found", () => {
@@ -7,22 +7,22 @@ describe("formatWorkout", () => {
     });
 
     it("formats unit placeholders", () => {
-        expect(formatWorkout("#D", units.miles)).toBe("miles");
-        expect(formatWorkout("#D", units.kilometers)).toBe("kilometers");
-        expect(formatWorkout("#d", units.miles)).toBe("mi");
-        expect(formatWorkout("#d", units.kilometers)).toBe("km");
+        expect(formatWorkout("#D", Units.miles)).toBe("miles");
+        expect(formatWorkout("#D", Units.kilometers)).toBe("kilometers");
+        expect(formatWorkout("#d", Units.miles)).toBe("mi");
+        expect(formatWorkout("#d", Units.kilometers)).toBe("km");
     });
 
     it("formats distance placeholders", () => {
-        expect(formatWorkout("#123", units.miles)).toBe("123");
-        expect(formatWorkout("#12.3", units.kilometers)).toBe("12.3");
-        expect(formatWorkout("#5", units.kilometers, units.miles)).toBe("3");
-        expect(formatWorkout("#3", units.miles, units.kilometers)).toBe("5");
+        expect(formatWorkout("#123", Units.miles)).toBe("123");
+        expect(formatWorkout("#12.3", Units.kilometers)).toBe("12.3");
+        expect(formatWorkout("#5", Units.kilometers, Units.miles)).toBe("3");
+        expect(formatWorkout("#3", Units.miles, Units.kilometers)).toBe("5");
     });
 
     it("formats distance and unit placeholders", () => {
-        expect(formatWorkout("#123D", units.miles)).toBe("123 miles");
-        expect(formatWorkout("#12.3d", units.kilometers)).toBe("12.3km");
+        expect(formatWorkout("#123D", Units.miles)).toBe("123 miles");
+        expect(formatWorkout("#12.3d", Units.kilometers)).toBe("12.3km");
     });
 
     it("formats placeholders with text", () => {
