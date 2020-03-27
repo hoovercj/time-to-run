@@ -1,7 +1,4 @@
-export enum Units {
-    kilometers = "kilometers",
-    miles = "miles",
-}
+export type Units = "miles" | "kilometers";
 
 export interface Plan {
     title: string;

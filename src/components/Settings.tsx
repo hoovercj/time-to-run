@@ -10,7 +10,8 @@ type func<T> = (value: T) => void;
 export interface SettingsProps {
   date: Date;
   onDateChange: func<Date>;
-  plan: string;
+  plans: string[];
+  selectedPlan: string;
   onPlanChange: func<string>;
   units: string;
   onUnitsChange: func<string>;
@@ -20,8 +21,9 @@ export function Settings(props: SettingsProps) {
   const {
     date,
     onDateChange,
-    // plan,
-    // onPlanChange,
+    plans,
+    selectedPlan,
+    onPlanChange,
     units,
     onUnitsChange
   } = props;
@@ -41,8 +43,12 @@ export function Settings(props: SettingsProps) {
         </div>
         <div className="field">
           <label htmlFor="plan-input">2. Race Plan</label>
-          <select id="plan-input">
-            <option value="default">Default</option>
+          <select id="plan-input" value={selectedPlan} onChange={(e) => onPlanChange(e.target.value)}>
+            {plans.map(plan => {
+                return (
+                  <option key={plan} value={plan}>{plan}</option>
+                );
+            })}
           </select>
         </div>
         {renderUnits(units, onUnitsChange)}

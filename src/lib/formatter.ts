@@ -1,7 +1,7 @@
 import { Units } from "./workout";
 import { scaleNumber } from "./utils";
 
-export const formatWorkoutFromTemplate = (template: string, inputUnits: Units = Units.miles, outputUnits: Units = inputUnits): string => {
+export const formatWorkoutFromTemplate = (template: string, inputUnits: Units = "miles", outputUnits: Units = inputUnits): string => {
     const replacer = (match: string, number: string, _2: string, _3: string, _4: string, units: string, offset: number, string: string): string => {
         if (!match) {
             return string;

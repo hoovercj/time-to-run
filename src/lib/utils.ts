@@ -12,7 +12,7 @@ export function chunkArray<T>(array: T[], chunkSize: number): T[][] {
 export function getScaleFactor(inputUnits: Units, outputUnits: Units): number {
   if (inputUnits === outputUnits) {
       return 1;
-  } else if (outputUnits === Units.kilometers) {
+  } else if (outputUnits === "kilometers") {
       return 1.60934;
   } else {
       return 0.621371;
