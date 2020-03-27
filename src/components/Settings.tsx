@@ -4,6 +4,8 @@ import "./Settings.css";
 
 import { Card } from "./Card";
 import { getDateInputValueString } from "../lib/utils";
+import { Filetype } from "../lib/exporter";
+import { Units } from "../lib/workout";
 
 type func<T> = (value: T) => void;
 
@@ -13,9 +15,9 @@ export interface SettingsProps {
   plans: string[];
   selectedPlan: string;
   onPlanChange: func<string>;
-  units: string;
-  onUnitsChange: func<string>;
-  onDownload: func<void>;
+  units: Units;
+  onUnitsChange: func<Units>;
+  onDownload: func<Filetype>;
 }
 
 export function Settings(props: SettingsProps) {
@@ -55,15 +57,17 @@ export function Settings(props: SettingsProps) {
         </div>
         {renderUnits(units, onUnitsChange)}
         <div className="field">
-          <label htmlFor="download-input">4. Download .ical</label>
-          <button id="download-input" onClick={() => onDownload()}>Download</button>
+          <label id="download-label">4. Download</label>
+          <button className="download-button" aria-labelledby="download-label download-ical-button" id="download-ical-button" onClick={() => onDownload("ical")}>iCal</button>
+          <button className="download-button" aria-labelledby="download-label download-json-button" id="download-json-button" onClick={() => onDownload("json")}>json</button>
+          {/* <button className="download-button" aria-labelledby="download-label download-csv-button" id="download-csv-button" onClick={() => onDownload("csv")}>csv</button> */}
         </div>
       </div>
     </Card>
   );
 }
 
-function renderUnits(units: string, onUnitsChange: func<string>) {
+function renderUnits(units: string, onUnitsChange: func<Units>) {
   return RadioGroup({
       label: "3. Units",
       name: "units",
@@ -75,7 +79,7 @@ function renderUnits(units: string, onUnitsChange: func<string>) {
         label: "Kilometers",
         value: "kilometers",
       }],
-      onSelectedChange: onUnitsChange,
+      onSelectedChange: (value: string) => onUnitsChange(value as Units),
     });
 }
 

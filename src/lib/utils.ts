@@ -3,6 +3,10 @@ import { Plan, Workout, ScheduledPlan, ScheduledWorkout, Units } from "./workout
 // TODO: Add unit tests for util methods
 
 export function chunkArray<T>(array: T[], chunkSize: number): T[][] {
+  if (chunkSize <= 0) {
+    return [array];
+  }
+
   const arrayCopy = [...array];
   var chunks = [];
   while (arrayCopy.length) {

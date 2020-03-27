@@ -13,6 +13,9 @@ select {
   max-width: 200px;
 }
 
+.download-button {
+  margin: 5px 0;
+}
 
 @media (max-width: 800px) {
   .settings {

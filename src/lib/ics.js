@@ -1,7 +1,7 @@
 /* eslint-disable */
 // Versions of these functions are available all over the internet,
 // but I copied these from https://github.com/fwacer/courses-to-calendar-uvic/blob/5bebe5bd34410880ef1074c82223d673a8619aa0/ics.js-master/demo/demo.html
-const saveAs =
+export const saveAs =
   (function(e) {
     "use strict";
     if (

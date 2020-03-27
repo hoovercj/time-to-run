@@ -1,5 +1,6 @@
 {
   "name": "my-calendar-hack",
+  "homepage": "https://www.codyhoover.com/calendar-hack",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -13,9 +14,12 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
-    "typescript": "^3.7.5"
+    "typescript": "^3.7.5",
+    "gh-pages": "2.2.0"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
