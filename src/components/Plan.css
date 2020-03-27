@@ -1,0 +1,27 @@
+.date {
+  flex: 1;
+  text-align: right;
+  margin-right: 20px;
+  font-weight: bold;
+}
+
+.description {
+  flex: 2;
+}
+
+.workout {
+  display: flex;
+  flex-direction: row;
+  margin: 20px 0;
+}
+
+@media (max-width: 800px) {
+  .workout {
+    display: block;
+  }
+
+  .date {
+    margin-right: 0px;
+    text-align: left;
+  }
+}
