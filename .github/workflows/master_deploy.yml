@@ -21,6 +21,5 @@ jobs:
       run: |
         git config --global user.email "githubactions@codyhoover.com"
         git config --global user.name "Github Actions"
-        echo "${{ github.actor }} -> ${{ github.repository }}"
     - name: Deploy to GH Pages
-      run: npm run deploy --silent --repo "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git"
+      run: npm run deploy --silent --repo "https://$x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git"
