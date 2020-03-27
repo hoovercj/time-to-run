@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import "./App.css";
 // import planJson from "../workouts/sample-workout.json";
-import { Plan as IPlan, Units } from "../lib/workout";
-import { addDays, schedulePlan } from "../lib/utils";
+import { Plan as IPlan, Units, ScheduledPlan } from "../lib/workout";
+import { addDays, schedulePlan, chunkArray } from "../lib/utils";
+import { ics } from "../lib/ics";
 import { Settings } from "./Settings";
 import { Plan } from "./Plan";
 import { PLANS } from "../workouts/workouts";
-const plans: {[key: string]: IPlan} = {};
-PLANS.forEach(w => plans[w.title] = w);
+import { formatWorkoutFromTemplate } from "../lib/formatter";
+const plans: { [key: string]: IPlan } = {};
+PLANS.forEach(w => (plans[w.title] = w));
 
 function App() {
   const defaultPlanTitle = PLANS[0].title;
@@ -16,7 +18,7 @@ function App() {
   const selectedPlan = plans[selectedPlanTitle];
 
   const defaultGoalDate = addDays(new Date(), selectedPlan.workouts.length);
-  const [goalDate, setGoalDate] = useState(defaultGoalDate)
+  const [goalDate, setGoalDate] = useState(defaultGoalDate);
 
   const defaultUnits = selectedPlan.units;
   const [units, setUnits] = useState(defaultUnits as string);
@@ -34,10 +36,46 @@ function App() {
         onDateChange={setGoalDate}
         onPlanChange={setSelectedPlanTitle}
         onUnitsChange={setUnits}
+        onDownload={() => downloadPlan(planToRender)}
       />
       <Plan plan={planToRender} />
     </div>
   );
+}
+
+function downloadPlan(plan: ScheduledPlan): void {
+  const calendar = ics();
+
+  if (!calendar) {
+    return;
+  }
+
+  const weeks = chunkArray(plan.workouts, 7);
+
+  weeks.forEach((week, index) => {
+    // TODO: add total mileage
+    // TODO: fix event dates. Currently they have times,
+    // but the events should be "all day" without any times
+    const weekTitle = `${weeks.length - index} Weeks to Goal`;
+    calendar.addEvent(
+      weekTitle,
+      "",
+      "",
+      week[0].date,
+      week[week.length - 1].date
+    );
+
+    week.forEach((workout, index) => {
+      const workoutTitle = formatWorkoutFromTemplate(
+        workout.description,
+        workout.units,
+        workout.displayUnits
+      );
+      calendar.addEvent(workoutTitle, "", "", workout.date, workout.date);
+    });
+  });
+
+  calendar.download(plan.title, ".ics");
 }
 
 export default App;

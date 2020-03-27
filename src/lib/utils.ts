@@ -1,9 +1,10 @@
 import { Plan, Workout, ScheduledPlan, ScheduledWorkout, Units } from "./workout";
 
 export function chunkArray<T>(array: T[], chunkSize: number): T[][] {
+  const arrayCopy = [...array];
   var chunks = [];
-  while (array.length) {
-    chunks.push(array.splice(0, chunkSize));
+  while (arrayCopy.length) {
+    chunks.push(arrayCopy.splice(0, chunkSize));
   }
 
   return chunks;

@@ -15,6 +15,7 @@ export interface SettingsProps {
   onPlanChange: func<string>;
   units: string;
   onUnitsChange: func<string>;
+  onDownload: func<void>;
 }
 
 export function Settings(props: SettingsProps) {
@@ -25,7 +26,8 @@ export function Settings(props: SettingsProps) {
     selectedPlan,
     onPlanChange,
     units,
-    onUnitsChange
+    onUnitsChange,
+    onDownload,
   } = props;
   return (
     <Card>
@@ -54,7 +56,7 @@ export function Settings(props: SettingsProps) {
         {renderUnits(units, onUnitsChange)}
         <div className="field">
           <label htmlFor="download-input">4. Download .ical</label>
-          <button id="download-input">Download</button>
+          <button id="download-input" onClick={() => onDownload()}>Download</button>
         </div>
       </div>
     </Card>
