@@ -2,14 +2,25 @@ import React from "react";
 
 import "./Plan.css";
 
-import { ScheduledPlan, ScheduledWorkout } from "../lib/workout";
-import { chunkArray, getLongDateString, getDayOfWeekString, getShortDateString } from "../lib/utils";
-import { formatWorkout } from "../lib/formatter";
+import { ScheduledPlan, ScheduledWorkout, Units } from "../lib/workout";
+import {
+  chunkArray,
+  getLongDateString,
+  getDayOfWeekString,
+  getShortDateString,
+  scaleNumber
+} from "../lib/utils";
+import { formatWorkoutFromTemplate } from "../lib/formatter";
 import { Card } from "./Card";
 
 export interface PlanProps {
-  plan: ScheduledPlan
+  plan: ScheduledPlan;
 }
+
+// TODO: units are being duplicated throughout the tree
+// Currently this is fine because they are always the same,
+// but they could theoretically become out of sync. Normalize
+// handling of units to eliminate this risk
 
 export function Plan({ plan }: PlanProps) {
   const { workouts, goalDate, title } = plan;
@@ -18,8 +29,15 @@ export function Plan({ plan }: PlanProps) {
   return (
     <div>
       <h2>{title}</h2>
-      <div>Goal Race: {getLongDateString(goalDate)}</div>
-      {weeks.map((week, index) => Week({ workouts: week, index: index }))}
+      <div className="goal-race">Goal Race: {getLongDateString(goalDate)}</div>
+      {weeks.map((week, index) => (
+        <Week
+          key={index}
+          workouts={week}
+          index={index}
+          displayUnits={plan.displayUnits}
+        />
+      ))}
     </div>
   );
 }
@@ -27,15 +45,25 @@ export function Plan({ plan }: PlanProps) {
 export interface WeekProps {
   index: number;
   workouts: ScheduledWorkout[];
+  displayUnits: Units;
 }
 
-export function Week({ workouts, index }: WeekProps) {
-  const volume = workouts.reduce((total, workout) => total + workout.totalDistance, 0)
+export function Week({ workouts, index, displayUnits }: WeekProps) {
+  const volume = workouts.reduce(
+    (total, { totalDistance, units, displayUnits }) =>
+      total + scaleNumber(totalDistance, units, displayUnits),
+    0
+  );
 
   return (
     <Card>
-        <h3>Week {index}&nbsp;&nbsp;<small>Total volume: {volume}</small></h3>
-        {workouts.map(workout => Workout({ workout: workout }))}
+      <h3>
+        Week {index + 1}&nbsp;&nbsp;
+        <small>
+          Total volume: {Math.round(volume).toString(10)} {displayUnits}
+        </small>
+      </h3>
+      {workouts.map((workout, index) => <Workout key={index} workout={workout} />)}
     </Card>
   );
 }
@@ -45,11 +73,15 @@ export interface WorkoutProps {
 }
 
 export function Workout({ workout }: WorkoutProps) {
-  const { description, date, inputUnits, outputUnits } = workout;
+  const { description, date, units, displayUnits } = workout;
   return (
     <div className="workout">
-      <div className="date">{getDayOfWeekString(date)} - {getShortDateString(date)}</div>
-      <div className="description">{formatWorkout(description, inputUnits, outputUnits)}</div>
+      <div className="date">
+        {getDayOfWeekString(date)} - {getShortDateString(date)}
+      </div>
+      <div className="description">
+        {formatWorkoutFromTemplate(description, units, displayUnits)}
+      </div>
     </div>
   );
 }

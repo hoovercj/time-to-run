@@ -15,6 +15,11 @@
   margin: 20px 0;
 }
 
+.goal-race {
+  margin-bottom: 1.25em;
+  font-size: 1.17em;
+}
+
 @media (max-width: 800px) {
   .workout {
     display: block;

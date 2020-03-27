@@ -19,10 +19,11 @@ export interface Workout {
 export interface ScheduledPlan extends Plan {
     goalDate: Date;
     workouts: ScheduledWorkout[];
+    displayUnits: Units;
 }
 
 export interface ScheduledWorkout extends Workout {
     date: Date;
-    inputUnits: Units;
-    outputUnits: Units;
+    units: Units;
+    displayUnits: Units;
 }

@@ -1,6 +1,7 @@
 import { Units } from "./workout";
+import { scaleNumber } from "./utils";
 
-export const formatWorkout = (template: string, inputUnits: Units = Units.miles, outputUnits: Units = inputUnits): string => {
+export const formatWorkoutFromTemplate = (template: string, inputUnits: Units = Units.miles, outputUnits: Units = inputUnits): string => {
     const replacer = (match: string, number: string, _2: string, _3: string, _4: string, units: string, offset: number, string: string): string => {
         if (!match) {
             return string;
@@ -8,9 +9,9 @@ export const formatWorkout = (template: string, inputUnits: Units = Units.miles,
 
         let replacement = "";
 
-        replacement += formatNumber(number, inputUnits, outputUnits);
+        replacement += formatNumberTemplate(number, inputUnits, outputUnits);
 
-        replacement += formatUnits(units, outputUnits);
+        replacement += formatUnitsTemplate(units, outputUnits);
 
         return replacement.trim();
     }
@@ -33,17 +34,7 @@ const SHORT_UNITS: {[key in Units]: string} = {
     "miles": "mi",
 }
 
-const getScaleFactor = (inputUnits: Units, outputUnits: Units): number => {
-    if (inputUnits === outputUnits) {
-        return 1;
-    } else if (outputUnits === Units.kilometers) {
-        return 1.60934;
-    } else {
-        return 0.621371;
-    }
-}
-
-const formatNumber = (input: string, inputUnits: Units, outputUnits: Units): string => {
+const formatNumberTemplate = (input: string, inputUnits: Units, outputUnits: Units): string => {
     if (!input) {
         return "";
     }
@@ -54,11 +45,11 @@ const formatNumber = (input: string, inputUnits: Units, outputUnits: Units): str
     }
 
     // If the units are different, scale then round
-    const scaledInput = parseFloat(input) * getScaleFactor(inputUnits, outputUnits);
+    const scaledInput = scaleNumber(parseFloat(input), inputUnits, outputUnits);
     return Math.round(scaledInput).toString(10);
 }
 
-const formatUnits = (input: string, outputUnits: Units) => {
+const formatUnitsTemplate = (input: string, outputUnits: Units) => {
     if (input === "D") {
         return " " + LONG_UNITS[outputUnits];
     } else if (input === "d") {

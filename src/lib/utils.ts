@@ -9,34 +9,53 @@ export function chunkArray<T>(array: T[], chunkSize: number): T[][] {
   return chunks;
 }
 
+export function getScaleFactor(inputUnits: Units, outputUnits: Units): number {
+  if (inputUnits === outputUnits) {
+      return 1;
+  } else if (outputUnits === Units.kilometers) {
+      return 1.60934;
+  } else {
+      return 0.621371;
+  }
+}
+
+export function scaleNumber(input: number, inputUnits: Units, outputUnits: Units): number {
+  if (inputUnits === outputUnits) {
+    return input;
+  } else {
+    return input * getScaleFactor(inputUnits, outputUnits);
+  }
+}
+
 export function addDays(date: Date, days: number): Date {
   const newDate = new Date(date);
   newDate.setDate(newDate.getDate() + days);
   return newDate;
 }
 
-export function schedulePlan(plan: Plan, goalDate: Date, outputUnits: Units): ScheduledPlan {
-  const scheduledWorkouts = scheduleWorkouts(plan.workouts, goalDate, plan.units, outputUnits);
+export function schedulePlan(plan: Plan, goalDate: Date, displayUnits: Units): ScheduledPlan {
+  const scheduledWorkouts = scheduleWorkouts(plan.workouts, goalDate, plan.units, displayUnits);
   return {
     ...plan,
     goalDate,
     workouts: scheduledWorkouts,
-
+    displayUnits: displayUnits,
   };
 }
 
 export function scheduleWorkouts(
   workouts: Workout[],
   goalDate: Date,
-  inputUnits: Units,
-  outputUnits: Units,
+  units: Units,
+  displayUnits: Units,
 ): ScheduledWorkout[] {
   return workouts.map((workout, index) => {
     return {
       ...workout,
+      // TODO: this is incorrect. Fix and add unit tests
       date: addDays(goalDate, -1 * (workouts.length - index)),
-      inputUnits,
-      outputUnits,
+      units: units,
+      displayUnits,
     };
   });
 }
