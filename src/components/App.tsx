@@ -53,10 +53,61 @@ function App() {
             ? downloadPlanCalendar(scheduledPlan)
             : downloadPlanTemplate(selectedPlan, filetype)
         }
+        onFileChange={(filelist) => handleFileChange(filelist, setSelectedPlanTitle)}
       />
       <Plan plan={scheduledPlan} />
     </div>
   );
+}
+
+const handleFileChange = (filelist: FileList | null, selectPlan: (plan: string) => void) => {
+  if (!filelist) {
+    return;
+  }
+
+  let selectUploadedPlan = true;
+
+  for (let i = 0; i < filelist.length; i++) {
+    const file = filelist.item(i);
+    if (!file) {
+      continue;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (event: ProgressEvent) => {
+      const typedEvent = event as ProgressEventExtended;
+      const result = typedEvent && typedEvent.target && typedEvent.target.result;
+
+      try {
+        const planObject = JSON.parse(result) as IPlan;
+
+        const nameCollision = !!plans[planObject.title];
+        if (nameCollision) {
+          planObject.title = `[Copy] ${planObject.title}`;
+        }
+
+        plans[planObject.title] = planObject;
+
+        // Only select one plan
+        if (selectUploadedPlan) {
+          selectUploadedPlan = false;
+          selectPlan(planObject.title);
+        }
+      } catch (e) {
+        alert(`Unable to read ${file.name}. Check the file and try again.`);
+      }
+    };
+
+    reader.readAsText(file);
+  }
+};
+
+interface ProgressEventExtended extends ProgressEvent {
+  target: ProgressEventTarget;
+}
+
+interface ProgressEventTarget extends EventTarget {
+  result: string;
 }
 
 export default App;

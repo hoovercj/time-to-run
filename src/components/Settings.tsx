@@ -18,6 +18,7 @@ export interface SettingsProps {
   units: Units;
   onUnitsChange: func<Units>;
   onDownload: func<Filetype>;
+  onFileChange: func<FileList | null>;
 }
 
 export function Settings(props: SettingsProps) {
@@ -30,12 +31,13 @@ export function Settings(props: SettingsProps) {
     units,
     onUnitsChange,
     onDownload,
+    onFileChange,
   } = props;
   return (
     <Card>
       <div className="settings">
         <div className="field">
-          <label htmlFor="date-input">1. Goal Race Date</label>
+          <label htmlFor="date-input">1. Set Goal Race Date</label>
           <input
             id="date-input"
             type="date"
@@ -46,7 +48,7 @@ export function Settings(props: SettingsProps) {
           />
         </div>
         <div className="field">
-          <label htmlFor="plan-input">2. Race Plan</label>
+          <label htmlFor="plan-input">2. Select Race Plan</label>
           <select id="plan-input" value={selectedPlan} onChange={(e) => onPlanChange(e.target.value)}>
             {plans.map(plan => {
                 return (
@@ -54,6 +56,8 @@ export function Settings(props: SettingsProps) {
                 );
             })}
           </select>
+          <label htmlFor="plan-upload">Or upload your own</label>
+          <input type="file" id="plan-upload" name="plane-upload" accept=".json, .csv" onChange={(e) => onFileChange(e.target.files)}/>
         </div>
         {renderUnits(units, onUnitsChange)}
         <div className="field">
@@ -69,7 +73,7 @@ export function Settings(props: SettingsProps) {
 
 function renderUnits(units: string, onUnitsChange: func<Units>) {
   return RadioGroup({
-      label: "3. Units",
+      label: "3. Set Distance Units",
       name: "units",
       selectedValue: units,
       values: [{
