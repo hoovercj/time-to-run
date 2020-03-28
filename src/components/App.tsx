@@ -40,7 +40,7 @@ function App() {
 
   return (
     <div className="app">
-      <h1 className="app-header">Calendar Hack</h1>
+      <h1 className="app-header">Calendar Hack</h1><a className="about-link" href="https://github.com/hoovercj/calendar-hack/blob/master/README.md">About</a>
       <Settings
         date={goalDate}
         units={units}

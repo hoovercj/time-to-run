@@ -9,7 +9,9 @@ Running a marathon is hard. Setting up your training plan shouldn't be.
 
 It doesn't need to be any harder than that! And if you like one of the built-in plans, it really is that easy. Pick your plan and download an .ical file to import into Google calendar, your iphone calendar, or whatever app you use.
 
-## Create your own plan!
+[Get started!](https://www.codyhoover.com/calendar-hack)
+
+## Create your own plan
 
 After importing a plan into your calendar program of choice, you can always go in and modify individual events to your liking. But if you want to make significant changes to a plan, or even make up your own to use later or to share with friends or clients, you can download the plan as a ".csv" file to edit in Excel or Notepad.
 
