@@ -2352,7 +2352,7 @@ export const PLANS: Plan[] = [
       },
       { description: "Rest or Cross-Train", totalDistance: 0 },
       {
-        description: "#1D Warm Up\n#0D Tempo @ Goal MP\n#1D Cool Down",
+        description: "#1D Warm Up\n#10D Tempo @ Goal MP\n#1D Cool Down",
         totalDistance: 12
       },
       {
@@ -2378,7 +2378,7 @@ export const PLANS: Plan[] = [
       },
       { description: "Rest or Cross-Train", totalDistance: 0 },
       {
-        description: "#1D Warm Up\n#0D Tempo @ Goal MP\n#1D Cool Down",
+        description: "#1D Warm Up\n#10D Tempo @ Goal MP\n#1D Cool Down",
         totalDistance: 12
       },
       {
@@ -2497,7 +2497,7 @@ export const PLANS: Plan[] = [
         totalDistance: 6
       },
       {
-        description: "#0D Long Run",
+        description: "#10D Long Run",
         totalDistance: 10
       },
       {
@@ -2523,7 +2523,7 @@ export const PLANS: Plan[] = [
         totalDistance: 8
       },
       {
-        description: "#0D Long Run",
+        description: "#10D Long Run",
         totalDistance: 10
       },
       {
@@ -2549,7 +2549,7 @@ export const PLANS: Plan[] = [
         totalDistance: 8
       },
       {
-        description: "#2D Long Run",
+        description: "#12D Long Run",
         totalDistance: 12
       },
       {
@@ -2627,7 +2627,7 @@ export const PLANS: Plan[] = [
         totalDistance: 10
       },
       {
-        description: "#0D Long Run",
+        description: "#10D Long Run",
         totalDistance: 10
       },
       {
@@ -2653,7 +2653,7 @@ export const PLANS: Plan[] = [
         totalDistance: 8
       },
       {
-        description: "#5D Long Run",
+        description: "#15D Long Run",
         totalDistance: 15
       },
       {
@@ -2679,7 +2679,7 @@ export const PLANS: Plan[] = [
         totalDistance: 10
       },
       {
-        description: "#0D Long Run",
+        description: "#10D Long Run",
         totalDistance: 10
       },
       {
@@ -2705,7 +2705,7 @@ export const PLANS: Plan[] = [
         totalDistance: 8
       },
       {
-        description: "#6D Long Run",
+        description: "#16D Long Run",
         totalDistance: 16
       },
       {
@@ -2731,7 +2731,7 @@ export const PLANS: Plan[] = [
         totalDistance: 10
       },
       {
-        description: "#0D Long Run",
+        description: "#10D Long Run",
         totalDistance: 10
       },
       {
@@ -2783,7 +2783,7 @@ export const PLANS: Plan[] = [
         totalDistance: 10
       },
       {
-        description: "#0D Long Run",
+        description: "#10D Long Run",
         totalDistance: 10
       },
       {
@@ -2797,7 +2797,7 @@ export const PLANS: Plan[] = [
       },
       { description: "Rest or Cross-Train", totalDistance: 0 },
       {
-        description: "#1D Warm Up\n#0D Tempo @ Goal MP\n#1D Cool Down",
+        description: "#1D Warm Up\n#10D Tempo @ Goal MP\n#1D Cool Down",
         totalDistance: 12
       },
       {
@@ -2849,7 +2849,7 @@ export const PLANS: Plan[] = [
       },
       { description: "Rest or Cross-Train", totalDistance: 0 },
       {
-        description: "#1D Warm Up\n#0D Tempo @ Goal MP\n#1D Cool Down",
+        description: "#1D Warm Up\n#10D Tempo @ Goal MP\n#1D Cool Down",
         totalDistance: 12
       },
       {
