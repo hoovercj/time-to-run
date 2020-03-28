@@ -3,11 +3,9 @@ import React from "react";
 import "./Settings.css";
 
 import { Card } from "./Card";
-import { getDateInputValueString } from "../lib/utils";
+import { getDateInputValueString, func } from "../lib/utils";
 import { Filetype } from "../lib/exporter";
 import { Units } from "../lib/workout";
-
-type func<T> = (value: T) => void;
 
 export interface SettingsProps {
   date: Date;

@@ -11,6 +11,7 @@ import {
   downloadPlanCalendar,
   downloadPlanTemplate
 } from "../lib/exporter";
+import { importFile } from "../lib/importer";
 const plans: { [key: string]: IPlan } = {};
 PLANS.forEach(w => (plans[w.title] = w));
 
@@ -53,61 +54,42 @@ function App() {
             ? downloadPlanCalendar(scheduledPlan)
             : downloadPlanTemplate(selectedPlan, filetype)
         }
-        onFileChange={(filelist) => handleFileChange(filelist, setSelectedPlanTitle)}
+        onFileChange={filelist =>
+          handleFileChange(filelist, setSelectedPlanTitle)
+        }
       />
       <Plan plan={scheduledPlan} />
     </div>
   );
 }
 
-const handleFileChange = (filelist: FileList | null, selectPlan: (plan: string) => void) => {
+const handleFileChange = (
+  filelist: FileList | null,
+  selectPlan: (plan: string) => void
+) => {
   if (!filelist) {
     return;
   }
 
-  let selectUploadedPlan = true;
-
-  for (let i = 0; i < filelist.length; i++) {
-    const file = filelist.item(i);
-    if (!file) {
-      continue;
-    }
-
-    const reader = new FileReader();
-    reader.onload = (event: ProgressEvent) => {
-      const typedEvent = event as ProgressEventExtended;
-      const result = typedEvent && typedEvent.target && typedEvent.target.result;
-
-      try {
-        const planObject = JSON.parse(result) as IPlan;
-
-        const nameCollision = !!plans[planObject.title];
-        if (nameCollision) {
-          planObject.title = `[Copy] ${planObject.title}`;
-        }
-
-        plans[planObject.title] = planObject;
-
-        // Only select one plan
-        if (selectUploadedPlan) {
-          selectUploadedPlan = false;
-          selectPlan(planObject.title);
-        }
-      } catch (e) {
-        alert(`Unable to read ${file.name}. Check the file and try again.`);
-      }
-    };
-
-    reader.readAsText(file);
+  const file = filelist.item(0);
+  if (!file) {
+    return;
   }
+
+  importFile(file)
+    .then(plan => {
+      const nameCollision = !!plans[plan.title];
+      if (nameCollision) {
+        plan.title = `[Copy] ${plan.title}`;
+      }
+
+      plans[plan.title] = plan;
+
+      selectPlan(plan.title);
+    })
+    .catch(error =>
+      alert(error)
+    );
 };
-
-interface ProgressEventExtended extends ProgressEvent {
-  target: ProgressEventTarget;
-}
-
-interface ProgressEventTarget extends EventTarget {
-  result: string;
-}
 
 export default App;

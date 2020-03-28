@@ -2,6 +2,8 @@ import { Plan, Workout, ScheduledPlan, ScheduledWorkout, Units } from "./workout
 
 // TODO: Add unit tests for util methods
 
+export type func<T> = (value: T) => void;
+
 export function chunkArray<T>(array: T[], chunkSize: number): T[][] {
   if (chunkSize <= 0) {
     return [array];
