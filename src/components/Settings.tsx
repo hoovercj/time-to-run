@@ -55,7 +55,7 @@ export function Settings(props: SettingsProps) {
             })}
           </select>
           <label htmlFor="plan-upload">Or upload your own</label>
-          <input type="file" id="plan-upload" name="plane-upload" accept=".json" onChange={(e) => onFileChange(e.target.files)}/>
+          <input type="file" id="plan-upload" name="plane-upload" accept=".json,.csv" onChange={(e) => onFileChange(e.target.files)}/>
         </div>
         {renderUnits(units, onUnitsChange)}
         <div className="field">

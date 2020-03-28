@@ -4,6 +4,10 @@ import { Plan, Workout, ScheduledPlan, ScheduledWorkout, Units } from "./workout
 
 export type func<T> = (value: T) => void;
 
+export function getFileExtension(filename: string): string {
+  return filename.substring(filename.lastIndexOf("."));
+}
+
 export function chunkArray<T>(array: T[], chunkSize: number): T[][] {
   if (chunkSize <= 0) {
     return [array];

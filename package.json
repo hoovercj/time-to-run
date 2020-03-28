@@ -9,13 +9,15 @@
     "@testing-library/user-event": "^7.2.1",
     "@types/jest": "^24.9.1",
     "@types/node": "^12.12.31",
+    "@types/papaparse": "^5.0.3",
     "@types/react": "^16.9.25",
     "@types/react-dom": "^16.9.5",
+    "gh-pages": "2.2.0",
+    "papaparse": "^5.1.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
-    "typescript": "^3.7.5",
-    "gh-pages": "2.2.0"
+    "typescript": "^3.7.5"
   },
   "scripts": {
     "predeploy": "npm run build",
