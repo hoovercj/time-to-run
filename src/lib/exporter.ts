@@ -3,15 +3,17 @@ import { ics, saveAs } from "../lib/ics";
 import { ScheduledPlan, Plan } from "./workout";
 import { formatWorkoutFromTemplate } from "./formatter";
 import { chunkArray } from "../lib/utils";
+import { planToCsv } from "./csvProcessor";
 
-export type Filetype = 'ical' | 'json' | 'csv';
+export type Filetype = "ical" | "json" | "csv";
 
 export function downloadPlanTemplate(plan: Plan, filetype: Filetype) {
-  switch(filetype) {
-    case 'json':
+  switch (filetype) {
+    case "json":
       downloadJson(plan);
       return;
-    case 'csv':
+    case "csv":
+      downloadCsv(plan);
       return;
   }
 }
@@ -49,5 +51,13 @@ export function downloadPlanCalendar(plan: ScheduledPlan) {
 }
 
 function downloadJson(plan: Plan) {
-  saveAs!(new Blob([JSON.stringify(plan, null, '  ')]), `${plan.title}.json`);
+  downloadCore(JSON.stringify(plan, null, "  "), `${plan.title}.json`);
+}
+
+function downloadCsv(plan: Plan) {
+  downloadCore(planToCsv(plan), `${plan.title}.csv`);
+}
+
+function downloadCore(file: string, filename: string) {
+  saveAs!(new Blob([file]), filename);
 }

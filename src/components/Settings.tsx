@@ -62,7 +62,7 @@ export function Settings(props: SettingsProps) {
           <label id="download-label">4. Download</label>
           <button className="download-button" aria-labelledby="download-label download-ical-button" id="download-ical-button" onClick={() => onDownload("ical")}>iCal</button>
           <button className="download-button" aria-labelledby="download-label download-json-button" id="download-json-button" onClick={() => onDownload("json")}>json</button>
-          {/* <button className="download-button" aria-labelledby="download-label download-csv-button" id="download-csv-button" onClick={() => onDownload("csv")}>csv</button> */}
+          <button className="download-button" aria-labelledby="download-label download-csv-button" id="download-csv-button" onClick={() => onDownload("csv")}>csv</button>
         </div>
       </div>
     </Card>
