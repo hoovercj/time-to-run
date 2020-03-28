@@ -40,6 +40,8 @@ This project takes inspiration from ["Calendar Hack"](https://defy.org/hacks/cal
 
 This project includes a few popular training plans from [Advanced Marathoning](http://www.amazon.com/Advanced-Marathoning-Edition-Pete-Pfitzinger/dp/0736074600) by Pete Pfitzinger and Scott Douglas, [Hansons Marathon Method](https://hansons-running.com/collections/hansons-swag/products/hansons-method-hansons-method-mara%22) by Kieth and Kevin Hanson, and [Marathon: The Ultimate Training Guide](http://www.amazon.com/Marathon-Ultimate-Training-Programs-Marathons/dp/1609612248) by Hal Higdon. The plans are not intended to be used on their own and should be used in combination with the books.
 
+Icon made by [monkik](https://www.flaticon.com/authors/monkik) from [www.flaticon.com](www.flaticon.com).
+
 ## Contact
 
 If you have questions, comments, or issues, reach out via email (calendarhack at codyhoover dot com) or [on github](https://github.com/hoovercj/calendar-hack/issues).
