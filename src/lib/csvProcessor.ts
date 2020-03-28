@@ -17,6 +17,7 @@ const PLAN_HEADINGS: PlanHeadings[] = [
   "units"
 ];
 const NEWLINE = "\r\n";
+const COMMENT = "//";
 const UNPARSE_OPTIONS: UnparseConfig = {
   header: true,
   newline: NEWLINE,
@@ -33,6 +34,7 @@ export const planToCsv = (plan: Plan): string => {
 
   const csv = [
     unparseCsv(planInfoData, UNPARSE_OPTIONS),
+    NEWLINE,
     unparseCsv(workouts, UNPARSE_OPTIONS)
   ].join(NEWLINE);
 
@@ -41,13 +43,27 @@ export const planToCsv = (plan: Plan): string => {
 
 export const csvToPlan = (file: string): Plan | null => {
   try {
-    const result = parseCsv(file, { skipEmptyLines: true });
+    const result = parseCsv(file, { skipEmptyLines: true, comments: COMMENT });
+    const filteredResult = result.data.filter((line: string[]) => {
+      const isCommentLine = line[0].indexOf("//") === 0;
+      if (isCommentLine) {
+        return false;
+      }
+
+      const isEmptyLine = line.every(value => value === "");
+      if (isEmptyLine) {
+        return false;
+      }
+
+      return true;
+    });
+
     const [
       planHeadings,
       planValues,
       workoutHeadings,
       ...workouts
-    ] = result.data as [
+    ] = filteredResult as [
       PlanHeadings[],
       string[],
       WorkoutHeadings[],
@@ -68,16 +84,12 @@ export const csvToPlan = (file: string): Plan | null => {
       raceType: planValues[raceTypeIndex],
       raceDistance: parseFloat(planValues[raceDistanceIndex]),
       units: planValues[unitsIndex] as Units,
-      workouts: workouts.reduce(
-        (output, workout) => {
-          if (workout.length === 2) {
-            output.push({
-              description: workout[descriptionIndex],
-              totalDistance: parseFloat(workout[workoutDistanceIndex])
-            });
-          }
-
-          return output;
+      workouts: workouts.map(
+        workout => {
+          return {
+            description: workout[descriptionIndex],
+            totalDistance: parseFloat(workout[workoutDistanceIndex])
+          };
         },
         [] as Workout[]
       )
