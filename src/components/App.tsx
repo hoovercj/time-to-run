@@ -22,13 +22,8 @@ function App() {
   const selectedPlan = plans[selectedPlanTitle];
 
   const today = new Date();
-  const todayWithoutTime = new Date(
-    today.getFullYear(),
-    today.getMonth(),
-    today.getDate()
-  );
   const defaultGoalDate = addDays(
-    todayWithoutTime,
+    today,
     selectedPlan.workouts.length
   );
   const [goalDate, setGoalDate] = useState(defaultGoalDate);

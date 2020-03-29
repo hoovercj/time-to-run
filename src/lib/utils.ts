@@ -4,6 +4,14 @@ import { Plan, Workout, ScheduledPlan, ScheduledWorkout, Units } from "./workout
 
 export type func<T> = (value: T) => void;
 
+export function getDateWithoutTime(date: Date): Date {
+  return new Date(
+    date.getFullYear(),
+    date.getMonth(),
+    date.getDate()
+  );
+}
+
 export function getFileExtension(filename: string): string {
   return filename.substring(filename.lastIndexOf("."));
 }

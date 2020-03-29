@@ -1,9 +1,8 @@
-import { ics, saveAs } from "../lib/ics";
-
-import { ScheduledPlan, Plan } from "./workout";
-import { formatWorkoutFromTemplate } from "./formatter";
-import { chunkArray } from "../lib/utils";
 import { planToCsv } from "./csvProcessor";
+import { formatWorkoutFromTemplate } from "./formatter";
+import { ScheduledPlan, Plan } from "./workout";
+import { ics, saveAs } from "../lib/ics";
+import { chunkArray, getDateWithoutTime } from "../lib/utils";
 
 export type Filetype = "ical" | "json" | "csv";
 
@@ -28,22 +27,19 @@ export function downloadPlanCalendar(plan: ScheduledPlan) {
   const weeks = chunkArray(plan.workouts, 7);
 
   weeks.forEach((week, index) => {
+    const weekStartDate = getDateWithoutTime(week[0].date);
+    const weekEndDate = getDateWithoutTime(week[week.length - 1].date);
     const weekTitle = `${weeks.length - index} Weeks to Goal`;
-    calendar.addEvent(
-      weekTitle,
-      "",
-      "",
-      week[0].date,
-      week[week.length - 1].date
-    );
+    calendar.addEvent(weekTitle, "", "", weekStartDate, weekEndDate);
 
-    week.forEach((workout, index) => {
+    week.forEach(workout => {
+      const workoutDate = getDateWithoutTime(workout.date);
       const workoutTitle = formatWorkoutFromTemplate(
         workout.description,
         workout.units,
         workout.displayUnits
       );
-      calendar.addEvent(workoutTitle, "", "", workout.date, workout.date);
+      calendar.addEvent(workoutTitle, "", "", workoutDate, workoutDate);
     });
   });
 

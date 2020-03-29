@@ -29,7 +29,7 @@ export function Settings(props: SettingsProps) {
     units,
     onUnitsChange,
     onDownload,
-    onFileChange,
+    onFileChange
   } = props;
   return (
     <Card>
@@ -41,28 +41,61 @@ export function Settings(props: SettingsProps) {
             type="date"
             value={getDateInputValueString(date)}
             onChange={e => {
-              onDateChange(e.target.valueAsDate as Date);
+              onDateChange((e.target.valueAsDate as Date) || new Date());
             }}
           />
         </div>
         <div className="field">
           <label htmlFor="plan-input">2. Select Race Plan</label>
-          <select id="plan-input" value={selectedPlan} onChange={(e) => onPlanChange(e.target.value)}>
+          <select
+            id="plan-input"
+            value={selectedPlan}
+            onChange={e => onPlanChange(e.target.value)}
+          >
             {plans.map(plan => {
-                return (
-                  <option key={plan} value={plan}>{plan}</option>
-                );
+              return (
+                <option key={plan} value={plan}>
+                  {plan}
+                </option>
+              );
             })}
           </select>
           <label htmlFor="plan-upload">Or upload your own</label>
-          <input type="file" id="plan-upload" name="plane-upload" accept=".json,.csv" onChange={(e) => onFileChange(e.target.files)}/>
+          <input
+            type="file"
+            id="plan-upload"
+            name="plane-upload"
+            accept=".json,.csv"
+            onChange={e => onFileChange(e.target.files)}
+          />
         </div>
         {renderUnits(units, onUnitsChange)}
         <div className="field">
           <label id="download-label">4. Download</label>
-          <button className="download-button" aria-labelledby="download-label download-ical-button" id="download-ical-button" onClick={() => onDownload("ical")}>iCal</button>
-          <button className="download-button" aria-labelledby="download-label download-json-button" id="download-json-button" onClick={() => onDownload("json")}>json</button>
-          <button className="download-button" aria-labelledby="download-label download-csv-button" id="download-csv-button" onClick={() => onDownload("csv")}>csv</button>
+          <button
+            className="download-button"
+            aria-labelledby="download-label download-ical-button"
+            id="download-ical-button"
+            onClick={() => onDownload("ical")}
+          >
+            iCal
+          </button>
+          <button
+            className="download-button"
+            aria-labelledby="download-label download-json-button"
+            id="download-json-button"
+            onClick={() => onDownload("json")}
+          >
+            json
+          </button>
+          <button
+            className="download-button"
+            aria-labelledby="download-label download-csv-button"
+            id="download-csv-button"
+            onClick={() => onDownload("csv")}
+          >
+            csv
+          </button>
         </div>
       </div>
     </Card>
@@ -71,18 +104,21 @@ export function Settings(props: SettingsProps) {
 
 function renderUnits(units: string, onUnitsChange: func<Units>) {
   return RadioGroup({
-      label: "3. Set Distance Units",
-      name: "units",
-      selectedValue: units,
-      values: [{
+    label: "3. Set Distance Units",
+    name: "units",
+    selectedValue: units,
+    values: [
+      {
         label: "Miles",
-        value: "miles",
-      }, {
+        value: "miles"
+      },
+      {
         label: "Kilometers",
-        value: "kilometers",
-      }],
-      onSelectedChange: (value: string) => onUnitsChange(value as Units),
-    });
+        value: "kilometers"
+      }
+    ],
+    onSelectedChange: (value: string) => onUnitsChange(value as Units)
+  });
 }
 
 interface RadioGroupProps {
