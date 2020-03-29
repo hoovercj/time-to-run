@@ -13,9 +13,11 @@ It doesn't need to be any harder than that! And if you like one of the built-in 
 
 ## Create your own plan
 
-After importing a plan into your calendar program of choice, you can always go in and modify individual events to your liking. But if you want to make significant changes to a plan, or even make up your own to use later or to share with friends or clients, you can download the plan as a ".csv" file to edit in Excel or Notepad.
+After importing a plan into your calendar program of choice, you can always go in and modify individual events to your liking. But if you want to make significant changes to a plan, or even make up your own to use later or to share with friends or athletes that your coach, you can download the plan as a ".csv" file to edit in Excel or Notepad.
 
-When editing the plans, there are only a few things you need to know.
+If you don't care about switching between miles and kilometers, or you don't plan on sharing the plan with anybody else who might, you can remove/ignore all the "#" symbols and write whatever you want in the description column and then import the file back into the website to create a calendar.
+
+If you do want the plan to work for everone, though, there are only a few things you need to know.
 
 1. Use the "#" symbol before values that should display in the selected units, and the letters "D" and "d" to show "long" or "short" units after the values.
 
@@ -44,4 +46,4 @@ Icon made by [monkik](https://www.flaticon.com/authors/monkik) from [www.flatico
 
 ## Contact
 
-If you have questions, comments, or issues, reach out via email (calendarhack at codyhoover dot com) or [on github](https://github.com/hoovercj/calendar-hack/issues).
+If you have made a plan that you think others might benefit from or if you have issues, questions, or suggestions on how I can make this project work better for you, reach out via email (calendarhack at codyhoover dot com) or [on github](https://github.com/hoovercj/calendar-hack/issues).
