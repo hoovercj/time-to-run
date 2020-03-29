@@ -10,7 +10,7 @@ export const PLANS: Plan[] = [
     workouts: [
       { description: "Rest or cross-training", totalDistance: 0 },
       {
-        description: "Lactate threshold #8D w #4D @ 15K to half marathon pace",
+        description: "Lactate threshold #8D w/ #4D @ 15K to half marathon pace",
         totalDistance: 8
       },
       { description: "Rest or cross-training", totalDistance: 0 },
@@ -29,7 +29,7 @@ export const PLANS: Plan[] = [
       },
       { description: "Rest or cross-training", totalDistance: 0 },
       {
-        description: "General aerobic + speed #8D w/ 10 x 100m strides",
+        description: "General aerobic + speed #8D w/ 10x100m strides",
         totalDistance: 8
       },
       { description: "Rest or cross-training", totalDistance: 0 },
@@ -57,7 +57,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "Lactate threshold #8D w #4D @ 15K to half marathon race pace",
+          "Lactate threshold #8D w/ #4D @ 15K to half marathon race pace",
         totalDistance: 8
       },
       { description: "Rest or cross-training", totalDistance: 0 },
@@ -71,7 +71,7 @@ export const PLANS: Plan[] = [
       },
       { description: "Rest or cross-training", totalDistance: 0 },
       {
-        description: "General aerobic + speed #8D w/ 10 X 100 m strides",
+        description: "General aerobic + speed #8D w/ 10x100 m strides",
         totalDistance: 8
       },
       {
@@ -94,7 +94,7 @@ export const PLANS: Plan[] = [
       { description: "Rest or cross-training", totalDistance: 0 },
       {
         description:
-          "Lactate threshold #9D w #5D @ 15K to half marathon race pace",
+          "Lactate threshold #9D w/ #5D @ 15K to half marathon race pace",
         totalDistance: 9
       },
       {
@@ -111,12 +111,12 @@ export const PLANS: Plan[] = [
         totalDistance: 5
       },
       {
-        description: "Marathon pace run #16D w #10D @ marathon race pace",
+        description: "Marathon pace run #16D w/ #10D @ marathon race pace",
         totalDistance: 16
       },
       { description: "Rest or cross-training", totalDistance: 0 },
       {
-        description: "General aerobic + speed #8D w/ 10 x 100m strides",
+        description: "General aerobic + speed #8D w/ 10x100m strides",
         totalDistance: 8
       },
       {
@@ -139,7 +139,7 @@ export const PLANS: Plan[] = [
       { description: "Rest or cross-training", totalDistance: 0 },
       {
         description:
-          "Lactate threshold #10D w #5D @ 15K to half marathon race pace",
+          "Lactate threshold #10D w/ #5D @ 15K to half marathon race pace",
         totalDistance: 10
       },
       {
@@ -152,13 +152,13 @@ export const PLANS: Plan[] = [
       },
       { description: "Rest or cross-training", totalDistance: 0 },
       {
-        description: "General aerobic + speed #7D w/8 x 100m strides",
+        description: "General aerobic + speed #7D w/8x100m strides",
         totalDistance: 7
       },
       { description: "Long run 18 mi (34 km)", totalDistance: 18 },
       { description: "Rest or cross-training", totalDistance: 0 },
       {
-        description: "Recovery + speed #7D w/ 6 x 100 m strides",
+        description: "Recovery + speed #7D w/ 6x100 m strides",
         totalDistance: 7
       },
       {
@@ -194,7 +194,7 @@ export const PLANS: Plan[] = [
       },
       { description: "Rest or cross-training", totalDistance: 0 },
       {
-        description: "Recovery + speed #6D w/ 6 x 100 m strides",
+        description: "Recovery + speed #6D w/ 6x100 m strides",
         totalDistance: 6
       },
       {
@@ -208,7 +208,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "VO₂ Max #8D w/ 5 x 800 m @ 5K race pace; jog 50 to 90% interval time between",
+          "VO₂ Max #8D w/ 5x800 m @ 5K race pace; jog 50 to 90% interval time between",
         totalDistance: 8
       },
       {
@@ -217,7 +217,7 @@ export const PLANS: Plan[] = [
       },
       { description: "Rest or cross-training", totalDistance: 0 },
       {
-        description: "General aerobic + speed #8D w/8 x 100m strides",
+        description: "General aerobic + speed #8D w/8x100m strides",
         totalDistance: 8
       },
       {
@@ -226,7 +226,7 @@ export const PLANS: Plan[] = [
       },
       { description: "Rest or cross-training", totalDistance: 0 },
       {
-        description: "Recovery + speed #7D w/ 6 x 100 m strides",
+        description: "Recovery + speed #7D w/ 6x100 m strides",
         totalDistance: 7
       },
       {
@@ -250,7 +250,7 @@ export const PLANS: Plan[] = [
       { description: "Rest or cross-training", totalDistance: 0 },
       {
         description:
-          "VO₂ Max #8D w/ 5 x 600 m @ 5K race pace; jog 50 to 90% interval time between",
+          "VO₂ Max #8D w/ 5x600 m @ 5K race pace; jog 50 to 90% interval time between",
         totalDistance: 8
       },
       {
@@ -259,7 +259,7 @@ export const PLANS: Plan[] = [
       },
       { description: "Rest or cross-training", totalDistance: 0 },
       {
-        description: "Recovery + speed #5D w/ 6 x 100 m strides",
+        description: "Recovery + speed #5D w/ 6x100 m strides",
         totalDistance: 5
       },
       {
@@ -277,7 +277,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "VO₂ Max #9D w/ 5 x 1,000 m @ 5K race pace; jog 50 to 90% interval time between",
+          "VO₂ Max #9D w/ 5x1,000 m @ 5K race pace; jog 50 to 90% interval time between",
         totalDistance: 9
       },
       { description: "Rest or cross-training", totalDistance: 0 },
@@ -296,7 +296,7 @@ export const PLANS: Plan[] = [
       { description: "Rest or cross-training", totalDistance: 0 },
       {
         description:
-          "VO₂ Max #8D w/ 5 x 600 m @ 5K race pace; jog 50 to 90% interval time between",
+          "VO₂ Max #8D w/ 5x600 m @ 5K race pace; jog 50 to 90% interval time between",
         totalDistance: 8
       },
       {
@@ -305,7 +305,7 @@ export const PLANS: Plan[] = [
       },
       { description: "Rest or cross-training", totalDistance: 0 },
       {
-        description: "Recovery + speed #4D w/ 6 x 100 m strides",
+        description: "Recovery + speed #4D w/ 6x100 m strides",
         totalDistance: 4
       },
       {
@@ -318,12 +318,12 @@ export const PLANS: Plan[] = [
       },
       { description: "Rest or cross-training", totalDistance: 0 },
       {
-        description: "Recovery + speed #7D w/ 6 x 100 m strides",
+        description: "Recovery + speed #7D w/ 6x100 m strides",
         totalDistance: 7
       },
       {
         description:
-          "VO₂ Max #10D w/ 4 x 1,200 m @ 5K race pace; jog 50 to 90% interval time between",
+          "VO₂ Max #10D w/ 4x1,200 m @ 5K race pace; jog 50 to 90% interval time between",
         totalDistance: 10
       },
       { description: "Rest or cross-training", totalDistance: 0 },
@@ -342,7 +342,7 @@ export const PLANS: Plan[] = [
       { description: "Rest or cross-training", totalDistance: 0 },
       {
         description:
-          "VO₂ Max #8D w/ 5 x 600 m @ 5K race pace; jog 50 to 90% interval time between",
+          "VO₂ Max #8D w/ 5x600 m @ 5K race pace; jog 50 to 90% interval time between",
         totalDistance: 8
       },
       {
@@ -351,7 +351,7 @@ export const PLANS: Plan[] = [
       },
       { description: "Rest or cross-training", totalDistance: 0 },
       {
-        description: "Recovery + speed #4D w/ 6 x 100 m strides",
+        description: "Recovery + speed #4D w/ 6x100 m strides",
         totalDistance: 4
       },
       {
@@ -364,17 +364,17 @@ export const PLANS: Plan[] = [
       },
       { description: "Rest or cross-training", totalDistance: 0 },
       {
-        description: "General aerobic + speed #7D w/8 x 100m strides",
+        description: "General aerobic + speed #7D w/8x100m strides",
         totalDistance: 7
       },
       {
         description:
-          "VO₂ Max #8D w/ 3 x 1,600 m @ 5K race pace; jog 50 to 90% interval time between",
+          "VO₂ Max #8D w/ 3x1,600 m @ 5K race pace; jog 50 to 90% interval time between",
         totalDistance: 8
       },
       { description: "Rest or cross-training", totalDistance: 0 },
       {
-        description: "Recovery + speed #5D w/ 6 x 100 m strides",
+        description: "Recovery + speed #5D w/ 6x100 m strides",
         totalDistance: 5
       },
       { description: "Rest or cross-training", totalDistance: 0 },
@@ -393,7 +393,7 @@ export const PLANS: Plan[] = [
       },
       { description: "Rest", totalDistance: 0 },
       {
-        description: "Recovery + speed #5D w/ 6 x 100 m strides",
+        description: "Recovery + speed #5D w/ 6x100 m strides",
         totalDistance: 5
       },
       {
@@ -405,14 +405,14 @@ export const PLANS: Plan[] = [
   },
   {
     title:
-      "Marathon: Pfitzinger/Douglas: 55 to 70 Miles per Week, 18-week schedule",
+      "Marathon: Pfitzinger/Douglas: 55 to 70 miles per week, 18-week schedule",
     raceType: "Marathon",
     units: "miles",
     raceDistance: 26.2,
     workouts: [
       { description: "Rest or cross-training", totalDistance: 0 },
       {
-        description: "Lactate threshold #9D w #2D @ 15K to half marathon pace",
+        description: "Lactate threshold #9D w/ #2D @ 15K to half marathon pace",
         totalDistance: 9
       },
       {
@@ -475,7 +475,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "Lactate threshold #9D w #4D @ 15K to half marathon race pace",
+          "Lactate threshold #9D w/ #4D @ 15K to half marathon race pace",
         totalDistance: 9
       },
       {
@@ -488,7 +488,7 @@ export const PLANS: Plan[] = [
       },
       { description: "Rest or cross-training", totalDistance: 0 },
       {
-        description: "General aerobic + speed #9D w/ 10 X 100 m strides",
+        description: "General aerobic + speed #9D w/ 10x100 m strides",
         totalDistance: 9
       },
       {
@@ -514,7 +514,7 @@ export const PLANS: Plan[] = [
       { description: "Rest or cross-training", totalDistance: 0 },
       {
         description:
-          "Lactate threshold #9D w #5D @ 15K to half marathon race pace",
+          "Lactate threshold #9D w/ #5D @ 15K to half marathon race pace",
         totalDistance: 9
       },
       {
@@ -534,12 +534,12 @@ export const PLANS: Plan[] = [
         totalDistance: 5
       },
       {
-        description: "Marathon pace run #18D w #10D @ marathon race pace",
+        description: "Marathon pace run #18D w/ #10D @ marathon race pace",
         totalDistance: 18
       },
       { description: "Rest or cross-training", totalDistance: 0 },
       {
-        description: "General aerobic + speed #8D w/ 10 x 100m strides",
+        description: "General aerobic + speed #8D w/ 10x100m strides",
         totalDistance: 8
       },
       {
@@ -565,7 +565,7 @@ export const PLANS: Plan[] = [
       { description: "Rest or cross-training", totalDistance: 0 },
       {
         description:
-          "Lactate threshold #10D w #5D @ 15K to half marathon race pace",
+          "Lactate threshold #10D w/ #5D @ 15K to half marathon race pace",
         totalDistance: 10
       },
       {
@@ -581,7 +581,7 @@ export const PLANS: Plan[] = [
         totalDistance: 11
       },
       {
-        description: "General aerobic + speed #7D w/10 x 100m strides",
+        description: "General aerobic + speed #7D w/10x100m strides",
         totalDistance: 7
       },
       { description: "Long run 21 mi (34 km)", totalDistance: 21 },
@@ -629,7 +629,7 @@ export const PLANS: Plan[] = [
         totalDistance: 13
       },
       {
-        description: "Recovery + speed #7D w/ 6 x 100 m strides",
+        description: "Recovery + speed #7D w/ 6x100 m strides",
         totalDistance: 7
       },
       {
@@ -643,7 +643,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "VO₂ Max #9D w/ 6 x 800 m @ 5K race pace; jog 50 to 90% interval time between",
+          "VO₂ Max #9D w/ 6x800 m @ 5K race pace; jog 50 to 90% interval time between",
         totalDistance: 9
       },
       {
@@ -655,7 +655,7 @@ export const PLANS: Plan[] = [
         totalDistance: 11
       },
       {
-        description: "General aerobic + speed #8D w/10 x 100m strides",
+        description: "General aerobic + speed #8D w/10x100m strides",
         totalDistance: 8
       },
       {
@@ -691,7 +691,7 @@ export const PLANS: Plan[] = [
       { description: "Rest or cross-training", totalDistance: 0 },
       {
         description:
-          "VO₂ Max #9D w/ 5 x 600 m @ 5K race pace; jog 50 to 90% interval time between",
+          "VO₂ Max #9D w/ 5x600 m @ 5K race pace; jog 50 to 90% interval time between",
         totalDistance: 9
       },
       {
@@ -699,7 +699,7 @@ export const PLANS: Plan[] = [
         totalDistance: 14
       },
       {
-        description: "Recovery + speed #6D w/6 x 100 m strides a.m. #4D p.m.",
+        description: "Recovery + speed #6D w/6x100 m strides a.m. #4D p.m.",
         totalDistance: 10
       },
       {
@@ -717,7 +717,7 @@ export const PLANS: Plan[] = [
       { description: "Rest or cross-training", totalDistance: 0 },
       {
         description:
-          "VO₂ Max #10D w/ 6 x 1,000 m @ 5K race pace; jog 50 to 90% interval time between",
+          "VO₂ Max #10D w/ 6x1,000 m @ 5K race pace; jog 50 to 90% interval time between",
         totalDistance: 10
       },
       {
@@ -743,7 +743,7 @@ export const PLANS: Plan[] = [
       { description: "Rest or cross-training", totalDistance: 0 },
       {
         description:
-          "VO₂ Max #9D w/ 5 x 600 m @ 5K race pace; jog 50 to 90% interval time between",
+          "VO₂ Max #9D w/ 5x600 m @ 5K race pace; jog 50 to 90% interval time between",
         totalDistance: 9
       },
       {
@@ -751,7 +751,7 @@ export const PLANS: Plan[] = [
         totalDistance: 14
       },
       {
-        description: "Recovery + speed #6D w/ 6 x 100 m strides",
+        description: "Recovery + speed #6D w/ 6x100 m strides",
         totalDistance: 6
       },
       {
@@ -773,7 +773,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "VO₂ Max #11D w/ 5 x 1,200 m @ 5K race pace; jog 50 to 90% interval time between",
+          "VO₂ Max #11D w/ 5x1,200 m @ 5K race pace; jog 50 to 90% interval time between",
         totalDistance: 11
       },
       {
@@ -781,7 +781,7 @@ export const PLANS: Plan[] = [
         totalDistance: 14
       },
       {
-        description: "General aerobic + speed #8D w/ 8 x 100 m strides",
+        description: "General aerobic + speed #8D w/ 8x100 m strides",
         totalDistance: 8
       },
       {
@@ -794,7 +794,7 @@ export const PLANS: Plan[] = [
       },
       { description: "Rest or cross-training", totalDistance: 0 },
       {
-        description: "Recovery + speed #7D w/ 8 x 100 m strides",
+        description: "Recovery + speed #7D w/ 8x100 m strides",
         totalDistance: 7
       },
       {
@@ -802,7 +802,7 @@ export const PLANS: Plan[] = [
         totalDistance: 12
       },
       {
-        description: "Recovery + speed #5D w/ 6 x 100 m strides",
+        description: "Recovery + speed #5D w/ 6x100 m strides",
         totalDistance: 5
       },
       {
@@ -819,7 +819,7 @@ export const PLANS: Plan[] = [
       },
       { description: "Rest", totalDistance: 0 },
       {
-        description: "General aerobic + speed #7D w/ 8 x 100 m strides",
+        description: "General aerobic + speed #7D w/ 8x100 m strides",
         totalDistance: 7
       },
       {
@@ -828,7 +828,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "VO₂ Max #8D w/ 3 x 1,600 m @ 5K race pace; jog 50 to 90% interval time between",
+          "VO₂ Max #8D w/ 3x1,600 m @ 5K race pace; jog 50 to 90% interval time between",
         totalDistance: 8
       },
       {
@@ -836,7 +836,7 @@ export const PLANS: Plan[] = [
         totalDistance: 5
       },
       {
-        description: "Recovery + speed #6D w/ 8 x 100 m strides",
+        description: "Recovery + speed #6D w/ 8x100 m strides",
         totalDistance: 6
       },
       {
@@ -857,7 +857,7 @@ export const PLANS: Plan[] = [
         totalDistance: 5
       },
       {
-        description: "Recovery + speed #5D w/ 6 x 100 m strides",
+        description: "Recovery + speed #5D w/ 6x100 m strides",
         totalDistance: 5
       },
       {
@@ -869,7 +869,7 @@ export const PLANS: Plan[] = [
   },
   {
     title:
-      "Marathon: Pfitzinger/Douglas: 70 to 85 Miles per Week, 18-week schedule",
+      "Marathon: Pfitzinger/Douglas: 70 to 85 miles per week, 18-week schedule",
     raceType: "Marathon",
     units: "miles",
     raceDistance: 26.2,
@@ -879,7 +879,7 @@ export const PLANS: Plan[] = [
         totalDistance: 5
       },
       {
-        description: "Lactate threshold #9D w #4D @ 15K to half marathon pace",
+        description: "Lactate threshold #9D w/ #4D @ 15K to half marathon pace",
         totalDistance: 9
       },
       {
@@ -936,7 +936,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "Lactate threshold #10D w #5D @ 15K to half marathon race pace",
+          "Lactate threshold #10D w/ #5D @ 15K to half marathon race pace",
         totalDistance: 10
       },
       {
@@ -964,7 +964,7 @@ export const PLANS: Plan[] = [
         totalDistance: 6
       },
       {
-        description: "General aerobic + speed #10D w/ 10 X 100 m strides",
+        description: "General aerobic + speed #10D w/ 10x100 m strides",
         totalDistance: 10
       },
       {
@@ -993,7 +993,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "Lactate threshold #10D w #4D @ 15K to half marathon race pace",
+          "Lactate threshold #10D w/ #4D @ 15K to half marathon race pace",
         totalDistance: 10
       },
       {
@@ -1013,7 +1013,7 @@ export const PLANS: Plan[] = [
         totalDistance: 6
       },
       {
-        description: "Marathon pace run #18D w #10D @ marathon race pace",
+        description: "Marathon pace run #18D w/ #10D @ marathon race pace",
         totalDistance: 18
       },
       {
@@ -1021,7 +1021,7 @@ export const PLANS: Plan[] = [
         totalDistance: 7
       },
       {
-        description: "General aerobic + speed #10D w/ 10 x 100m strides",
+        description: "General aerobic + speed #10D w/ 10x100m strides",
         totalDistance: 10
       },
       {
@@ -1050,7 +1050,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "Lactate threshold #11D w #5D @ 15K to half marathon race pace",
+          "Lactate threshold #11D w/ #5D @ 15K to half marathon race pace",
         totalDistance: 11
       },
       {
@@ -1066,7 +1066,7 @@ export const PLANS: Plan[] = [
         totalDistance: 13
       },
       {
-        description: "General aerobic + speed #8D w/10 x 100m strides",
+        description: "General aerobic + speed #8D w/10x100m strides",
         totalDistance: 8
       },
       { description: "Long run 20 mi (34 km)", totalDistance: 20 },
@@ -1120,7 +1120,7 @@ export const PLANS: Plan[] = [
         totalDistance: 13
       },
       {
-        description: "Recovery + speed #7D w/ 6 x 100 m strides",
+        description: "Recovery + speed #7D w/ 6x100 m strides",
         totalDistance: 7
       },
       {
@@ -1137,7 +1137,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "VO₂ Max #9D w/ 6 x 800 m @ 5K race pace; jog 50 to 90% interval time between",
+          "VO₂ Max #9D w/ 6x800 m @ 5K race pace; jog 50 to 90% interval time between",
         totalDistance: 9
       },
       {
@@ -1149,7 +1149,7 @@ export const PLANS: Plan[] = [
         totalDistance: 15
       },
       {
-        description: "General aerobic + speed #8D w/10 x 100m strides",
+        description: "General aerobic + speed #8D w/10x100m strides",
         totalDistance: 8
       },
       {
@@ -1191,7 +1191,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "VO₂ Max #9D w/ 5 x 600 m @ 5K race pace; jog 50 to 90% interval time between",
+          "VO₂ Max #9D w/ 5x600 m @ 5K race pace; jog 50 to 90% interval time between",
         totalDistance: 9
       },
       {
@@ -1199,7 +1199,7 @@ export const PLANS: Plan[] = [
         totalDistance: 15
       },
       {
-        description: "Recovery + speed #7D w/6 x 100 m strides",
+        description: "Recovery + speed #7D w/6x100 m strides",
         totalDistance: 7
       },
       {
@@ -1220,7 +1220,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "VO₂ Max #12D w/ 6 x 1,000 m @ 5K race pace; jog 50 to 90% interval time between",
+          "VO₂ Max #12D w/ 6x1,000 m @ 5K race pace; jog 50 to 90% interval time between",
         totalDistance: 12
       },
       {
@@ -1249,7 +1249,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "VO₂ Max #9D w/ 5 x 600 m @ 5K race pace; jog 50 to 90% interval time between",
+          "VO₂ Max #9D w/ 5x600 m @ 5K race pace; jog 50 to 90% interval time between",
         totalDistance: 9
       },
       {
@@ -1257,7 +1257,7 @@ export const PLANS: Plan[] = [
         totalDistance: 14
       },
       {
-        description: "Recovery + speed #7D w/ 6 x 100 m strides",
+        description: "Recovery + speed #7D w/ 6x100 m strides",
         totalDistance: 7
       },
       {
@@ -1282,7 +1282,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "VO₂ Max #12D w/ 6 x 1,200 m @ 5K race pace; jog 50 to 90% interval time between",
+          "VO₂ Max #12D w/ 6x1,200 m @ 5K race pace; jog 50 to 90% interval time between",
         totalDistance: 12
       },
       {
@@ -1290,7 +1290,7 @@ export const PLANS: Plan[] = [
         totalDistance: 19
       },
       {
-        description: "General aerobic + speed #8D w/ 8 x 100 m strides",
+        description: "General aerobic + speed #8D w/ 8x100 m strides",
         totalDistance: 8
       },
       {
@@ -1307,7 +1307,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "VO₂ Max #9D w/ 5 x 600 m @ 5K race pace; jog 50 to 90% interval time between",
+          "VO₂ Max #9D w/ 5x600 m @ 5K race pace; jog 50 to 90% interval time between",
         totalDistance: 9
       },
       {
@@ -1315,7 +1315,7 @@ export const PLANS: Plan[] = [
         totalDistance: 14
       },
       {
-        description: "Recovery + speed #7D w/ 6 x 100 m strides",
+        description: "Recovery + speed #7D w/ 6x100 m strides",
         totalDistance: 7
       },
       {
@@ -1335,7 +1335,7 @@ export const PLANS: Plan[] = [
         totalDistance: 6
       },
       {
-        description: "General aerobic + speed #8D w/ 8 x 100 m strides",
+        description: "General aerobic + speed #8D w/ 8x100 m strides",
         totalDistance: 8
       },
       {
@@ -1344,7 +1344,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "VO₂ Max #9D w/ 3 x 1,600 m @ 5K race pace; jog 50 to 90% interval time between",
+          "VO₂ Max #9D w/ 3x1,600 m @ 5K race pace; jog 50 to 90% interval time between",
         totalDistance: 9
       },
       {
@@ -1352,7 +1352,7 @@ export const PLANS: Plan[] = [
         totalDistance: 5
       },
       {
-        description: "General aerobic + speed #7D w/ 8 x 100 m strides",
+        description: "General aerobic + speed #7D w/ 8x100 m strides",
         totalDistance: 7
       },
       {
@@ -1376,7 +1376,7 @@ export const PLANS: Plan[] = [
         totalDistance: 6
       },
       {
-        description: "Recovery + speed #5D w/ 6 x 100 m strides",
+        description: "Recovery + speed #5D w/ 6x100 m strides",
         totalDistance: 5
       },
       {
@@ -1395,7 +1395,7 @@ export const PLANS: Plan[] = [
     workouts: [
       { description: "Rest or cross-training", totalDistance: 0 },
       {
-        description: "General aerobic + speed #8D w/ 10 x 100m strides",
+        description: "General aerobic + speed #8D w/ 10x100m strides",
         totalDistance: 8
       },
       { description: "Rest or cross-training", totalDistance: 0 },
@@ -1420,7 +1420,7 @@ export const PLANS: Plan[] = [
       { description: "Rest or cross-training", totalDistance: 0 },
       {
         description:
-          "Lactate threshold #8D w #4D @ 15K to half marathon race pace",
+          "Lactate threshold #8D w/ #4D @ 15K to half marathon race pace",
         totalDistance: 8
       },
       { description: "Rest or cross-training", totalDistance: 0 },
@@ -1434,7 +1434,7 @@ export const PLANS: Plan[] = [
       },
       { description: "Rest or cross-training", totalDistance: 0 },
       {
-        description: "General aerobic + speed #8D w/ 10 X 100 m strides",
+        description: "General aerobic + speed #8D w/ 10x100 m strides",
         totalDistance: 8
       },
       {
@@ -1461,7 +1461,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "Lactate threshold #10D w #5D @ 15K to half marathon race pace",
+          "Lactate threshold #10D w/ #5D @ 15K to half marathon race pace",
         totalDistance: 10
       },
       {
@@ -1486,7 +1486,7 @@ export const PLANS: Plan[] = [
       { description: "Rest or cross-training", totalDistance: 0 },
       {
         description:
-          "Lactate threshold #9D w #4D @ 15K to half marathon race pace",
+          "Lactate threshold #9D w/ #4D @ 15K to half marathon race pace",
         totalDistance: 9
       },
       {
@@ -1504,7 +1504,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "VO₂ Max #10D w/ 5 x 1000 m @ 5K race pace; jog 50 to 90% interval time between",
+          "VO₂ Max #10D w/ 5x1000 m @ 5K race pace; jog 50 to 90% interval time between",
         totalDistance: 10
       },
       {
@@ -1513,7 +1513,7 @@ export const PLANS: Plan[] = [
       },
       { description: "Rest or cross-training", totalDistance: 0 },
       {
-        description: "Recovery + speed #6D w/ 6 x 100 m strides",
+        description: "Recovery + speed #6D w/ 6x100 m strides",
         totalDistance: 6
       },
       {
@@ -1522,7 +1522,7 @@ export const PLANS: Plan[] = [
       },
       { description: "Rest or cross-training", totalDistance: 0 },
       {
-        description: "Recovery + speed #6D w/ 6 x 100 m strides",
+        description: "Recovery + speed #6D w/ 6x100 m strides",
         totalDistance: 6
       },
       {
@@ -1532,7 +1532,7 @@ export const PLANS: Plan[] = [
       { description: "Rest or cross-training", totalDistance: 0 },
       {
         description:
-          "Lactate threshold #12D w #7D @ 15K to half marathon race pace",
+          "Lactate threshold #12D w/ #7D @ 15K to half marathon race pace",
         totalDistance: 12
       },
       {
@@ -1546,7 +1546,7 @@ export const PLANS: Plan[] = [
       { description: "Rest or cross-training", totalDistance: 0 },
       {
         description:
-          "VO₂ Max #8D w/ 5 x 600 m @ 5K race pace; jog 50 to 90% interval time between",
+          "VO₂ Max #8D w/ 5x600 m @ 5K race pace; jog 50 to 90% interval time between",
         totalDistance: 8
       },
       {
@@ -1555,7 +1555,7 @@ export const PLANS: Plan[] = [
       },
       { description: "Rest or cross-training", totalDistance: 0 },
       {
-        description: "Recovery + speed #4D w/ 6 x 100 m strides",
+        description: "Recovery + speed #4D w/ 6x100 m strides",
         totalDistance: 4
       },
       {
@@ -1568,12 +1568,12 @@ export const PLANS: Plan[] = [
       },
       { description: "Rest or cross-training", totalDistance: 0 },
       {
-        description: "Recovery + speed #7D w/ 6 x 100 m strides",
+        description: "Recovery + speed #7D w/ 6x100 m strides",
         totalDistance: 7
       },
       {
         description:
-          "VO₂ Max #10D w/ 4 x 1200 m @ 5K race pace; jog 50 to 90% interval time between",
+          "VO₂ Max #10D w/ 4x1200 m @ 5K race pace; jog 50 to 90% interval time between",
         totalDistance: 10
       },
       { description: "Rest or cross-training", totalDistance: 0 },
@@ -1592,7 +1592,7 @@ export const PLANS: Plan[] = [
       { description: "Rest or cross-training", totalDistance: 0 },
       {
         description:
-          "VO₂ Max #8D w/ 5 x 600 m @ 5K race pace; jog 50 to 90% interval time between",
+          "VO₂ Max #8D w/ 5x600 m @ 5K race pace; jog 50 to 90% interval time between",
         totalDistance: 8
       },
       {
@@ -1601,7 +1601,7 @@ export const PLANS: Plan[] = [
       },
       { description: "Rest or cross-training", totalDistance: 0 },
       {
-        description: "Recovery + speed #4D w/ 6 x 100 m strides",
+        description: "Recovery + speed #4D w/ 6x100 m strides",
         totalDistance: 4
       },
       {
@@ -1614,17 +1614,17 @@ export const PLANS: Plan[] = [
       },
       { description: "Rest or cross-training", totalDistance: 0 },
       {
-        description: "General aerobic + speed #7D w/ 8 x 100 m strides",
+        description: "General aerobic + speed #7D w/ 8x100 m strides",
         totalDistance: 7
       },
       {
         description:
-          "VO₂ Max #8D w/ 3 x 1,600 m @ 5K race pace; jog 50 to 90% interval time between",
+          "VO₂ Max #8D w/ 3x1,600 m @ 5K race pace; jog 50 to 90% interval time between",
         totalDistance: 8
       },
       { description: "Rest or cross-training", totalDistance: 0 },
       {
-        description: "Recovery + speed #5D w/ 6 x 100 m strides",
+        description: "Recovery + speed #5D w/ 6x100 m strides",
         totalDistance: 5
       },
       { description: "Rest or cross-training", totalDistance: 0 },
@@ -1643,7 +1643,7 @@ export const PLANS: Plan[] = [
       },
       { description: "Rest", totalDistance: 0 },
       {
-        description: "Recovery + speed #5D w/ 6 x 100 m strides",
+        description: "Recovery + speed #5D w/ 6x100 m strides",
         totalDistance: 5
       },
       {
@@ -1655,7 +1655,7 @@ export const PLANS: Plan[] = [
   },
   {
     title:
-      "Marathon: Pfitzinger/Douglas: 55 to 70 Miles per Week, 12-week schedule",
+      "Marathon: Pfitzinger/Douglas: 55 to 70 miles per week, 12-week schedule",
     raceType: "Marathon",
     units: "miles",
     raceDistance: 26.2,
@@ -1700,7 +1700,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "Lactate threshold #9D w #4D @ 15K to half marathon race pace",
+          "Lactate threshold #9D w/ #4D @ 15K to half marathon race pace",
         totalDistance: 9
       },
       {
@@ -1751,7 +1751,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "Lactate threshold #10D w #5D @ 15K to half marathon race pace",
+          "Lactate threshold #10D w/ #5D @ 15K to half marathon race pace",
         totalDistance: 10
       },
       {
@@ -1764,7 +1764,7 @@ export const PLANS: Plan[] = [
       },
       { description: "Rest or cross-training", totalDistance: 0 },
       {
-        description: "General aerobic + speed #8D w/10 x 100m strides",
+        description: "General aerobic + speed #8D w/10x100m strides",
         totalDistance: 8
       },
       {
@@ -1777,7 +1777,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "Lactate threshold #10D w #4D @ 15K to half marathon race pace",
+          "Lactate threshold #10D w/ #4D @ 15K to half marathon race pace",
         totalDistance: 10
       },
       {
@@ -1795,7 +1795,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "VO₂ Max #11D w/ 5 x 1200 m @ 5K race pace; jog 50 to 90% interval time between",
+          "VO₂ Max #11D w/ 5x1200 m @ 5K race pace; jog 50 to 90% interval time between",
         totalDistance: 11
       },
       {
@@ -1829,7 +1829,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "Lactate threshold #12D w #7D @ 15K to half marathon race pace",
+          "Lactate threshold #12D w/ #7D @ 15K to half marathon race pace",
         totalDistance: 12
       },
       {
@@ -1843,7 +1843,7 @@ export const PLANS: Plan[] = [
       { description: "Rest or cross-training", totalDistance: 0 },
       {
         description:
-          "VO₂ Max #9D w/ 5 x 600 m @ 5K race pace; jog 50 to 90% interval time between",
+          "VO₂ Max #9D w/ 5x600 m @ 5K race pace; jog 50 to 90% interval time between",
         totalDistance: 9
       },
       {
@@ -1851,7 +1851,7 @@ export const PLANS: Plan[] = [
         totalDistance: 15
       },
       {
-        description: "Recovery + speed #7D w/ 6 x 100 m strides",
+        description: "Recovery + speed #7D w/ 6x100 m strides",
         totalDistance: 7
       },
       {
@@ -1873,7 +1873,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "VO₂ Max #11D w/ 6 x 1,000 m @ 5K race pace; jog 50 to 90% interval time between",
+          "VO₂ Max #11D w/ 6x1,000 m @ 5K race pace; jog 50 to 90% interval time between",
         totalDistance: 11
       },
       {
@@ -1895,7 +1895,7 @@ export const PLANS: Plan[] = [
       { description: "Rest or cross-training", totalDistance: 0 },
       {
         description:
-          "VO₂ Max #8D w/ 5 x 600 m @ 5K race pace; jog 50 to 90% interval time between",
+          "VO₂ Max #8D w/ 5x600 m @ 5K race pace; jog 50 to 90% interval time between",
         totalDistance: 8
       },
       {
@@ -1903,7 +1903,7 @@ export const PLANS: Plan[] = [
         totalDistance: 12
       },
       {
-        description: "Recovery + speed #6D w/ 6 x 100 m strides",
+        description: "Recovery + speed #6D w/ 6x100 m strides",
         totalDistance: 6
       },
       {
@@ -1929,7 +1929,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "VO₂ Max #8D w/ 3 x 1,600 m @ 5K race pace; jog 50 to 90% interval time between",
+          "VO₂ Max #8D w/ 3x1,600 m @ 5K race pace; jog 50 to 90% interval time between",
         totalDistance: 8
       },
       {
@@ -1937,7 +1937,7 @@ export const PLANS: Plan[] = [
         totalDistance: 5
       },
       {
-        description: "Recovery + speed #6D w/ 10 x 100 m strides",
+        description: "Recovery + speed #6D w/ 10x100 m strides",
         totalDistance: 6
       },
       {
@@ -1958,7 +1958,7 @@ export const PLANS: Plan[] = [
         totalDistance: 5
       },
       {
-        description: "Recovery + speed #5D w/ 6 x 100 m strides",
+        description: "Recovery + speed #5D w/ 6x100 m strides",
         totalDistance: 5
       },
       {
@@ -2087,7 +2087,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "#1.5D Warm Up\n12 x 400m @ 5k-10k Pace w. 400m jog rest\n#1.5D Cool Down",
+          "#1.5D Warm Up\n12x400m @ 5k-10k Pace w. 400m jog rest\n#1.5D Cool Down",
         totalDistance: 9
       },
       { description: "Rest or Cross-Train", totalDistance: 0 },
@@ -2113,7 +2113,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "#1.5D Warm Up\n8 x 600m @ 5k-10k Pace w. 400m jog rest\n#1.5D Cool Down",
+          "#1.5D Warm Up\n8x600m @ 5k-10k Pace w. 400m jog rest\n#1.5D Cool Down",
         totalDistance: 8
       },
       { description: "Rest or Cross-Train", totalDistance: 0 },
@@ -2139,7 +2139,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "#1.5D Warm Up\n6 x 800m @ 5k-10k Pace w. 400m jog rest\n#1.5D Cool Down",
+          "#1.5D Warm Up\n6x800m @ 5k-10k Pace w. 400m jog rest\n#1.5D Cool Down",
         totalDistance: 8
       },
       { description: "Rest or Cross-Train", totalDistance: 0 },
@@ -2165,7 +2165,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "#1.5D Warm Up\n5 x 1km @ 5k-10k Pace w. 400m jog rest\n#1.5D Cool Down",
+          "#1.5D Warm Up\n5x1km @ 5k-10k Pace w. 400m jog rest\n#1.5D Cool Down",
         totalDistance: 8
       },
       { description: "Rest or Cross-Train", totalDistance: 0 },
@@ -2191,7 +2191,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "#1.5D Warm Up\n4 x 1200m @ 5k-10k Pace w. 400m jog rest\n#1.5D Cool Down",
+          "#1.5D Warm Up\n4x1200m @ 5k-10k Pace w. 400m jog rest\n#1.5D Cool Down",
         totalDistance: 8
       },
       { description: "Rest or Cross-Train", totalDistance: 0 },
@@ -2217,7 +2217,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "#1.5D Warm Up\n6 x #1D @ MP - 10s w. 400m jog rest\n#1.5D Cool Down",
+          "#1.5D Warm Up\n6x#1D @ MP - 10s w. 400m jog rest\n#1.5D Cool Down",
         totalDistance: 8
       },
       { description: "Rest or Cross-Train", totalDistance: 0 },
@@ -2243,7 +2243,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "#1.5D Warm Up\n4 x #1.5D @ MP - 10s w. 800m jog rest\n#1.5D Cool Down",
+          "#1.5D Warm Up\n4x#1.5D @ MP - 10s w. 800m jog rest\n#1.5D Cool Down",
         totalDistance: 11
       },
       { description: "Rest or Cross-Train", totalDistance: 0 },
@@ -2269,7 +2269,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "#1.5D Warm Up\n3 x #2D @ MP - 10s w. 800m jog rest\n#1.5D Cool Down ",
+          "#1.5D Warm Up\n3x#2D @ MP - 10s w. 800m jog rest\n#1.5D Cool Down ",
         totalDistance: 10.5
       },
       { description: "Rest or Cross-Train", totalDistance: 0 },
@@ -2295,7 +2295,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "#1.5D Warm Up\n2 x #3D @ MP - 10s w. #1D jog rest\n#1.5D Cool Down ",
+          "#1.5D Warm Up\n2x#3D @ MP - 10s w. #1D jog rest\n#1.5D Cool Down ",
         totalDistance: 10
       },
       { description: "Rest or Cross-Train", totalDistance: 0 },
@@ -2321,7 +2321,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "#1.5D Warm Up\n3 x #2D @ MP - 10s w. 800m jog rest\n#1.5D Cool Down ",
+          "#1.5D Warm Up\n3x#2D @ MP - 10s w. 800m jog rest\n#1.5D Cool Down ",
         totalDistance: 10.5
       },
       { description: "Rest or Cross-Train", totalDistance: 0 },
@@ -2347,7 +2347,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "#1.5D Warm Up\n4 x #1.5D @ MP - 10s w. 800m jog rest\n#1.5D Cool Down",
+          "#1.5D Warm Up\n4x#1.5D @ MP - 10s w. 800m jog rest\n#1.5D Cool Down",
         totalDistance: 11
       },
       { description: "Rest or Cross-Train", totalDistance: 0 },
@@ -2373,7 +2373,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "#1.5D Warm Up\n6 x #1D @ MP - 10s w. 400m jog rest\n#1.5D Cool Down",
+          "#1.5D Warm Up\n6x#1D @ MP - 10s w. 400m jog rest\n#1.5D Cool Down",
         totalDistance: 10.5
       },
       { description: "Rest or Cross-Train", totalDistance: 0 },
@@ -2454,7 +2454,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "#1.5D Warm Up\n12 x 400m @ 5k-10k Pace w. 400m jog rest\n#1.5D Cool Down",
+          "#1.5D Warm Up\n12x400m @ 5k-10k Pace w. 400m jog rest\n#1.5D Cool Down",
         totalDistance: 9
       },
       { description: "Rest or Cross-Train", totalDistance: 0 },
@@ -2480,7 +2480,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "#1.5D Warm Up\n8 x 600m @ 5k-10k Pace w. 400m jog rest\n#1.5D Cool Down",
+          "#1.5D Warm Up\n8x600m @ 5k-10k Pace w. 400m jog rest\n#1.5D Cool Down",
         totalDistance: 8
       },
       { description: "Rest or Cross-Train", totalDistance: 0 },
@@ -2506,7 +2506,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "#1.5D Warm Up\n6 x 800m @ 5k-10k Pace w. 400m jog rest\n#1.5D Cool Down",
+          "#1.5D Warm Up\n6x800m @ 5k-10k Pace w. 400m jog rest\n#1.5D Cool Down",
         totalDistance: 8
       },
       { description: "Rest or Cross-Train", totalDistance: 0 },
@@ -2532,7 +2532,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "#1.5D Warm Up\n5 x 1km @ 5k-10k Pace w. 400m jog rest\n#1.5D Cool Down",
+          "#1.5D Warm Up\n5x1km @ 5k-10k Pace w. 400m jog rest\n#1.5D Cool Down",
         totalDistance: 8
       },
       { description: "Rest or Cross-Train", totalDistance: 0 },
@@ -2558,7 +2558,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "#1.5D Warm Up\n4 x 1200m @ 5k-10k Pace w. 400m jog rest\n#1.5D Cool Down",
+          "#1.5D Warm Up\n4x1200m @ 5k-10k Pace w. 400m jog rest\n#1.5D Cool Down",
         totalDistance: 8
       },
       { description: "Rest or Cross-Train", totalDistance: 0 },
@@ -2584,7 +2584,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "#1.5D Warm Up\n3 x #1D @ 5k-10k Pace w. 800m jog rest\n#1.5D Cool Down",
+          "#1.5D Warm Up\n3x#1D @ 5k-10k Pace w. 800m jog rest\n#1.5D Cool Down",
         totalDistance: 8
       },
       { description: "Rest or Cross-Train", totalDistance: 0 },
@@ -2610,7 +2610,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "#1.5D Warm Up\n4 x 1200m @ 5k-10k Pace w. 400m jog rest\n#1.5D Cool Down",
+          "#1.5D Warm Up\n4x1200m @ 5k-10k Pace w. 400m jog rest\n#1.5D Cool Down",
         totalDistance: 8
       },
       { description: "Rest or Cross-Train", totalDistance: 0 },
@@ -2636,7 +2636,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "#1.5D Warm Up\n5 x 1km @ 5k-10k Pace w. 400m jog rest\n#1.5D Cool Down",
+          "#1.5D Warm Up\n5x1km @ 5k-10k Pace w. 400m jog rest\n#1.5D Cool Down",
         totalDistance: 8
       },
       { description: "Rest or Cross-Train", totalDistance: 0 },
@@ -2662,7 +2662,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "#1.5D Warm Up\n6 x 800m @ 5k-10k Pace w. 400m jog rest\n#1.5D Cool Down",
+          "#1.5D Warm Up\n6x800m @ 5k-10k Pace w. 400m jog rest\n#1.5D Cool Down",
         totalDistance: 8
       },
       { description: "Rest or Cross-Train", totalDistance: 0 },
@@ -2688,7 +2688,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "#1.5D Warm Up\n6 x #1D @ MP - 10s w. 400m jog rest\n#1.5D Cool Down",
+          "#1.5D Warm Up\n6x#1D @ MP - 10s w. 400m jog rest\n#1.5D Cool Down",
         totalDistance: 10.5
       },
       { description: "Rest or Cross-Train", totalDistance: 0 },
@@ -2714,7 +2714,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "#1.5D Warm Up\n4 x #1.5D @ MP - 10s w. 800m jog rest\n#1.5D Cool Down",
+          "#1.5D Warm Up\n4x#1.5D @ MP - 10s w. 800m jog rest\n#1.5D Cool Down",
         totalDistance: 11
       },
       { description: "Rest or Cross-Train", totalDistance: 0 },
@@ -2740,7 +2740,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "#1.5D Warm Up\n3 x #2D @ MP - 10s w. 800m jog rest\n#1.5D Cool Down",
+          "#1.5D Warm Up\n3x#2D @ MP - 10s w. 800m jog rest\n#1.5D Cool Down",
         totalDistance: 10.5
       },
       { description: "Rest or Cross-Train", totalDistance: 0 },
@@ -2766,7 +2766,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "#1.5D Warm Up\n2 x #3D @ MP - 10s w. #1D jog rest\n#1.5D Cool Down",
+          "#1.5D Warm Up\n2x#3D @ MP - 10s w. #1D jog rest\n#1.5D Cool Down",
         totalDistance: 10
       },
       { description: "Rest or Cross-Train", totalDistance: 0 },
@@ -2792,7 +2792,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "#1.5D Warm Up\n3 x #2D @ MP - 10s w. 800m jog rest\n#1.5D Cool Down",
+          "#1.5D Warm Up\n3x#2D @ MP - 10s w. 800m jog rest\n#1.5D Cool Down",
         totalDistance: 10.5
       },
       { description: "Rest or Cross-Train", totalDistance: 0 },
@@ -2818,7 +2818,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "#1.5D Warm Up\n4 x #1.5D @ MP - 10s w. 800m jog rest\n#1.5D Cool Down",
+          "#1.5D Warm Up\n4x#1.5D @ MP - 10s w. 800m jog rest\n#1.5D Cool Down",
         totalDistance: 11
       },
       { description: "Rest or Cross-Train", totalDistance: 0 },
@@ -2844,7 +2844,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "#1.5D Warm Up\n6 x #1D @ MP - 10s w. 400m jog rest\n#1.5D Cool Down",
+          "#1.5D Warm Up\n6x#1D @ MP - 10s w. 400m jog rest\n#1.5D Cool Down",
         totalDistance: 10.5
       },
       { description: "Rest or Cross-Train", totalDistance: 0 },
@@ -4390,7 +4390,7 @@ export const PLANS: Plan[] = [
         description: "#3D run",
         totalDistance: 3
       },
-      { description: "3 x hill", totalDistance: 0 },
+      { description: "3xhill", totalDistance: 0 },
       { description: "Rest", totalDistance: 0 },
       {
         description: "#5D pace",
@@ -4434,7 +4434,7 @@ export const PLANS: Plan[] = [
         description: "#3D run",
         totalDistance: 3
       },
-      { description: "4 x 800", totalDistance: 0 },
+      { description: "4x800", totalDistance: 0 },
       { description: "Rest", totalDistance: 0 },
       {
         description: "#6D pace",
@@ -4456,7 +4456,7 @@ export const PLANS: Plan[] = [
         description: "#3D run",
         totalDistance: 3
       },
-      { description: "4 x hill", totalDistance: 0 },
+      { description: "4xhill", totalDistance: 0 },
       { description: "Rest", totalDistance: 0 },
       {
         description: "#6D pace",
@@ -4500,7 +4500,7 @@ export const PLANS: Plan[] = [
         description: "#3D run",
         totalDistance: 3
       },
-      { description: "5 x 800", totalDistance: 0 },
+      { description: "5x800", totalDistance: 0 },
       { description: "Rest", totalDistance: 0 },
       {
         description: "#7D pace",
@@ -4522,7 +4522,7 @@ export const PLANS: Plan[] = [
         description: "#4D run",
         totalDistance: 4
       },
-      { description: "5 x hill", totalDistance: 0 },
+      { description: "5xhill", totalDistance: 0 },
       { description: "Rest", totalDistance: 0 },
       {
         description: "#8D pace",
@@ -4566,7 +4566,7 @@ export const PLANS: Plan[] = [
         description: "#4D run",
         totalDistance: 4
       },
-      { description: "6 x 800", totalDistance: 0 },
+      { description: "6x800", totalDistance: 0 },
       { description: "Rest", totalDistance: 0 },
       { description: "Rest", totalDistance: 0 },
       { description: "Half Marathon", totalDistance: 13.1 },
@@ -4582,7 +4582,7 @@ export const PLANS: Plan[] = [
         description: "#4D run",
         totalDistance: 4
       },
-      { description: "6 x hill", totalDistance: 0 },
+      { description: "6xhill", totalDistance: 0 },
       { description: "Rest", totalDistance: 0 },
       {
         description: "#9D pace",
@@ -4626,7 +4626,7 @@ export const PLANS: Plan[] = [
         description: "#5D run",
         totalDistance: 5
       },
-      { description: "7 x 800", totalDistance: 0 },
+      { description: "7x800", totalDistance: 0 },
       { description: "Rest", totalDistance: 0 },
       {
         description: "#6D pace",
@@ -4648,7 +4648,7 @@ export const PLANS: Plan[] = [
         description: "#5D run",
         totalDistance: 5
       },
-      { description: "7 x hill", totalDistance: 0 },
+      { description: "7xhill", totalDistance: 0 },
       { description: "Rest", totalDistance: 0 },
       {
         description: "#10D pace",
@@ -4692,7 +4692,7 @@ export const PLANS: Plan[] = [
         description: "#5D run",
         totalDistance: 5
       },
-      { description: "8 x 800", totalDistance: 0 },
+      { description: "8x800", totalDistance: 0 },
       { description: "Rest", totalDistance: 0 },
       {
         description: "#10D run",
@@ -4714,7 +4714,7 @@ export const PLANS: Plan[] = [
         description: "#5D run",
         totalDistance: 5
       },
-      { description: "6 x hill", totalDistance: 0 },
+      { description: "6xhill", totalDistance: 0 },
       { description: "Rest", totalDistance: 0 },
       {
         description: "#4D pace",
@@ -4750,7 +4750,7 @@ export const PLANS: Plan[] = [
         description: "#3D run",
         totalDistance: 3
       },
-      { description: "4 x 400", totalDistance: 0 },
+      { description: "4x400", totalDistance: 0 },
       {
         description: "#2D run",
         totalDistance: 2
@@ -4774,7 +4774,7 @@ export const PLANS: Plan[] = [
         description: "#3D run",
         totalDistance: 3
       },
-      { description: "3 x hill", totalDistance: 0 },
+      { description: "3xhill", totalDistance: 0 },
       {
         description: "#3D run",
         totalDistance: 3
@@ -4815,7 +4815,7 @@ export const PLANS: Plan[] = [
         description: "#3D run",
         totalDistance: 3
       },
-      { description: "4 x 800", totalDistance: 0 },
+      { description: "4x800", totalDistance: 0 },
       {
         description: "#3D run",
         totalDistance: 3
@@ -4834,7 +4834,7 @@ export const PLANS: Plan[] = [
         description: "#3D run",
         totalDistance: 3
       },
-      { description: "4 x hill", totalDistance: 0 },
+      { description: "4xhill", totalDistance: 0 },
       {
         description: "#3D run",
         totalDistance: 3
@@ -4875,7 +4875,7 @@ export const PLANS: Plan[] = [
         description: "#3D run",
         totalDistance: 3
       },
-      { description: "5 x 800", totalDistance: 0 },
+      { description: "5x800", totalDistance: 0 },
       {
         description: "#3D run",
         totalDistance: 3
@@ -4894,7 +4894,7 @@ export const PLANS: Plan[] = [
         description: "#3D run",
         totalDistance: 3
       },
-      { description: "5 x hill", totalDistance: 0 },
+      { description: "5xhill", totalDistance: 0 },
       {
         description: "#4D run",
         totalDistance: 4
@@ -4935,7 +4935,7 @@ export const PLANS: Plan[] = [
         description: "#4D run",
         totalDistance: 4
       },
-      { description: "6 x 800", totalDistance: 0 },
+      { description: "6x800", totalDistance: 0 },
       {
         description: "#4D run",
         totalDistance: 4
@@ -4948,7 +4948,7 @@ export const PLANS: Plan[] = [
         description: "#3D run",
         totalDistance: 3
       },
-      { description: "6 x hill", totalDistance: 0 },
+      { description: "6xhill", totalDistance: 0 },
       {
         description: "#4D run",
         totalDistance: 4
@@ -4989,7 +4989,7 @@ export const PLANS: Plan[] = [
         description: "#4D run",
         totalDistance: 4
       },
-      { description: "7 x 800", totalDistance: 0 },
+      { description: "7x800", totalDistance: 0 },
       {
         description: "#5D run",
         totalDistance: 5
@@ -5008,7 +5008,7 @@ export const PLANS: Plan[] = [
         description: "#4D run",
         totalDistance: 4
       },
-      { description: "7 x hill", totalDistance: 0 },
+      { description: "7xhill", totalDistance: 0 },
       {
         description: "#5D run",
         totalDistance: 5
@@ -5049,7 +5049,7 @@ export const PLANS: Plan[] = [
         description: "#5D run",
         totalDistance: 5
       },
-      { description: "8 x 800", totalDistance: 0 },
+      { description: "8x800", totalDistance: 0 },
       {
         description: "#5D run",
         totalDistance: 5
@@ -5068,7 +5068,7 @@ export const PLANS: Plan[] = [
         description: "#5D run",
         totalDistance: 5
       },
-      { description: "6 x hill", totalDistance: 0 },
+      { description: "6xhill", totalDistance: 0 },
       {
         description: "#5D run",
         totalDistance: 5
@@ -5109,7 +5109,7 @@ export const PLANS: Plan[] = [
         description: "#3D run",
         totalDistance: 3
       },
-      { description: "4 x 400", totalDistance: 0 },
+      { description: "4x400", totalDistance: 0 },
       {
         description: "#3D run",
         totalDistance: 3
@@ -5121,6 +5121,350 @@ export const PLANS: Plan[] = [
         totalDistance: 2
       },
       { description: "Marathon", totalDistance: 26.2 }
+    ]
+  },
+  {
+    title: "Half Marathon: Pfitzinger/Latter: 61 to 84 miles per week, 12-week schedule",
+    raceType: "Half Marathon",
+    raceDistance: 13.1,
+    units: "miles",
+    workouts: [
+      {
+        description: "Rest or cross-training",
+        totalDistance: 0
+      },
+      {
+        description: "General aerobic #10D",
+        totalDistance: 10
+      },
+      {
+        description: "Lacate threshold #10D w/ 16 min LT interval (jog 4 min recovery), 13 min LT interval",
+        totalDistance: 10
+      },
+      {
+        description: "Endurance #12D",
+        totalDistance: 12
+      },
+      {
+        description: "Recovery #6D",
+        totalDistance: 6
+      },
+      {
+        description: "General aerobic + speed #9D w/ 2 sets of 6x100m strides (jog 3 min between sets)",
+        totalDistance: 9
+      },
+      {
+        description: "Endurance #14D",
+        totalDistance: 14
+      },
+      {
+        description: "Rest or cross-training",
+        totalDistance: 0
+      },
+      {
+        description: "General aerobic #10D",
+        totalDistance: 10
+      },
+      {
+        description: "Lacate threshold #11D w/ 18 min LT interval (jog 4 min recovery), 16 min LT interval",
+        totalDistance: 11
+      },
+      {
+        description: "Endurance #13D",
+        totalDistance: 13
+      },
+      {
+        description: "Recovery #6D",
+        totalDistance: 6
+      },
+      {
+        description: "General aerobic + speed #10D w/ 6x12 sec uphill followed by 8x100m strides",
+        totalDistance: 10
+      },
+      {
+        description: "Endurance #15D",
+        totalDistance: 15
+      },
+      {
+        description: "Recovery #4D",
+        totalDistance: 4
+      },
+      {
+        description: "General aerobic #10D",
+        totalDistance: 10
+      },
+      {
+        description: "Lacate threshold #11D w/ 20min LT interval (jog 4 min recovery), 18 min LT interval",
+        totalDistance: 11
+      },
+      {
+        description: "Endurance #13D",
+        totalDistance: 13
+      },
+      {
+        description: "Recovery #6D",
+        totalDistance: 6
+      },
+      {
+        description: "General aerobic + speed #9D w/ 6x12 sec uphill followed by 8x100m strides",
+        totalDistance: 9
+      },
+      {
+        description: "Progression long run #16D, last #2D @ LT",
+        totalDistance: 16
+      },
+      {
+        description: "Recovery #4D",
+        totalDistance: 4
+      },
+      {
+        description: "General aerobic #9D",
+        totalDistance: 9
+      },
+      {
+        description: "General aerobic #10D",
+        totalDistance: 10
+      },
+      {
+        description: "Endurance #12D",
+        totalDistance: 12
+      },
+      {
+        description: "Recovery #6D",
+        totalDistance: 6
+      },
+      {
+        description: "General aerobic + speed #9D w/ 2 sets of 6x150m strides (jog 3 min between sets)",
+        totalDistance: 9
+      },
+      {
+        description: "Endurance #13D",
+        totalDistance: 13
+      },
+      {
+        description: "Recovery #5",
+        totalDistance: 5
+      },
+      {
+        description: "General aerobic #10D",
+        totalDistance: 10
+      },
+      {
+        description: "Lacate threshold #11D w/ 24 min LT interval (jog 4 min recovery), 18 min LT interval",
+        totalDistance: 11
+      },
+      {
+        description: "Endurance #13D",
+        totalDistance: 13
+      },
+      {
+        description: "Recovery #4D a.m., #4D p.m.",
+        totalDistance: 8
+      },
+      {
+        description: "General aerobic + speed #10D w/ 2 sets of 6x100m strides (jog 3 min between sets)",
+        totalDistance: 10
+      },
+      {
+        description: "Progression long run #16D, last #3D @ LT",
+        totalDistance: 16
+      },
+      {
+        description: "Recovery #6D",
+        totalDistance: 6
+      },
+      {
+        description: "General aerobic #10D",
+        totalDistance: 10
+      },
+      {
+        description: "V02Max #12D w/ 6x1,200m @ 3k-5k race pace (jog 50-90% interval time recovery)",
+        totalDistance: 12
+      },
+      {
+        description: "Endurance #13D",
+        totalDistance: 13
+      },
+      {
+        description: "Recovery #5D a.m., #4D p.m.",
+        totalDistance: 9
+      },
+      {
+        description: "General aerobic + speed #10D w/ 8x12 sec uphill followed by 8x100m strides",
+        totalDistance: 10
+      },
+      {
+        description: "Endurance #17D",
+        totalDistance: 17
+      },
+      {
+        description: "Recovery #6D",
+        totalDistance: 6
+      },
+      {
+        description: "General aerobic #11D",
+        totalDistance: 11
+      },
+      {
+        description: "Lactate Threshold #12D, 44 min change-of-pace tempo run: 4 min fast, 4 min stead, followed by 6x(2x2 min fast, 4 min stead)",
+        totalDistance: 12
+      },
+      {
+        description: "Endurance #14D",
+        totalDistance: 14
+      },
+      {
+        description: "Recovery #6D a.m., #4D p.m.",
+        totalDistance: 10
+      },
+      {
+        description: "General aerobic + speed #10D w/ 10x100m strides",
+        totalDistance: 10
+      },
+      {
+        description: "Progression long run #17D, last #3D @ LT",
+        totalDistance: 17
+      },
+      {
+        description: "Recovery #6D a.m., #5D p.m.",
+        totalDistance: 11
+      },
+      {
+        description: "General aerobic + speed #11D w/ 2 sets of 5x150m strides (jog 250m between intervals and 4 min between sets)",
+        totalDistance: 11
+      },
+      {
+        description: "General aerobic #9D",
+        totalDistance: 9
+      },
+      {
+        description: "General aerobic #7D",
+        totalDistance: 7
+      },
+      {
+        description: "Recovery #5D w/ 4x100m strides",
+        totalDistance: 5
+      },
+      {
+        description: "8k-10k tune-up race, #12D",
+        totalDistance: 12
+      },
+      {
+        description: "Endurance #13D",
+        totalDistance: 13
+      },
+      {
+        description: "Recovery #5D a.m., #4D p.m.",
+        totalDistance: 9
+      },
+      {
+        description: "General aerobic #11D",
+        totalDistance: 11
+      },
+      {
+        description: "Endurance #12D",
+        totalDistance: 12
+      },
+      {
+        description: "V02Max #12D w/ 2x1,600m, 2x1,200m, 2x1,000m @ 3k-5k race pace (jog 50-90% interval time recovery)",
+        totalDistance: 12
+      },
+      {
+        description: "Recovery #6D a.m., #5D p.m.",
+        totalDistance: 11
+      },
+      {
+        description: "General aerobic #11D",
+        totalDistance: 11
+      },
+      {
+        description: "Endurance #18D",
+        totalDistance: 18
+      },
+      {
+        description: "Recovery #6D a.m., #5D p.m.",
+        totalDistance: 11
+      },
+      {
+        description: "General aerobic + speed #11D w/ 2 sets of 5x150m strides (jog 250m recovery and 4 min between sets)",
+        totalDistance: 11
+      },
+      {
+        description: "General aerobic #9D",
+        totalDistance: 9
+      },
+      {
+        description: "General aerobic #7D",
+        totalDistance: 7
+      },
+      {
+        description: "Recovery #5D w/ 4x100m strides",
+        totalDistance: 5
+      },
+      {
+        description: "8k-10k tune-up race, #12D",
+        totalDistance: 12
+      },
+      {
+        description: "Endurance #13D",
+        totalDistance: 13
+      },
+      {
+        description: "Recovery #5D",
+        totalDistance: 5
+      },
+      {
+        description: "General aerobic #8D",
+        totalDistance: 8
+      },
+      {
+        description: "Recovery #7D",
+        totalDistance: 7
+      },
+      {
+        description: "V02Max #10D w/ 3x1,200m, 3x800m @ 3k-5k race pace (jog 50-90% interval time recovery)",
+        totalDistance: 10
+      },
+      {
+        description: "Recovery #5D",
+        totalDistance: 5
+      },
+      {
+        description: "General aerobic + speed #9D w/ 2 sets of 6x100m strides (jog 3 min between sets)",
+        totalDistance: 9
+      },
+      {
+        description: "Endurance #12D",
+        totalDistance: 12
+      },
+      {
+        description: "Recovery #5D",
+        totalDistance: 5
+      },
+      {
+        description: "Race pace + speed #9D w/  #2D @ half marathon race pace and 6x100m strides",
+        totalDistance: 9
+      },
+      {
+        description: "Recovery #7D",
+        totalDistance: 7
+      },
+      {
+        description: "Recovery #6D",
+        totalDistance: 6
+      },
+      {
+        description: "Rest",
+        totalDistance: 0
+      },
+      {
+        description: "Recovery #4D w/ 4x100m strides",
+        totalDistance: 4
+      },
+      {
+        description: "Half Marathon goal race #17D",
+        totalDistance: 17
+      }
     ]
   },
   {
@@ -5239,7 +5583,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "#1.5D Warm Up\n12 x 400m @ 5k-10k pace w. 400m jog rest\n#1.5D Cool Down",
+          "#1.5D Warm Up\n12x400m @ 5k-10k pace w. 400m jog rest\n#1.5D Cool Down",
         totalDistance: 9
       },
       { description: "Rest or Cross-Train", totalDistance: 0 },
@@ -5265,7 +5609,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "#1.5D Warm Up\n8 x 600m @ 5k-10k pace w. 400m jog rest\n#1.5D Cool Down",
+          "#1.5D Warm Up\n8x600m @ 5k-10k pace w. 400m jog rest\n#1.5D Cool Down",
         totalDistance: 7
       },
       { description: "Rest or Cross-Train", totalDistance: 0 },
@@ -5291,7 +5635,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "#1.5D Warm Up\n6 x 800m @ 5k-10k pace w. 400m jog rest\n#1.5D Cool Down",
+          "#1.5D Warm Up\n6x800m @ 5k-10k pace w. 400m jog rest\n#1.5D Cool Down",
         totalDistance: 7
       },
       { description: "Rest or Cross-Train", totalDistance: 0 },
@@ -5317,7 +5661,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "#1.5D Warm Up\n5 x 1k @ 5k-10k pace w. 600m jog rest\n#1.5D Cool Down",
+          "#1.5D Warm Up\n5x1k @ 5k-10k pace w. 600m jog rest\n#1.5D Cool Down",
         totalDistance: 8
       },
       { description: "Rest or Cross-Train", totalDistance: 0 },
@@ -5343,7 +5687,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "#1.5D Warm Up\n4 x 1200m @ 5k-10k pace w. 600m jog rest\n#1.5D Cool Down",
+          "#1.5D Warm Up\n4x1200m @ 5k-10k pace w. 600m jog rest\n#1.5D Cool Down",
         totalDistance: 8
       },
       { description: "Rest or Cross-Train", totalDistance: 0 },
@@ -5369,7 +5713,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "#1.5D Warm Up\n6 x #1D @ HMP -10s w. 400m jog rest\n#1.5D Cool Down",
+          "#1.5D Warm Up\n6x#1D @ HMP -10s w. 400m jog rest\n#1.5D Cool Down",
         totalDistance: 10
       },
       { description: "Rest or Cross-Train", totalDistance: 0 },
@@ -5395,7 +5739,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "#1.5D Warm Up\n4 x #1.5D @ HMP -10s w. 800m jog rest\n#1.5D Cool Down",
+          "#1.5D Warm Up\n4x#1.5D @ HMP -10s w. 800m jog rest\n#1.5D Cool Down",
         totalDistance: 10
       },
       { description: "Rest or Cross-Train", totalDistance: 0 },
@@ -5421,7 +5765,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "#1.5D Warm Up\n3 x #2D @ HMP -10s w. 800m jog rest\n#1.5D Cool Down",
+          "#1.5D Warm Up\n3x#2D @ HMP -10s w. 800m jog rest\n#1.5D Cool Down",
         totalDistance: 10
       },
       { description: "Rest or Cross-Train", totalDistance: 0 },
@@ -5447,7 +5791,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "#1.5D Warm Up\n2 x #3D @ HMP -10s w. #1D jog rest\n#1.5D Cool Down",
+          "#1.5D Warm Up\n2x#3D @ HMP -10s w. #1D jog rest\n#1.5D Cool Down",
         totalDistance: 10
       },
       { description: "Rest or Cross-Train", totalDistance: 0 },
@@ -5473,7 +5817,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "#1.5D Warm Up\n3 x #2D @ HMP -10s w. 800m jog rest\n#1.5D Cool Down",
+          "#1.5D Warm Up\n3x#2D @ HMP -10s w. 800m jog rest\n#1.5D Cool Down",
         totalDistance: 10
       },
       { description: "Rest or Cross-Train", totalDistance: 0 },
@@ -5499,7 +5843,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "#1.5D Warm Up\n4 x #1.5D @ HMP -10s w. 800m jog rest\n#1.5D Cool Down",
+          "#1.5D Warm Up\n4x#1.5D @ HMP -10s w. 800m jog rest\n#1.5D Cool Down",
         totalDistance: 10
       },
       { description: "Rest or Cross-Train", totalDistance: 0 },
@@ -5525,7 +5869,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "#1.5D Warm Up\n6 x #1D @ HMP -10s w. 400m jog rest\n#1.5D Cool Down",
+          "#1.5D Warm Up\n6x#1D @ HMP -10s w. 400m jog rest\n#1.5D Cool Down",
         totalDistance: 10
       },
       { description: "Rest or Cross-Train", totalDistance: 0 },
@@ -5600,7 +5944,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "#1.5D Warm Up\n12 x 400m @ 5k-10k pace w. 400m jog rest\n#1.5D Cool Down",
+          "#1.5D Warm Up\n12x400m @ 5k-10k pace w. 400m jog rest\n#1.5D Cool Down",
         totalDistance: 9
       },
       { description: "Rest or Cross-Train", totalDistance: 0 },
@@ -5626,7 +5970,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "#1.5D Warm Up\n8 x 600m @ 5k-10k pace w. 400m jog rest\n#1.5D Cool Down",
+          "#1.5D Warm Up\n8x600m @ 5k-10k pace w. 400m jog rest\n#1.5D Cool Down",
         totalDistance: 7
       },
       { description: "Rest or Cross-Train", totalDistance: 0 },
@@ -5652,7 +5996,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "#1.5D Warm Up\n6 x 800m @ 5k-10k pace w. 400m jog rest\n#1.5D Cool Down",
+          "#1.5D Warm Up\n6x800m @ 5k-10k pace w. 400m jog rest\n#1.5D Cool Down",
         totalDistance: 7
       },
       { description: "Rest or Cross-Train", totalDistance: 0 },
@@ -5678,7 +6022,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "#1.5D Warm Up\n5 x 1k @ 5k-10k pace w. 600m jog rest\n#1.5D Cool Down",
+          "#1.5D Warm Up\n5x1k @ 5k-10k pace w. 600m jog rest\n#1.5D Cool Down",
         totalDistance: 8
       },
       { description: "Rest or Cross-Train", totalDistance: 0 },
@@ -5704,7 +6048,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "#1.5D Warm Up\n4 x 1200m @ 5k-10k pace w. 600m jog rest\n#1.5D Cool Down",
+          "#1.5D Warm Up\n4x1200m @ 5k-10k pace w. 600m jog rest\n#1.5D Cool Down",
         totalDistance: 8
       },
       { description: "Rest or Cross-Train", totalDistance: 0 },
@@ -5730,7 +6074,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "#1.5D Warm Up\n3 x #1D @ 5k-10k pace w. 800m jog rest\n#1.5D Cool Down",
+          "#1.5D Warm Up\n3x#1D @ 5k-10k pace w. 800m jog rest\n#1.5D Cool Down",
         totalDistance: 8
       },
       { description: "Rest or Cross-Train", totalDistance: 0 },
@@ -5756,7 +6100,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "#1.5D Warm Up\n5 x 1k @ 5k-10k pace w. 600m jog rest\n#1.5D Cool Down",
+          "#1.5D Warm Up\n5x1k @ 5k-10k pace w. 600m jog rest\n#1.5D Cool Down",
         totalDistance: 8
       },
       { description: "Rest or Cross-Train", totalDistance: 0 },
@@ -5782,7 +6126,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "#1.5D Warm Up\n6 x 800m @ 5k-10k pace w. 400m jog rest\n#1.5D Cool Down",
+          "#1.5D Warm Up\n6x800m @ 5k-10k pace w. 400m jog rest\n#1.5D Cool Down",
         totalDistance: 7
       },
       { description: "Rest or Cross-Train", totalDistance: 0 },
@@ -5808,7 +6152,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "#1.5D Warm Up\n12 x 400m @ 5k-10k pace w. 400m jog rest\n#1.5D Cool Down",
+          "#1.5D Warm Up\n12x400m @ 5k-10k pace w. 400m jog rest\n#1.5D Cool Down",
         totalDistance: 9
       },
       { description: "Rest or Cross-Train", totalDistance: 0 },
@@ -5834,7 +6178,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "#1.5D Warm Up\n6 x #1D @ 10k pace w. 400m jog rest\n#1.5D Cool Down",
+          "#1.5D Warm Up\n6x#1D @ 10k pace w. 400m jog rest\n#1.5D Cool Down",
         totalDistance: 10
       },
       { description: "Rest or Cross-Train", totalDistance: 0 },
@@ -5860,7 +6204,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "#1.5D Warm Up\n4 x #1.5D @ 10k pace w. 800m jog rest\n#1.5D Cool Down",
+          "#1.5D Warm Up\n4x#1.5D @ 10k pace w. 800m jog rest\n#1.5D Cool Down",
         totalDistance: 10
       },
       { description: "Rest or Cross-Train", totalDistance: 0 },
@@ -5886,7 +6230,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "#1.5D Warm Up\n3 x #2D @ 10k pace w. 800m jog rest\n#1.5D Cool Down",
+          "#1.5D Warm Up\n3x#2D @ 10k pace w. 800m jog rest\n#1.5D Cool Down",
         totalDistance: 10
       },
       { description: "Rest or Cross-Train", totalDistance: 0 },
@@ -5912,7 +6256,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "#1.5D Warm Up\n2 x #3D @ 10k pace w. #1D jog rest\n#1.5D Cool Down",
+          "#1.5D Warm Up\n2x#3D @ 10k pace w. #1D jog rest\n#1.5D Cool Down",
         totalDistance: 10
       },
       { description: "Rest or Cross-Train", totalDistance: 0 },
@@ -5938,7 +6282,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "#1.5D Warm Up\n3 x #2D @ 10k pace w. 800m jog rest\n#1.5D Cool Down",
+          "#1.5D Warm Up\n3x#2D @ 10k pace w. 800m jog rest\n#1.5D Cool Down",
         totalDistance: 10
       },
       { description: "Rest or Cross-Train", totalDistance: 0 },
@@ -5964,7 +6308,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "#1.5D Warm Up\n4 x #1.5D @ 10k pace w. 800m jog rest\n#1.5D Cool Down",
+          "#1.5D Warm Up\n4x#1.5D @ 10k pace w. 800m jog rest\n#1.5D Cool Down",
         totalDistance: 10
       },
       { description: "Rest or Cross-Train", totalDistance: 0 },
@@ -5990,7 +6334,7 @@ export const PLANS: Plan[] = [
       },
       {
         description:
-          "#1.5D Warm Up\n6 x #1D @ 10k pace w. 400m jog rest\n#1.5D Cool Down",
+          "#1.5D Warm Up\n6x#1D @ 10k pace w. 400m jog rest\n#1.5D Cool Down",
         totalDistance: 10
       },
       { description: "Rest or Cross-Train", totalDistance: 0 },
