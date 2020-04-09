@@ -12,10 +12,13 @@
   margin-inline-end: 0px;
 }
 
-.date {
+.date-column {
   flex: 1;
   text-align: right;
   margin-right: 20px;
+}
+
+.date-string {
   font-weight: bold;
 }
 
@@ -30,7 +33,15 @@
 .workout {
   display: flex;
   flex-direction: row;
-  margin: 20px 0;
+  padding: 10px 0;
+}
+
+.workout.edit:first-child {
+  border-top: 1px solid;
+}
+
+.workout.edit {
+  border-bottom: 1px solid;
 }
 
 .goal-race, .actions-container {
@@ -46,12 +57,16 @@
   margin-left: 0px;
 }
 
+.button:last-child {
+  margin-right: 0px;
+}
+
 @media (max-width: 800px) {
   .workout {
     display: block;
   }
 
-  .date {
+  .date-column {
     margin-right: 0px;
     text-align: left;
   }

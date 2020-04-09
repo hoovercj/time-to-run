@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useCallback, useReducer, useEffect } from "react";
 
 import "./Plan.css";
 
@@ -23,88 +23,124 @@ type Mode = "edit" | "view";
 const DEFAULT_VIEWMODE: Mode = "view";
 const WEEK_LENGTH = 7;
 
-export function Plan({ plan, savePlan }: PlanProps) {
-  const [viewMode, setViewMode] = useState<Mode>(DEFAULT_VIEWMODE);
-  const [editedPlan, setEditedPlan] = useState<ScheduledPlan>({ ...plan });
-  useEffect(() => setEditedPlan(plan), [plan]);
 
-  const toggleViewModeCallback = useCallback(() => {
-    setViewMode(v => (v === "edit" ? "view" : "edit"));
-  }, []);
-  const editModeCallback = useCallback(
-    (save: boolean) => {
-      toggleViewModeCallback();
-      if (save) {
-        savePlan(editedPlan);
-      } else {
-        setEditedPlan(plan);
-      }
-    },
-    [plan, editedPlan, savePlan, toggleViewModeCallback]
-  );
+interface PlanState {
+  viewMode: Mode;
+  plan: ScheduledPlan;
+  editedPlan: ScheduledPlan;
+}
 
-  const updateTitle: func<string> = useCallback(
-    (newTitle: string) => {
-      setEditedPlan(editedPlan => {
-        return {
-          ...editedPlan,
-          title: newTitle
-        };
-      });
-    },
-    [setEditedPlan]
-  );
+type ActionType = "updateTitle" | "editWorkout" | "beginEdit" | "endEdit" | "setPlan";
 
-  const updateWorkout: func<ScheduledWorkout> = useCallback(
-    (updatedWorkout: ScheduledWorkout) => {
-      setEditedPlan(editedPlan => {
-        const newState = {
-          ...editedPlan,
-          workouts: [...editedPlan.workouts]
-        };
+interface Action {
+  type: ActionType;
+  payload?: any;
+}
 
-        const indexToUpdate = newState.workouts.findIndex(
-          (workout: ScheduledWorkout) => workout.id === updatedWorkout.id
-        );
-        newState.workouts[indexToUpdate] = updatedWorkout;
-
-        return newState;
-      });
-    },
-    [setEditedPlan]
-  );
-
-  const renderActions = (viewMode: Mode): JSX.Element => {
-    switch (viewMode) {
-      case "edit":
-        return renderEditModeActions(editModeCallback);
-      case "view":
-      default:
-        return renderViewModeActions(toggleViewModeCallback);
+function reducer(state: PlanState, { type, payload }: Action): PlanState {
+  switch (type) {
+    case "setPlan": {
+      const plan = payload as ScheduledPlan;
+      return {
+        ...state,
+        plan: { ...plan },
+        editedPlan: { ...plan },
+      };
     }
-  };
+    case "beginEdit":
+      return {
+        ...state,
+        viewMode: "edit",
+      };
+    case "endEdit":
+      const save = payload as boolean;
+      const plan = save ? state.editedPlan : state.plan;
+      return {
+        ...state,
+        viewMode: "view",
+        plan: { ...plan },
+        editedPlan: { ...plan },
+      };
+    case "updateTitle":
+      const newTitle = payload as string;
+      return {
+        ...state,
+        editedPlan: {
+          ...state.editedPlan,
+          title: newTitle,
+        }
+      };
+    case "editWorkout":
+      const newWorkout = payload as ScheduledWorkout;
+      const newState = {
+        ...state,
+        editedPlan: {
+          ...state.editedPlan,
+          workouts: [...state.editedPlan.workouts],
+        }
+      };
+
+      const indexToUpdate = newState.editedPlan.workouts.findIndex(
+        (workout: ScheduledWorkout) => workout.id === newWorkout.id
+      );
+      newState.editedPlan.workouts[indexToUpdate] = newWorkout;
+
+      return newState;
+    default:
+      throw new Error("Unsupported action type dispatched.");
+  }
+}
+
+export function Plan({ plan, savePlan }: PlanProps) {
+  const [state, dispatch] = useReducer(reducer, {
+    viewMode: DEFAULT_VIEWMODE,
+    plan: plan,
+    editedPlan: plan,
+  });
+
+  useEffect(() => {
+    dispatch({ type: "setPlan", payload: plan });
+  }, [plan])
+
+  const editActionCallback = useCallback(
+    (action: Action) => {
+      if (action.type === "endEdit" && action.payload === true) {
+        savePlan(state.editedPlan);
+      }
+      dispatch(action);
+    },
+    [dispatch, savePlan, state.editedPlan]
+  );
+
+  const editWorkoutCallback: func<ScheduledWorkout> = useCallback(
+    (updatedWorkout: ScheduledWorkout) => {
+      dispatch({ type: "editWorkout", payload: updatedWorkout });
+    },
+    [dispatch]
+  );
 
   // Properties that aren't editable
   const { goalDate, units, displayUnits } = plan;
   // Properties that are editable
-  const { workouts, title } = editedPlan;
+  const { viewMode, editedPlan } = state;
+  const { title, workouts } = editedPlan;
   const weeks: ScheduledWorkout[][] = chunkArray(workouts, WEEK_LENGTH);
 
   return (
     <div>
       {/* TODO: Add and remove workouts */}
       <h2 className="plan-title">
-        {renderTitle(title, updateTitle, viewMode)}
+        {renderTitle(title, dispatch, viewMode)}
       </h2>
       <div className="goal-race">Goal Race: {getLongDateString(goalDate)}</div>
       {/* TODO: Make buttons nicer. possibly icons next to the plan title? */}
       {/* TODO: Add "delete" button */}
-      <div className="actions-container">{renderActions(viewMode)}</div>
+      <div className="actions-container">{renderActions(state, editActionCallback)}</div>
       {weeks.map((week, index) =>
         Week({
           displayUnits,
           units,
-          updateWorkout,
+          updateWorkout: editWorkoutCallback,
           viewMode,
           weekNumber: index + 1,
           workouts: week
@@ -116,7 +152,7 @@ export function Plan({ plan, savePlan }: PlanProps) {
 
 function renderTitle(
   title: string,
-  updateTitle: func<string>,
+  dispatch: func<Action>,
   viewMode: Mode
 ): JSX.Element | string {
   switch (viewMode) {
@@ -124,7 +160,7 @@ function renderTitle(
       return (
         <input
           className="plan-title-input"
-          onChange={e => updateTitle(e.target.value)}
+          onChange={e => dispatch({type: "updateTitle", payload: e.target.value})}
           value={title}
         />
       );
@@ -134,24 +170,21 @@ function renderTitle(
   }
 }
 
-function renderEditModeActions(onClick: func<boolean>) {
+function renderActions(state: PlanState, dispatch: func<Action>) {
+  const isEditMode = state.viewMode === "edit";
+
+  const primaryAction: Action = isEditMode ? { type: "endEdit", payload: true } : { type: "beginEdit" };
+  const cancelEditAction: Action = { type: "endEdit", payload: false };
+
   return (
     <>
-      <button className="button primary" onClick={() => onClick(true)}>
-        Save
+      <button className="button primary" onClick={() => dispatch(primaryAction)}>
+        {isEditMode ? "Save" : "Edit"}
       </button>
-      <button className="button" onClick={() => onClick(false)}>
+      {isEditMode && <button className="button" onClick={() => dispatch(cancelEditAction)}>
         Cancel
-      </button>
+      </button>}
     </>
-  );
-}
-
-function renderViewModeActions(onClick: func<void>) {
-  return (
-    <button className="button" onClick={() => onClick()}>
-      Edit
-    </button>
   );
 }
 
@@ -181,16 +214,18 @@ function Week({
           {getVolumeStringFromWorkouts(workouts, units, displayUnits)}
         </small>
       </h3>
-      {workouts.map(workout => (
-        <Workout
-          key={workout.id}
-          updateWorkout={updateWorkout}
-          units={units}
-          displayUnits={displayUnits}
-          viewMode={viewMode}
-          {...workout}
-        />
-      ))}
+      <div className="workouts-container">
+        {workouts.map(workout => (
+          <Workout
+            key={workout.id}
+            updateWorkout={updateWorkout}
+            units={units}
+            displayUnits={displayUnits}
+            viewMode={viewMode}
+            {...workout}
+          />
+        ))}
+      </div>
     </Card>
   );
 }
@@ -247,9 +282,9 @@ export const Workout = React.memo(function(props: WorkoutProps) {
   };
 
   return (
-    <div className="workout">
-      <div className="date">
-        {dayOfWeekString} - {shortDateString}
+    <div className={`workout ${viewMode}`}>
+      <div className="date-column">
+        <div className="date-string">{dayOfWeekString} - {shortDateString}</div>
       </div>
       <div className="description">
         {viewMode === "edit" && (
