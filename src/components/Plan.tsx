@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 
 import "./Plan.css";
 
@@ -16,15 +16,32 @@ import { Card } from "./Card";
 
 export interface PlanProps {
   plan: ScheduledPlan;
+  savePlan: func<ScheduledPlan>;
 }
 
 type Mode = "edit" | "view";
-const DEFAULT_VIEWMODE: Mode = "edit";
+const DEFAULT_VIEWMODE: Mode = "view";
 const WEEK_LENGTH = 7;
 
-export function Plan({ plan }: PlanProps) {
+export function Plan({ plan, savePlan }: PlanProps) {
   const [viewMode, setViewMode] = useState<Mode>(DEFAULT_VIEWMODE);
   const [editedPlan, setEditedPlan] = useState<ScheduledPlan>({ ...plan });
+  useEffect(() => setEditedPlan(plan), [plan]);
+
+  const toggleViewModeCallback = useCallback(() => {
+    setViewMode(v => (v === "edit" ? "view" : "edit"));
+  }, []);
+  const editModeCallback = useCallback(
+    (save: boolean) => {
+      toggleViewModeCallback();
+      if (save) {
+        savePlan(editedPlan);
+      } else {
+        setEditedPlan(plan);
+      }
+    },
+    [plan, editedPlan, savePlan, toggleViewModeCallback]
+  );
 
   const { goalDate, title, units, displayUnits } = plan;
 
@@ -52,12 +69,23 @@ export function Plan({ plan }: PlanProps) {
     WEEK_LENGTH
   );
 
+  const renderActions = (viewMode: Mode): JSX.Element => {
+    switch (viewMode) {
+      case "edit":
+        return renderEditModeActions(editModeCallback);
+      case "view":
+      default:
+        return renderViewModeActions(toggleViewModeCallback);
+    }
+  };
+
   return (
     <div>
       {/* TODO: make title editable */}
       <h2>{title}</h2>
-      {renderViewModeButton(viewMode, setViewMode)}
       <div className="goal-race">Goal Race: {getLongDateString(goalDate)}</div>
+      {/* TODO: Make buttons nicer. possibly icons next to the plan title? */}
+      <div className="actions-container">{renderActions(viewMode)}</div>
       {weeks.map((week, index) =>
         Week({
           displayUnits,
@@ -72,13 +100,25 @@ export function Plan({ plan }: PlanProps) {
   );
 }
 
-function renderViewModeButton(mode: Mode, setMode: func<Mode>) {
-  // TODO: In edit mode, render "save" and "cancel" buttons
-  // TODO: In view mode, render "edit" and "edit a copy" buttons
-  const text = mode === "view" ? "Edit" : "Save";
-  const newMode = mode === "view" ? "edit" : "view";
-  const onClick = () => setMode(newMode);
-  return <button onClick={onClick}>{text}</button>;
+function renderEditModeActions(onClick: func<boolean>) {
+  return (
+    <>
+      <button className="button primary" onClick={() => onClick(true)}>
+        Save
+      </button>
+      <button className="button" onClick={() => onClick(false)}>
+        Cancel
+      </button>
+    </>
+  );
+}
+
+function renderViewModeActions(onClick: func<void>) {
+  return (
+    <button className="button" onClick={() => onClick()}>
+      Edit
+    </button>
+  );
 }
 
 interface WeekProps {

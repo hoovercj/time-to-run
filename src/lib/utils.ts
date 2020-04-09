@@ -65,8 +65,9 @@ export function schedulePlan(
   goalDate: Date,
   displayUnits: Units
 ): ScheduledPlan {
-  const { raceDistance, raceType, title, units, workouts } = plan;
+  const { raceDistance, raceType, title, units, workouts, id } = plan;
   return {
+    id,
     displayUnits,
     goalDate,
     raceDistance,

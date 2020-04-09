@@ -1,6 +1,6 @@
 import { planToCsv } from "./csvProcessor";
 import { formatWorkoutFromTemplate } from "./formatter";
-import { ScheduledPlan, Plan } from "./workout";
+import { ScheduledPlan, ExternalPlan, Plan } from "./workout";
 import { ics, saveAs } from "../lib/ics";
 import {
   chunkArray,
@@ -11,12 +11,22 @@ import {
 export type Filetype = "ical" | "json" | "csv";
 
 export function downloadPlanTemplate(plan: Plan, filetype: Filetype) {
+  const { raceDistance, raceType, title, units, workouts } = plan;
+
+  const planToExport: ExternalPlan = {
+    raceDistance,
+    raceType,
+    title,
+    units,
+    workouts,
+  };
+
   switch (filetype) {
     case "json":
-      downloadJson(plan);
+      downloadJson(planToExport);
       return;
     case "csv":
-      downloadCsv(plan);
+      downloadCsv(planToExport);
       return;
   }
 }
@@ -56,11 +66,11 @@ export function downloadPlanCalendar(plan: ScheduledPlan) {
   calendar.download(plan.title, ".ics");
 }
 
-function downloadJson(plan: Plan) {
+function downloadJson(plan: ExternalPlan) {
   downloadCore(JSON.stringify(plan, null, "  "), `${plan.title}.json`);
 }
 
-function downloadCsv(plan: Plan) {
+function downloadCsv(plan: ExternalPlan) {
   downloadCore(planToCsv(plan), `${plan.title}.csv`);
 }
 

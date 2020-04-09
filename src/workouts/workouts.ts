@@ -2,6 +2,7 @@ import { Plan } from "../lib/workout";
 
 export const PLANS: Plan[] = [
   {
+    id: "1",
     title:
       "Marathon: Pfitzinger/Douglas: Up to 55 miles per week, 18-week schedule",
     raceType: "Marathon",
@@ -404,6 +405,7 @@ export const PLANS: Plan[] = [
     ]
   },
   {
+    id: "2",
     title:
       "Marathon: Pfitzinger/Douglas: 55 to 70 miles per week, 18-week schedule",
     raceType: "Marathon",
@@ -868,6 +870,7 @@ export const PLANS: Plan[] = [
     ]
   },
   {
+    id: "3",
     title:
       "Marathon: Pfitzinger/Douglas: 70 to 85 miles per week, 18-week schedule",
     raceType: "Marathon",
@@ -1387,6 +1390,7 @@ export const PLANS: Plan[] = [
     ]
   },
   {
+    id: "4",
     title:
       "Marathon: Pfitzinger/Douglas: Up to 55 miles per week, 12-week schedule",
     raceType: "Marathon",
@@ -1654,6 +1658,7 @@ export const PLANS: Plan[] = [
     ]
   },
   {
+    id: "5",
     title:
       "Marathon: Pfitzinger/Douglas: 55 to 70 miles per week, 12-week schedule",
     raceType: "Marathon",
@@ -1969,6 +1974,7 @@ export const PLANS: Plan[] = [
     ]
   },
   {
+    id: "6",
     title: "Marathon: Hansons Beginner Marathon",
     raceType: "Marathon",
     units: "miles",
@@ -2418,6 +2424,7 @@ export const PLANS: Plan[] = [
     ]
   },
   {
+    id: "7",
     title: "Marathon: Hansons Advanced Marathon",
     raceType: "Marathon",
     units: "miles",
@@ -2889,6 +2896,7 @@ export const PLANS: Plan[] = [
     ]
   },
   {
+    id: "8",
     title: "Marathon: Hal Higdon: Novice 1",
     raceType: "Marathon",
     units: "miles",
@@ -3236,6 +3244,7 @@ export const PLANS: Plan[] = [
     ]
   },
   {
+    id: "9",
     title: "Marathon: Hal Higdon: Novice 2",
     raceType: "Marathon",
     units: "miles",
@@ -3583,6 +3592,7 @@ export const PLANS: Plan[] = [
     ]
   },
   {
+    id: "10",
     title: "Marathon: Hal Higdon: Intermediate 1",
     raceType: "Marathon",
     units: "miles",
@@ -3978,6 +3988,7 @@ export const PLANS: Plan[] = [
     ]
   },
   {
+    id: "11",
     title: "Marathon: Hal Higdon: Intermediate 2",
     raceType: "Marathon",
     units: "miles",
@@ -4373,6 +4384,7 @@ export const PLANS: Plan[] = [
     ]
   },
   {
+    id: "12",
     title: "Marathon: Hal Higdon: Advanced 1",
     raceType: "Marathon",
     units: "miles",
@@ -4765,6 +4777,7 @@ export const PLANS: Plan[] = [
     ]
   },
   {
+    id: "13",
     title: "Marathon: Hal Higdon: Advanced 2",
     raceType: "Marathon",
     units: "miles",
@@ -5124,6 +5137,7 @@ export const PLANS: Plan[] = [
     ]
   },
   {
+    id: "14",
     title: "Half Marathon: Pfitzinger/Latter: 61 to 84 miles per week, 12-week schedule",
     raceType: "Half Marathon",
     raceDistance: 13.1,
@@ -5468,6 +5482,7 @@ export const PLANS: Plan[] = [
     ]
   },
   {
+    id: "15",
     title: "Half Marathon: Hansons Beginner Half Marathon",
     raceType: "Half Marathon",
     units: "miles",
@@ -5914,6 +5929,7 @@ export const PLANS: Plan[] = [
     ]
   },
   {
+    id: "16",
     title: "Half Marathon: Hansons Advanced Half Marathon",
     raceType: "Half Marathon",
     units: "miles",

@@ -10,7 +10,7 @@ import { Units } from "../lib/workout";
 export interface SettingsProps {
   date: Date;
   onDateChange: func<Date>;
-  plans: string[];
+  plans: Array<{ id: string, title: string }>;
   selectedPlan: string;
   onPlanChange: func<string>;
   units: Units;
@@ -52,10 +52,10 @@ export function Settings(props: SettingsProps) {
             value={selectedPlan}
             onChange={e => onPlanChange(e.target.value)}
           >
-            {plans.map(plan => {
+            {plans.map(({ id, title }) => {
               return (
-                <option key={plan} value={plan}>
-                  {plan}
+                <option key={id} value={id}>
+                  {title}
                 </option>
               );
             })}

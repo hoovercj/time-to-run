@@ -13,13 +13,13 @@ import {
 } from "../lib/exporter";
 import { importFile } from "../lib/importer";
 const plans: { [key: string]: IPlan } = {};
-PLANS.forEach(w => (plans[w.title] = w));
+PLANS.forEach((p) => (plans[p.id] = p));
 
 function App() {
-  const defaultPlanTitle = PLANS[0].title;
-  const [selectedPlanTitle, setSelectedPlanTitle] = useState(defaultPlanTitle);
+  const defaultPlanId = PLANS[0].id;
+  const [selectedPlanId, setSelectedPlanId] = useState(defaultPlanId);
 
-  const selectedPlan = plans[selectedPlanTitle];
+  const selectedPlan = plans[selectedPlanId];
 
   const today = new Date();
   const defaultGoalDate = addDays(
@@ -39,10 +39,10 @@ function App() {
       <Settings
         date={goalDate}
         units={units}
-        selectedPlan={selectedPlanTitle}
-        plans={Object.keys(plans)}
+        selectedPlan={selectedPlanId}
+        plans={Object.values(plans).map(({ id, title }) => { return { id, title }; })}
         onDateChange={setGoalDate}
-        onPlanChange={setSelectedPlanTitle}
+        onPlanChange={setSelectedPlanId}
         onUnitsChange={setUnits}
         onDownload={(filetype: Filetype) =>
           filetype === "ical"
@@ -50,10 +50,10 @@ function App() {
             : downloadPlanTemplate(selectedPlan, filetype)
         }
         onFileChange={filelist =>
-          handleFileChange(filelist, setSelectedPlanTitle)
+          handleFileChange(filelist, setSelectedPlanId)
         }
       />
-      <Plan plan={scheduledPlan} />
+      <Plan plan={scheduledPlan} savePlan={(plan: IPlan) => { plans[plan.id] = plan; }} />
     </div>
   );
 }
@@ -72,15 +72,17 @@ const handleFileChange = (
   }
 
   importFile(file)
-    .then(plan => {
-      const nameCollision = !!plans[plan.title];
-      if (nameCollision) {
-        plan.title = `[Copy] ${plan.title}`;
+    .then(importedPlan => {
+      // Avoid plans with the same title when importing. They can be renamed later
+      while (!!plans[importedPlan.title]) {
+          importedPlan.title = `[Copy] ${importedPlan.title}`;
       }
 
-      plans[plan.title] = plan;
+      const plan = importedPlan as IPlan;
+      plan.id = plan.title;
+      plans[plan.id] = plan;
 
-      selectPlan(plan.title);
+      selectPlan(plan.id);
     })
     .catch(error =>
       alert(error)
