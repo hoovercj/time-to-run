@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import "./App.css";
 // import planJson from "../workouts/sample-workout.json";
-import { Plan as IPlan, Units, ScheduledPlan } from "../lib/workout";
+import { Plan as IPlan, Units } from "../lib/workout";
 import { addDays, schedulePlan } from "../lib/utils";
 import { Settings } from "./Settings";
 import { Plan } from "./Plan";
@@ -19,6 +19,20 @@ function App() {
   const defaultPlanId = PLANS[0].id;
   const [selectedPlanId, setSelectedPlanId] = useState(defaultPlanId);
   const [plans, setPlans] = useState(initialPlans);
+
+  const addOrUpdatePlan = useCallback((plan: IPlan, select?: boolean) => {
+    setPlans(p => {
+      return {
+        ...p,
+        [plan.id]: plan,
+      };
+    });
+
+    if (select) {
+      setSelectedPlanId(plan.id);
+    }
+  }, [setPlans, setSelectedPlanId]);
+
 
   const selectedPlan = plans[selectedPlanId];
 
@@ -51,24 +65,17 @@ function App() {
             : downloadPlanTemplate(selectedPlan, filetype)
         }
         onFileChange={filelist =>
-          handleFileChange(filelist, setSelectedPlanId)
+          handleFileChange(filelist, addOrUpdatePlan)
         }
       />
-      <Plan plan={scheduledPlan} savePlan={(plan: ScheduledPlan) => {
-        setPlans(p => {
-          return {
-            ...p,
-            [plan.id]: plan,
-          };
-        });
-      }} />
+      <Plan plan={scheduledPlan} savePlan={addOrUpdatePlan} />
     </div>
   );
 }
 
 const handleFileChange = (
   filelist: FileList | null,
-  selectPlan: (plan: string) => void
+  addPlan: (plan: IPlan, select: boolean) => void
 ) => {
   if (!filelist) {
     return;
@@ -81,20 +88,19 @@ const handleFileChange = (
 
   importFile(file)
     .then(importedPlan => {
+      console.log(`Imported plan: ${importedPlan.title}`);
+
       // Avoid plans with the same title when importing. They can be renamed later
-      while (!!initialPlans[importedPlan.title]) {
+      while (!!Object.values(initialPlans).find(p => p.title === importedPlan.title)) {
           importedPlan.title = `[Copy] ${importedPlan.title}`;
       }
 
       const plan = importedPlan as IPlan;
       plan.id = plan.title;
-      initialPlans[plan.id] = plan;
 
-      selectPlan(plan.id);
+      addPlan(plan, true);
     })
-    .catch(error =>
-      alert(error)
-    );
+    .catch(error => alert(error));
 };
 
 export default App;
