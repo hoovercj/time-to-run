@@ -9,7 +9,7 @@ export interface CardProps {
 
 export function Card({ className, children }: CardProps) {
   return (
-    <div className={`card ${className || ''}`}>
+    <div className={`card ${className ||""}`}>
       {children}
     </div>
   );
