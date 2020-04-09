@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
 // import planJson from "../workouts/sample-workout.json";
-import { Plan as IPlan, Units } from "../lib/workout";
+import { Plan as IPlan, Units, ScheduledPlan } from "../lib/workout";
 import { addDays, schedulePlan } from "../lib/utils";
 import { Settings } from "./Settings";
 import { Plan } from "./Plan";
@@ -12,12 +12,13 @@ import {
   downloadPlanTemplate
 } from "../lib/exporter";
 import { importFile } from "../lib/importer";
-const plans: { [key: string]: IPlan } = {};
-PLANS.forEach((p) => (plans[p.id] = p));
+const initialPlans: { [key: string]: IPlan } = {};
+PLANS.forEach((p) => (initialPlans[p.id] = p));
 
 function App() {
   const defaultPlanId = PLANS[0].id;
   const [selectedPlanId, setSelectedPlanId] = useState(defaultPlanId);
+  const [plans, setPlans] = useState(initialPlans);
 
   const selectedPlan = plans[selectedPlanId];
 
@@ -31,7 +32,7 @@ function App() {
   const defaultUnits = selectedPlan.units;
   const [units, setUnits] = useState(defaultUnits);
 
-  const scheduledPlan = schedulePlan(selectedPlan, goalDate, units as Units);
+  let scheduledPlan = schedulePlan(selectedPlan, goalDate, units as Units);
 
   return (
     <div className="app">
@@ -53,7 +54,14 @@ function App() {
           handleFileChange(filelist, setSelectedPlanId)
         }
       />
-      <Plan plan={scheduledPlan} savePlan={(plan: IPlan) => { plans[plan.id] = plan; }} />
+      <Plan plan={scheduledPlan} savePlan={(plan: ScheduledPlan) => {
+        setPlans(p => {
+          return {
+            ...p,
+            [plan.id]: plan,
+          };
+        });
+      }} />
     </div>
   );
 }
@@ -74,13 +82,13 @@ const handleFileChange = (
   importFile(file)
     .then(importedPlan => {
       // Avoid plans with the same title when importing. They can be renamed later
-      while (!!plans[importedPlan.title]) {
+      while (!!initialPlans[importedPlan.title]) {
           importedPlan.title = `[Copy] ${importedPlan.title}`;
       }
 
       const plan = importedPlan as IPlan;
       plan.id = plan.title;
-      plans[plan.id] = plan;
+      initialPlans[plan.id] = plan;
 
       selectPlan(plan.id);
     })
