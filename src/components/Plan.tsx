@@ -43,7 +43,17 @@ export function Plan({ plan, savePlan }: PlanProps) {
     [plan, editedPlan, savePlan, toggleViewModeCallback]
   );
 
-  const { goalDate, title, units, displayUnits } = plan;
+  const updateTitle: func<string> = useCallback(
+    (newTitle: string) => {
+      setEditedPlan(editedPlan => {
+        return {
+          ...editedPlan,
+          title: newTitle
+        };
+      });
+    },
+    [setEditedPlan]
+  );
 
   const updateWorkout: func<ScheduledWorkout> = useCallback(
     (updatedWorkout: ScheduledWorkout) => {
@@ -61,12 +71,7 @@ export function Plan({ plan, savePlan }: PlanProps) {
         return newState;
       });
     },
-    []
-  );
-
-  const weeks: ScheduledWorkout[][] = chunkArray(
-    editedPlan.workouts,
-    WEEK_LENGTH
+    [setEditedPlan]
   );
 
   const renderActions = (viewMode: Mode): JSX.Element => {
@@ -79,12 +84,21 @@ export function Plan({ plan, savePlan }: PlanProps) {
     }
   };
 
+  // Properties that aren't editable
+  const { goalDate, units, displayUnits } = plan;
+  // Properties that are editable
+  const { workouts, title } = editedPlan;
+  const weeks: ScheduledWorkout[][] = chunkArray(workouts, WEEK_LENGTH);
+
   return (
     <div>
-      {/* TODO: make title editable */}
-      <h2>{title}</h2>
+      {/* TODO: Add and remove workouts */}
+      <h2 className="plan-title">
+        {renderTitle(title, updateTitle, viewMode)}
+      </h2>
       <div className="goal-race">Goal Race: {getLongDateString(goalDate)}</div>
       {/* TODO: Make buttons nicer. possibly icons next to the plan title? */}
+      {/* TODO: Add "delete" button */}
       <div className="actions-container">{renderActions(viewMode)}</div>
       {weeks.map((week, index) =>
         Week({
@@ -98,6 +112,26 @@ export function Plan({ plan, savePlan }: PlanProps) {
       )}
     </div>
   );
+}
+
+function renderTitle(
+  title: string,
+  updateTitle: func<string>,
+  viewMode: Mode
+): JSX.Element | string {
+  switch (viewMode) {
+    case "edit":
+      return (
+        <input
+          className="plan-title-input"
+          onChange={e => updateTitle(e.target.value)}
+          value={title}
+        />
+      );
+    case "view":
+    default:
+      return title;
+  }
 }
 
 function renderEditModeActions(onClick: func<boolean>) {
@@ -221,7 +255,7 @@ export const Workout = React.memo(function(props: WorkoutProps) {
         {viewMode === "edit" && (
           <>
             <div>
-              Total Distance:{" "}
+              Total Distance: {/* TODO: make inputs nicer */}
               <input
                 value={totalDistance}
                 type="number"

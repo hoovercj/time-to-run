@@ -12,6 +12,8 @@ import {
   downloadPlanTemplate
 } from "../lib/exporter";
 import { importFile } from "../lib/importer";
+
+// TODO: Persist imported and edited plans in local storage
 const initialPlans: { [key: string]: IPlan } = {};
 PLANS.forEach((p) => (initialPlans[p.id] = p));
 
