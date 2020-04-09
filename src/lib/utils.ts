@@ -1,15 +1,17 @@
-import { Plan, Workout, ScheduledPlan, ScheduledWorkout, Units } from "./workout";
+import {
+  Plan,
+  Workout,
+  ScheduledPlan,
+  ScheduledWorkout,
+  Units
+} from "./workout";
 
 // TODO: Add unit tests for util methods
 
 export type func<T> = (value: T) => void;
 
 export function getDateWithoutTime(date: Date): Date {
-  return new Date(
-    date.getFullYear(),
-    date.getMonth(),
-    date.getDate()
-  );
+  return new Date(date.getFullYear(), date.getMonth(), date.getDate());
 }
 
 export function getFileExtension(filename: string): string {
@@ -32,15 +34,19 @@ export function chunkArray<T>(array: T[], chunkSize: number): T[][] {
 
 export function getScaleFactor(inputUnits: Units, outputUnits: Units): number {
   if (inputUnits === outputUnits) {
-      return 1;
+    return 1;
   } else if (outputUnits === "kilometers") {
-      return 1.60934;
+    return 1.60934;
   } else {
-      return 0.621371;
+    return 0.621371;
   }
 }
 
-export function scaleNumber(input: number, inputUnits: Units, outputUnits: Units): number {
+export function scaleNumber(
+  input: number,
+  inputUnits: Units,
+  outputUnits: Units
+): number {
   if (inputUnits === outputUnits) {
     return input;
   } else {
@@ -54,39 +60,53 @@ export function addDays(date: Date, days: number): Date {
   return newDate;
 }
 
-export function schedulePlan(plan: Plan, goalDate: Date, displayUnits: Units): ScheduledPlan {
-  const scheduledWorkouts = scheduleWorkouts(plan.workouts, goalDate, plan.units, displayUnits);
+export function schedulePlan(
+  plan: Plan,
+  goalDate: Date,
+  displayUnits: Units
+): ScheduledPlan {
+  const { raceDistance, raceType, title, units, workouts } = plan;
   return {
-    ...plan,
+    displayUnits,
     goalDate,
-    workouts: scheduledWorkouts,
-    displayUnits: displayUnits,
+    raceDistance,
+    raceType,
+    title,
+    units,
+    workouts: scheduleWorkouts(workouts, goalDate)
   };
 }
 
 export function scheduleWorkouts(
   workouts: Workout[],
-  goalDate: Date,
-  units: Units,
-  displayUnits: Units,
+  goalDate: Date
 ): ScheduledWorkout[] {
   return workouts.map((workout, index) => {
     return {
       ...workout,
       date: addDays(goalDate, -1 * (workouts.length - index - 1)),
-      units: units,
-      displayUnits,
+      id: index
     };
   });
 }
 
-export function getVolumeStringFromWorkouts(workouts: ScheduledWorkout[], displayUnits: Units): string {
-  return `${Math.round(getVolumeFromWorkouts(workouts)).toString(10)} ${displayUnits}`
+export function getVolumeStringFromWorkouts(
+  workouts: ScheduledWorkout[],
+  units: Units,
+  displayUnits: Units
+): string {
+  return `${Math.round(
+    getVolumeFromWorkouts(workouts, units, displayUnits)
+  ).toString(10)} ${displayUnits}`;
 }
 
-export function getVolumeFromWorkouts(workouts: ScheduledWorkout[]): number {
+export function getVolumeFromWorkouts(
+  workouts: ScheduledWorkout[],
+  units: Units,
+  displayUnits: Units
+): number {
   return workouts.reduce(
-    (total, { totalDistance, units, displayUnits }) =>
+    (total, { totalDistance }) =>
       total + scaleNumber(totalDistance, units, displayUnits),
     0
   );
@@ -102,7 +122,7 @@ export function getLongDateString(date: Date): string {
     weekday: "long",
     year: "numeric",
     month: "long",
-    day: "numeric",
+    day: "numeric"
   };
   return date.toLocaleDateString("en-US", options); // Saturday, September 17, 2016
 }
@@ -112,19 +132,19 @@ export function getShortDateString(date: Date): string {
 }
 
 export function getDateInputValueString(date: Date): string {
-    const year = date.getFullYear();
-    const month = leftPad((date.getMonth() + 1).toString(10), 2, "0");
-    const day = leftPad(date.getDate().toString(10), 2, "0");
+  const year = date.getFullYear();
+  const month = leftPad((date.getMonth() + 1).toString(10), 2, "0");
+  const day = leftPad(date.getDate().toString(10), 2, "0");
 
-    return `${year}-${month}-${day}`
+  return `${year}-${month}-${day}`;
 }
 
 export function leftPad(input: string, minLength: number, char: string) {
-    if (input.length >= minLength) {
-        return input;
-    }
+  if (input.length >= minLength) {
+    return input;
+  }
 
-    const repeat = minLength - input.length;
+  const repeat = minLength - input.length;
 
-    return `${char.repeat(repeat)}${input}`;
+  return `${char.repeat(repeat)}${input}`;
 }

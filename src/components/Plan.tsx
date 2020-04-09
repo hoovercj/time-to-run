@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useCallback } from "react";
 
 import "./Plan.css";
 
@@ -19,80 +19,56 @@ export interface PlanProps {
 }
 
 type Mode = "edit" | "view";
-
-interface WeekWorkoutUpdate {
-  workout: ScheduledWorkout;
-  index: number;
-}
-
-interface PlanWorkoutUpdate {
-  workout: ScheduledWorkout;
-  weekIndex: number;
-  dayNumber: number;
-}
-
-// TODO: units are being duplicated throughout the tree
-// Currently this is fine because they are always the same,
-// but they could theoretically become out of sync. Normalize
-// handling of units to eliminate this risk
-
-const DEFAULT_VIEWMODE: Mode = "view";
-const ViewModeContext = React.createContext<Mode>(DEFAULT_VIEWMODE);
-
+const DEFAULT_VIEWMODE: Mode = "edit";
 const WEEK_LENGTH = 7;
 
 export function Plan({ plan }: PlanProps) {
   const [viewMode, setViewMode] = useState<Mode>(DEFAULT_VIEWMODE);
-  const [displayPlan, setDisplayPlan] = useState<ScheduledPlan>(plan);
+  const [editedPlan, setEditedPlan] = useState<ScheduledPlan>({ ...plan });
 
-  const { workouts, goalDate, title } = displayPlan;
-  const weeks: ScheduledWorkout[][] = chunkArray(workouts, WEEK_LENGTH);
+  const { goalDate, title, units, displayUnits } = plan;
 
-  const updateWorkoutInPlan: func<PlanWorkoutUpdate> = ({
-    workout,
-    dayNumber,
-    weekIndex: weekNumber
-  }) => {
-    const updatedWorkouts = [...workouts];
-    const updatedIndex = weekNumber * WEEK_LENGTH + dayNumber;
+  const updateWorkout: func<ScheduledWorkout> = useCallback(
+    (updatedWorkout: ScheduledWorkout) => {
+      setEditedPlan(editedPlan => {
+        const newState = {
+          ...editedPlan,
+          workouts: [...editedPlan.workouts]
+        };
 
-    updatedWorkouts[updatedIndex] = workout;
+        const indexToUpdate = newState.workouts.findIndex(
+          (workout: ScheduledWorkout) => workout.id === updatedWorkout.id
+        );
+        newState.workouts[indexToUpdate] = updatedWorkout;
 
-    setDisplayPlan({
-      ...displayPlan,
-      workouts: updatedWorkouts
-    });
-  };
+        return newState;
+      });
+    },
+    []
+  );
+
+  const weeks: ScheduledWorkout[][] = chunkArray(
+    editedPlan.workouts,
+    WEEK_LENGTH
+  );
 
   return (
-    <ViewModeContext.Provider value={viewMode}>
-      <div>
-        {/* TODO: make title editable */}
-        <h2>{title}</h2>
-        {renderViewModeButton(viewMode, setViewMode)}
-        <div className="goal-race">
-          Goal Race: {getLongDateString(goalDate)}
-        </div>
-        {weeks.map((week, index) => {
-          const updateWorkoutInWeek: func<WeekWorkoutUpdate> = ({
-            workout,
-            index: dayNumber
-          }) => {
-            updateWorkoutInPlan({ workout, dayNumber, weekIndex: index });
-          };
-
-          return (
-            <Week
-              key={index}
-              workouts={week}
-              index={index}
-              displayUnits={displayPlan.displayUnits}
-              updateWorkout={updateWorkoutInWeek}
-            />
-          );
-        })}
-      </div>
-    </ViewModeContext.Provider>
+    <div>
+      {/* TODO: make title editable */}
+      <h2>{title}</h2>
+      {renderViewModeButton(viewMode, setViewMode)}
+      <div className="goal-race">Goal Race: {getLongDateString(goalDate)}</div>
+      {weeks.map((week, index) =>
+        Week({
+          displayUnits,
+          units,
+          updateWorkout,
+          viewMode,
+          weekNumber: index + 1,
+          workouts: week
+        })
+      )}
+    </div>
   );
 }
 
@@ -105,34 +81,40 @@ function renderViewModeButton(mode: Mode, setMode: func<Mode>) {
   return <button onClick={onClick}>{text}</button>;
 }
 
-export interface WeekProps {
-  index: number;
+interface WeekProps {
+  weekNumber: number;
   workouts: ScheduledWorkout[];
+  units: Units;
   displayUnits: Units;
-  updateWorkout: func<WeekWorkoutUpdate>;
+  updateWorkout: func<ScheduledWorkout>;
+  viewMode: Mode;
 }
 
-export function Week({
+function Week({
+  weekNumber,
   workouts,
-  index,
+  units,
   displayUnits,
-  updateWorkout
+  updateWorkout,
+  viewMode
 }: WeekProps) {
   return (
-    <Card>
+    <Card key={weekNumber}>
       <h3>
-        Week {index + 1}&nbsp;&nbsp;
+        Week {weekNumber}&nbsp;&nbsp;
         <small>
-          Total volume: {getVolumeStringFromWorkouts(workouts, displayUnits)}
+          Total volume:{" "}
+          {getVolumeStringFromWorkouts(workouts, units, displayUnits)}
         </small>
       </h3>
-      {workouts.map((workout, index) => (
+      {workouts.map(workout => (
         <Workout
-          key={index}
-          workout={workout}
-          updateWorkout={newWorkout =>
-            updateWorkout({ workout: newWorkout, index })
-          }
+          key={workout.id}
+          updateWorkout={updateWorkout}
+          units={units}
+          displayUnits={displayUnits}
+          viewMode={viewMode}
+          {...workout}
         />
       ))}
     </Card>
@@ -140,38 +122,60 @@ export function Week({
 }
 
 export interface WorkoutProps {
-  workout: ScheduledWorkout;
+  id: number;
+  date: Date;
+  units: Units;
+  displayUnits: Units;
+  description: string;
+  totalDistance: number;
   updateWorkout: func<ScheduledWorkout>;
+  viewMode: Mode;
 }
 
-export function Workout({ workout, updateWorkout }: WorkoutProps) {
-  const viewMode = useContext(ViewModeContext);
-  const { description, date, units, displayUnits, totalDistance } = workout;
+export const Workout = React.memo(function(props: WorkoutProps) {
+  const {
+    date,
+    units,
+    displayUnits,
+    updateWorkout,
+    id,
+    description,
+    totalDistance,
+    viewMode
+  } = props;
 
-  const updateDescription = (newDescription: string) => {
+  const dayOfWeekString = getDayOfWeekString(date);
+  const shortDateString = getShortDateString(date);
+  const formattedDescription = formatWorkoutFromTemplate(
+    description,
+    units,
+    displayUnits
+  );
+
+  const onDistanceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newTotalDistance = Number.parseFloat(e.target.value);
     updateWorkout({
       date,
-      displayUnits,
-      totalDistance,
-      units,
-      description: newDescription
+      description,
+      totalDistance: newTotalDistance,
+      id
     });
   };
 
-  const updateTotalDistance = (newTotalDistance: number) => {
+  const onDescriptionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newDescription = e.target.value;
     updateWorkout({
       date,
-      displayUnits,
-      units,
-      description,
-      totalDistance: newTotalDistance
+      totalDistance,
+      description: newDescription,
+      id: id
     });
   };
 
   return (
     <div className="workout">
       <div className="date">
-        {getDayOfWeekString(date)} - {getShortDateString(date)}
+        {dayOfWeekString} - {shortDateString}
       </div>
       <div className="description">
         {viewMode === "edit" && (
@@ -181,22 +185,20 @@ export function Workout({ workout, updateWorkout }: WorkoutProps) {
               <input
                 value={totalDistance}
                 type="number"
-                onChange={e => {
-                  updateTotalDistance(Number.parseFloat(e.target.value));
-                }}
+                onChange={onDistanceChange}
               />
             </div>
             <div>
               <input
                 className={"description-input"}
                 value={description}
-                onChange={e => updateDescription(e.target.value)}
+                onChange={onDescriptionChange}
               />
             </div>
           </>
         )}
-        <div>{formatWorkoutFromTemplate(description, units, displayUnits)}</div>
+        <div>{formattedDescription}</div>
       </div>
     </div>
   );
-}
+});
