@@ -9,6 +9,10 @@
   flex: 2;
 }
 
+.description-input {
+  width: 100%;
+}
+
 .workout {
   display: flex;
   flex-direction: row;

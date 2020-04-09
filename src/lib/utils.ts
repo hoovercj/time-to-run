@@ -80,6 +80,18 @@ export function scheduleWorkouts(
   });
 }
 
+export function getVolumeStringFromWorkouts(workouts: ScheduledWorkout[], displayUnits: Units): string {
+  return `${Math.round(getVolumeFromWorkouts(workouts)).toString(10)} ${displayUnits}`
+}
+
+export function getVolumeFromWorkouts(workouts: ScheduledWorkout[]): number {
+  return workouts.reduce(
+    (total, { totalDistance, units, displayUnits }) =>
+      total + scaleNumber(totalDistance, units, displayUnits),
+    0
+  );
+}
+
 export function getDayOfWeekString(date: Date): string {
   const options: Intl.DateTimeFormatOptions = { weekday: "long" };
   return date.toLocaleDateString("en-US", options); // Saturday
