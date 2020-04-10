@@ -61,6 +61,11 @@
   margin-right: 0px;
 }
 
+.total-distance-input {
+  width: 3em;
+  margin: 0 5px;
+}
+
 @media (max-width: 800px) {
   .workout {
     display: block;

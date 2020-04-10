@@ -80,6 +80,16 @@ export function getVolumeStringFromWorkouts(
   ).toString(10)} ${displayUnits}`;
 }
 
+export function getDistanceString(
+  distance: number,
+  units: Units,
+  displayUnits: Units
+): string {
+  return `${Math.round(
+    scaleNumber(distance, units, displayUnits)
+  ).toString(10)} ${displayUnits}`;
+}
+
 export function getVolumeFromWorkouts(
   workouts: Workout[],
   units: Units,

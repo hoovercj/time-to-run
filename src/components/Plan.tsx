@@ -5,12 +5,13 @@ import "./Plan.css";
 import { Plan as IPlan, Workout as IWorkout, Units } from "../lib/workout";
 import {
   func,
-  getLongDateString,
   getDayOfWeekString,
   getShortDateString,
   getVolumeStringFromWorkouts,
   getGuid,
-  getDateForWorkout
+  getDateForWorkout,
+  getDistanceString,
+  getLongDateString
 } from "../lib/utils";
 import { formatWorkoutFromTemplate } from "../lib/formatter";
 import { Card } from "./Card";
@@ -37,7 +38,6 @@ interface MoveWorkoutPayload {
 
 function reducer(state: PlanState, { type, payload }: Action): PlanState {
   // TODO: deduplicate logic
-  // TODO: delete and insert don't work because the dates aren't updated properly
   switch (type) {
     case "deleteWorkout": {
       const id = payload as string;
@@ -52,9 +52,7 @@ function reducer(state: PlanState, { type, payload }: Action): PlanState {
     case "insertWorkout": {
       const id = payload as string;
       const newWorkouts = [...state.editedPlan.workouts];
-      const insertIndex = newWorkouts.findIndex(
-        (w: IWorkout) => w.id === id
-      );
+      const insertIndex = newWorkouts.findIndex((w: IWorkout) => w.id === id);
       newWorkouts.splice(insertIndex, 0, {
         description: "",
         totalDistance: 0,
@@ -90,11 +88,11 @@ function reducer(state: PlanState, { type, payload }: Action): PlanState {
       const workoutToSwap = newState.editedPlan.workouts[nextIndex];
 
       newState.editedPlan.workouts[currentIndex] = {
-        ...workoutToSwap,
+        ...workoutToSwap
       };
 
       newState.editedPlan.workouts[nextIndex] = {
-        ...workout,
+        ...workout
       };
 
       return newState;
@@ -157,7 +155,7 @@ function reducer(state: PlanState, { type, payload }: Action): PlanState {
 
 export interface PlanProps {
   plan: IPlan;
-  goalDate: Date,
+  goalDate: Date;
   savePlan: func<IPlan>;
   displayUnits: Units;
 }
@@ -199,27 +197,37 @@ export function Plan({ plan, savePlan, goalDate, displayUnits }: PlanProps) {
   const { viewMode, editedPlan } = state;
   const { title, workouts } = editedPlan;
 
+  const isEditMode = viewMode === "edit";
+
   const numWeeks = Math.ceil(workouts.length / WEEK_LENGTH);
   let renderedWeeks: JSX.Element[] = [];
   for (let i = 0; i < numWeeks; i++) {
-    renderedWeeks.push(Week({
-      displayUnits,
-      units,
-      dispatch,
-      viewMode,
-      weekNumber: i,
-      allWorkouts: workouts,
-      goalDate: goalDate,
-    }));
+    renderedWeeks.push(
+      Week({
+        displayUnits,
+        units,
+        dispatch,
+        viewMode,
+        weekNumber: i,
+        allWorkouts: workouts,
+        goalDate: goalDate
+      })
+    );
   }
 
   return (
     <div>
-      <h2 className="plan-title">{renderTitle(title, dispatch, viewMode)}</h2>
-      <div className="goal-race">Goal Race: {getLongDateString(goalDate)}</div>
+      <h2 className="plan-title">{renderTitle(title, dispatch, isEditMode)}</h2>
+      {isEditMode && (
+        <>
+          <div className="goal-race">Original Units: {units}</div>
+          <div className="goal-race">Display Units: {displayUnits}</div>
+        </>
+      )}
       <div className="actions-container">
-        {renderActions(state, editActionCallback)}
+        {renderActions(isEditMode, editActionCallback)}
       </div>
+      <div className="goal-race">Goal Race: {getLongDateString(goalDate)}</div>
       {renderedWeeks}
     </div>
   );
@@ -228,28 +236,20 @@ export function Plan({ plan, savePlan, goalDate, displayUnits }: PlanProps) {
 function renderTitle(
   title: string,
   dispatch: func<Action>,
-  viewMode: Mode
+  isEditMode: boolean
 ): JSX.Element | string {
-  switch (viewMode) {
-    case "edit":
-      return (
-        <input
-          className="plan-title-input"
-          onChange={e =>
-            dispatch({ type: "updateTitle", payload: e.target.value })
-          }
-          value={title}
-        />
-      );
-    case "view":
-    default:
-      return title;
-  }
+  return isEditMode ? (
+    <input
+      className="plan-title-input"
+      onChange={e => dispatch({ type: "updateTitle", payload: e.target.value })}
+      value={title}
+    />
+  ) : (
+    title
+  );
 }
 
-function renderActions(state: PlanState, dispatch: func<Action>) {
-  const isEditMode = state.viewMode === "edit";
-
+function renderActions(isEditMode: boolean, dispatch: func<Action>) {
   const primaryAction: Action = isEditMode
     ? { type: "endEdit", payload: true }
     : { type: "beginEdit" };
@@ -291,11 +291,13 @@ function Week({
   displayUnits,
   dispatch,
   viewMode,
-  goalDate,
+  goalDate
 }: WeekProps) {
-
   const weekStartIndex = weekNumber * WEEK_LENGTH;
-  const weekEndIndex = Math.min(weekStartIndex + WEEK_LENGTH, allWorkouts.length);
+  const weekEndIndex = Math.min(
+    weekStartIndex + WEEK_LENGTH,
+    allWorkouts.length
+  );
   const weekWorkouts = allWorkouts.slice(weekStartIndex, weekEndIndex);
 
   return (
@@ -350,11 +352,14 @@ export const Workout = React.memo(function(props: WorkoutProps) {
     viewMode,
     workoutCount,
     workoutIndex,
-    goalDate,
+    goalDate
   } = props;
 
   // TODO: useMemo may not be useful inside a memo function, but I'm including it just in case
-  const date = useMemo(() => getDateForWorkout(workoutIndex, workoutCount, goalDate), [workoutIndex, workoutCount, goalDate]);
+  const date = useMemo(
+    () => getDateForWorkout(workoutIndex, workoutCount, goalDate),
+    [workoutIndex, workoutCount, goalDate]
+  );
 
   const dayOfWeekString = getDayOfWeekString(date);
   const shortDateString = getShortDateString(date);
@@ -436,13 +441,16 @@ export const Workout = React.memo(function(props: WorkoutProps) {
         {viewMode === "edit" && (
           <>
             <div>
-              {/* TODO: Address mismatch between "total distance" and the display units */}
               Total Distance: {/* TODO: make inputs nicer */}
               <input
                 value={totalDistance}
                 type="number"
                 onChange={onDistanceChange}
+                className="total-distance-input"
               />
+              <span>
+                {getDistanceString(totalDistance, units, displayUnits)}
+              </span>
             </div>
             <div>
               <input
