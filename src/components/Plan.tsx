@@ -207,15 +207,16 @@ export function Plan({ plan, savePlan, goalDate, displayUnits, onDisplayModeChan
   let renderedWeeks: JSX.Element[] = [];
   for (let i = 0; i < numWeeks; i++) {
     renderedWeeks.push(
-      Week({
-        displayUnits,
-        units,
-        dispatch,
-        displayMode,
-        weekNumber: i,
-        allWorkouts: workouts,
-        goalDate: goalDate
-      })
+      <Week
+        key={i}
+        displayUnits={displayUnits}
+        units={units}
+        dispatch={dispatch}
+        displayMode={displayMode}
+        weekNumber={i}
+        allWorkouts={workouts}
+        goalDate={goalDate}
+      />
     );
   }
 
@@ -292,7 +293,7 @@ interface WeekProps {
   goalDate: Date;
 }
 
-function Week({
+const Week = React.memo(function({
   weekNumber,
   allWorkouts,
   units,
@@ -338,7 +339,7 @@ function Week({
       </div>
     </Card>
   );
-}
+});
 
 export interface WorkoutProps {
   id: string;
