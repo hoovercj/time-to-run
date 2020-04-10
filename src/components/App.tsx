@@ -1,8 +1,7 @@
 import React, { useState, useCallback } from "react";
 import "./App.css";
-// import planJson from "../workouts/sample-workout.json";
-import { Plan as IPlan, Units } from "../lib/workout";
-import { addDays, schedulePlan } from "../lib/utils";
+import { Plan as IPlan } from "../lib/workout";
+import { addDays, getGuid } from "../lib/utils";
 import { Settings } from "./Settings";
 import { Plan } from "./Plan";
 import { PLANS } from "../workouts/workouts";
@@ -15,62 +14,82 @@ import { importFile } from "../lib/importer";
 
 // TODO: Persist imported and edited plans in local storage
 const initialPlans: { [key: string]: IPlan } = {};
-PLANS.forEach((p) => (initialPlans[p.id] = p));
+PLANS.forEach(p => {
+  const id = getGuid();
+  initialPlans[id] = {
+    ...p,
+    id,
+    workouts: p.workouts.map(w => {
+      return {
+        ...w,
+        id: getGuid(),
+      };
+    }),
+  };
+});
 
 function App() {
-  const defaultPlanId = PLANS[0].id;
+  const defaultPlanId = Object.keys(initialPlans)[0];
   const [selectedPlanId, setSelectedPlanId] = useState(defaultPlanId);
   const [plans, setPlans] = useState(initialPlans);
 
-  const addOrUpdatePlan = useCallback((plan: IPlan, select?: boolean) => {
-    setPlans(p => {
-      return {
-        ...p,
-        [plan.id]: plan,
-      };
-    });
+  const addOrUpdatePlan = useCallback(
+    (plan: IPlan, select?: boolean) => {
+      setPlans(p => {
+        return {
+          ...p,
+          [plan.id]: plan
+        };
+      });
 
-    if (select) {
-      setSelectedPlanId(plan.id);
-    }
-  }, [setPlans, setSelectedPlanId]);
-
+      if (select) {
+        setSelectedPlanId(plan.id);
+      }
+    },
+    [setPlans, setSelectedPlanId]
+  );
 
   const selectedPlan = plans[selectedPlanId];
 
   const today = new Date();
-  const defaultGoalDate = addDays(
-    today,
-    selectedPlan.workouts.length
-  );
+  const defaultGoalDate = addDays(today, selectedPlan.workouts.length - 1);
   const [goalDate, setGoalDate] = useState(defaultGoalDate);
 
   const defaultUnits = selectedPlan.units;
-  const [units, setUnits] = useState(defaultUnits);
-
-  let scheduledPlan = schedulePlan(selectedPlan, goalDate, units as Units);
+  const [displayUnits, setDisplayUnits] = useState(defaultUnits);
 
   return (
     <div className="app">
-      <h1 className="app-header">Calendar Hack</h1><a className="about-link" href="https://github.com/hoovercj/calendar-hack/blob/master/README.md">About</a>
+      <h1 className="app-header">Calendar Hack</h1>
+      <a
+        className="about-link"
+        href="https://github.com/hoovercj/calendar-hack/blob/master/README.md"
+      >
+        About
+      </a>
       <Settings
         date={goalDate}
-        units={units}
+        units={displayUnits}
         selectedPlan={selectedPlanId}
-        plans={Object.values(plans).map(({ id, title }) => { return { id, title }; })}
+        plans={Object.values(plans).map(({ id, title }) => {
+          return { id, title };
+        })}
         onDateChange={setGoalDate}
         onPlanChange={setSelectedPlanId}
-        onUnitsChange={setUnits}
+        onUnitsChange={setDisplayUnits}
         onDownload={(filetype: Filetype) =>
           filetype === "ical"
-            ? downloadPlanCalendar(scheduledPlan)
+            ? downloadPlanCalendar(selectedPlan, goalDate, displayUnits)
             : downloadPlanTemplate(selectedPlan, filetype)
         }
-        onFileChange={filelist =>
-          handleFileChange(filelist, addOrUpdatePlan)
-        }
+        onFileChange={filelist => handleFileChange(filelist, addOrUpdatePlan)}
       />
-      <Plan plan={scheduledPlan} savePlan={addOrUpdatePlan} />
+      <Plan
+        plan={selectedPlan}
+        savePlan={addOrUpdatePlan}
+        goalDate={goalDate}
+        displayUnits={displayUnits}
+      />
     </div>
   );
 }
@@ -93,12 +112,14 @@ const handleFileChange = (
       console.log(`Imported plan: ${importedPlan.title}`);
 
       // Avoid plans with the same title when importing. They can be renamed later
-      while (!!Object.values(initialPlans).find(p => p.title === importedPlan.title)) {
-          importedPlan.title = `[Copy] ${importedPlan.title}`;
+      while (
+        !!Object.values(initialPlans).find(p => p.title === importedPlan.title)
+      ) {
+        importedPlan.title = `[Copy] ${importedPlan.title}`;
       }
 
       const plan = importedPlan as IPlan;
-      plan.id = plan.title;
+      plan.id = getGuid();
 
       addPlan(plan, true);
     })

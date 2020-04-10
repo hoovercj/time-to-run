@@ -70,6 +70,7 @@ export function Settings(props: SettingsProps) {
           />
         </div>
         {renderUnits(units, onUnitsChange)}
+        {/* TODO: These should be disabled while editing */}
         <div className="field">
           <label id="download-label">4. Download</label>
           <button

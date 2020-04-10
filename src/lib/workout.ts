@@ -9,20 +9,13 @@ export interface Plan {
   workouts: Workout[];
 }
 
-export type ExternalPlan = Omit<Plan, "id">;
-
 export interface Workout {
+  id: string;
   description: string;
   totalDistance: number;
 }
 
-export interface ScheduledPlan extends Plan {
-  goalDate: Date;
-  workouts: ScheduledWorkout[];
-  displayUnits: Units;
+export interface ExternalPlan extends Omit<Plan, "id" | "workouts"> {
+  workouts: ExternalWorkout[];
 }
-
-export interface ScheduledWorkout extends Workout {
-  id: number;
-  date: Date;
-}
+export type ExternalWorkout = Omit<Workout, "id">;

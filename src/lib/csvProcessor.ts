@@ -5,6 +5,7 @@ import {
 } from "papaparse";
 
 import { ExternalPlan, Workout, Units } from "./workout";
+import { getGuid } from "./utils";
 
 type PlanInfo = Omit<ExternalPlan, "workouts">;
 type PlanHeadings = keyof PlanInfo;
@@ -87,6 +88,7 @@ export const csvToPlan = (file: string): ExternalPlan | null => {
       workouts: workouts.map(
         workout => {
           return {
+            id: getGuid(),
             description: workout[descriptionIndex],
             totalDistance: parseFloat(workout[workoutDistanceIndex])
           };

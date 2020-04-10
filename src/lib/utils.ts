@@ -1,14 +1,20 @@
 import {
-  Plan,
   Workout,
-  ScheduledPlan,
-  ScheduledWorkout,
   Units
 } from "./workout";
 
 // TODO: Add unit tests for util methods
 
 export type func<T> = (value: T) => void;
+
+// via https://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
+export function getGuid() {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    /* eslint-disable */
+    var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+    return v.toString(16);
+  });
+}
 
 export function getDateWithoutTime(date: Date): Date {
   return new Date(date.getFullYear(), date.getMonth(), date.getDate());
@@ -60,39 +66,12 @@ export function addDays(date: Date, days: number): Date {
   return newDate;
 }
 
-export function schedulePlan(
-  plan: Plan,
-  goalDate: Date,
-  displayUnits: Units
-): ScheduledPlan {
-  const { raceDistance, raceType, title, units, workouts, id } = plan;
-  return {
-    id,
-    displayUnits,
-    goalDate,
-    raceDistance,
-    raceType,
-    title,
-    units,
-    workouts: scheduleWorkouts(workouts, goalDate)
-  };
-}
-
-export function scheduleWorkouts(
-  workouts: Workout[],
-  goalDate: Date
-): ScheduledWorkout[] {
-  return workouts.map((workout, index) => {
-    return {
-      ...workout,
-      date: addDays(goalDate, -1 * (workouts.length - index - 1)),
-      id: index
-    };
-  });
+export function getDateForWorkout(workoutIndex: number, workoutCount: number, goalDate: Date) {
+  return addDays(goalDate, -1 * (workoutCount - workoutIndex - 1));
 }
 
 export function getVolumeStringFromWorkouts(
-  workouts: ScheduledWorkout[],
+  workouts: Workout[],
   units: Units,
   displayUnits: Units
 ): string {
@@ -102,7 +81,7 @@ export function getVolumeStringFromWorkouts(
 }
 
 export function getVolumeFromWorkouts(
-  workouts: ScheduledWorkout[],
+  workouts: Workout[],
   units: Units,
   displayUnits: Units
 ): number {

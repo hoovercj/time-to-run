@@ -1,11 +1,12 @@
 import { planToCsv } from "./csvProcessor";
 import { formatWorkoutFromTemplate } from "./formatter";
-import { ScheduledPlan, ExternalPlan, Plan } from "./workout";
+import { ExternalPlan, Plan, Units } from "./workout";
 import { ics, saveAs } from "../lib/ics";
 import {
   chunkArray,
   getDateWithoutTime,
-  getVolumeStringFromWorkouts
+  getVolumeStringFromWorkouts,
+  getDateForWorkout
 } from "../lib/utils";
 
 export type Filetype = "ical" | "json" | "csv";
@@ -18,7 +19,12 @@ export function downloadPlanTemplate(plan: Plan, filetype: Filetype) {
     raceType,
     title,
     units,
-    workouts,
+    workouts: workouts.map(w => {
+      return {
+        totalDistance: w.totalDistance,
+        description: w.description,
+      }
+    }),
   };
 
   switch (filetype) {
@@ -31,18 +37,26 @@ export function downloadPlanTemplate(plan: Plan, filetype: Filetype) {
   }
 }
 
-export function downloadPlanCalendar(plan: ScheduledPlan) {
+const WEEK_LENGTH = 7;
+
+export function downloadPlanCalendar(plan: Plan, goalDate: Date, displayUnits: Units) {
   const calendar = ics();
 
   if (!calendar) {
     return;
   }
 
-  const { units, displayUnits, workouts } = plan;
-  const weeks = chunkArray(workouts, 7);
+  const { units, workouts } = plan;
+  const weeks = chunkArray(workouts, WEEK_LENGTH);
+  const goalDateWithoutTime = getDateWithoutTime(goalDate);
+
+  const workoutCount = workouts.length;
   weeks.forEach((week, index) => {
-    const weekStartDate = getDateWithoutTime(week[0].date);
-    const weekEndDate = getDateWithoutTime(week[week.length - 1].date);
+    const weekStartWorkoutIndex = index * WEEK_LENGTH;
+    const weekEndWorkoutIndex = weekStartWorkoutIndex + week.length;
+
+    const weekStartDate = getDateForWorkout(weekStartWorkoutIndex, workoutCount, goalDateWithoutTime);
+    const weekEndDate = getDateForWorkout(weekEndWorkoutIndex, workoutCount, goalDateWithoutTime);
 
     const weekTitle = `${weeks.length -
       index} Weeks to Goal: ${getVolumeStringFromWorkouts(
@@ -52,8 +66,8 @@ export function downloadPlanCalendar(plan: ScheduledPlan) {
     )}`;
     calendar.addEvent(weekTitle, "", "", weekStartDate, weekEndDate);
 
-    week.forEach(workout => {
-      const workoutDate = getDateWithoutTime(workout.date);
+    week.forEach((workout, index) => {
+      const workoutDate = getDateForWorkout(weekStartWorkoutIndex + index, workoutCount, goalDateWithoutTime);
       const workoutTitle = formatWorkoutFromTemplate(
         workout.description,
         units,

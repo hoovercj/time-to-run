@@ -1,8 +1,7 @@
-import { Plan } from "../lib/workout";
+import { ExternalPlan } from "../lib/workout";
 
-export const PLANS: Plan[] = [
+export const PLANS: ExternalPlan[] = [
   {
-    id: "1",
     title:
       "Marathon: Pfitzinger/Douglas: Up to 55 miles per week, 18-week schedule",
     raceType: "Marathon",
@@ -405,7 +404,6 @@ export const PLANS: Plan[] = [
     ]
   },
   {
-    id: "2",
     title:
       "Marathon: Pfitzinger/Douglas: 55 to 70 miles per week, 18-week schedule",
     raceType: "Marathon",
@@ -870,7 +868,6 @@ export const PLANS: Plan[] = [
     ]
   },
   {
-    id: "3",
     title:
       "Marathon: Pfitzinger/Douglas: 70 to 85 miles per week, 18-week schedule",
     raceType: "Marathon",
@@ -1390,7 +1387,6 @@ export const PLANS: Plan[] = [
     ]
   },
   {
-    id: "4",
     title:
       "Marathon: Pfitzinger/Douglas: Up to 55 miles per week, 12-week schedule",
     raceType: "Marathon",
@@ -1658,7 +1654,6 @@ export const PLANS: Plan[] = [
     ]
   },
   {
-    id: "5",
     title:
       "Marathon: Pfitzinger/Douglas: 55 to 70 miles per week, 12-week schedule",
     raceType: "Marathon",
@@ -1974,7 +1969,6 @@ export const PLANS: Plan[] = [
     ]
   },
   {
-    id: "6",
     title: "Marathon: Hansons Beginner Marathon",
     raceType: "Marathon",
     units: "miles",
@@ -2424,7 +2418,6 @@ export const PLANS: Plan[] = [
     ]
   },
   {
-    id: "7",
     title: "Marathon: Hansons Advanced Marathon",
     raceType: "Marathon",
     units: "miles",
@@ -2896,7 +2889,6 @@ export const PLANS: Plan[] = [
     ]
   },
   {
-    id: "8",
     title: "Marathon: Hal Higdon: Novice 1",
     raceType: "Marathon",
     units: "miles",
@@ -3244,7 +3236,6 @@ export const PLANS: Plan[] = [
     ]
   },
   {
-    id: "9",
     title: "Marathon: Hal Higdon: Novice 2",
     raceType: "Marathon",
     units: "miles",
@@ -3592,7 +3583,6 @@ export const PLANS: Plan[] = [
     ]
   },
   {
-    id: "10",
     title: "Marathon: Hal Higdon: Intermediate 1",
     raceType: "Marathon",
     units: "miles",
@@ -3988,7 +3978,6 @@ export const PLANS: Plan[] = [
     ]
   },
   {
-    id: "11",
     title: "Marathon: Hal Higdon: Intermediate 2",
     raceType: "Marathon",
     units: "miles",
@@ -4384,7 +4373,6 @@ export const PLANS: Plan[] = [
     ]
   },
   {
-    id: "12",
     title: "Marathon: Hal Higdon: Advanced 1",
     raceType: "Marathon",
     units: "miles",
@@ -4777,7 +4765,6 @@ export const PLANS: Plan[] = [
     ]
   },
   {
-    id: "13",
     title: "Marathon: Hal Higdon: Advanced 2",
     raceType: "Marathon",
     units: "miles",
@@ -5137,8 +5124,8 @@ export const PLANS: Plan[] = [
     ]
   },
   {
-    id: "14",
-    title: "Half Marathon: Pfitzinger/Latter: 61 to 84 miles per week, 12-week schedule",
+    title:
+      "Half Marathon: Pfitzinger/Latter: 61 to 84 miles per week, 12-week schedule",
     raceType: "Half Marathon",
     raceDistance: 13.1,
     units: "miles",
@@ -5152,7 +5139,8 @@ export const PLANS: Plan[] = [
         totalDistance: 10
       },
       {
-        description: "Lacate threshold #10D w/ 16 min LT interval (jog 4 min recovery), 13 min LT interval",
+        description:
+          "Lacate threshold #10D w/ 16 min LT interval (jog 4 min recovery), 13 min LT interval",
         totalDistance: 10
       },
       {
@@ -5164,7 +5152,8 @@ export const PLANS: Plan[] = [
         totalDistance: 6
       },
       {
-        description: "General aerobic + speed #9D w/ 2 sets of 6x100m strides (jog 3 min between sets)",
+        description:
+          "General aerobic + speed #9D w/ 2 sets of 6x100m strides (jog 3 min between sets)",
         totalDistance: 9
       },
       {
@@ -5180,7 +5169,8 @@ export const PLANS: Plan[] = [
         totalDistance: 10
       },
       {
-        description: "Lacate threshold #11D w/ 18 min LT interval (jog 4 min recovery), 16 min LT interval",
+        description:
+          "Lacate threshold #11D w/ 18 min LT interval (jog 4 min recovery), 16 min LT interval",
         totalDistance: 11
       },
       {
@@ -5192,7 +5182,8 @@ export const PLANS: Plan[] = [
         totalDistance: 6
       },
       {
-        description: "General aerobic + speed #10D w/ 6x12 sec uphill followed by 8x100m strides",
+        description:
+          "General aerobic + speed #10D w/ 6x12 sec uphill followed by 8x100m strides",
         totalDistance: 10
       },
       {
@@ -5208,7 +5199,8 @@ export const PLANS: Plan[] = [
         totalDistance: 10
       },
       {
-        description: "Lacate threshold #11D w/ 20min LT interval (jog 4 min recovery), 18 min LT interval",
+        description:
+          "Lacate threshold #11D w/ 20min LT interval (jog 4 min recovery), 18 min LT interval",
         totalDistance: 11
       },
       {
@@ -5220,7 +5212,8 @@ export const PLANS: Plan[] = [
         totalDistance: 6
       },
       {
-        description: "General aerobic + speed #9D w/ 6x12 sec uphill followed by 8x100m strides",
+        description:
+          "General aerobic + speed #9D w/ 6x12 sec uphill followed by 8x100m strides",
         totalDistance: 9
       },
       {
@@ -5248,7 +5241,8 @@ export const PLANS: Plan[] = [
         totalDistance: 6
       },
       {
-        description: "General aerobic + speed #9D w/ 2 sets of 6x150m strides (jog 3 min between sets)",
+        description:
+          "General aerobic + speed #9D w/ 2 sets of 6x150m strides (jog 3 min between sets)",
         totalDistance: 9
       },
       {
@@ -5264,7 +5258,8 @@ export const PLANS: Plan[] = [
         totalDistance: 10
       },
       {
-        description: "Lacate threshold #11D w/ 24 min LT interval (jog 4 min recovery), 18 min LT interval",
+        description:
+          "Lacate threshold #11D w/ 24 min LT interval (jog 4 min recovery), 18 min LT interval",
         totalDistance: 11
       },
       {
@@ -5276,7 +5271,8 @@ export const PLANS: Plan[] = [
         totalDistance: 8
       },
       {
-        description: "General aerobic + speed #10D w/ 2 sets of 6x100m strides (jog 3 min between sets)",
+        description:
+          "General aerobic + speed #10D w/ 2 sets of 6x100m strides (jog 3 min between sets)",
         totalDistance: 10
       },
       {
@@ -5292,7 +5288,8 @@ export const PLANS: Plan[] = [
         totalDistance: 10
       },
       {
-        description: "V02Max #12D w/ 6x1,200m @ 3k-5k race pace (jog 50-90% interval time recovery)",
+        description:
+          "V02Max #12D w/ 6x1,200m @ 3k-5k race pace (jog 50-90% interval time recovery)",
         totalDistance: 12
       },
       {
@@ -5304,7 +5301,8 @@ export const PLANS: Plan[] = [
         totalDistance: 9
       },
       {
-        description: "General aerobic + speed #10D w/ 8x12 sec uphill followed by 8x100m strides",
+        description:
+          "General aerobic + speed #10D w/ 8x12 sec uphill followed by 8x100m strides",
         totalDistance: 10
       },
       {
@@ -5320,7 +5318,8 @@ export const PLANS: Plan[] = [
         totalDistance: 11
       },
       {
-        description: "Lactate Threshold #12D, 44 min change-of-pace tempo run: 4 min fast, 4 min stead, followed by 6x(2x2 min fast, 4 min stead)",
+        description:
+          "Lactate Threshold #12D, 44 min change-of-pace tempo run: 4 min fast, 4 min stead, followed by 6x(2x2 min fast, 4 min stead)",
         totalDistance: 12
       },
       {
@@ -5344,7 +5343,8 @@ export const PLANS: Plan[] = [
         totalDistance: 11
       },
       {
-        description: "General aerobic + speed #11D w/ 2 sets of 5x150m strides (jog 250m between intervals and 4 min between sets)",
+        description:
+          "General aerobic + speed #11D w/ 2 sets of 5x150m strides (jog 250m between intervals and 4 min between sets)",
         totalDistance: 11
       },
       {
@@ -5380,7 +5380,8 @@ export const PLANS: Plan[] = [
         totalDistance: 12
       },
       {
-        description: "V02Max #12D w/ 2x1,600m, 2x1,200m, 2x1,000m @ 3k-5k race pace (jog 50-90% interval time recovery)",
+        description:
+          "V02Max #12D w/ 2x1,600m, 2x1,200m, 2x1,000m @ 3k-5k race pace (jog 50-90% interval time recovery)",
         totalDistance: 12
       },
       {
@@ -5400,7 +5401,8 @@ export const PLANS: Plan[] = [
         totalDistance: 11
       },
       {
-        description: "General aerobic + speed #11D w/ 2 sets of 5x150m strides (jog 250m recovery and 4 min between sets)",
+        description:
+          "General aerobic + speed #11D w/ 2 sets of 5x150m strides (jog 250m recovery and 4 min between sets)",
         totalDistance: 11
       },
       {
@@ -5436,7 +5438,8 @@ export const PLANS: Plan[] = [
         totalDistance: 7
       },
       {
-        description: "V02Max #10D w/ 3x1,200m, 3x800m @ 3k-5k race pace (jog 50-90% interval time recovery)",
+        description:
+          "V02Max #10D w/ 3x1,200m, 3x800m @ 3k-5k race pace (jog 50-90% interval time recovery)",
         totalDistance: 10
       },
       {
@@ -5444,7 +5447,8 @@ export const PLANS: Plan[] = [
         totalDistance: 5
       },
       {
-        description: "General aerobic + speed #9D w/ 2 sets of 6x100m strides (jog 3 min between sets)",
+        description:
+          "General aerobic + speed #9D w/ 2 sets of 6x100m strides (jog 3 min between sets)",
         totalDistance: 9
       },
       {
@@ -5456,7 +5460,8 @@ export const PLANS: Plan[] = [
         totalDistance: 5
       },
       {
-        description: "Race pace + speed #9D w/  #2D @ half marathon race pace and 6x100m strides",
+        description:
+          "Race pace + speed #9D w/  #2D @ half marathon race pace and 6x100m strides",
         totalDistance: 9
       },
       {
@@ -5482,7 +5487,6 @@ export const PLANS: Plan[] = [
     ]
   },
   {
-    id: "15",
     title: "Half Marathon: Hansons Beginner Half Marathon",
     raceType: "Half Marathon",
     units: "miles",
@@ -5929,7 +5933,6 @@ export const PLANS: Plan[] = [
     ]
   },
   {
-    id: "16",
     title: "Half Marathon: Hansons Advanced Half Marathon",
     raceType: "Half Marathon",
     units: "miles",
