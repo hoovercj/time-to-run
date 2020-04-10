@@ -11,7 +11,9 @@ import {
   getGuid,
   getDateForWorkout,
   getDistanceString,
-  getLongDateString
+  getLongDateString,
+  DisplayMode,
+  DEFAULT_DISPLAYMODE
 } from "../lib/utils";
 import { formatWorkoutFromTemplate } from "../lib/formatter";
 import { Card } from "./Card";
@@ -109,7 +111,7 @@ function reducer(state: PlanState, { type, payload }: Action): PlanState {
     case "beginEdit": {
       return {
         ...state,
-        viewMode: "edit"
+        displayMode: "edit"
       };
     }
     case "endEdit": {
@@ -117,7 +119,7 @@ function reducer(state: PlanState, { type, payload }: Action): PlanState {
       const plan = save ? state.editedPlan : state.plan;
       return {
         ...state,
-        viewMode: "view",
+        displayMode: "view",
         plan: { ...plan },
         editedPlan: { ...plan }
       };
@@ -159,24 +161,25 @@ export interface PlanProps {
   goalDate: Date;
   savePlan: func<IPlan>;
   displayUnits: Units;
+  onDisplayModeChanged?: func<DisplayMode>;
 }
 
-type Mode = "edit" | "view";
-const DEFAULT_VIEWMODE: Mode = "view";
 const WEEK_LENGTH = 7;
 
 interface PlanState {
-  viewMode: Mode;
+  displayMode: DisplayMode;
   plan: IPlan;
   editedPlan: IPlan;
 }
 
-export function Plan({ plan, savePlan, goalDate, displayUnits }: PlanProps) {
+export function Plan({ plan, savePlan, goalDate, displayUnits, onDisplayModeChanged }: PlanProps) {
   const [state, dispatch] = useReducer(reducer, {
-    viewMode: DEFAULT_VIEWMODE,
+    displayMode: DEFAULT_DISPLAYMODE,
     plan: plan,
     editedPlan: plan
   });
+
+  useEffect(() => onDisplayModeChanged && onDisplayModeChanged(state.displayMode), [state.displayMode, onDisplayModeChanged])
 
   useEffect(() => {
     dispatch({ type: "setPlan", payload: plan });
@@ -195,10 +198,10 @@ export function Plan({ plan, savePlan, goalDate, displayUnits }: PlanProps) {
   // Properties that aren't editable
   const { units } = plan;
   // Properties that are editable
-  const { viewMode, editedPlan } = state;
+  const { displayMode, editedPlan } = state;
   const { title, workouts } = editedPlan;
 
-  const isEditMode = viewMode === "edit";
+  const isEditMode = displayMode === "edit";
 
   const numWeeks = Math.ceil(workouts.length / WEEK_LENGTH);
   let renderedWeeks: JSX.Element[] = [];
@@ -208,7 +211,7 @@ export function Plan({ plan, savePlan, goalDate, displayUnits }: PlanProps) {
         displayUnits,
         units,
         dispatch,
-        viewMode,
+        displayMode,
         weekNumber: i,
         allWorkouts: workouts,
         goalDate: goalDate
@@ -217,7 +220,7 @@ export function Plan({ plan, savePlan, goalDate, displayUnits }: PlanProps) {
   }
 
   return (
-    <div className={`plan ${viewMode}`}>
+    <div className={`plan ${displayMode}`}>
       <h2 className="plan-heading">
         {renderTitle(title, dispatch, isEditMode)}
         {renderActions(isEditMode, editActionCallback)}
@@ -258,8 +261,6 @@ function renderActions(isEditMode: boolean, dispatch: func<Action>) {
 
   const iconClassName = "heading-action";
 
-  // TODO: P1: Make buttons nicer. possibly icons next to the plan title?
-  // Current suggestion: pencil icon after the title in view mode, save and cancel icons in edit mode
   return (
     <>
       <IconButton
@@ -287,7 +288,7 @@ interface WeekProps {
   units: Units;
   displayUnits: Units;
   dispatch: func<Action>;
-  viewMode: Mode;
+  displayMode: DisplayMode;
   goalDate: Date;
 }
 
@@ -297,7 +298,7 @@ function Week({
   units,
   displayUnits,
   dispatch,
-  viewMode,
+  displayMode,
   goalDate
 }: WeekProps) {
   const weekStartIndex = weekNumber * WEEK_LENGTH;
@@ -330,7 +331,7 @@ function Week({
             dispatch={dispatch}
             units={units}
             displayUnits={displayUnits}
-            viewMode={viewMode}
+            displayMode={displayMode}
             {...workout}
           />
         ))}
@@ -346,7 +347,7 @@ export interface WorkoutProps {
   description: string;
   totalDistance: number;
   dispatch: func<Action>;
-  viewMode: Mode;
+  displayMode: DisplayMode;
   goalDate: Date;
   workoutIndex: number;
   workoutCount: number;
@@ -360,7 +361,7 @@ export const Workout = React.memo(function(props: WorkoutProps) {
     id,
     description,
     totalDistance,
-    viewMode,
+    displayMode,
     workoutCount,
     workoutIndex,
     goalDate
@@ -425,9 +426,7 @@ export const Workout = React.memo(function(props: WorkoutProps) {
   const onInsert = () => dispatch({ type: "insertWorkout", payload: id });
 
   const renderActions = () =>
-    viewMode === "edit" && (
-      // TODO: P1: make these actions visible only when focus-within or hovered
-      // TODO: should these be icons?
+    displayMode === "edit" && (
       <div className="row edit-workout-action-container">
         <IconButton
           onClick={() => onMove(false)}
@@ -447,7 +446,7 @@ export const Workout = React.memo(function(props: WorkoutProps) {
     );
 
   return (
-    <div className={`workout ${viewMode}`}>
+    <div className={`workout ${displayMode}`}>
       <div className="date-column">
         <div className="row date-string">
           {dayOfWeekString} - {shortDateString}
@@ -455,7 +454,7 @@ export const Workout = React.memo(function(props: WorkoutProps) {
         {renderActions()}
       </div>
       <div className="description-column">
-        {viewMode === "edit" && (
+        {displayMode === "edit" && (
           <>
             <div className="row total-distance-row">
               Total Distance: {/* TODO: P1: make inputs nicer */}

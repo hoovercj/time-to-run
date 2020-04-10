@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from "react";
 import "./App.css";
 import { Plan as IPlan } from "../lib/workout";
-import { addDays, getGuid } from "../lib/utils";
+import { addDays, getGuid, DEFAULT_DISPLAYMODE } from "../lib/utils";
 import { Settings } from "./Settings";
 import { Plan } from "./Plan";
 import { PLANS } from "../workouts/workouts";
@@ -33,6 +33,7 @@ function App() {
   const defaultPlanId = Object.keys(initialPlans)[0];
   const [selectedPlanId, setSelectedPlanId] = useState(defaultPlanId);
   const [plans, setPlans] = useState(initialPlans);
+  const [planDisplayMode, setPlanDisplayMode] = useState(DEFAULT_DISPLAYMODE);
 
   const addOrUpdatePlan = useCallback(
     (plan: IPlan, select?: boolean) => {
@@ -84,12 +85,14 @@ function App() {
             : downloadPlanTemplate(selectedPlan, filetype)
         }
         onFileChange={filelist => handleFileChange(filelist, addOrUpdatePlan)}
+        displayMode={planDisplayMode}
       />
       <Plan
         plan={selectedPlan}
         savePlan={addOrUpdatePlan}
         goalDate={goalDate}
         displayUnits={displayUnits}
+        onDisplayModeChanged={setPlanDisplayMode}
       />
     </div>
   );

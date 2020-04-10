@@ -1,25 +1,26 @@
-import React from "react";
+import React, { useMemo, useCallback } from "react";
 
 import "./Settings.css";
 
 import { Card } from "./Card";
-import { getDateInputValueString, func } from "../lib/utils";
+import { getDateInputValueString, func, DisplayMode } from "../lib/utils";
 import { Filetype } from "../lib/exporter";
 import { Units } from "../lib/workout";
 
 export interface SettingsProps {
   date: Date;
   onDateChange: func<Date>;
-  plans: Array<{ id: string, title: string }>;
+  plans: Array<{ id: string; title: string }>;
   selectedPlan: string;
   onPlanChange: func<string>;
   units: Units;
   onUnitsChange: func<Units>;
   onDownload: func<Filetype>;
   onFileChange: func<FileList | null>;
+  displayMode: DisplayMode;
 }
 
-export function Settings(props: SettingsProps) {
+export const Settings = React.memo(function(props: SettingsProps) {
   const {
     date,
     onDateChange,
@@ -29,8 +30,19 @@ export function Settings(props: SettingsProps) {
     units,
     onUnitsChange,
     onDownload,
-    onFileChange
+    onFileChange,
+    displayMode
   } = props;
+
+  const renderedUnits = useMemo(() => renderUnits(units, onUnitsChange), [
+    units,
+    onUnitsChange
+  ]);
+
+  const isEditMode = displayMode === "edit";
+  const disabledTitle = isEditMode
+    ? "Finish editing before changing or downloading plans."
+    : "";
   return (
     <Card>
       <div className="settings">
@@ -46,12 +58,13 @@ export function Settings(props: SettingsProps) {
             }}
           />
         </div>
-        <div className="field">
+        <div className="field" title={disabledTitle}>
           <label htmlFor="plan-input">2. Select Race Plan</label>
           <select
             id="plan-input"
             value={selectedPlan}
             onChange={e => onPlanChange(e.target.value)}
+            disabled={isEditMode}
           >
             {plans.map(({ id, title }) => {
               return (
@@ -69,18 +82,20 @@ export function Settings(props: SettingsProps) {
             name="plane-upload"
             accept=".json,.csv"
             onChange={e => onFileChange(e.target.files)}
+            disabled={isEditMode}
           />
         </div>
-        {renderUnits(units, onUnitsChange)}
+        {renderedUnits}
         {/* TODO: P1: If user downloads while editing, the edited values aren't downloaded, so disable these while in edit mode */}
         {/* TODO: Style the buttons */}
-        <div className="field">
+        <div className="field" title={disabledTitle}>
           <label id="download-label">4. Download</label>
           <button
             className="download-button"
             aria-labelledby="download-label download-ical-button"
             id="download-ical-button"
             onClick={() => onDownload("ical")}
+            disabled={isEditMode}
           >
             iCal
           </button>
@@ -89,6 +104,7 @@ export function Settings(props: SettingsProps) {
             aria-labelledby="download-label download-json-button"
             id="download-json-button"
             onClick={() => onDownload("json")}
+            disabled={isEditMode}
           >
             json
           </button>
@@ -97,6 +113,7 @@ export function Settings(props: SettingsProps) {
             aria-labelledby="download-label download-csv-button"
             id="download-csv-button"
             onClick={() => onDownload("csv")}
+            disabled={isEditMode}
           >
             csv
           </button>
@@ -104,45 +121,50 @@ export function Settings(props: SettingsProps) {
       </div>
     </Card>
   );
-}
+});
 
 function renderUnits(units: string, onUnitsChange: func<Units>) {
-  return RadioGroup({
-    label: "3. Set Distance Units",
-    name: "units",
-    selectedValue: units,
-    values: [
-      {
-        label: "Miles",
-        value: "miles"
-      },
-      {
-        label: "Kilometers",
-        value: "kilometers"
-      }
-    ],
-    onSelectedChange: (value: string) => onUnitsChange(value as Units)
-  });
+  return (
+    <RadioGroup
+      label="3. Set Distance Units"
+      name="units"
+      selectedValue={units}
+      values={[
+        {
+          label: "Miles",
+          value: "miles"
+        },
+        {
+          label: "Kilometers",
+          value: "kilometers"
+        }
+      ]}
+      onSelectedChange={onUnitsChange}
+    />
+  );
 }
 
 interface RadioGroupProps {
   label: string;
   name: string;
   selectedValue: string;
-  onSelectedChange: func<string>;
+  onSelectedChange: func<any>;
   values: { value: string; label: string }[];
 }
 
-function RadioGroup(props: RadioGroupProps) {
+const RadioGroup = React.memo(function(props: RadioGroupProps) {
   const { label, name, selectedValue, values, onSelectedChange } = props;
 
   const labelId = `${name}-group-label`;
 
-  const onRadioItemChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.checked) {
-      onSelectedChange(event.target.value);
-    }
-  };
+  const onRadioItemChange = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      if (event.target.checked) {
+        onSelectedChange(event.target.value);
+      }
+    },
+    [onSelectedChange]
+  );
 
   return (
     <div className="field" role="radiogroup" aria-labelledby={labelId}>
@@ -161,7 +183,7 @@ function RadioGroup(props: RadioGroupProps) {
       })}
     </div>
   );
-}
+});
 
 interface RadioItemProps {
   label: string;
@@ -171,7 +193,13 @@ interface RadioItemProps {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-function RadioItem({ label, name, value, checked, onChange }: RadioItemProps) {
+const RadioItem = React.memo(function({
+  label,
+  name,
+  value,
+  checked,
+  onChange
+}: RadioItemProps) {
   const id = `${name}-input-${value}`;
 
   return (
@@ -187,4 +215,4 @@ function RadioItem({ label, name, value, checked, onChange }: RadioItemProps) {
       <label htmlFor={id}>{label}</label>
     </div>
   );
-}
+});
