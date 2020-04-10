@@ -298,7 +298,8 @@ function Week({
     weekStartIndex + WEEK_LENGTH,
     allWorkouts.length
   );
-  const weekWorkouts = allWorkouts.slice(weekStartIndex, weekEndIndex);
+  const weekWorkouts = useMemo(() => allWorkouts.slice(weekStartIndex, weekEndIndex), [allWorkouts, weekStartIndex, weekEndIndex]);
+  const volumeString = useMemo(() => getVolumeStringFromWorkouts(weekWorkouts, units, displayUnits), [weekWorkouts, units, displayUnits]);
 
   return (
     <Card key={weekNumber}>
@@ -306,7 +307,7 @@ function Week({
         Week {weekNumber + 1}&nbsp;&nbsp;
         <small>
           Total volume:{" "}
-          {getVolumeStringFromWorkouts(weekWorkouts, units, displayUnits)}
+          {volumeString}
         </small>
       </h3>
       <div className="workouts-container">
@@ -355,18 +356,19 @@ export const Workout = React.memo(function(props: WorkoutProps) {
     goalDate
   } = props;
 
-  // TODO: useMemo may not be useful inside a memo function, but I'm including it just in case
   const date = useMemo(
     () => getDateForWorkout(workoutIndex, workoutCount, goalDate),
     [workoutIndex, workoutCount, goalDate]
   );
-
-  const dayOfWeekString = getDayOfWeekString(date);
-  const shortDateString = getShortDateString(date);
-  const formattedDescription = formatWorkoutFromTemplate(
-    description,
-    units,
-    displayUnits
+  const dayOfWeekString = useMemo(() => getDayOfWeekString(date), [date]);
+  const shortDateString = useMemo(() => getShortDateString(date), [date]);
+  const formattedDescription = useMemo(
+    () => formatWorkoutFromTemplate(description, units, displayUnits),
+    [description, units, displayUnits]
+  );
+  const distanceString = useMemo(
+    () => getDistanceString(totalDistance, units, displayUnits),
+    [totalDistance, units, displayUnits]
   );
 
   const onDistanceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -448,9 +450,7 @@ export const Workout = React.memo(function(props: WorkoutProps) {
                 onChange={onDistanceChange}
                 className="total-distance-input"
               />
-              <span>
-                {getDistanceString(totalDistance, units, displayUnits)}
-              </span>
+              <span>{distanceString}</span>
             </div>
             <div>
               <input
