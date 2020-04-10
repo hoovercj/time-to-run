@@ -1,26 +1,21 @@
 export type Units = "miles" | "kilometers";
 
 export interface Plan {
-    title: string;
-    raceType: string;
-    raceDistance: number;
-    units: Units;
-    workouts: Workout[];
+  id: string;
+  title: string;
+  raceType: string;
+  raceDistance: number;
+  units: Units;
+  workouts: Workout[];
 }
 
 export interface Workout {
-    description: string;
-    totalDistance: number;
+  id: string;
+  description: string;
+  totalDistance: number;
 }
 
-export interface ScheduledPlan extends Plan {
-    goalDate: Date;
-    workouts: ScheduledWorkout[];
-    displayUnits: Units;
+export interface ExternalPlan extends Omit<Plan, "id" | "workouts"> {
+  workouts: ExternalWorkout[];
 }
-
-export interface ScheduledWorkout extends Workout {
-    date: Date;
-    units: Units;
-    displayUnits: Units;
-}
+export type ExternalWorkout = Omit<Workout, "id">;

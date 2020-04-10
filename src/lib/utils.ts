@@ -1,15 +1,26 @@
-import { Plan, Workout, ScheduledPlan, ScheduledWorkout, Units } from "./workout";
+import {
+  Workout,
+  Units
+} from "./workout";
 
 // TODO: Add unit tests for util methods
 
 export type func<T> = (value: T) => void;
+export type DisplayMode = "edit" | "view";
+export const DEFAULT_DISPLAYMODE: DisplayMode = "view";
+
+
+// via https://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
+export function getGuid() {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    /* eslint-disable */
+    var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+    return v.toString(16);
+  });
+}
 
 export function getDateWithoutTime(date: Date): Date {
-  return new Date(
-    date.getFullYear(),
-    date.getMonth(),
-    date.getDate()
-  );
+  return new Date(date.getFullYear(), date.getMonth(), date.getDate());
 }
 
 export function getFileExtension(filename: string): string {
@@ -32,15 +43,19 @@ export function chunkArray<T>(array: T[], chunkSize: number): T[][] {
 
 export function getScaleFactor(inputUnits: Units, outputUnits: Units): number {
   if (inputUnits === outputUnits) {
-      return 1;
+    return 1;
   } else if (outputUnits === "kilometers") {
-      return 1.60934;
+    return 1.60934;
   } else {
-      return 0.621371;
+    return 0.621371;
   }
 }
 
-export function scaleNumber(input: number, inputUnits: Units, outputUnits: Units): number {
+export function scaleNumber(
+  input: number,
+  inputUnits: Units,
+  outputUnits: Units
+): number {
   if (inputUnits === outputUnits) {
     return input;
   } else {
@@ -54,30 +69,40 @@ export function addDays(date: Date, days: number): Date {
   return newDate;
 }
 
-export function schedulePlan(plan: Plan, goalDate: Date, displayUnits: Units): ScheduledPlan {
-  const scheduledWorkouts = scheduleWorkouts(plan.workouts, goalDate, plan.units, displayUnits);
-  return {
-    ...plan,
-    goalDate,
-    workouts: scheduledWorkouts,
-    displayUnits: displayUnits,
-  };
+export function getDateForWorkout(workoutIndex: number, workoutCount: number, goalDate: Date) {
+  return addDays(goalDate, -1 * (workoutCount - workoutIndex - 1));
 }
 
-export function scheduleWorkouts(
+export function getVolumeStringFromWorkouts(
   workouts: Workout[],
-  goalDate: Date,
   units: Units,
-  displayUnits: Units,
-): ScheduledWorkout[] {
-  return workouts.map((workout, index) => {
-    return {
-      ...workout,
-      date: addDays(goalDate, -1 * (workouts.length - index - 1)),
-      units: units,
-      displayUnits,
-    };
-  });
+  displayUnits: Units
+): string {
+  return `${Math.round(
+    getVolumeFromWorkouts(workouts, units, displayUnits)
+  ).toString(10)} ${displayUnits}`;
+}
+
+export function getDistanceString(
+  distance: number,
+  units: Units,
+  displayUnits: Units
+): string {
+  return `${Math.round(
+    scaleNumber(distance, units, displayUnits)
+  ).toString(10)} ${displayUnits}`;
+}
+
+export function getVolumeFromWorkouts(
+  workouts: Workout[],
+  units: Units,
+  displayUnits: Units
+): number {
+  return workouts.reduce(
+    (total, { totalDistance }) =>
+      total + scaleNumber(totalDistance, units, displayUnits),
+    0
+  );
 }
 
 export function getDayOfWeekString(date: Date): string {
@@ -90,7 +115,7 @@ export function getLongDateString(date: Date): string {
     weekday: "long",
     year: "numeric",
     month: "long",
-    day: "numeric",
+    day: "numeric"
   };
   return date.toLocaleDateString("en-US", options); // Saturday, September 17, 2016
 }
@@ -100,19 +125,19 @@ export function getShortDateString(date: Date): string {
 }
 
 export function getDateInputValueString(date: Date): string {
-    const year = date.getFullYear();
-    const month = leftPad((date.getMonth() + 1).toString(10), 2, "0");
-    const day = leftPad(date.getDate().toString(10), 2, "0");
+  const year = date.getFullYear();
+  const month = leftPad((date.getMonth() + 1).toString(10), 2, "0");
+  const day = leftPad(date.getDate().toString(10), 2, "0");
 
-    return `${year}-${month}-${day}`
+  return `${year}-${month}-${day}`;
 }
 
 export function leftPad(input: string, minLength: number, char: string) {
-    if (input.length >= minLength) {
-        return input;
-    }
+  if (input.length >= minLength) {
+    return input;
+  }
 
-    const repeat = minLength - input.length;
+  const repeat = minLength - input.length;
 
-    return `${char.repeat(repeat)}${input}`;
+  return `${char.repeat(repeat)}${input}`;
 }

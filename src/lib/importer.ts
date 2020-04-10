@@ -1,15 +1,15 @@
-import { Plan } from "./workout";
+import { ExternalPlan } from "./workout";
 import { getFileExtension } from "./utils";
 import { csvToPlan } from "./csvProcessor";
 
 export interface UploadResult {
-  plan?: Plan;
+  plan?: ExternalPlan;
   error?: string;
 }
 
-type FileProcessor = (file: string) => Plan | null;
+type FileProcessor = (file: string) => ExternalPlan | null;
 
-export const importFile = (file: File): Promise<Plan> => {
+export const importFile = (file: File): Promise<ExternalPlan> => {
   const extension = getFileExtension(file.name);
   switch (extension) {
     case ".json":
@@ -23,7 +23,7 @@ export const importFile = (file: File): Promise<Plan> => {
   }
 };
 
-const importCore = (file: File, processFile: FileProcessor): Promise<Plan> => {
+const importCore = (file: File, processFile: FileProcessor): Promise<ExternalPlan> => {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.onload = (event: ProgressEvent) => {
@@ -44,9 +44,9 @@ const importCore = (file: File, processFile: FileProcessor): Promise<Plan> => {
   });
 };
 
-const processJsonFile = (file: string): Plan | null => {
+const processJsonFile = (file: string): ExternalPlan | null => {
   try {
-    const planObject = JSON.parse(file) as Plan;
+    const planObject = JSON.parse(file) as ExternalPlan;
     // TODO: validate object
     return planObject;
   } catch (e) {

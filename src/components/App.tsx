@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import "./App.css";
-// import planJson from "../workouts/sample-workout.json";
-import { Plan as IPlan, Units } from "../lib/workout";
-import { addDays, schedulePlan } from "../lib/utils";
+import { Plan as IPlan } from "../lib/workout";
+import { addDays, getGuid, DEFAULT_DISPLAYMODE } from "../lib/utils";
 import { Settings } from "./Settings";
 import { Plan } from "./Plan";
 import { PLANS } from "../workouts/workouts";
@@ -12,55 +11,96 @@ import {
   downloadPlanTemplate
 } from "../lib/exporter";
 import { importFile } from "../lib/importer";
-const plans: { [key: string]: IPlan } = {};
-PLANS.forEach(w => (plans[w.title] = w));
+
+// TODO: Add support for IE / Edge
+// TODO: Persist imported and edited plans in local storage
+const initialPlans: { [key: string]: IPlan } = {};
+PLANS.forEach(p => {
+  const id = getGuid();
+  initialPlans[id] = {
+    ...p,
+    id,
+    workouts: p.workouts.map(w => {
+      return {
+        ...w,
+        id: getGuid(),
+      };
+    }),
+  };
+});
 
 function App() {
-  const defaultPlanTitle = PLANS[0].title;
-  const [selectedPlanTitle, setSelectedPlanTitle] = useState(defaultPlanTitle);
+  const defaultPlanId = Object.keys(initialPlans)[0];
+  const [selectedPlanId, setSelectedPlanId] = useState(defaultPlanId);
+  const [plans, setPlans] = useState(initialPlans);
+  const [planDisplayMode, setPlanDisplayMode] = useState(DEFAULT_DISPLAYMODE);
 
-  const selectedPlan = plans[selectedPlanTitle];
+  const addOrUpdatePlan = useCallback(
+    (plan: IPlan, select?: boolean) => {
+      setPlans(p => {
+        return {
+          ...p,
+          [plan.id]: plan
+        };
+      });
+
+      if (select) {
+        setSelectedPlanId(plan.id);
+      }
+    },
+    [setPlans, setSelectedPlanId]
+  );
+
+  const selectedPlan = plans[selectedPlanId];
 
   const today = new Date();
-  const defaultGoalDate = addDays(
-    today,
-    selectedPlan.workouts.length
-  );
+  const defaultGoalDate = addDays(today, selectedPlan.workouts.length - 1);
   const [goalDate, setGoalDate] = useState(defaultGoalDate);
 
   const defaultUnits = selectedPlan.units;
-  const [units, setUnits] = useState(defaultUnits);
-
-  const scheduledPlan = schedulePlan(selectedPlan, goalDate, units as Units);
+  const [displayUnits, setDisplayUnits] = useState(defaultUnits);
 
   return (
     <div className="app">
-      <h1 className="app-header">Calendar Hack</h1><a className="about-link" href="https://github.com/hoovercj/calendar-hack/blob/master/README.md">About</a>
+      <h1 className="app-header">Calendar Hack</h1>
+      <a
+        className="about-link"
+        href="https://github.com/hoovercj/calendar-hack/blob/master/README.md"
+      >
+        About
+      </a>
       <Settings
         date={goalDate}
-        units={units}
-        selectedPlan={selectedPlanTitle}
-        plans={Object.keys(plans)}
+        units={displayUnits}
+        selectedPlan={selectedPlanId}
+        plans={Object.values(plans).map(({ id, title }) => {
+          return { id, title };
+        })}
         onDateChange={setGoalDate}
-        onPlanChange={setSelectedPlanTitle}
-        onUnitsChange={setUnits}
+        onPlanChange={setSelectedPlanId}
+        onUnitsChange={setDisplayUnits}
         onDownload={(filetype: Filetype) =>
           filetype === "ical"
-            ? downloadPlanCalendar(scheduledPlan)
+            ? downloadPlanCalendar(selectedPlan, goalDate, displayUnits)
             : downloadPlanTemplate(selectedPlan, filetype)
         }
-        onFileChange={filelist =>
-          handleFileChange(filelist, setSelectedPlanTitle)
-        }
+        onFileChange={filelist => handleFileChange(filelist, addOrUpdatePlan)}
+        displayMode={planDisplayMode}
       />
-      <Plan plan={scheduledPlan} />
+      <Plan
+        plan={selectedPlan}
+        savePlan={addOrUpdatePlan}
+        goalDate={goalDate}
+        displayUnits={displayUnits}
+        onDisplayModeChanged={setPlanDisplayMode}
+      />
     </div>
   );
 }
 
 const handleFileChange = (
   filelist: FileList | null,
-  selectPlan: (plan: string) => void
+  addPlan: (plan: IPlan, select: boolean) => void
 ) => {
   if (!filelist) {
     return;
@@ -72,19 +112,22 @@ const handleFileChange = (
   }
 
   importFile(file)
-    .then(plan => {
-      const nameCollision = !!plans[plan.title];
-      if (nameCollision) {
-        plan.title = `[Copy] ${plan.title}`;
+    .then(importedPlan => {
+      console.log(`Imported plan: ${importedPlan.title}`);
+
+      // Avoid plans with the same title when importing. They can be renamed later
+      while (
+        !!Object.values(initialPlans).find(p => p.title === importedPlan.title)
+      ) {
+        importedPlan.title = `[Copy] ${importedPlan.title}`;
       }
 
-      plans[plan.title] = plan;
+      const plan = importedPlan as IPlan;
+      plan.id = getGuid();
 
-      selectPlan(plan.title);
+      addPlan(plan, true);
     })
-    .catch(error =>
-      alert(error)
-    );
+    .catch(error => alert(error));
 };
 
 export default App;

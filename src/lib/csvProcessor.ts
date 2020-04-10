@@ -4,9 +4,10 @@ import {
   UnparseConfig
 } from "papaparse";
 
-import { Plan, Workout, Units } from "./workout";
+import { ExternalPlan, Workout, Units } from "./workout";
+import { getGuid } from "./utils";
 
-type PlanInfo = Omit<Plan, "workouts">;
+type PlanInfo = Omit<ExternalPlan, "workouts">;
 type PlanHeadings = keyof PlanInfo;
 type WorkoutHeadings = keyof Workout;
 
@@ -24,7 +25,7 @@ const UNPARSE_OPTIONS: UnparseConfig = {
   skipEmptyLines: true
 };
 
-export const planToCsv = (plan: Plan): string => {
+export const planToCsv = (plan: ExternalPlan): string => {
   const { workouts, ...planInfo } = plan;
 
   const planInfoData = [
@@ -41,7 +42,7 @@ export const planToCsv = (plan: Plan): string => {
   return csv;
 };
 
-export const csvToPlan = (file: string): Plan | null => {
+export const csvToPlan = (file: string): ExternalPlan | null => {
   try {
     const result = parseCsv(file, { skipEmptyLines: true, comments: COMMENT });
     const filteredResult = result.data.filter((line: string[]) => {
@@ -79,7 +80,7 @@ export const csvToPlan = (file: string): Plan | null => {
     const workoutDistanceIndex = workoutHeadings.indexOf("totalDistance");
 
     // TODO: Validate values
-    const plan: Plan = {
+    const plan: ExternalPlan = {
       title: planValues[titleIndex],
       raceType: planValues[raceTypeIndex],
       raceDistance: parseFloat(planValues[raceDistanceIndex]),
@@ -87,6 +88,7 @@ export const csvToPlan = (file: string): Plan | null => {
       workouts: workouts.map(
         workout => {
           return {
+            id: getGuid(),
             description: workout[descriptionIndex],
             totalDistance: parseFloat(workout[workoutDistanceIndex])
           };

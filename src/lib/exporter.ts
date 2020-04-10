@@ -1,43 +1,77 @@
 import { planToCsv } from "./csvProcessor";
 import { formatWorkoutFromTemplate } from "./formatter";
-import { ScheduledPlan, Plan } from "./workout";
+import { ExternalPlan, Plan, Units } from "./workout";
 import { ics, saveAs } from "../lib/ics";
-import { chunkArray, getDateWithoutTime } from "../lib/utils";
+import {
+  chunkArray,
+  getDateWithoutTime,
+  getVolumeStringFromWorkouts,
+  getDateForWorkout
+} from "../lib/utils";
 
 export type Filetype = "ical" | "json" | "csv";
 
 export function downloadPlanTemplate(plan: Plan, filetype: Filetype) {
+  const { raceDistance, raceType, title, units, workouts } = plan;
+
+  const planToExport: ExternalPlan = {
+    raceDistance,
+    raceType,
+    title,
+    units,
+    workouts: workouts.map(w => {
+      return {
+        totalDistance: w.totalDistance,
+        description: w.description,
+      }
+    }),
+  };
+
   switch (filetype) {
     case "json":
-      downloadJson(plan);
+      downloadJson(planToExport);
       return;
     case "csv":
-      downloadCsv(plan);
+      downloadCsv(planToExport);
       return;
   }
 }
 
-export function downloadPlanCalendar(plan: ScheduledPlan) {
+const WEEK_LENGTH = 7;
+
+export function downloadPlanCalendar(plan: Plan, goalDate: Date, displayUnits: Units) {
   const calendar = ics();
 
   if (!calendar) {
     return;
   }
 
-  const weeks = chunkArray(plan.workouts, 7);
+  const { units, workouts } = plan;
+  const weeks = chunkArray(workouts, WEEK_LENGTH);
+  const goalDateWithoutTime = getDateWithoutTime(goalDate);
 
+  const workoutCount = workouts.length;
   weeks.forEach((week, index) => {
-    const weekStartDate = getDateWithoutTime(week[0].date);
-    const weekEndDate = getDateWithoutTime(week[week.length - 1].date);
-    const weekTitle = `${weeks.length - index} Weeks to Goal`;
+    const weekStartWorkoutIndex = index * WEEK_LENGTH;
+    const weekEndWorkoutIndex = weekStartWorkoutIndex + week.length;
+
+    const weekStartDate = getDateForWorkout(weekStartWorkoutIndex, workoutCount, goalDateWithoutTime);
+    const weekEndDate = getDateForWorkout(weekEndWorkoutIndex, workoutCount, goalDateWithoutTime);
+
+    const weekTitle = `${weeks.length -
+      index} Weeks to Goal: ${getVolumeStringFromWorkouts(
+      week,
+      units,
+      displayUnits
+    )}`;
     calendar.addEvent(weekTitle, "", "", weekStartDate, weekEndDate);
 
-    week.forEach(workout => {
-      const workoutDate = getDateWithoutTime(workout.date);
+    week.forEach((workout, index) => {
+      const workoutDate = getDateForWorkout(weekStartWorkoutIndex + index, workoutCount, goalDateWithoutTime);
       const workoutTitle = formatWorkoutFromTemplate(
         workout.description,
-        workout.units,
-        workout.displayUnits
+        units,
+        displayUnits
       );
       calendar.addEvent(workoutTitle, "", "", workoutDate, workoutDate);
     });
@@ -46,11 +80,11 @@ export function downloadPlanCalendar(plan: ScheduledPlan) {
   calendar.download(plan.title, ".ics");
 }
 
-function downloadJson(plan: Plan) {
+function downloadJson(plan: ExternalPlan) {
   downloadCore(JSON.stringify(plan, null, "  "), `${plan.title}.json`);
 }
 
-function downloadCsv(plan: Plan) {
+function downloadCsv(plan: ExternalPlan) {
   downloadCore(planToCsv(plan), `${plan.title}.csv`);
 }
 
