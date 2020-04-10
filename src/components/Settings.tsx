@@ -36,6 +36,7 @@ export function Settings(props: SettingsProps) {
       <div className="settings">
         <div className="field">
           <label htmlFor="date-input">1. Set Goal Race Date</label>
+          {/* TODO: Doesn't work in safari */}
           <input
             id="date-input"
             type="date"
@@ -61,6 +62,7 @@ export function Settings(props: SettingsProps) {
             })}
           </select>
           <label htmlFor="plan-upload">Or upload your own</label>
+          {/* Make prettier */}
           <input
             type="file"
             id="plan-upload"
@@ -70,7 +72,8 @@ export function Settings(props: SettingsProps) {
           />
         </div>
         {renderUnits(units, onUnitsChange)}
-        {/* TODO: These should be disabled while editing */}
+        {/* TODO: P1: If user downloads while editing, the edited values aren't downloaded, so disable these while in edit mode */}
+        {/* TODO: Style the buttons */}
         <div className="field">
           <label id="download-label">4. Download</label>
           <button

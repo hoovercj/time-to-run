@@ -1,0 +1,14 @@
+.icon-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.icon-button:hover, .icon-button:active {
+  color: #4f6bed;
+}
+
+.icon {
+  width: 1em;
+  height: 1em;
+}

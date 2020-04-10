@@ -15,6 +15,7 @@ import {
 } from "../lib/utils";
 import { formatWorkoutFromTemplate } from "../lib/formatter";
 import { Card } from "./Card";
+import { IconButton } from "./IconButton";
 
 type ActionType =
   | "updateTitle"
@@ -216,17 +217,17 @@ export function Plan({ plan, savePlan, goalDate, displayUnits }: PlanProps) {
   }
 
   return (
-    <div>
-      <h2 className="plan-title">{renderTitle(title, dispatch, isEditMode)}</h2>
+    <div className={`plan ${viewMode}`}>
+      <h2 className="plan-heading">
+        {renderTitle(title, dispatch, isEditMode)}
+        {renderActions(isEditMode, editActionCallback)}
+      </h2>
       {isEditMode && (
         <>
           <div className="goal-race">Original Units: {units}</div>
           <div className="goal-race">Display Units: {displayUnits}</div>
         </>
       )}
-      <div className="actions-container">
-        {renderActions(isEditMode, editActionCallback)}
-      </div>
       <div className="goal-race">Goal Race: {getLongDateString(goalDate)}</div>
       {renderedWeeks}
     </div>
@@ -245,7 +246,7 @@ function renderTitle(
       value={title}
     />
   ) : (
-    title
+    <span className="plan-title-text">{title}</span>
   );
 }
 
@@ -255,20 +256,26 @@ function renderActions(isEditMode: boolean, dispatch: func<Action>) {
     : { type: "beginEdit" };
   const cancelEditAction: Action = { type: "endEdit", payload: false };
 
-  // TODO: Make buttons nicer. possibly icons next to the plan title?
+  const iconClassName = "heading-action";
+
+  // TODO: P1: Make buttons nicer. possibly icons next to the plan title?
+  // Current suggestion: pencil icon after the title in view mode, save and cancel icons in edit mode
   return (
     <>
-      <button
-        className="button primary"
+      <IconButton
         onClick={() => dispatch(primaryAction)}
-      >
-        {isEditMode ? "Save" : "Edit"}
-      </button>
+        title={isEditMode ? "Save" : "Edit"}
+        icon={isEditMode ? "save" : "edit"}
+        iconClassName={iconClassName}
+      />
       {isEditMode && (
         // TODO: Focus is lost after clicking cancel
-        <button className="button" onClick={() => dispatch(cancelEditAction)}>
-          Cancel
-        </button>
+        <IconButton
+          title="Cancel"
+          onClick={() => dispatch(cancelEditAction)}
+          icon="times"
+          iconClassName={iconClassName}
+        />
       )}
     </>
   );
@@ -298,17 +305,20 @@ function Week({
     weekStartIndex + WEEK_LENGTH,
     allWorkouts.length
   );
-  const weekWorkouts = useMemo(() => allWorkouts.slice(weekStartIndex, weekEndIndex), [allWorkouts, weekStartIndex, weekEndIndex]);
-  const volumeString = useMemo(() => getVolumeStringFromWorkouts(weekWorkouts, units, displayUnits), [weekWorkouts, units, displayUnits]);
+  const weekWorkouts = useMemo(
+    () => allWorkouts.slice(weekStartIndex, weekEndIndex),
+    [allWorkouts, weekStartIndex, weekEndIndex]
+  );
+  const volumeString = useMemo(
+    () => getVolumeStringFromWorkouts(weekWorkouts, units, displayUnits),
+    [weekWorkouts, units, displayUnits]
+  );
 
   return (
     <Card key={weekNumber}>
       <h3>
         Week {weekNumber + 1}&nbsp;&nbsp;
-        <small>
-          Total volume:{" "}
-          {volumeString}
-        </small>
+        <small>Total volume: {volumeString}</small>
       </h3>
       <div className="workouts-container">
         {weekWorkouts.map((workout, index) => (
@@ -414,36 +424,41 @@ export const Workout = React.memo(function(props: WorkoutProps) {
 
   const onInsert = () => dispatch({ type: "insertWorkout", payload: id });
 
+  const renderActions = () =>
+    viewMode === "edit" && (
+      // TODO: P1: make these actions visible only when focus-within or hovered
+      // TODO: should these be icons?
+      <div className="row edit-workout-action-container">
+        <IconButton
+          onClick={() => onMove(false)}
+          title="Move up"
+          icon="chevronup"
+        />
+        <IconButton
+          onClick={() => onMove(true)}
+          title="Move down"
+          icon="chevrondown"
+        />
+        {/* TODO: focus should move to the newly added item */}
+        <IconButton onClick={onInsert} title="Add new workout" icon="plus" />
+        {/* TODO: focus is lost after deleting */}
+        <IconButton onClick={onDelete} title="Delete" icon="minus" />
+      </div>
+    );
+
   return (
     <div className={`workout ${viewMode}`}>
       <div className="date-column">
-        <div className="date-string">
+        <div className="row date-string">
           {dayOfWeekString} - {shortDateString}
         </div>
-        {viewMode === "edit" && (
-          <div className="edit-workout-action-container">
-            {/* TODO: focus should move to the newly added item */}
-            <button onClick={onInsert} className="button">
-              Add new
-            </button>
-            {/* TODO: focus is lost after deleting */}
-            <button onClick={onDelete} className="button">
-              Delete
-            </button>
-            <button onClick={() => onMove(false)} className="button">
-              Move up
-            </button>
-            <button onClick={() => onMove(true)} className="button">
-              Move down
-            </button>
-          </div>
-        )}
+        {renderActions()}
       </div>
-      <div className="description">
+      <div className="description-column">
         {viewMode === "edit" && (
           <>
-            <div>
-              Total Distance: {/* TODO: make inputs nicer */}
+            <div className="row total-distance-row">
+              Total Distance: {/* TODO: P1: make inputs nicer */}
               <input
                 value={totalDistance}
                 type="number"
@@ -452,7 +467,7 @@ export const Workout = React.memo(function(props: WorkoutProps) {
               />
               <span>{distanceString}</span>
             </div>
-            <div>
+            <div className="row description-row">
               <input
                 className={"description-input"}
                 value={description}
@@ -461,7 +476,7 @@ export const Workout = React.memo(function(props: WorkoutProps) {
             </div>
           </>
         )}
-        <div>{formattedDescription}</div>
+        <div className="row formatted-description-row">{formattedDescription}</div>
       </div>
     </div>
   );

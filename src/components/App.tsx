@@ -12,6 +12,7 @@ import {
 } from "../lib/exporter";
 import { importFile } from "../lib/importer";
 
+// TODO: Add support for IE / Edge
 // TODO: Persist imported and edited plans in local storage
 const initialPlans: { [key: string]: IPlan } = {};
 PLANS.forEach(p => {
