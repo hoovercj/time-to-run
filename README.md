@@ -11,7 +11,7 @@ It really is that easy. [Get started now!](https://www.codyhoover.com/calendar-h
 
 ## Edit a Plan or Create Your Own
 
-Click the edit icon next to the title of the plan to begin editing. You can change the title, add and remove workouts, and even reorder them to tailor the workout exactly how you want them.
+Choose the plan you want as a base (or the "New" plans if you want a blank slate) and then click the edit icon next to the title of the plan to begin editing. You can change the title, add and remove workouts, and even reorder them to tailor the workout exactly how you want them.
 
 You can also edit the description of the workouts to change the mileage or add/remove details. If you don't care about switching between miles and kilometers, or you don't plan on sharing the plan with anybody else who might, you can remove/ignore all the "#" symbols and write whatever you want there.
 
