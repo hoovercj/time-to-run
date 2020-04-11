@@ -42,7 +42,9 @@ This project takes inspiration from ["Calendar Hack"](https://defy.org/hacks/cal
 
 This project includes a few popular training plans from [Advanced Marathoning](http://www.amazon.com/Advanced-Marathoning-Edition-Pete-Pfitzinger/dp/0736074600) by Pete Pfitzinger and Scott Douglas, [Faster Road Racing](https://www.amazon.com/Faster-Road-Racing-Half-Marathon/dp/1450470459) by Pete Pfitzinger and Philip Latter, [Hansons Marathon Method](https://hansons-running.com/collections/hansons-swag/products/hansons-method-hansons-method-mara%22) by Kieth and Kevin Hanson, and [Marathon: The Ultimate Training Guide](http://www.amazon.com/Marathon-Ultimate-Training-Programs-Marathons/dp/1609612248) by Hal Higdon. The plans are not intended to be used on their own and should be used in combination with the books, so please support the authors (and yourself!) if you don't already own them.
 
-Icon made by [monkik](https://www.flaticon.com/authors/monkik) from [www.flaticon.com](www.flaticon.com).
+Calendar Icon made by [monkik](https://www.flaticon.com/authors/monkik) from [www.flaticon.com](https://www.flaticon.com).
+
+All other icons made by Font Awesome from [www.fontawesome.com](https://www.fontawesome.com).
 
 ## Contact
 
