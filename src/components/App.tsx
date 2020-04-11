@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from "react";
+import "../lib/milligram/milligram.sass";
 import "./App.css";
 import { Plan as IPlan } from "../lib/workout";
 import { addDays, getGuid, DEFAULT_DISPLAYMODE } from "../lib/utils";

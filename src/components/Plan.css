@@ -3,6 +3,10 @@
   display: flex;
 }
 
+.plan-title-input {
+  margin-bottom: 0;
+}
+
 .plan-heading, .plan-title-input {
   display: block;
   font-size: 25px;
@@ -15,9 +19,9 @@
   padding-right: 5px;
 }
 
-.plan-heading .heading-action {
-  height: 20px;
-  width: 20px;
+.edit-workout-action-container button.workout-action-button:not(:first-child),
+.plan-heading button.heading-action-button {
+  margin-left: 5px;
 }
 
 .date-column {
@@ -30,13 +34,22 @@
   font-weight: bold;
 }
 
+.workout.edit .date-string {
+  /* Align date with total distance */
+  padding-top: 2px;
+}
+
 .description-column {
   flex: 2;
 }
 
-.description-column .row:not(:last-child),
-.date-column .row {
+.edit .description-column .my-row:not(:last-child),
+.edit .date-column .my-row {
   margin-bottom: 10px;
+}
+
+.my-row input {
+  margin-bottom: 0;
 }
 
 .description-input {
@@ -51,7 +64,7 @@
 }
 
 .workout.edit:not(:last-child) {
-  border-bottom: 1px solid #e0dcd9;
+  border-bottom: 1px solid #d2d0ce;
 }
 
 .goal-race, .actions-container {
@@ -59,31 +72,23 @@
   font-size: 1.17em;
 }
 
-.button {
+input.total-distance-input {
+  /* 3 chars + up/down toggle in some browsers  */
+  width: 5em;
   margin: 0 5px;
-}
-
-.button:first-child {
-  margin-left: 0px;
-}
-
-.button:last-child {
-  margin-right: 0px;
-}
-
-.total-distance-input {
-  width: 3em;
-  margin: 0 5px;
-  vertical-align: baseline;
 }
 
 /* Align actions with the description input */
 .edit-workout-action-container {
-  padding-top: 2px;
+  padding-top: 5px;
 }
 
 .workout:not(:focus-within):not(:hover) .edit-workout-action-container {
   visibility: hidden;
+}
+
+.workout-action-button:last-child {
+  padding-right: 0;
 }
 
 @media (max-width: 800px) {

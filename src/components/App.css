@@ -1,7 +1,3 @@
-* {
-  box-sizing: border-box;
-}
-
 .app {
   max-width: 80%;
   margin: 0 auto;
@@ -14,17 +10,4 @@
 
 .about-link {
   font-weight: bold;
-  text-decoration: none;
-}
-
-.about-link:hover,
-.about-link:focus {
-  text-decoration: underline;
-}
-
-.about-link,
-.about-link:hover,
-.about-link:active,
-.about-link:visited {
-  color: #4f6bed;
 }
