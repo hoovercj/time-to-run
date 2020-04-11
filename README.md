@@ -7,17 +7,15 @@ Running a marathon is hard. Setting up your training plan shouldn't be.
 3. Choose miles or kilometers
 4. Download the plan and add it to your calendar
 
-It doesn't need to be any harder than that! And if you like one of the built-in plans, it really is that easy. Pick your plan and download an .ical file to import into Google calendar, your iphone calendar, or whatever app you use.
+It really is that easy. [Get started now!](https://www.codyhoover.com/calendar-hack)
 
-[Get started!](https://www.codyhoover.com/calendar-hack)
+## Edit a Plan or Create Your Own
 
-## Create your own plan
+Click the edit icon next to the title of the plan to begin editing. You can change the title, add and remove workouts, and even reorder them to tailor the workout exactly how you want them.
 
-After importing a plan into your calendar program of choice, you can always go in and modify individual events to your liking. But if you want to make significant changes to a plan, or even make up your own to use later or to share with friends or athletes that your coach, you can download the plan as a ".csv" file to edit in Excel or Notepad.
+You can also edit the description of the workouts to change the mileage or add/remove details. If you don't care about switching between miles and kilometers, or you don't plan on sharing the plan with anybody else who might, you can remove/ignore all the "#" symbols and write whatever you want there.
 
-If you don't care about switching between miles and kilometers, or you don't plan on sharing the plan with anybody else who might, you can remove/ignore all the "#" symbols and write whatever you want in the description column and then import the file back into the website to create a calendar.
-
-If you do want the plan to work for everone, though, there are only a few things you need to know.
+If you do want the plan to work for everone, though, then here's what the "#" symbols are for:
 
 1. Use the "#" symbol before values that should display in the selected units, and the letters "D" and "d" to show "long" or "short" units after the values.
 
@@ -34,7 +32,9 @@ If you do want the plan to work for everone, though, there are only a few things
 
 3. The "totalDistance" column is used to calculate the weekly volume for the plan, so don't forget to fill it out!
 
-If you'd like to start from scratch, download [this file](https://raw.githubusercontent.com/hoovercj/calendar-hack/master/src/workouts/template.csv) and edit it in Excel
+## Save your plan for later
+
+Once you've created a plan that you might want to use again in the future, or want to share with someone else, download the plan as a json or csv file so you can import the plan again the next time you need it!
 
 ## Acknowledgements
 
@@ -42,9 +42,7 @@ This project takes inspiration from ["Calendar Hack"](https://defy.org/hacks/cal
 
 This project includes a few popular training plans from [Advanced Marathoning](http://www.amazon.com/Advanced-Marathoning-Edition-Pete-Pfitzinger/dp/0736074600) by Pete Pfitzinger and Scott Douglas, [Faster Road Racing](https://www.amazon.com/Faster-Road-Racing-Half-Marathon/dp/1450470459) by Pete Pfitzinger and Philip Latter, [Hansons Marathon Method](https://hansons-running.com/collections/hansons-swag/products/hansons-method-hansons-method-mara%22) by Kieth and Kevin Hanson, and [Marathon: The Ultimate Training Guide](http://www.amazon.com/Marathon-Ultimate-Training-Programs-Marathons/dp/1609612248) by Hal Higdon. The plans are not intended to be used on their own and should be used in combination with the books, so please support the authors (and yourself!) if you don't already own them.
 
-Favicon and "App" Icon made by [monkik](https://www.flaticon.com/authors/monkik) from [www.flaticon.com](www.flaticon.com).
-
-Product Icons from [FontAwesome](https://fontawesome.com/license/free).
+Icon made by [monkik](https://www.flaticon.com/authors/monkik) from [www.flaticon.com](www.flaticon.com).
 
 ## Contact
 

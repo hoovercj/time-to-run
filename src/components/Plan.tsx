@@ -471,6 +471,7 @@ export const Workout = React.memo(function(props: WorkoutProps) {
           icon="minus"
           buttonClassName={buttonClassName}
           iconClassName={iconClassName}
+          disabled={workoutCount <= 1}
         />
       </div>
     );

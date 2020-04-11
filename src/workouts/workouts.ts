@@ -6396,5 +6396,25 @@ export const PLANS: ExternalPlan[] = [
       },
       { description: "Race Day!", totalDistance: 13.1 }
     ]
+  },
+  {
+    title: "New (miles)",
+    raceType: "",
+    units: "miles",
+    raceDistance: 0,
+    workouts: [{
+      description: "Easy #5D",
+      totalDistance: 5
+    }]
+  },
+  {
+    title: "New (km)",
+    raceType: "",
+    units: "kilometers",
+    raceDistance: 0,
+    workouts: [{
+      description: "Easy #5D",
+      totalDistance: 5
+    }]
   }
 ];

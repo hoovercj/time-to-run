@@ -31,6 +31,7 @@ export interface IconButtonProps {
   title: string;
   onClick: func<void>;
   icon: Icon;
+  disabled?: boolean;
 }
 
 export function IconButton(props: IconButtonProps) {
@@ -44,6 +45,7 @@ export function IconButton(props: IconButtonProps) {
       onClick={() => props.onClick()}
       title={props.title}
       className={buttonClassName}
+      disabled={props.disabled}
     >
       <IconComponent className={iconClassName} />
     </button>
