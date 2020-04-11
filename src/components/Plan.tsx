@@ -1,6 +1,6 @@
 import React, { useCallback, useReducer, useEffect, useMemo } from "react";
 
-import "./Plan.css";
+import "./Plan.scss";
 
 import { Plan as IPlan, Workout as IWorkout, Units } from "../lib/workout";
 import {
@@ -231,7 +231,7 @@ export function Plan({
 
   return (
     <div className={`plan ${displayMode}`}>
-      <h2 className="plan-heading darker">
+      <h2 className="plan-heading">
         {renderTitle(title, dispatch, isEditMode)}
         {renderActions(isEditMode, editActionCallback)}
       </h2>
@@ -254,7 +254,7 @@ function renderTitle(
       value={title}
     />
   ) : (
-    <span className="plan-title-text">{title}</span>
+    <span className="plan-title-text primary">{title}</span>
   );
 }
 
@@ -267,6 +267,7 @@ function renderActions(isEditMode: boolean, dispatch: func<Action>) {
   const buttonClassName = "heading-action-button";
   const iconClassName = "heading-action-icon";
 
+  // TODO: add keyboard shortucts for actions
   return (
     <>
       <IconButton
@@ -326,7 +327,7 @@ const Week = React.memo(function({
   return (
     <Card key={weekNumber}>
       <h3>
-        Week {weekNumber + 1}&nbsp;&nbsp;
+        <span className="primary">Week {weekNumber + 1}</span>&nbsp;&nbsp;
         <small>Total volume: {volumeString}</small>
       </h3>
       <div className="workouts-container">
@@ -439,9 +440,11 @@ export const Workout = React.memo(function(props: WorkoutProps) {
   const buttonClassName = "workout-action-button";
   const iconClassName = "workout-action-icon";
 
+  // TODO: Add keyboard shortcuts for actions
   const renderActions = () =>
     displayMode === "edit" && (
       <div className="my-row edit-workout-action-container">
+        {/* TODO: focus is lost when moving workout between weeks */}
         <IconButton
           onClick={() => onMove(false)}
           title="Move up"
@@ -479,7 +482,7 @@ export const Workout = React.memo(function(props: WorkoutProps) {
   return (
     <div className={`workout ${displayMode}`}>
       <div className="date-column">
-        <div className="my-row date-string">
+        <div className="my-row date-string primary">
           {dayOfWeekString} - {shortDateString}
         </div>
         {renderActions()}

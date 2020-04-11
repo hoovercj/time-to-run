@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 
-import "./FileInput.css";
+import "./FileInput.scss";
 import { func } from "../lib/utils";
 
 export interface FileInputProps {

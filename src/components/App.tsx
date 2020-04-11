@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from "react";
-import "../lib/milligram/milligram.sass";
-import "./App.css";
+// import "../lib/milligram/milligram.sass";
+import "./App.scss";
 import { Plan as IPlan } from "../lib/workout";
 import { addDays, getGuid, DEFAULT_DISPLAYMODE } from "../lib/utils";
 import { Settings } from "./Settings";
@@ -63,7 +63,7 @@ function App() {
 
   return (
     <div className="app">
-      <h1 className="app-header">Calendar Hack</h1>
+      <h1 className="app-header primary">Calendar Hack</h1>
       <a
         className="about-link"
         href="https://github.com/hoovercj/calendar-hack/blob/master/README.md"

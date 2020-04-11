@@ -2,7 +2,7 @@ import React, { useMemo, useCallback } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-import "./Settings.css";
+import "./Settings.scss";
 
 import { Card } from "./Card";
 import { func, DisplayMode } from "../lib/utils";

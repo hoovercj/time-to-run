@@ -1,3 +1,5 @@
+/* TODO: Convert css to scss */
+
 .plan.edit .plan-heading {
   /* Icons should appear after the edit box */
   display: flex;
@@ -23,6 +25,17 @@
 .plan-heading button.heading-action-button {
   margin-left: 5px;
 }
+
+.view .heading-action-button .heading-action-icon {
+  position: relative;
+  top: 3px;
+}
+
+.edit .heading-action-button .heading-action-icon {
+  position: relative;
+  top: 1px;
+}
+
 
 .date-column {
   flex: 1;

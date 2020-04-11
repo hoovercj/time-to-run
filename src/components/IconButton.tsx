@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./IconButton.css";
+import "./IconButton.scss";
 
 import { func } from "../lib/utils";
 

@@ -1,0 +1,18 @@
+button.icon-button {
+  padding: 0;
+
+  .icon {
+    padding: 3px;
+  }
+
+  &,
+  & .icon {
+    height: 25px;
+    width: 25px;
+    margin: 0;
+  }
+
+  &:focus {
+    outline: 0;
+  }
+}
