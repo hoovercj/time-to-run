@@ -1,13 +1,12 @@
 import React from "react";
 import { render } from "react-snapshot";
 
-import "./index.css";
-import App from "./components/App";
+import Root from "./components/Root";
 import * as serviceWorker from "./serviceWorker";
 
 render(
   <React.StrictMode>
-    <App />
+    <Root />
   </React.StrictMode>,
   document.getElementById("root")
 );

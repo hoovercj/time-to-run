@@ -1,6 +1,4 @@
 import React, { useState, useCallback } from "react";
-// import "../lib/milligram/milligram.sass";
-import "./App.scss";
 import { Plan as IPlan } from "../lib/workout";
 import { addDays, getGuid, DEFAULT_DISPLAYMODE } from "../lib/utils";
 import { Settings } from "./Settings";
@@ -24,9 +22,9 @@ PLANS.forEach(p => {
     workouts: p.workouts.map(w => {
       return {
         ...w,
-        id: getGuid(),
+        id: getGuid()
       };
-    }),
+    })
   };
 });
 
@@ -62,14 +60,7 @@ function App() {
   const [displayUnits, setDisplayUnits] = useState(defaultUnits);
 
   return (
-    <div className="app">
-      <h1 className="app-header primary">Calendar Hack</h1>
-      <a
-        className="about-link"
-        href="https://github.com/hoovercj/calendar-hack/blob/master/README.md"
-      >
-        About
-      </a>
+    <>
       <Settings
         date={goalDate}
         units={displayUnits}
@@ -95,7 +86,7 @@ function App() {
         displayUnits={displayUnits}
         onDisplayModeChanged={setPlanDisplayMode}
       />
-    </div>
+    </>
   );
 }
 
@@ -125,7 +116,7 @@ const handleFileChange = (
 
       const plan = importedPlan as IPlan;
       plan.id = getGuid();
-      plan.workouts.forEach(w => w.id = getGuid());
+      plan.workouts.forEach(w => (w.id = getGuid()));
 
       addPlan(plan, true);
     })
