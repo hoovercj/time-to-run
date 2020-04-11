@@ -72,7 +72,7 @@ export const Settings = React.memo(function(props: SettingsProps) {
               );
             })}
           </select>
-          <label>Or upload your own</label>
+          <label>Or Upload your Own</label>
           <FileInput
             id="plan-upload"
             text="Select file"
