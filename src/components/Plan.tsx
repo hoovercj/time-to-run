@@ -332,6 +332,7 @@ const Week = React.memo(function({
       <div className="workouts-container">
         {weekWorkouts.map((workout, index) => (
           <Workout
+            {...workout}
             workoutCount={allWorkouts.length}
             workoutIndex={weekStartIndex + index}
             goalDate={goalDate}
@@ -340,7 +341,6 @@ const Week = React.memo(function({
             units={units}
             displayUnits={displayUnits}
             displayMode={displayMode}
-            {...workout}
           />
         ))}
       </div>

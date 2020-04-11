@@ -125,6 +125,7 @@ const handleFileChange = (
 
       const plan = importedPlan as IPlan;
       plan.id = getGuid();
+      plan.workouts.forEach(w => w.id = getGuid());
 
       addPlan(plan, true);
     })
