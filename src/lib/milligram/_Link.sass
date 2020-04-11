@@ -2,12 +2,16 @@
 // Link
 // ––––––––––––––––––––––––––––––––––––––––––––––––––
 
-a,
-a:visited
-	color: $color-neutral-secondary
+a
+	color: $color-primary
 	text-decoration: none
 
-	&:focus,
+	&:hover
+		color: $color-neutral-secondary
+		text-decoration: underline
+
+a.inverted
+	color: $color-neutral-secondary
+
 	&:hover
 		color: $color-primary
-		text-decoration: underline

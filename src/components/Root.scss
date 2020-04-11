@@ -1,0 +1,59 @@
+@import "../lib/milligram/milligram";
+
+// body {
+//   margin: 0;
+//   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+//     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+//     sans-serif;
+//   -webkit-font-smoothing: antialiased;
+//   -moz-osx-font-smoothing: grayscale;
+//   background-color: #faf9f8;
+// }
+
+html {
+  font-size: 90%;
+}
+
+a.active {
+  text-decoration: underline;
+}
+
+.primary {
+  color: $color-primary;
+}
+
+.react-datepicker {
+  .react-datepicker__day--keyboard-selected,
+  .react-datepicker__month-text--keyboard-selected,
+  .react-datepicker__quarter-text--keyboard-selected {
+    background-color: $color-neutral-secondary;
+
+    &:hover {
+      background-color: $color-neutral-primary;
+    }
+  }
+
+  .react-datepicker__day--selected {
+    background-color: $color-primary;
+
+    &:hover {
+      background-color: $color-dark;
+    }
+  }
+}
+
+
+
+.root {
+  max-width: 80%;
+  margin: calc(2.0rem * .625) auto;
+}
+
+.header {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.about-link {
+  font-weight: bold;
+}
