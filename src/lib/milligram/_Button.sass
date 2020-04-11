@@ -1,0 +1,87 @@
+
+// Button
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+
+// adding the :not qualifier is a necessary hack because these styles
+// interfere with the datepicker arrows
+button:not([type='button']),
+.button,
+input[type='button'],
+input[type='reset'],
+input[type='submit'],
+input[type='file'],
+	background-color: $color-primary
+	border: calc(.1rem * .625) solid $color-primary
+	border-radius: calc(.4rem * .625)
+	color: $color-initial
+	cursor: pointer
+	display: inline-block
+	font-size: .8rem
+	font-weight: 700
+	height: calc(3.2rem * .625)
+	letter-spacing: calc(.1rem * .625)
+	line-height: calc(3.2rem * .625)
+	padding: 0 calc(3.0rem * .625)
+	text-align: center
+	text-decoration: none
+	text-transform: uppercase
+	white-space: nowrap
+
+	&:focus,
+	&:hover
+		&,
+		& + label.button
+			background-color: $color-dark
+			border-color: $color-dark
+			color: $color-initial
+			outline: 0
+
+	&:focus
+		&,
+		& + label.button
+			outline-offset: -4px
+			outline-style:
+			outline: 1px solid white
+
+	&[disabled]
+		cursor: default
+		opacity: .5
+
+		&:focus,
+		&:hover
+			background-color: $color-primary
+			border-color: $color-primary
+
+	&.button-outline
+		background-color: transparent
+		color: $color-primary
+
+		&:focus,
+		&:hover
+			background-color: transparent
+			border-color: $color-dark
+			color: $color-dark
+
+		&[disabled]
+
+			&:focus,
+			&:hover
+				border-color: inherit
+				color: $color-primary
+
+	&.button-clear
+		background-color: transparent
+		border-color: transparent
+		color: $color-primary
+
+		&:focus,
+		&:hover
+			background-color: transparent
+			border-color: transparent
+			color: $color-dark
+
+		&[disabled]
+
+			&:focus,
+			&:hover
+				color: $color-primary

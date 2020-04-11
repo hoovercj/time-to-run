@@ -172,14 +172,23 @@ interface PlanState {
   editedPlan: IPlan;
 }
 
-export function Plan({ plan, savePlan, goalDate, displayUnits, onDisplayModeChanged }: PlanProps) {
+export function Plan({
+  plan,
+  savePlan,
+  goalDate,
+  displayUnits,
+  onDisplayModeChanged
+}: PlanProps) {
   const [state, dispatch] = useReducer(reducer, {
     displayMode: DEFAULT_DISPLAYMODE,
     plan: plan,
     editedPlan: plan
   });
 
-  useEffect(() => onDisplayModeChanged && onDisplayModeChanged(state.displayMode), [state.displayMode, onDisplayModeChanged])
+  useEffect(
+    () => onDisplayModeChanged && onDisplayModeChanged(state.displayMode),
+    [state.displayMode, onDisplayModeChanged]
+  );
 
   useEffect(() => {
     dispatch({ type: "setPlan", payload: plan });
@@ -222,16 +231,10 @@ export function Plan({ plan, savePlan, goalDate, displayUnits, onDisplayModeChan
 
   return (
     <div className={`plan ${displayMode}`}>
-      <h2 className="plan-heading">
+      <h2 className="plan-heading darker">
         {renderTitle(title, dispatch, isEditMode)}
         {renderActions(isEditMode, editActionCallback)}
       </h2>
-      {isEditMode && (
-        <>
-          <div className="goal-race">Original Units: {units}</div>
-          <div className="goal-race">Display Units: {displayUnits}</div>
-        </>
-      )}
       <div className="goal-race">Goal Race: {getLongDateString(goalDate)}</div>
       {renderedWeeks}
     </div>
@@ -245,6 +248,7 @@ function renderTitle(
 ): JSX.Element | string {
   return isEditMode ? (
     <input
+      type="text"
       className="plan-title-input"
       onChange={e => dispatch({ type: "updateTitle", payload: e.target.value })}
       value={title}
@@ -260,7 +264,8 @@ function renderActions(isEditMode: boolean, dispatch: func<Action>) {
     : { type: "beginEdit" };
   const cancelEditAction: Action = { type: "endEdit", payload: false };
 
-  const iconClassName = "heading-action";
+  const buttonClassName = "heading-action-button";
+  const iconClassName = "heading-action-icon";
 
   return (
     <>
@@ -268,6 +273,7 @@ function renderActions(isEditMode: boolean, dispatch: func<Action>) {
         onClick={() => dispatch(primaryAction)}
         title={isEditMode ? "Save" : "Edit"}
         icon={isEditMode ? "save" : "edit"}
+        buttonClassName={buttonClassName}
         iconClassName={iconClassName}
       />
       {isEditMode && (
@@ -276,6 +282,7 @@ function renderActions(isEditMode: boolean, dispatch: func<Action>) {
           title="Cancel"
           onClick={() => dispatch(cancelEditAction)}
           icon="times"
+          buttonClassName={buttonClassName}
           iconClassName={iconClassName}
         />
       )}
@@ -325,6 +332,7 @@ const Week = React.memo(function({
       <div className="workouts-container">
         {weekWorkouts.map((workout, index) => (
           <Workout
+            {...workout}
             workoutCount={allWorkouts.length}
             workoutIndex={weekStartIndex + index}
             goalDate={goalDate}
@@ -333,7 +341,6 @@ const Week = React.memo(function({
             units={units}
             displayUnits={displayUnits}
             displayMode={displayMode}
-            {...workout}
           />
         ))}
       </div>
@@ -384,7 +391,10 @@ export const Workout = React.memo(function(props: WorkoutProps) {
   );
 
   const onDistanceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newTotalDistance = Number.parseFloat(e.target.value);
+    let newTotalDistance = Number.parseFloat(e.target.value);
+    if (isNaN(newTotalDistance) || newTotalDistance < 0) {
+      newTotalDistance = 0;
+    }
     dispatch({
       type: "editWorkout",
       payload: {
@@ -426,30 +436,49 @@ export const Workout = React.memo(function(props: WorkoutProps) {
 
   const onInsert = () => dispatch({ type: "insertWorkout", payload: id });
 
+  const buttonClassName = "workout-action-button";
+  const iconClassName = "workout-action-icon";
+
   const renderActions = () =>
     displayMode === "edit" && (
-      <div className="row edit-workout-action-container">
+      <div className="my-row edit-workout-action-container">
         <IconButton
           onClick={() => onMove(false)}
           title="Move up"
           icon="chevronup"
+          buttonClassName={buttonClassName}
+          iconClassName={iconClassName}
         />
         <IconButton
           onClick={() => onMove(true)}
           title="Move down"
           icon="chevrondown"
+          buttonClassName={buttonClassName}
+          iconClassName={iconClassName}
         />
         {/* TODO: focus should move to the newly added item */}
-        <IconButton onClick={onInsert} title="Add new workout" icon="plus" />
+        <IconButton
+          onClick={onInsert}
+          title="Add new workout"
+          icon="plus"
+          buttonClassName={buttonClassName}
+          iconClassName={iconClassName}
+        />
         {/* TODO: focus is lost after deleting */}
-        <IconButton onClick={onDelete} title="Delete" icon="minus" />
+        <IconButton
+          onClick={onDelete}
+          title="Delete"
+          icon="minus"
+          buttonClassName={buttonClassName}
+          iconClassName={iconClassName}
+        />
       </div>
     );
 
   return (
     <div className={`workout ${displayMode}`}>
       <div className="date-column">
-        <div className="row date-string">
+        <div className="my-row date-string">
           {dayOfWeekString} - {shortDateString}
         </div>
         {renderActions()}
@@ -457,8 +486,8 @@ export const Workout = React.memo(function(props: WorkoutProps) {
       <div className="description-column">
         {displayMode === "edit" && (
           <>
-            <div className="row total-distance-row">
-              Total Distance: {/* TODO: P1: make inputs nicer */}
+            <div className="my-row total-distance-row">
+              Total Distance:
               <input
                 value={totalDistance}
                 type="number"
@@ -467,8 +496,9 @@ export const Workout = React.memo(function(props: WorkoutProps) {
               />
               <span>{distanceString}</span>
             </div>
-            <div className="row description-row">
+            <div className="my-row description-row">
               <input
+                type="text"
                 className={"description-input"}
                 value={description}
                 onChange={onDescriptionChange}
@@ -476,7 +506,9 @@ export const Workout = React.memo(function(props: WorkoutProps) {
             </div>
           </>
         )}
-        <div className="row formatted-description-row">{formattedDescription}</div>
+        <div className="my-row formatted-description-row">
+          {formattedDescription}
+        </div>
       </div>
     </div>
   );

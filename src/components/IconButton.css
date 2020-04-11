@@ -1,14 +1,27 @@
-.icon-button {
-  background: none;
-  border: none;
-  cursor: pointer;
+button.icon-button {
+  padding: 0;
 }
 
-.icon-button:hover, .icon-button:active {
-  color: #4f6bed;
+button.icon-button .icon {
+  padding: .3em;
 }
 
-.icon {
-  width: 1em;
-  height: 1em;
+button.icon-button,
+button.icon-button .icon {
+  height: 25px;
+  width: 25px;
+  margin: 0;
+}
+
+button.icon-button .icon {
+  position: relative;
+  top: 3px;
+}
+
+button.icon-button:focus {
+  outline: 0;
+}
+
+button.icon-button:focus .icon {
+  outline: 1px solid;
 }

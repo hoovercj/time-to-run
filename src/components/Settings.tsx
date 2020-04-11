@@ -1,11 +1,14 @@
 import React, { useMemo, useCallback } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 import "./Settings.css";
 
 import { Card } from "./Card";
-import { getDateInputValueString, func, DisplayMode } from "../lib/utils";
+import { func, DisplayMode } from "../lib/utils";
 import { Filetype } from "../lib/exporter";
 import { Units } from "../lib/workout";
+import { FileInput } from "./FileInput";
 
 export interface SettingsProps {
   date: Date;
@@ -48,14 +51,9 @@ export const Settings = React.memo(function(props: SettingsProps) {
       <div className="settings">
         <div className="field">
           <label htmlFor="date-input">1. Set Goal Race Date</label>
-          {/* TODO: Doesn't work in safari */}
-          <input
-            id="date-input"
-            type="date"
-            value={getDateInputValueString(date)}
-            onChange={e => {
-              onDateChange((e.target.valueAsDate as Date) || new Date());
-            }}
+          <DatePicker
+            selected={date}
+            onChange={date => date && onDateChange(date)}
           />
         </div>
         <div className="field" title={disabledTitle}>
@@ -74,20 +72,16 @@ export const Settings = React.memo(function(props: SettingsProps) {
               );
             })}
           </select>
-          <label htmlFor="plan-upload">Or upload your own</label>
-          {/* Make prettier */}
-          <input
-            type="file"
+          <label>Or upload your own</label>
+          <FileInput
             id="plan-upload"
-            name="plane-upload"
+            text="Select file"
             accept=".json,.csv"
-            onChange={e => onFileChange(e.target.files)}
+            onChange={onFileChange}
             disabled={isEditMode}
           />
         </div>
         {renderedUnits}
-        {/* TODO: P1: If user downloads while editing, the edited values aren't downloaded, so disable these while in edit mode */}
-        {/* TODO: Style the buttons */}
         <div className="field" title={disabledTitle}>
           <label id="download-label">4. Download</label>
           <button
@@ -168,7 +162,7 @@ const RadioGroup = React.memo(function(props: RadioGroupProps) {
 
   return (
     <div className="field" role="radiogroup" aria-labelledby={labelId}>
-      <div id={labelId}>{label}</div>
+      <label id={labelId}>{label}</label>
       {values.map(({ label, value }) => {
         return (
           <RadioItem
@@ -212,7 +206,9 @@ const RadioItem = React.memo(function({
         checked={checked}
         onChange={onChange}
       />
-      <label htmlFor={id}>{label}</label>
+      <label htmlFor={id} className="label-inline">
+        {label}
+      </label>
     </div>
   );
 });

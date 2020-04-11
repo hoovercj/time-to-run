@@ -34,7 +34,7 @@ export interface IconButtonProps {
 }
 
 export function IconButton(props: IconButtonProps) {
-  const buttonClassName = `button icon-button ${props.buttonClassName || ""}`.trim();
+  const buttonClassName = `button-clear icon-button ${props.buttonClassName || ""}`.trim();
   const iconClassName = `icon ${props.iconClassName || ""}`.trim();
 
   const IconComponent = iconToComponent[props.icon];
