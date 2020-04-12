@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/calendar-hack/static/css/main.033225a1.chunk.css",
-    "main.js": "/calendar-hack/static/js/main.86411f88.chunk.js",
-    "main.js.map": "/calendar-hack/static/js/main.86411f88.chunk.js.map",
+    "main.css": "/calendar-hack/static/css/main.871c7e79.chunk.css",
+    "main.js": "/calendar-hack/static/js/main.15d1d9fb.chunk.js",
+    "main.js.map": "/calendar-hack/static/js/main.15d1d9fb.chunk.js.map",
     "runtime-main.js": "/calendar-hack/static/js/runtime-main.7eca959c.js",
     "runtime-main.js.map": "/calendar-hack/static/js/runtime-main.7eca959c.js.map",
     "static/css/2.b90ce945.chunk.css": "/calendar-hack/static/css/2.b90ce945.chunk.css",
-    "static/js/2.3dd7b225.chunk.js": "/calendar-hack/static/js/2.3dd7b225.chunk.js",
-    "static/js/2.3dd7b225.chunk.js.map": "/calendar-hack/static/js/2.3dd7b225.chunk.js.map",
+    "static/js/2.02c7766e.chunk.js": "/calendar-hack/static/js/2.02c7766e.chunk.js",
+    "static/js/2.02c7766e.chunk.js.map": "/calendar-hack/static/js/2.02c7766e.chunk.js.map",
     "index.html": "/calendar-hack/index.html",
-    "precache-manifest.f37d3bcc7995ff9939e71f0b659f46b7.js": "/calendar-hack/precache-manifest.f37d3bcc7995ff9939e71f0b659f46b7.js",
+    "precache-manifest.7d9f482b55859a10939916a77967d2ce.js": "/calendar-hack/precache-manifest.7d9f482b55859a10939916a77967d2ce.js",
     "service-worker.js": "/calendar-hack/service-worker.js",
     "static/css/2.b90ce945.chunk.css.map": "/calendar-hack/static/css/2.b90ce945.chunk.css.map",
-    "static/css/main.033225a1.chunk.css.map": "/calendar-hack/static/css/main.033225a1.chunk.css.map",
-    "static/js/2.3dd7b225.chunk.js.LICENSE.txt": "/calendar-hack/static/js/2.3dd7b225.chunk.js.LICENSE.txt",
+    "static/css/main.871c7e79.chunk.css.map": "/calendar-hack/static/css/main.871c7e79.chunk.css.map",
+    "static/js/2.02c7766e.chunk.js.LICENSE.txt": "/calendar-hack/static/js/2.02c7766e.chunk.js.LICENSE.txt",
     "static/media/chevron-down.2c0862a6.svg": "/calendar-hack/static/media/chevron-down.2c0862a6.svg",
     "static/media/chevron-up.3b30c822.svg": "/calendar-hack/static/media/chevron-up.3b30c822.svg",
     "static/media/edit.7b0dc7ee.svg": "/calendar-hack/static/media/edit.7b0dc7ee.svg",
@@ -25,8 +25,8 @@
   "entrypoints": [
     "static/js/runtime-main.7eca959c.js",
     "static/css/2.b90ce945.chunk.css",
-    "static/js/2.3dd7b225.chunk.js",
-    "static/css/main.033225a1.chunk.css",
-    "static/js/main.86411f88.chunk.js"
+    "static/js/2.02c7766e.chunk.js",
+    "static/css/main.871c7e79.chunk.css",
+    "static/js/main.15d1d9fb.chunk.js"
   ]
 }
