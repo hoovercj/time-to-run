@@ -7,7 +7,7 @@ import "./Settings.scss";
 import { Card } from "./Card";
 import { func, DisplayMode } from "../lib/utils";
 import { Filetype } from "../lib/exporter";
-import { Units } from "../lib/workout";
+import { Units } from "../lib/model";
 import { FileInput } from "./FileInput";
 
 export interface SettingsProps {

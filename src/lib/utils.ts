@@ -1,14 +1,13 @@
 import {
   Workout,
   Units
-} from "./workout";
+} from "./model";
 
 // TODO: Add unit tests for util methods
 
 export type func<T> = (value: T) => void;
 export type DisplayMode = "edit" | "view";
 export const DEFAULT_DISPLAYMODE: DisplayMode = "view";
-
 
 // via https://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
 export function getGuid() {

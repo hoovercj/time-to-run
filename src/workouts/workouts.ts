@@ -1,4 +1,4 @@
-import { ExternalPlan } from "../lib/workout";
+import { ExternalPlan } from "../lib/model";
 
 export const PLANS: ExternalPlan[] = [
   {

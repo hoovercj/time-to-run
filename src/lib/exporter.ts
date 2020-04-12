@@ -1,6 +1,6 @@
 import { planToCsv } from "./csvProcessor";
 import { formatWorkoutFromTemplate } from "./formatter";
-import { ExternalPlan, Plan, Units } from "./workout";
+import { ExternalPlan, Plan, Units } from "./model";
 import { ics, saveAs } from "../lib/ics";
 import {
   chunkArray,

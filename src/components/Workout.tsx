@@ -5,7 +5,7 @@ import "./Workout.scss";
 import {
   getDayOfWeekString,
   getShortDateString,
-  getDistanceString
+  getDistanceString,
 } from "../lib/utils";
 import { formatWorkoutFromTemplate } from "../lib/formatter";
 import { IconButton } from "./IconButton";
@@ -28,26 +28,43 @@ export interface WorkoutProps {
   isLast: boolean;
 }
 
-export const Workout = function(props: WorkoutProps) {
-  const isEditMode = props.mode === "edit";
+export const Workout = React.memo(function ({
+  id,
+  date,
+  description,
+  totalDistance,
+  units,
+  displayUnits,
+  mode,
+  editWorkout,
+  deleteWorkout,
+  insertWorkoutAfter,
+  moveUp,
+  moveDown,
+  isFirst,
+  isLast,
+}: WorkoutProps) {
 
-  const date = useMemo(() => new Date(props.date), [props.date]);
-  const dayOfWeekString = useMemo(() => getDayOfWeekString(date), [date]);
-  const shortDateString = useMemo(() => getShortDateString(date), [date]);
+  console.log("Rendering workout " + id);
+
+  const isEditMode = mode === "edit";
+
+  const dateMemo = useMemo(() => new Date(date), [date]);
+  const dayOfWeekString = useMemo(() => getDayOfWeekString(dateMemo), [
+    dateMemo,
+  ]);
+  const shortDateString = useMemo(() => getShortDateString(dateMemo), [
+    dateMemo,
+  ]);
 
   const formattedDescription = useMemo(
-    () =>
-      formatWorkoutFromTemplate(
-        props.description,
-        props.units,
-        props.displayUnits
-      ),
-    [props.description, props.units, props.displayUnits]
+    () => formatWorkoutFromTemplate(description, units, displayUnits),
+    [description, units, displayUnits]
   );
 
   const distanceString = useMemo(() => {
-    return getDistanceString(props.totalDistance, props.units, props.displayUnits);
-  }, [props.totalDistance, props.units, props.displayUnits]);
+    return getDistanceString(totalDistance, units, displayUnits);
+  }, [totalDistance, units, displayUnits]);
 
   const onDistanceChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -56,37 +73,28 @@ export const Workout = function(props: WorkoutProps) {
         newTotalDistance = 0;
       }
 
-      props.editWorkout(props.id, props.description, newTotalDistance);
+      editWorkout(id, description, newTotalDistance);
     },
-    [props.id, props.description, props.editWorkout]
+    [id, description, editWorkout]
   );
 
   const onDescriptionChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const newDescription = e.target.value || "";
-      props.editWorkout(props.id, newDescription, props.totalDistance);
+      editWorkout(id, newDescription, totalDistance);
     },
-    [props.id, props.totalDistance, props.editWorkout]
+    [id, totalDistance, editWorkout]
   );
 
-  const onMoveDown = useCallback(() => props.moveDown(props.id), [
-    props.id,
-    props.moveDown
-  ]);
+  const onMoveDown = useCallback(() => moveDown(id), [id, moveDown]);
 
-  const onMoveUp = useCallback(() => props.moveUp(props.id), [
-    props.id,
-    props.moveUp
-  ]);
+  const onMoveUp = useCallback(() => moveUp(id), [id, moveUp]);
 
-  const onDelete = useCallback(() => props.deleteWorkout(props.id), [
-    props.deleteWorkout,
-    props.id
-  ]);
+  const onDelete = useCallback(() => deleteWorkout(id), [deleteWorkout, id]);
 
-  const onInsert = useCallback(() => props.insertWorkoutAfter(props.id), [
-    props.insertWorkoutAfter,
-    props.id
+  const onInsert = useCallback(() => insertWorkoutAfter(id), [
+    insertWorkoutAfter,
+    id,
   ]);
 
   const buttonClassName = "workout-action-button";
@@ -104,7 +112,7 @@ export const Workout = function(props: WorkoutProps) {
             icon="chevronup"
             buttonClassName={buttonClassName}
             iconClassName={iconClassName}
-            disabled={props.isFirst}
+            disabled={isFirst}
           />
           <IconButton
             onClick={onMoveDown}
@@ -112,7 +120,7 @@ export const Workout = function(props: WorkoutProps) {
             icon="chevrondown"
             buttonClassName={buttonClassName}
             iconClassName={iconClassName}
-            disabled={props.isLast}
+            disabled={isLast}
           />
           {/* TODO: focus should move to the newly added item */}
           <IconButton
@@ -129,24 +137,16 @@ export const Workout = function(props: WorkoutProps) {
             icon="minus"
             buttonClassName={buttonClassName}
             iconClassName={iconClassName}
-            disabled={props.isFirst && props.isLast}
+            disabled={isFirst && isLast}
           />
         </div>
       ),
-    [
-      onDelete,
-      onInsert,
-      onMoveUp,
-      onMoveDown,
-      props.isFirst,
-      props.isLast,
-      isEditMode
-    ]
+    [onDelete, onInsert, onMoveUp, onMoveDown, isFirst, isLast, isEditMode]
   );
 
   const render = useMemo(
     () => (
-      <div className={`workout ${props.mode}`}>
+      <div className={`workout ${mode}`}>
         <div className="date-column">
           <div className="my-row date-string primary">
             {dayOfWeekString} - {shortDateString}
@@ -159,7 +159,7 @@ export const Workout = function(props: WorkoutProps) {
               <div className="my-row total-distance-row">
                 Total Distance:
                 <input
-                  value={props.totalDistance}
+                  value={totalDistance}
                   type="number"
                   onChange={onDistanceChange}
                   className="total-distance-input"
@@ -170,7 +170,7 @@ export const Workout = function(props: WorkoutProps) {
                 <input
                   type="text"
                   className={"description-input"}
-                  value={props.description}
+                  value={description}
                   onChange={onDescriptionChange}
                 />
               </div>
@@ -185,11 +185,11 @@ export const Workout = function(props: WorkoutProps) {
     [
       isEditMode,
       dayOfWeekString,
-      props.mode,
+      mode,
       shortDateString,
       formattedDescription,
-      props.description,
-      props.totalDistance,
+      description,
+      totalDistance,
       distanceString,
       renderedActions,
       onDescriptionChange,
@@ -198,4 +198,4 @@ export const Workout = function(props: WorkoutProps) {
   );
 
   return render;
-};
+});

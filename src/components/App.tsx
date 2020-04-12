@@ -1,22 +1,22 @@
 import React, { useMemo, useState, useCallback } from "react";
 import { Settings } from "./Settings";
 import { Plan } from "./Plan";
-import { Units, Mode, Plan as IPlan } from "../lib/model";
+import { Units, Mode, Plan as IPlan, Workout, ExternalPlan } from "../lib/model";
 import { addDays, DEFAULT_DISPLAYMODE, getGuid } from "../lib/utils";
 import { PLANS } from "../workouts/workouts";
 
 const initialPlans: { [key: string]: IPlan } = {};
-PLANS.forEach(p => {
+(PLANS as ExternalPlan[]).forEach((p) => {
   const id = getGuid();
   initialPlans[id] = {
     ...p,
     id,
-    workouts: p.workouts.map(w => {
+    workouts: p.workouts.map((w) => {
       return {
         ...w,
-        id: getGuid()
+        id: getGuid(),
       };
-    })
+    }),
   };
 });
 
@@ -40,12 +40,19 @@ export const App = React.memo(() => {
 
   const date = useMemo(() => new Date(goalDate), [goalDate]);
   const plansArray = useMemo(() => Object.values(plans), [plans]);
-
+  const toggleDisplayMode = useCallback(
+    () => setDisplayMode(displayMode === "view" ? "edit" : "view"),
+    [displayMode, setDisplayMode]
+  );
   const savePlan = useCallback(
-    (plan: IPlan) => {
+    (id: string, title: string, workouts: Workout[]) => {
       setPlans({
         ...plans,
-        [plan.id]: plan
+        [id]: {
+          ...plans[id],
+          title: title,
+          workouts,
+        },
       });
     },
     [plans, setPlans]
@@ -62,15 +69,16 @@ export const App = React.memo(() => {
         displayMode={displayMode}
         onDateChange={setGoalDate}
         onUnitsChange={setDisplayUnits}
-        onDownload={() => {}}
-        onFileChange={() => {}}
+        onDownload={() => {}} // TODO: Implement
+        onFileChange={() => {}} // TODO: Implement
       />
       <Plan
-        plan={plans[selectedPlanId]}
+        {...plans[selectedPlanId]}
         displayUnits={displayUnits}
-        goalDate={date}
+        goalDate={goalDate}
         savePlan={savePlan}
-        onDisplayModeChanged={setDisplayMode}
+        mode={displayMode}
+        toggleEdit={toggleDisplayMode}
       />
     </>
   );

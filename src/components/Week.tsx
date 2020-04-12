@@ -13,7 +13,7 @@ export function Week({ title, subtitle, children }: WeekProps) {
     <Card>
       <h3>
         <span className="primary">{title}</span>&nbsp;&nbsp;
-        <small>{subtitle}}</small>
+        <small>{subtitle}</small>
       </h3>
       <div className="workouts-container">{children}</div>
     </Card>

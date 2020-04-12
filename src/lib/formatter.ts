@@ -1,4 +1,4 @@
-import { Units } from "./workout";
+import { Units } from "./model";
 import { scaleNumber } from "./utils";
 
 export const formatWorkoutFromTemplate = (template: string, inputUnits: Units = "miles", outputUnits: Units = inputUnits): string => {

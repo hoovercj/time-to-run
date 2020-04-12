@@ -1,4 +1,4 @@
-import { ExternalPlan } from "./workout";
+import { ExternalPlan } from "./model";
 import { getFileExtension } from "./utils";
 import { csvToPlan } from "./csvProcessor";
 

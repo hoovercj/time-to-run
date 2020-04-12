@@ -1,5 +1,5 @@
 import { formatWorkoutFromTemplate } from "./formatter";
-import { Units } from "./workout";
+import { Units } from "./model";
 
 describe("formatWorkout", () => {
     it("returns the input string if no placeholders found", () => {

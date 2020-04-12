@@ -4,7 +4,7 @@ import {
   UnparseConfig
 } from "papaparse";
 
-import { ExternalPlan, Workout, Units } from "./workout";
+import { ExternalPlan, Workout, Units } from "./model";
 import { getGuid } from "./utils";
 
 type PlanInfo = Omit<ExternalPlan, "workouts">;
