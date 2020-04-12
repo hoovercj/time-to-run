@@ -1,0 +1,88 @@
+.workout {
+  display: flex;
+  flex-direction: row;
+  padding: 10px 0;
+
+  .edit-workout-action-container {
+    /* Align actions with the description input */
+    padding-top: 5px;
+
+    .workout:not(:focus-within):not(:hover) & {
+      visibility: hidden;
+    }
+
+    button.workout-action-button {
+      &:not(:first-child) {
+        margin-left: 5px;
+      }
+
+      &:last-child {
+        padding-right: 0;
+      }
+    }
+  }
+
+  input {
+    margin-bottom: 0;
+
+    &.total-distance-input {
+      /* 3 chars + up/down toggle in some browsers  */
+      width: 5em;
+      margin: 0 5px;
+    }
+
+    &.description-input {
+      width: 100%;
+      display: block;
+    }
+  }
+
+  .date-string {
+    font-weight: bold;
+  }
+
+  &.edit {
+    &:not(:last-child) {
+      border-bottom: 1px solid #d2d0ce;
+    }
+
+    .date-string {
+      /* Align date with total distance */
+      padding-top: 2px;
+    }
+
+    .description-column .my-row:not(:last-child),
+    .date-column .my-row {
+      margin-bottom: 10px;
+    }
+  }
+
+  .date-column {
+    flex: 1;
+    text-align: right;
+    margin-right: 20px;
+  }
+
+  .description-column {
+    flex: 2;
+  }
+}
+
+@media (max-width: 800px) {
+  .workout {
+    display: block;
+
+    &:not(:focus-within):not(:hover) .edit-workout-action-container {
+      visibility: visible;
+    }
+
+    .edit-workout-action-container {
+      padding-top: 0px;
+    }
+
+    .date-column {
+      margin-right: 0px;
+      text-align: left;
+    }
+  }
+}

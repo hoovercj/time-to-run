@@ -161,7 +161,7 @@ export interface PlanProps {
   goalDate: Date;
   savePlan: func<IPlan>;
   displayUnits: Units;
-  onDisplayModeChanged?: func<DisplayMode>;
+  onDisplayModeChanged: func<DisplayMode>;
 }
 
 const WEEK_LENGTH = 7;

@@ -12,7 +12,7 @@ import { FileInput } from "./FileInput";
 
 export interface SettingsProps {
   date: Date;
-  onDateChange: func<Date>;
+  onDateChange: func<string>;
   plans: Array<{ id: string; title: string }>;
   selectedPlan: string;
   onPlanChange: func<string>;
@@ -53,7 +53,7 @@ export const Settings = React.memo(function(props: SettingsProps) {
           <label htmlFor="date-input">1. Set Goal Race Date</label>
           <DatePicker
             selected={date}
-            onChange={date => date && onDateChange(date)}
+            onChange={date => date && onDateChange(date.toDateString())}
           />
         </div>
         <div className="field" title={disabledTitle}>
