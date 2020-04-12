@@ -3,7 +3,7 @@ import React, { useMemo } from "react";
 import "./Workout.scss";
 
 import { Units } from "../lib/workout";
-import { func, DisplayMode, getDateForWorkout, getDayOfWeekString, getShortDateString, getDistanceString } from "../lib/utils";
+import { func, DisplayMode, getDayOfWeekString, getShortDateString, getDistanceString } from "../lib/utils";
 import { formatWorkoutFromTemplate } from "../lib/formatter";
 import { IconButton } from "./IconButton";
 import { Action, MoveWorkoutPayload } from "../lib/reducer";
@@ -16,9 +16,10 @@ export interface WorkoutProps {
   totalDistance: number;
   dispatch: func<Action>;
   displayMode: DisplayMode;
-  goalDate: Date;
-  workoutIndex: number;
-  workoutCount: number;
+  date: string;
+  canMoveUp: boolean;
+  canMoveDown: boolean;
+  canDelete: boolean;
 }
 
 export const Workout = React.memo(function(props: WorkoutProps) {
@@ -30,17 +31,15 @@ export const Workout = React.memo(function(props: WorkoutProps) {
     description,
     totalDistance,
     displayMode,
-    workoutCount,
-    workoutIndex,
-    goalDate
+    date,
+    canMoveDown,
+    canMoveUp,
+    canDelete
   } = props;
 
-  const date = useMemo(
-    () => getDateForWorkout(workoutIndex, workoutCount, goalDate),
-    [workoutIndex, workoutCount, goalDate]
-  );
-  const dayOfWeekString = useMemo(() => getDayOfWeekString(date), [date]);
-  const shortDateString = useMemo(() => getShortDateString(date), [date]);
+  const dateMemo = useMemo(() => new Date(date), [date]);
+  const dayOfWeekString = useMemo(() => getDayOfWeekString(dateMemo), [dateMemo]);
+  const shortDateString = useMemo(() => getShortDateString(dateMemo), [dateMemo]);
   const formattedDescription = useMemo(
     () => formatWorkoutFromTemplate(description, units, displayUnits),
     [description, units, displayUnits]
@@ -110,6 +109,7 @@ export const Workout = React.memo(function(props: WorkoutProps) {
           icon="chevronup"
           buttonClassName={buttonClassName}
           iconClassName={iconClassName}
+          disabled={canMoveUp}
         />
         <IconButton
           onClick={() => onMove(true)}
@@ -117,6 +117,7 @@ export const Workout = React.memo(function(props: WorkoutProps) {
           icon="chevrondown"
           buttonClassName={buttonClassName}
           iconClassName={iconClassName}
+          disabled={canMoveDown}
         />
         {/* TODO: focus should move to the newly added item */}
         <IconButton
@@ -133,7 +134,7 @@ export const Workout = React.memo(function(props: WorkoutProps) {
           icon="minus"
           buttonClassName={buttonClassName}
           iconClassName={iconClassName}
-          disabled={workoutCount <= 1}
+          disabled={canDelete}
         />
       </div>
     );

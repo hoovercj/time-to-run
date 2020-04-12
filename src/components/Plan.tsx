@@ -8,7 +8,8 @@ import {
   getLongDateString,
   DisplayMode,
   DEFAULT_DISPLAYMODE,
-  getVolumeStringFromWorkouts
+  getVolumeStringFromWorkouts,
+  addDays
 } from "../lib/utils";
 
 import { IconButton } from "./IconButton";
@@ -81,17 +82,23 @@ export function Plan({
     );
 
     const renderedWorkouts = weekWorkouts.map((w, indexInWeek) => {
+      const isFirst = weekNumber === 1 && indexInWeek === 0;
+      const isLast = tempWorkouts.length === 0 && indexInWeek === weekWorkouts.length - 1;
+      const isOnly = isFirst && isLast;
+      const daysToGoal = tempWorkouts.length + (weekWorkouts.length - indexInWeek) - 1;
+      const date = addDays(goalDate, daysToGoal * -1);
       return (
         <Workout
           {...w}
-          workoutCount={workouts.length}
-          workoutIndex={indexInWeek}
-          goalDate={goalDate}
           key={w.id}
           dispatch={dispatch}
           units={units}
           displayUnits={displayUnits}
           displayMode={displayMode}
+          canDelete={!isOnly}
+          canMoveUp={!isFirst}
+          canMoveDown={!isLast}
+          date={date.toDateString()}
       />
       );
     });
