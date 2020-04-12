@@ -7,12 +7,14 @@ import {
   func,
   getLongDateString,
   DisplayMode,
-  DEFAULT_DISPLAYMODE
+  DEFAULT_DISPLAYMODE,
+  getVolumeStringFromWorkouts
 } from "../lib/utils";
 
 import { IconButton } from "./IconButton";
 import { reducer, Action } from "../lib/reducer";
 import { Week } from "./Week";
+import { Workout } from "./Workout";
 
 export interface PlanProps {
   plan: IPlan;
@@ -64,20 +66,44 @@ export function Plan({
 
   const isEditMode = displayMode === "edit";
 
-  const numWeeks = Math.ceil(workouts.length / WEEK_LENGTH);
   let renderedWeeks: JSX.Element[] = [];
-  for (let i = 0; i < numWeeks; i++) {
+  for (
+    let weekNumber = 1, tempWorkouts = [...workouts];
+    tempWorkouts.length > 0;
+    weekNumber++
+  ) {
+
+    const weekWorkouts = tempWorkouts.splice(0, WEEK_LENGTH);
+    const volumeString = getVolumeStringFromWorkouts(
+      weekWorkouts,
+      units,
+      displayUnits
+    );
+
+    const renderedWorkouts = weekWorkouts.map((w, indexInWeek) => {
+      return (
+        <Workout
+          {...w}
+          workoutCount={workouts.length}
+          workoutIndex={indexInWeek}
+          goalDate={goalDate}
+          key={w.id}
+          dispatch={dispatch}
+          units={units}
+          displayUnits={displayUnits}
+          displayMode={displayMode}
+      />
+      );
+    });
+
     renderedWeeks.push(
       <Week
-        key={i}
-        displayUnits={displayUnits}
-        units={units}
-        dispatch={dispatch}
-        displayMode={displayMode}
-        weekNumber={i}
-        allWorkouts={workouts}
-        goalDate={goalDate}
-      />
+        key={weekNumber}
+        title={`Week ${weekNumber}`}
+        subtitle={`Total volume: ${volumeString}`}
+      >
+        {renderedWorkouts}
+      </Week>
     );
   }
 
