@@ -21,17 +21,22 @@
   padding-right: 5px;
 }
 
-.edit-workout-action-container button.workout-action-button:not(:first-child),
 .plan-heading button.heading-action-button {
   margin-left: 5px;
 }
 
-.view .heading-action-button .heading-action-icon {
-  position: relative;
-  top: 3px;
-}
+button.heading-action-button {
+  margin-left: 5px;
 
-.edit .heading-action-button .heading-action-icon {
-  position: relative;
-  top: 1px;
+  .heading-action-icon {
+    position: relative;
+
+    .view & {
+      top: 3px;
+    }
+
+    .edit & {
+      top: 1px;
+    }
+  }
 }
