@@ -22,7 +22,6 @@ import { IconButton } from "./IconButton";
 import { reducer, Action } from "../lib/reducer";
 import { Week } from "./Week";
 import { Workout } from "./Workout";
-import { Card } from "./Card";
 
 export interface PlanProps {
   plan: IPlan;
@@ -202,13 +201,13 @@ export function Plan({
     });
 
     renderedWeeks.push(
-      <Card key={weekNumber}>
-        <h3>
-          <span className="primary">{`Week ${weekNumber}`}</span>&nbsp;&nbsp;
-          <small>{`Total volume: ${volumeString}`}</small>
-        </h3>
+      <Week
+        key={weekNumber}
+        title={`Week ${weekNumber}`}
+        subtitle={`Total volume: ${volumeString}`}
+      >
         {renderedWorkouts}
-      </Card>
+      </Week>
     );
   }
 
