@@ -1,4 +1,10 @@
-import React, { useCallback, useReducer, useEffect, useRef } from "react";
+import React, {
+  useCallback,
+  useReducer,
+  useEffect,
+  useRef,
+  useLayoutEffect,
+} from "react";
 
 import "./Plan.scss";
 
@@ -16,6 +22,7 @@ import { IconButton } from "./IconButton";
 import { reducer, Action } from "../lib/reducer";
 import { Week } from "./Week";
 import { Workout } from "./Workout";
+import { Card } from "./Card";
 
 export interface PlanProps {
   plan: IPlan;
@@ -43,21 +50,28 @@ export function Plan({
   // Properties that aren't editable
   const { units } = plan;
   // Properties that are editable
-  const { displayMode, editedPlan } = state;
+  const { displayMode, editedPlan, focusedElement } = state;
 
   const editCancelButton = useRef<HTMLButtonElement>(null);
   const workoutsContainer = useRef<HTMLDivElement>(null);
   const { title, workouts } = editedPlan;
   const isEditMode = displayMode === "edit";
 
-  useEffect(
-    () => onDisplayModeChanged && onDisplayModeChanged(displayMode),
-    [displayMode, onDisplayModeChanged]
-  );
+  useEffect(() => onDisplayModeChanged && onDisplayModeChanged(displayMode), [
+    displayMode,
+    onDisplayModeChanged,
+  ]);
 
   useEffect(() => {
     dispatch({ type: "setPlan", payload: plan });
   }, [plan]);
+
+  useLayoutEffect(() => {
+    if (focusedElement) {
+      console.log("Focused element unmounted, re-setting focus");
+      document.getElementById(focusedElement.elementId)?.focus();
+    }
+  }, [focusedElement]);
 
   const toggleEdit = useCallback(() => {
     // If the focus is on some element before the save and
@@ -68,7 +82,7 @@ export function Plan({
         if (document.activeElement === document.body) {
           editCancelButton.current?.focus();
         }
-      }, 0)
+      }, 0);
     }
     const action: Action = isEditMode
       ? { type: "endEdit", payload: false }
@@ -86,7 +100,7 @@ export function Plan({
         if (document.activeElement === document.body) {
           editCancelButton.current?.focus();
         }
-      }, 0)
+      }, 0);
     }
 
     savePlan(editedPlan);
@@ -128,10 +142,8 @@ export function Plan({
           // but then I would need to lift the state to that component or provide
           // an interface for that component to communicate the keyboard events to this component.
           if (workoutsContainer.current?.contains(document.activeElement)) {
-            console.log("Let workouts container handle shortcut");
             return;
           }
-          console.log("Plan insert shortcut");
           event.preventDefault();
           event.stopPropagation();
           dispatch({ type: "insertWorkout", payload: undefined });
@@ -190,13 +202,13 @@ export function Plan({
     });
 
     renderedWeeks.push(
-      <Week
-        key={weekNumber}
-        title={`Week ${weekNumber}`}
-        subtitle={`Total volume: ${volumeString}`}
-      >
+      <Card key={weekNumber}>
+        <h3>
+          <span className="primary">{`Week ${weekNumber}`}</span>&nbsp;&nbsp;
+          <small>{`Total volume: ${volumeString}`}</small>
+        </h3>
         {renderedWorkouts}
-      </Week>
+      </Card>
     );
   }
 
@@ -207,9 +219,7 @@ export function Plan({
         {renderActions(isEditMode, toggleEdit, performSave, editCancelButton)}
       </h2>
       <div className="goal-race">Goal Race: {getLongDateString(goalDate)}</div>
-      <div ref={workoutsContainer}>
-        {renderedWeeks}
-      </div>
+      <div ref={workoutsContainer}>{renderedWeeks}</div>
     </div>
   );
 }

@@ -1,4 +1,10 @@
-import React, { useMemo, useLayoutEffect, useRef, useCallback } from "react";
+import React, {
+  useMemo,
+  useLayoutEffect,
+  useRef,
+  useCallback,
+  useEffect,
+} from "react";
 
 import "./Workout.scss";
 
@@ -190,6 +196,23 @@ export const Workout = React.memo(function (props: WorkoutProps) {
     document.activeElement && scrollIntoViewIfNeeded(document.activeElement);
   }, [activationReason, canMoveDown, canMoveUp]);
 
+  useEffect(() => {
+    const currentContainer = container.current;
+
+    // Cleanup function, executes on unmount or dependency change
+    return () => {
+      if (
+        document.activeElement &&
+        currentContainer?.contains(document.activeElement)
+      ) {
+        dispatch({
+          type: "notifyFocusedElementUnmounted",
+          payload: document.activeElement.id,
+        });
+      }
+    };
+  }, [dispatch, container]);
+
   const buttonClassName = "workout-action-button";
   const iconClassName = "workout-action-icon";
 
@@ -197,6 +220,7 @@ export const Workout = React.memo(function (props: WorkoutProps) {
     displayMode === "edit" && (
       <div className="my-row edit-workout-action-container">
         <IconButton
+          id={`move-up-${id}`}
           onClick={() => onMove(false)}
           title="Move up (Alt+Up)"
           icon="chevronup"
@@ -206,6 +230,7 @@ export const Workout = React.memo(function (props: WorkoutProps) {
           buttonRef={moveUpButton}
         />
         <IconButton
+          id={`move-down-${id}`}
           onClick={() => onMove(true)}
           title="Move down (Alt+Down)"
           icon="chevrondown"
@@ -215,6 +240,7 @@ export const Workout = React.memo(function (props: WorkoutProps) {
           buttonRef={moveDownButton}
         />
         <IconButton
+          id={`insert-${id}`}
           onClick={onInsert}
           title="Add new workout (Alt+N)"
           icon="plus"
@@ -223,6 +249,7 @@ export const Workout = React.memo(function (props: WorkoutProps) {
           buttonRef={insertButton}
         />
         <IconButton
+          id={`delete-${id}`}
           onClick={onDelete}
           title="Delete (Alt+D)"
           icon="minus"
@@ -252,6 +279,7 @@ export const Workout = React.memo(function (props: WorkoutProps) {
             <div className="my-row total-distance-row">
               Total Distance:
               <input
+                id={`total-distance-input-${id}`}
                 value={totalDistance}
                 type="number"
                 onChange={onDistanceChange}
@@ -261,6 +289,7 @@ export const Workout = React.memo(function (props: WorkoutProps) {
             </div>
             <div className="my-row description-row">
               <input
+                id={`description-input-${id}`}
                 type="text"
                 className={"description-input"}
                 value={description}

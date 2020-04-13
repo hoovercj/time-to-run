@@ -29,16 +29,20 @@ select
 	width: 100%
 	color: $color-neutral-primary
 
-	&:focus
-		border-color: $color-primary
-		outline: 0
+	&:not(:disabled)
+		&:hover,
+		&:focus
+			border-color: $color-primary
+			outline: 0
 
 select
 	background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="14" viewBox="0 0 29 14" width="29"><path fill="%23' + str-slice(inspect($color-neutral-secondary), 2) + '" d="M9.37727 3.625l5.08154 6.93523L19.54036 3.625"/></svg>') center right no-repeat
 	padding-right: calc(3.0rem * .625)
 
-	&:focus
-		background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="14" viewBox="0 0 29 14" width="29"><path fill="%23' + str-slice(inspect($color-primary), 2) + '" d="M9.37727 3.625l5.08154 6.93523L19.54036 3.625"/></svg>')
+	&:not(:disabled)
+		&:hover,
+		&:focus
+			background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="14" viewBox="0 0 29 14" width="29"><path fill="%23' + str-slice(inspect($color-primary), 2) + '" d="M9.37727 3.625l5.08154 6.93523L19.54036 3.625"/></svg>')
 
 textarea
 	min-height: calc(6.5rem * .625)
