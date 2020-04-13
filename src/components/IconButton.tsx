@@ -24,7 +24,9 @@ const iconToComponent: {[key in Icon]: React.FunctionComponent<React.SVGProps<SV
   chevrondown: ChevronDownIcon,
 }
 
-
+// TODO: Consider extending HTMLButton props
+// OR adding a comment why it was decided NOT
+// to extend them
 export interface IconButtonProps {
   buttonClassName?: string;
   iconClassName?: string;
@@ -33,6 +35,7 @@ export interface IconButtonProps {
   icon: Icon;
   disabled?: boolean;
   buttonRef?: React.RefObject<HTMLButtonElement>;
+  id?: string;
 }
 
 export function IconButton(props: IconButtonProps) {
@@ -43,6 +46,7 @@ export function IconButton(props: IconButtonProps) {
 
   return (
     <button
+      id={props.id}
       onClick={() => props.onClick()}
       title={props.title}
       className={buttonClassName}

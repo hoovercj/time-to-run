@@ -3,13 +3,13 @@
   flex-direction: row;
   padding: 10px 0;
 
+  &:not(:focus-within):not(:hover) .edit-workout-action-container {
+    visibility: hidden;
+  }
+
   .edit-workout-action-container {
     /* Align actions with the description input */
     padding-top: 5px;
-
-    .workout:not(:focus-within):not(:hover) & {
-      visibility: hidden;
-    }
 
     button.workout-action-button {
       &:not(:first-child) {
