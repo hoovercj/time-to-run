@@ -4,7 +4,7 @@
   padding: 10px 0;
 
   &:not(:focus-within):not(:hover) .edit-workout-action-container {
-    visibility: hidden;
+    opacity: 0;
   }
 
   .edit-workout-action-container {
