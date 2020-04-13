@@ -5,8 +5,12 @@ export interface PlanState {
   displayMode: DisplayMode;
   plan: Plan;
   editedPlan: Plan;
-  workoutToActivate?: string;
-  activationReason?: { reason: ActionType };
+  workoutToActivate?: string | undefined;
+  // These are objects so that if the same value
+  // is emitted by an action twice in a row,
+  // the object will get a new identity
+  activationReason?: { reason: ActionType } | undefined;
+  focusedElement?: { elementId: string } | undefined;
 }
 
 export function reducer(
@@ -26,6 +30,7 @@ export function reducer(
         ...state,
         workoutToActivate,
         activationReason: { reason: type },
+        focusedElement: undefined,
         editedPlan: {
           ...state.editedPlan,
           workouts: state.editedPlan.workouts.filter((w) => w.id !== id),
@@ -50,6 +55,7 @@ export function reducer(
         ...state,
         workoutToActivate: newId,
         activationReason: { reason: type },
+        focusedElement: undefined,
         editedPlan: {
           ...state.editedPlan,
           workouts: newWorkouts,
@@ -64,6 +70,7 @@ export function reducer(
         ...state,
         workoutToActivate: id,
         activationReason: { reason: type },
+        focusedElement: undefined,
         editedPlan: {
           ...state.editedPlan,
           workouts: [...state.editedPlan.workouts],
@@ -98,6 +105,7 @@ export function reducer(
         ...state,
         workoutToActivate: undefined,
         activationReason: undefined,
+        focusedElement: undefined,
         plan: { ...plan },
         editedPlan: { ...plan },
       };
@@ -107,6 +115,7 @@ export function reducer(
         ...state,
         workoutToActivate: undefined,
         activationReason: undefined,
+        focusedElement: undefined,
         displayMode: "edit",
       };
     }
@@ -117,6 +126,7 @@ export function reducer(
         ...state,
         workoutToActivate: undefined,
         activationReason: undefined,
+        focusedElement: undefined,
         displayMode: "view",
         plan: { ...plan },
         editedPlan: { ...plan },
@@ -128,6 +138,7 @@ export function reducer(
         ...state,
         workoutToActivate: undefined,
         activationReason: undefined,
+        focusedElement: undefined,
         editedPlan: {
           ...state.editedPlan,
           title: newTitle,
@@ -140,6 +151,7 @@ export function reducer(
         ...state,
         workoutToActivate: undefined,
         activationReason: undefined,
+        focusedElement: undefined,
         editedPlan: {
           ...state.editedPlan,
           workouts: [...state.editedPlan.workouts],
@@ -152,6 +164,13 @@ export function reducer(
       newState.editedPlan.workouts[indexToUpdate] = newWorkout;
 
       return newState;
+    }
+    case "notifyFocusedElementUnmounted": {
+      console.log("Focused element unmounted: " + payload);
+      return {
+        ...state,
+        focusedElement: { elementId: payload as string},
+      }
     }
     default:
       throw new Error("Unsupported action type dispatched.");
@@ -167,7 +186,8 @@ export type ActionType =
   | "moveWorkoutDown"
   | "moveWorkoutUp"
   | "deleteWorkout"
-  | "insertWorkout";
+  | "insertWorkout"
+  | "notifyFocusedElementUnmounted";
 
 export interface Action {
   type: ActionType;
