@@ -1,4 +1,10 @@
-import React, { useMemo, useLayoutEffect, useRef, useCallback, useEffect } from "react";
+import React, {
+  useMemo,
+  useLayoutEffect,
+  useRef,
+  useCallback,
+  useEffect,
+} from "react";
 
 import "./Workout.scss";
 
@@ -195,10 +201,16 @@ export const Workout = React.memo(function (props: WorkoutProps) {
 
     // Cleanup function, executes on unmount or dependency change
     return () => {
-      if (document.activeElement && currentContainer?.contains(document.activeElement)) {
-        dispatch({ type: "notifyFocusedElementUnmounted", payload: document.activeElement.id });
+      if (
+        document.activeElement &&
+        currentContainer?.contains(document.activeElement)
+      ) {
+        dispatch({
+          type: "notifyFocusedElementUnmounted",
+          payload: document.activeElement.id,
+        });
       }
-    }
+    };
   }, [dispatch, container]);
 
   const buttonClassName = "workout-action-button";
@@ -294,8 +306,3 @@ export const Workout = React.memo(function (props: WorkoutProps) {
     </div>
   );
 });
-
-(Workout as any).whyDidYouRender = {
-  logOnDifferentValues: true,
-  customName: 'Workout'
-}
