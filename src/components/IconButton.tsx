@@ -32,6 +32,7 @@ export interface IconButtonProps {
   onClick: func<void>;
   icon: Icon;
   disabled?: boolean;
+  buttonRef?: React.RefObject<HTMLButtonElement>;
 }
 
 export function IconButton(props: IconButtonProps) {
@@ -46,6 +47,7 @@ export function IconButton(props: IconButtonProps) {
       title={props.title}
       className={buttonClassName}
       disabled={props.disabled}
+      ref={props.buttonRef}
     >
       <IconComponent className={iconClassName} />
     </button>

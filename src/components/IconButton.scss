@@ -14,5 +14,10 @@ button.icon-button {
 
   &:focus {
     outline: 0;
+
+    .icon {
+      outline: 1px solid;
+      outline-color: currentColor;
+    }
   }
 }
