@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "22e59433ce3731e338332c3482ded991",
+    "revision": "0bd977ae7bd79ccf9fe860375fa4f54d",
     "url": "/calendar-hack/index.html"
   },
   {
@@ -8,8 +8,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/calendar-hack/static/css/2.b90ce945.chunk.css"
   },
   {
-    "revision": "c21b90eecf5e44ce2edc",
-    "url": "/calendar-hack/static/css/main.ca805c5d.chunk.css"
+    "revision": "c375545066b4c235bb73",
+    "url": "/calendar-hack/static/css/main.aed01471.chunk.css"
   },
   {
     "revision": "d6f1eeceac93d43adf54",
@@ -20,7 +20,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/calendar-hack/static/js/2.02c7766e.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "c21b90eecf5e44ce2edc",
+    "revision": "c375545066b4c235bb73",
     "url": "/calendar-hack/static/js/main.a0a88413.chunk.js"
   },
   {
