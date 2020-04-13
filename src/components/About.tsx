@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 function About() {
   return (
     <div>
-      <h2>About This Project</h2>
       <p>
         Running a marathon is hard. Setting up your training plan shouldn't be.
       </p>
