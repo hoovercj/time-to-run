@@ -1,4 +1,4 @@
-import React, { useMemo, useCallback } from "react";
+import React, { useMemo, useCallback, useRef } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -42,6 +42,26 @@ export const Settings = React.memo(function(props: SettingsProps) {
     onUnitsChange
   ]);
 
+  const datepicker = useRef<DatePicker>(null);
+  const onDatepickerSelect = useCallback(() => {
+    // By default, the datepicker loses focus when selecting a date,
+    // this ensures focus is preserved
+    setTimeout(() => datepicker.current && datepicker.current.setFocus(), 0);
+  }, [datepicker]);
+
+  const onDatepickerInputKeyDown = useCallback((event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Escape") {
+      // By default, the datepicker loses focus when the input is focused
+      // and the escape key is pressed. this ensures focus is preserved
+      setTimeout(() => {
+        if (datepicker.current) {
+          datepicker.current.setFocus();
+          datepicker.current.setOpen(false, true)
+        }
+      }, 0);
+    }
+  }, [datepicker]);
+
   const isEditMode = displayMode === "edit";
   const disabledTitle = isEditMode
     ? "Finish editing before changing or downloading plans."
@@ -52,8 +72,11 @@ export const Settings = React.memo(function(props: SettingsProps) {
         <div className="field">
           <label htmlFor="date-input">1. Set Goal Race Date</label>
           <DatePicker
+            ref={datepicker}
             selected={date}
             onChange={date => date && onDateChange(date)}
+            onSelect={onDatepickerSelect}
+            onKeyDown={onDatepickerInputKeyDown}
           />
         </div>
         <div className="field" title={disabledTitle}>
