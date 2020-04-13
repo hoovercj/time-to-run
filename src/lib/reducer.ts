@@ -9,7 +9,10 @@ export interface PlanState {
   activationReason?: { reason: ActionType };
 }
 
-export function reducer(state: PlanState, { type, payload }: Action): PlanState {
+export function reducer(
+  state: PlanState,
+  { type, payload }: Action
+): PlanState {
   // TODO: deduplicate logic
   switch (type) {
     case "deleteWorkout": {
@@ -17,26 +20,31 @@ export function reducer(state: PlanState, { type, payload }: Action): PlanState 
       const newWorkouts = [...state.editedPlan.workouts];
       const deleteIndex = newWorkouts.findIndex((w: Workout) => w.id === id);
       newWorkouts.splice(deleteIndex, 1);
-      const workoutToActivate = newWorkouts[Math.min(deleteIndex, newWorkouts.length - 1)].id;
+      const workoutToActivate =
+        newWorkouts[Math.min(deleteIndex, newWorkouts.length - 1)].id;
       return {
         ...state,
         workoutToActivate,
         activationReason: { reason: type },
         editedPlan: {
           ...state.editedPlan,
-          workouts: state.editedPlan.workouts.filter(w => w.id !== id)
-        }
+          workouts: state.editedPlan.workouts.filter((w) => w.id !== id),
+        },
       };
     }
     case "insertWorkout": {
       const id = payload as string;
       const newWorkouts = [...state.editedPlan.workouts];
-      const insertIndex = newWorkouts.findIndex((w: Workout) => w.id === id) + 1;
+      let insertIndex =
+        id === undefined
+          ? newWorkouts.length
+          : newWorkouts.findIndex((w: Workout) => w.id === id) + 1;
+
       const newId = getGuid();
       newWorkouts.splice(insertIndex, 0, {
         description: "",
         totalDistance: 0,
-        id: newId
+        id: newId,
       });
       return {
         ...state,
@@ -44,8 +52,8 @@ export function reducer(state: PlanState, { type, payload }: Action): PlanState 
         activationReason: { reason: type },
         editedPlan: {
           ...state.editedPlan,
-          workouts: newWorkouts
-        }
+          workouts: newWorkouts,
+        },
       };
     }
     case "moveWorkoutUp":
@@ -58,8 +66,8 @@ export function reducer(state: PlanState, { type, payload }: Action): PlanState 
         activationReason: { reason: type },
         editedPlan: {
           ...state.editedPlan,
-          workouts: [...state.editedPlan.workouts]
-        }
+          workouts: [...state.editedPlan.workouts],
+        },
       };
 
       const currentIndex = newState.editedPlan.workouts.findIndex(
@@ -75,11 +83,11 @@ export function reducer(state: PlanState, { type, payload }: Action): PlanState 
       const workoutToSwap = newState.editedPlan.workouts[nextIndex];
 
       newState.editedPlan.workouts[currentIndex] = {
-        ...workoutToSwap
+        ...workoutToSwap,
       };
 
       newState.editedPlan.workouts[nextIndex] = {
-        ...workout
+        ...workout,
       };
 
       return newState;
@@ -91,7 +99,7 @@ export function reducer(state: PlanState, { type, payload }: Action): PlanState 
         workoutToActivate: undefined,
         activationReason: undefined,
         plan: { ...plan },
-        editedPlan: { ...plan }
+        editedPlan: { ...plan },
       };
     }
     case "beginEdit": {
@@ -99,7 +107,7 @@ export function reducer(state: PlanState, { type, payload }: Action): PlanState 
         ...state,
         workoutToActivate: undefined,
         activationReason: undefined,
-        displayMode: "edit"
+        displayMode: "edit",
       };
     }
     case "endEdit": {
@@ -111,7 +119,7 @@ export function reducer(state: PlanState, { type, payload }: Action): PlanState 
         activationReason: undefined,
         displayMode: "view",
         plan: { ...plan },
-        editedPlan: { ...plan }
+        editedPlan: { ...plan },
       };
     }
     case "updateTitle": {
@@ -122,8 +130,8 @@ export function reducer(state: PlanState, { type, payload }: Action): PlanState 
         activationReason: undefined,
         editedPlan: {
           ...state.editedPlan,
-          title: newTitle
-        }
+          title: newTitle,
+        },
       };
     }
     case "editWorkout": {
@@ -134,8 +142,8 @@ export function reducer(state: PlanState, { type, payload }: Action): PlanState 
         activationReason: undefined,
         editedPlan: {
           ...state.editedPlan,
-          workouts: [...state.editedPlan.workouts]
-        }
+          workouts: [...state.editedPlan.workouts],
+        },
       };
 
       const indexToUpdate = newState.editedPlan.workouts.findIndex(

@@ -1,4 +1,4 @@
-import React, { useMemo, useLayoutEffect, useRef } from "react";
+import React, { useMemo, useLayoutEffect, useRef, useCallback } from "react";
 
 import "./Workout.scss";
 
@@ -91,16 +91,55 @@ export const Workout = React.memo(function (props: WorkoutProps) {
     });
   };
 
-  const onMove = (forward: boolean) => {
-    dispatch({
-      type: forward ? "moveWorkoutDown" : "moveWorkoutUp",
-      payload: id,
-    });
-  };
+  const onMove = useCallback(
+    (forward: boolean) => {
+      dispatch({
+        type: forward ? "moveWorkoutDown" : "moveWorkoutUp",
+        payload: id,
+      });
+    },
+    [id, dispatch]
+  );
 
-  const onDelete = () => dispatch({ type: "deleteWorkout", payload: id });
+  const onDelete = useCallback(
+    () => dispatch({ type: "deleteWorkout", payload: id }),
+    [id, dispatch]
+  );
 
-  const onInsert = () => dispatch({ type: "insertWorkout", payload: id });
+  const onInsert = useCallback(
+    () => dispatch({ type: "insertWorkout", payload: id }),
+    [id, dispatch]
+  );
+
+  const onKeyDown = useCallback(
+    (event: React.KeyboardEvent<HTMLDivElement>) => {
+      if (displayMode === "edit" && event.altKey) {
+        if (event.key === "d" && canDelete) {
+          event.preventDefault();
+          event.stopPropagation();
+          onDelete();
+          return;
+        } else if (event.key === "n") {
+          event.preventDefault();
+          event.stopPropagation();
+          console.log("Workout insert shortcut");
+          onInsert();
+          return;
+        } else if (event.key === "ArrowUp" && canMoveUp) {
+          event.preventDefault();
+          event.stopPropagation();
+          onMove(false);
+          return;
+        } else if (event.key === "ArrowDown" && canMoveDown) {
+          event.preventDefault();
+          event.stopPropagation();
+          onMove(true);
+          return;
+        }
+      }
+    },
+    [canDelete, canMoveDown, canMoveUp, displayMode, onDelete, onInsert, onMove]
+  );
 
   const container = useRef<HTMLDivElement>(null);
   const descriptionInput = useRef<HTMLInputElement>(null);
@@ -149,21 +188,17 @@ export const Workout = React.memo(function (props: WorkoutProps) {
     }
 
     document.activeElement && scrollIntoViewIfNeeded(document.activeElement);
-    // });
   }, [activationReason, canMoveDown, canMoveUp]);
-  // }, [activate, activationReason, descriptionInput, moveUpButton, moveDownButton, insertButton, deleteButton]);
 
   const buttonClassName = "workout-action-button";
   const iconClassName = "workout-action-icon";
 
-  // TODO: Add keyboard shortcuts for actions
   const renderActions = () =>
     displayMode === "edit" && (
       <div className="my-row edit-workout-action-container">
-        {/* TODO: focus is lost when moving workout between weeks */}
         <IconButton
           onClick={() => onMove(false)}
-          title="Move up"
+          title="Move up (Alt+Up)"
           icon="chevronup"
           buttonClassName={buttonClassName}
           iconClassName={iconClassName}
@@ -172,7 +207,7 @@ export const Workout = React.memo(function (props: WorkoutProps) {
         />
         <IconButton
           onClick={() => onMove(true)}
-          title="Move down"
+          title="Move down (Alt+Down)"
           icon="chevrondown"
           buttonClassName={buttonClassName}
           iconClassName={iconClassName}
@@ -181,7 +216,7 @@ export const Workout = React.memo(function (props: WorkoutProps) {
         />
         <IconButton
           onClick={onInsert}
-          title="Add new workout"
+          title="Add new workout (Alt+N)"
           icon="plus"
           buttonClassName={buttonClassName}
           iconClassName={iconClassName}
@@ -189,7 +224,7 @@ export const Workout = React.memo(function (props: WorkoutProps) {
         />
         <IconButton
           onClick={onDelete}
-          title="Delete"
+          title="Delete (Alt+D)"
           icon="minus"
           buttonClassName={buttonClassName}
           iconClassName={iconClassName}
@@ -200,7 +235,11 @@ export const Workout = React.memo(function (props: WorkoutProps) {
     );
 
   return (
-    <div ref={container} className={`workout ${displayMode}`}>
+    <div
+      ref={container}
+      className={`workout ${displayMode}`}
+      onKeyDown={onKeyDown}
+    >
       <div className="date-column">
         <div className="my-row date-string primary">
           {dayOfWeekString} - {shortDateString}

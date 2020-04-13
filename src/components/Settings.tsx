@@ -72,6 +72,7 @@ export const Settings = React.memo(function(props: SettingsProps) {
         <div className="field">
           <label htmlFor="date-input">1. Set Goal Race Date</label>
           <DatePicker
+            id={"date-input"}
             ref={datepicker}
             selected={date}
             onChange={date => date && onDateChange(date)}
