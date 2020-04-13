@@ -12,7 +12,6 @@ import App from "./App";
 import About from "./About";
 
 function Root() {
-  console.log(process.env);
   return (
     <Router
       basename={`${process.env.PUBLIC_URL}`}

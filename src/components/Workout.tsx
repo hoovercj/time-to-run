@@ -1,12 +1,19 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useLayoutEffect, useRef } from "react";
 
 import "./Workout.scss";
 
 import { Units } from "../lib/workout";
-import { func, DisplayMode, getDayOfWeekString, getShortDateString, getDistanceString } from "../lib/utils";
+import {
+  func,
+  DisplayMode,
+  getDayOfWeekString,
+  getShortDateString,
+  getDistanceString,
+  scrollIntoViewIfNeeded,
+} from "../lib/utils";
 import { formatWorkoutFromTemplate } from "../lib/formatter";
 import { IconButton } from "./IconButton";
-import { Action, MoveWorkoutPayload } from "../lib/reducer";
+import { Action, ActionType } from "../lib/reducer";
 
 export interface WorkoutProps {
   id: string;
@@ -20,9 +27,10 @@ export interface WorkoutProps {
   canMoveUp: boolean;
   canMoveDown: boolean;
   canDelete: boolean;
+  activationReason?: { reason: ActionType };
 }
 
-export const Workout = React.memo(function(props: WorkoutProps) {
+export const Workout = React.memo(function (props: WorkoutProps) {
   const {
     units,
     displayUnits,
@@ -34,12 +42,17 @@ export const Workout = React.memo(function(props: WorkoutProps) {
     date,
     canMoveDown,
     canMoveUp,
-    canDelete
+    canDelete,
+    activationReason,
   } = props;
 
   const dateMemo = useMemo(() => new Date(date), [date]);
-  const dayOfWeekString = useMemo(() => getDayOfWeekString(dateMemo), [dateMemo]);
-  const shortDateString = useMemo(() => getShortDateString(dateMemo), [dateMemo]);
+  const dayOfWeekString = useMemo(() => getDayOfWeekString(dateMemo), [
+    dateMemo,
+  ]);
+  const shortDateString = useMemo(() => getShortDateString(dateMemo), [
+    dateMemo,
+  ]);
   const formattedDescription = useMemo(
     () => formatWorkoutFromTemplate(description, units, displayUnits),
     [description, units, displayUnits]
@@ -60,8 +73,8 @@ export const Workout = React.memo(function(props: WorkoutProps) {
         date,
         description,
         totalDistance: newTotalDistance,
-        id
-      }
+        id,
+      },
     });
   };
 
@@ -73,27 +86,72 @@ export const Workout = React.memo(function(props: WorkoutProps) {
         date,
         totalDistance,
         description: newDescription,
-        id: id
-      }
+        id: id,
+      },
     });
   };
 
   const onMove = (forward: boolean) => {
-    const payload: MoveWorkoutPayload = {
-      forward,
-      workout: {
-        totalDistance,
-        description,
-        id
-      }
-    };
-
-    dispatch({ type: "moveWorkout", payload });
+    dispatch({
+      type: forward ? "moveWorkoutDown" : "moveWorkoutUp",
+      payload: id,
+    });
   };
 
   const onDelete = () => dispatch({ type: "deleteWorkout", payload: id });
 
   const onInsert = () => dispatch({ type: "insertWorkout", payload: id });
+
+  const container = useRef<HTMLDivElement>(null);
+  const descriptionInput = useRef<HTMLInputElement>(null);
+  const moveUpButton = useRef<HTMLButtonElement>(null);
+  const moveDownButton = useRef<HTMLButtonElement>(null);
+  const insertButton = useRef<HTMLButtonElement>(null);
+  const deleteButton = useRef<HTMLButtonElement>(null);
+
+  useLayoutEffect(() => {
+    // Don't change focus if this already contains it
+    if (!container.current?.contains(document.activeElement)) {
+      switch (activationReason?.reason) {
+        case "deleteWorkout":
+          deleteButton.current?.focus();
+          break;
+        case "insertWorkout":
+          descriptionInput.current?.focus();
+          break;
+        case "moveWorkoutUp":
+          if (canMoveUp) {
+            moveUpButton.current?.focus();
+          } else if (canMoveDown) {
+            moveDownButton.current?.focus();
+          } else {
+            // If the workout cannot be moved up or down,
+            // it shouldn't have been able to activate for
+            // this reason, but just in case:
+            insertButton.current?.focus();
+          }
+          break;
+        case "moveWorkoutDown":
+          if (canMoveDown) {
+            moveDownButton.current?.focus();
+          } else if (canMoveUp) {
+            moveUpButton.current?.focus();
+          } else {
+            // If the workout cannot be moved up or down,
+            // it shouldn't have been able to activate for
+            // this reason, but just in case:
+            insertButton.current?.focus();
+          }
+          break;
+        default:
+          return;
+      }
+    }
+
+    document.activeElement && scrollIntoViewIfNeeded(document.activeElement);
+    // });
+  }, [activationReason, canMoveDown, canMoveUp]);
+  // }, [activate, activationReason, descriptionInput, moveUpButton, moveDownButton, insertButton, deleteButton]);
 
   const buttonClassName = "workout-action-button";
   const iconClassName = "workout-action-icon";
@@ -109,7 +167,8 @@ export const Workout = React.memo(function(props: WorkoutProps) {
           icon="chevronup"
           buttonClassName={buttonClassName}
           iconClassName={iconClassName}
-          disabled={canMoveUp}
+          disabled={!canMoveUp}
+          buttonRef={moveUpButton}
         />
         <IconButton
           onClick={() => onMove(true)}
@@ -117,30 +176,31 @@ export const Workout = React.memo(function(props: WorkoutProps) {
           icon="chevrondown"
           buttonClassName={buttonClassName}
           iconClassName={iconClassName}
-          disabled={canMoveDown}
+          disabled={!canMoveDown}
+          buttonRef={moveDownButton}
         />
-        {/* TODO: focus should move to the newly added item */}
         <IconButton
           onClick={onInsert}
           title="Add new workout"
           icon="plus"
           buttonClassName={buttonClassName}
           iconClassName={iconClassName}
+          buttonRef={insertButton}
         />
-        {/* TODO: focus is lost after deleting */}
         <IconButton
           onClick={onDelete}
           title="Delete"
           icon="minus"
           buttonClassName={buttonClassName}
           iconClassName={iconClassName}
-          disabled={canDelete}
+          disabled={!canDelete}
+          buttonRef={deleteButton}
         />
       </div>
     );
 
   return (
-    <div className={`workout ${displayMode}`}>
+    <div ref={container} className={`workout ${displayMode}`}>
       <div className="date-column">
         <div className="my-row date-string primary">
           {dayOfWeekString} - {shortDateString}
@@ -166,6 +226,7 @@ export const Workout = React.memo(function(props: WorkoutProps) {
                 className={"description-input"}
                 value={description}
                 onChange={onDescriptionChange}
+                ref={descriptionInput}
               />
             </div>
           </>

@@ -105,7 +105,6 @@ const handleFileChange = (
 
   importFile(file)
     .then(importedPlan => {
-      console.log(`Imported plan: ${importedPlan.title}`);
 
       // Avoid plans with the same title when importing. They can be renamed later
       while (

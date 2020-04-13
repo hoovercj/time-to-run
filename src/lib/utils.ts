@@ -141,3 +141,11 @@ export function leftPad(input: string, minLength: number, char: string) {
 
   return `${char.repeat(repeat)}${input}`;
 }
+
+export function scrollIntoViewIfNeeded(target: Element) {
+  var rect = target.getBoundingClientRect();
+
+  if (rect.bottom > window.innerHeight || rect.top < 0) {
+    target.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "nearest" });
+  }
+}

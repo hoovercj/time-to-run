@@ -1,4 +1,4 @@
-import React, { useCallback, useReducer, useEffect } from "react";
+import React, { useCallback, useReducer, useEffect, useRef } from "react";
 
 import "./Plan.scss";
 
@@ -48,6 +48,8 @@ export function Plan({
   useEffect(() => {
     dispatch({ type: "setPlan", payload: plan });
   }, [plan]);
+
+  const saveEditButton = useRef<HTMLButtonElement>(null);
 
   const editActionCallback = useCallback(
     (action: Action) => {
@@ -99,6 +101,7 @@ export function Plan({
           canMoveUp={!isFirst}
           canMoveDown={!isLast}
           date={date.toDateString()}
+          activationReason={state.workoutToActivate === w.id ? state.activationReason : undefined}
       />
       );
     });
@@ -118,7 +121,7 @@ export function Plan({
     <div className={`plan ${displayMode}`}>
       <h2 className="plan-heading">
         {renderTitle(title, dispatch, isEditMode)}
-        {renderActions(isEditMode, editActionCallback)}
+        {renderActions(isEditMode, editActionCallback, saveEditButton)}
       </h2>
       <div className="goal-race">Goal Race: {getLongDateString(goalDate)}</div>
       {renderedWeeks}
@@ -143,7 +146,7 @@ function renderTitle(
   );
 }
 
-function renderActions(isEditMode: boolean, dispatch: func<Action>) {
+function renderActions(isEditMode: boolean, dispatch: func<Action>, saveEditButton: React.RefObject<HTMLButtonElement>) {
   const primaryAction: Action = isEditMode
     ? { type: "endEdit", payload: true }
     : { type: "beginEdit" };
@@ -161,12 +164,15 @@ function renderActions(isEditMode: boolean, dispatch: func<Action>) {
         icon={isEditMode ? "save" : "edit"}
         buttonClassName={buttonClassName}
         iconClassName={iconClassName}
+        buttonRef={saveEditButton}
       />
       {isEditMode && (
-        // TODO: Focus is lost after clicking cancel
         <IconButton
           title="Cancel"
-          onClick={() => dispatch(cancelEditAction)}
+          onClick={() => {
+            dispatch(cancelEditAction);
+            saveEditButton.current?.focus();
+          }}
           icon="times"
           buttonClassName={buttonClassName}
           iconClassName={iconClassName}
