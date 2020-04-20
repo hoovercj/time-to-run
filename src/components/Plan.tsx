@@ -16,6 +16,7 @@ import {
   DEFAULT_DISPLAYMODE,
   getVolumeStringFromWorkouts,
   addDays,
+  getVolumeFromWorkouts,
 } from "../lib/utils";
 
 import { IconButton } from "./IconButton";
@@ -165,11 +166,16 @@ export function Plan({
     weekNumber++
   ) {
     const weekWorkouts = tempWorkouts.splice(0, WEEK_LENGTH);
-    const volumeString = getVolumeStringFromWorkouts(
-      weekWorkouts,
-      units,
-      displayUnits
-    );
+
+    const volume = getVolumeFromWorkouts(workouts, units, displayUnits);
+
+    const weekTitle = `Week ${weekNumber}`;
+    let weekSubtitle = undefined;
+
+    if (volume > 0) {
+      const volumeString = getVolumeStringFromWorkouts(weekWorkouts, units, displayUnits);
+      weekSubtitle = `Total Volume: ${volumeString}`;
+    }
 
     const renderedWorkouts = weekWorkouts.map((w, indexInWeek) => {
       const isFirst = weekNumber === 1 && indexInWeek === 0;
@@ -203,8 +209,8 @@ export function Plan({
     renderedWeeks.push(
       <Week
         key={weekNumber}
-        title={`Week ${weekNumber}`}
-        subtitle={`Total volume: ${volumeString}`}
+        title={weekTitle}
+        subtitle={weekSubtitle}
       >
         {renderedWorkouts}
       </Week>

@@ -29,7 +29,7 @@ function About() {
         you want there.
       </p>
       <p>
-        If you do want the plan to work for everone, though, then here's what
+        If you do want the plan to work for everyone, though, then here's what
         the "#" symbols are for:
       </p>
       <ol>
@@ -89,6 +89,7 @@ function About() {
         should be used in combination with the books, so please support the
         authors (and yourself!) if you don't already own them.
       </p>
+      <p>You will also find a version of the popular <a href="https://www.coachmag.co.uk/5k-training/3472/running-for-beginners-free-couch-to-5k-plan">Couch to 5k program</a></p>
       <p>
         Calendar Icon made by{" "}
         <a href="https://www.flaticon.com/authors/monkik">monkik</a> from{" "}
@@ -98,6 +99,8 @@ function About() {
         All other icons made by Font Awesome from{" "}
         <a href="https://www.fontawesome.com">www.fontawesome.com</a>.
       </p>
+      <h2>Contact Me</h2>
+      <p>If you have made a plan that you think others might benefit from or if you have issues, questions, or suggestions on how I can make this project work better for you, reach out via <a href="mailto:calendarhack@codyhoover.com">email</a> or <a href="https://github.com/hoovercj/calendar-hack/issues">on github</a>.</p>
     </div>
   );
 }

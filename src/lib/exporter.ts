@@ -6,7 +6,8 @@ import {
   chunkArray,
   getDateWithoutTime,
   getVolumeStringFromWorkouts,
-  getDateForWorkout
+  getDateForWorkout,
+  getVolumeFromWorkouts
 } from "../lib/utils";
 
 export type Filetype = "ical" | "json" | "csv";
@@ -58,12 +59,18 @@ export function downloadPlanCalendar(plan: Plan, goalDate: Date, displayUnits: U
     const weekStartDate = getDateForWorkout(weekStartWorkoutIndex, workoutCount, goalDateWithoutTime);
     const weekEndDate = getDateForWorkout(weekEndWorkoutIndex, workoutCount, goalDateWithoutTime);
 
-    const weekTitle = `${weeks.length -
-      index} Weeks to Goal: ${getVolumeStringFromWorkouts(
-      week,
-      units,
-      displayUnits
-    )}`;
+
+    let weekTitle = `${weeks.length - index} Weeks to Goal`;
+
+    const weeklyVolume = getVolumeFromWorkouts(workouts, units, displayUnits);
+    if (weeklyVolume > 0) {
+      weekTitle += `:  ${getVolumeStringFromWorkouts(
+        week,
+        units,
+        displayUnits
+      )}`;
+    }
+
     calendar.addEvent(weekTitle, "", "", weekStartDate, weekEndDate);
 
     week.forEach((workout, index) => {
