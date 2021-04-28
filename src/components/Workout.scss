@@ -3,8 +3,10 @@
   flex-direction: row;
   padding: 10px 0;
 
-  &:not(:focus-within):not(:hover) .edit-workout-action-container {
-    opacity: 0;
+  @media (hover: hover) {
+    &:not(:focus-within):not(:hover) .edit-workout-action-container {
+      opacity: 0;
+    }
   }
 
   .edit-workout-action-container {
@@ -71,10 +73,6 @@
 @media (max-width: 800px) {
   .workout {
     display: block;
-
-    &:not(:focus-within):not(:hover) .edit-workout-action-container {
-      visibility: visible;
-    }
 
     .edit-workout-action-container {
       padding-top: 0px;
