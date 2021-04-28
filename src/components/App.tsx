@@ -1,39 +1,48 @@
 import React, { useState, useCallback } from "react";
 import { Plan as IPlan } from "../lib/workout";
-import { addDays, getGuid, DEFAULT_DISPLAYMODE } from "../lib/utils";
+import { addDays, getGuid, DEFAULT_DISPLAYMODE, parseDateString, getDateInputValueString } from "../lib/utils";
 import { Settings } from "./Settings";
 import { Plan } from "./Plan";
 import { PLANS } from "../workouts/workouts";
 import {
   Filetype,
   downloadPlanCalendar,
-  downloadPlanTemplate
+  downloadPlanTemplate,
+  copyPlanLink
 } from "../lib/exporter";
 import { importFile } from "../lib/importer";
+import { useLocation } from "react-router";
 
 // TODO: Add support for IE / Edge
-// TODO: Persist imported and edited plans in local storage
+// TODO: Read additional / modified plans from local storage
 const initialPlans: { [key: string]: IPlan } = {};
 PLANS.forEach(p => {
-  const id = getGuid();
-  initialPlans[id] = {
+  initialPlans[p.id] = {
     ...p,
-    id,
     workouts: p.workouts.map(w => {
       return {
         ...w,
+        // TODO: Should I just pre-generate these guids?
         id: getGuid()
       };
     })
   };
 });
 
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
+
 function App() {
-  const defaultPlanId = Object.keys(initialPlans)[0];
+  const query = useQuery();
+
+  const planIdQuery = query.get("plan");
+  const defaultPlanId = planIdQuery && !!initialPlans[planIdQuery] ? planIdQuery : Object.keys(initialPlans)[0];
   const [selectedPlanId, setSelectedPlanId] = useState(defaultPlanId);
   const [plans, setPlans] = useState(initialPlans);
   const [planDisplayMode, setPlanDisplayMode] = useState(DEFAULT_DISPLAYMODE);
 
+  // TODO: when adding or updating plan, persist it to local storage
   const addOrUpdatePlan = useCallback(
     (plan: IPlan, select?: boolean) => {
       setPlans(p => {
@@ -52,9 +61,21 @@ function App() {
 
   const selectedPlan = plans[selectedPlanId];
 
-  const today = new Date();
-  const defaultGoalDate = addDays(today, selectedPlan.workouts.length - 1);
-  const [goalDate, setGoalDate] = useState(defaultGoalDate);
+  const tryGetDateFromQuery = () => {
+    const dateString = query.get("date");
+    if (dateString) {
+      const parsedDate = parseDateString(dateString);
+      if (parsedDate) {
+        return parsedDate;
+      }
+    }
+
+    return null;
+  }
+
+  const defaultGoalDate = addDays(new Date(), selectedPlan.workouts.length - 1);
+
+  const [goalDate, setGoalDate] = useState(tryGetDateFromQuery() ?? defaultGoalDate);
 
   const defaultUnits = selectedPlan.units;
   const [displayUnits, setDisplayUnits] = useState(defaultUnits);
@@ -71,11 +92,20 @@ function App() {
         onDateChange={setGoalDate}
         onPlanChange={setSelectedPlanId}
         onUnitsChange={setDisplayUnits}
-        onDownload={(filetype: Filetype) =>
-          filetype === "ical"
-            ? downloadPlanCalendar(selectedPlan, goalDate, displayUnits)
-            : downloadPlanTemplate(selectedPlan, filetype)
-        }
+        onDownload={(filetype: Filetype) => {
+          switch (filetype) {
+            case "ical":
+              downloadPlanCalendar(selectedPlan, goalDate, displayUnits);
+              break;
+            case "link":
+              const isDefaultDateSelected = getDateInputValueString(goalDate) === getDateInputValueString(defaultGoalDate);
+              copyPlanLink(selectedPlan, !!initialPlans[selectedPlan.id], isDefaultDateSelected ? undefined : goalDate);
+            break;
+            default:
+              downloadPlanTemplate(selectedPlan, filetype);
+              break;
+          }
+        }}
         onFileChange={filelist => handleFileChange(filelist, addOrUpdatePlan)}
         displayMode={planDisplayMode}
       />

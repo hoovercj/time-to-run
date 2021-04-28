@@ -19,6 +19,27 @@ export function getGuid() {
   });
 }
 
+/**
+ * Takes a date string and returns a date
+ * @param dateString A date string in the format YYYY-MM-DD
+ */
+export function parseDateString(dateString: string): Date | null {
+  const results = /(\d{4})-(\d{2})-(\d{2})/.exec(dateString);
+  if (results?.length !== 4) {
+    return null;
+  }
+
+  const [_, year, month, day] = results.map(Number);
+
+  // Intentionally incomplete validation just for sanity checking.
+  if (month < 1 || month > 12 || day < 0 || day > 31) {
+    return null;
+  }
+
+  // Note: month is parsed as 1-12 but the Date constructor expects 0-11
+  return new Date(year, month - 1, Number(results[3]));
+}
+
 export function getDateWithoutTime(date: Date): Date {
   return new Date(date.getFullYear(), date.getMonth(), date.getDate());
 }

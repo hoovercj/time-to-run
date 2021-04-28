@@ -1,7 +1,8 @@
-import { ExternalPlan } from "../lib/workout";
+import { BuiltInPlan } from "../lib/workout";
 
-export const PLANS: ExternalPlan[] = [
+export const PLANS: BuiltInPlan[] = [
   {
+    id: "768b2adc-ed4c-4fb1-b20c-43ffad871967",
     title:
       "Marathon: Pfitzinger/Douglas: Up to 55 miles per week, 18-week schedule",
     raceType: "Marathon",
@@ -404,6 +405,7 @@ export const PLANS: ExternalPlan[] = [
     ],
   },
   {
+    id: "f408afd6-8521-4b54-9e59-6c0cbda813bb",
     title:
       "Marathon: Pfitzinger/Douglas: 55 to 70 miles per week, 18-week schedule",
     raceType: "Marathon",
@@ -868,6 +870,7 @@ export const PLANS: ExternalPlan[] = [
     ],
   },
   {
+    id: "fd1fbb2d-0e08-4493-8226-8acf28a2b157",
     title:
       "Marathon: Pfitzinger/Douglas: 70 to 85 miles per week, 18-week schedule",
     raceType: "Marathon",
@@ -1387,6 +1390,7 @@ export const PLANS: ExternalPlan[] = [
     ],
   },
   {
+    id: "d4e1b3c7-d13a-4b0d-bd61-b421e585a0f0",
     title:
       "Marathon: Pfitzinger/Douglas: Up to 55 miles per week, 12-week schedule",
     raceType: "Marathon",
@@ -1654,6 +1658,7 @@ export const PLANS: ExternalPlan[] = [
     ],
   },
   {
+    id: "75dd5be1-0ce1-4f6c-a4f1-08a449fdf749",
     title:
       "Marathon: Pfitzinger/Douglas: 55 to 70 miles per week, 12-week schedule",
     raceType: "Marathon",
@@ -1969,6 +1974,7 @@ export const PLANS: ExternalPlan[] = [
     ],
   },
   {
+    id: "ccdda323-79d9-409c-ad48-6fba09474b2e",
     title: "Marathon: Hansons Beginner Marathon",
     raceType: "Marathon",
     units: "miles",
@@ -2418,6 +2424,7 @@ export const PLANS: ExternalPlan[] = [
     ],
   },
   {
+    id: "28e27e4b-6863-490f-a5fc-eaae440ac5a2",
     title: "Marathon: Hansons Advanced Marathon",
     raceType: "Marathon",
     units: "miles",
@@ -2889,6 +2896,7 @@ export const PLANS: ExternalPlan[] = [
     ],
   },
   {
+    id: "0c065ed8-55d4-4571-81a3-b49567b89da6",
     title: "Marathon: Hal Higdon: Novice 1",
     raceType: "Marathon",
     units: "miles",
@@ -3236,6 +3244,7 @@ export const PLANS: ExternalPlan[] = [
     ],
   },
   {
+    id: "4e82d346-61e0-4e55-baf1-bc7fd4c502f5",
     title: "Marathon: Hal Higdon: Novice 2",
     raceType: "Marathon",
     units: "miles",
@@ -3583,6 +3592,7 @@ export const PLANS: ExternalPlan[] = [
     ],
   },
   {
+    id: "68699d88-d542-4c36-8ea2-8e1e61d8e07c",
     title: "Marathon: Hal Higdon: Intermediate 1",
     raceType: "Marathon",
     units: "miles",
@@ -3978,6 +3988,7 @@ export const PLANS: ExternalPlan[] = [
     ],
   },
   {
+    id: "ce20a81f-b003-4a9e-aa61-8d57419776a5",
     title: "Marathon: Hal Higdon: Intermediate 2",
     raceType: "Marathon",
     units: "miles",
@@ -4373,6 +4384,7 @@ export const PLANS: ExternalPlan[] = [
     ],
   },
   {
+    id: "d05e8c67-0f5e-4478-b854-2c7486634744",
     title: "Marathon: Hal Higdon: Advanced 1",
     raceType: "Marathon",
     units: "miles",
@@ -4765,6 +4777,7 @@ export const PLANS: ExternalPlan[] = [
     ],
   },
   {
+    id: "7a6a6fe1-6bd1-477a-9ae2-cb25c7d07dbc",
     title: "Marathon: Hal Higdon: Advanced 2",
     raceType: "Marathon",
     units: "miles",
@@ -5124,6 +5137,7 @@ export const PLANS: ExternalPlan[] = [
     ],
   },
   {
+    id: "1cb3f2d3-76af-401d-87b7-7eb9bab3b297",
     title:
       "Half Marathon: Pfitzinger/Latter: 61 to 84 miles per week, 12-week schedule",
     raceType: "Half Marathon",
@@ -5487,6 +5501,7 @@ export const PLANS: ExternalPlan[] = [
     ],
   },
   {
+    id: "1f16b01b-3dd4-498b-96b8-17b6c304288b",
     title: "Half Marathon: Hansons Beginner Half Marathon",
     raceType: "Half Marathon",
     units: "miles",
@@ -5933,6 +5948,7 @@ export const PLANS: ExternalPlan[] = [
     ],
   },
   {
+    id: "157fc89d-fd52-41b4-aec6-5cb917824951",
     title: "Half Marathon: Hansons Advanced Half Marathon",
     raceType: "Half Marathon",
     units: "miles",
@@ -6398,6 +6414,7 @@ export const PLANS: ExternalPlan[] = [
     ],
   },
   {
+    id: "e81a807f-0e3d-47c4-8d63-9cfc1b948174",
     title: "Couch to 5K",
     raceType: "5K",
     raceDistance: 5,
@@ -6637,6 +6654,7 @@ export const PLANS: ExternalPlan[] = [
     ],
   },
   {
+    id: "957bd5e2-a307-4b29-91eb-fffb29fe28f7",
     title: "Base Training: Pfitzinger/Latter: Up to 60 miles per week, 10-week schedule",
     raceType: "Base",
     raceDistance: 0,
@@ -6925,6 +6943,7 @@ export const PLANS: ExternalPlan[] = [
     ]
   },
   {
+    id: "94dc1b15-1f96-4ede-a74e-e63629429568",
     title: "New (miles)",
     raceType: "",
     units: "miles",
@@ -6937,6 +6956,7 @@ export const PLANS: ExternalPlan[] = [
     ],
   },
   {
+    id: "c03adcfc-d1c8-4c55-a4f6-641407c68aec",
     title: "New (km)",
     raceType: "",
     units: "kilometers",
