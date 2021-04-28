@@ -19,7 +19,7 @@ import {
   getVolumeFromWorkouts,
 } from "../lib/utils";
 
-import { IconButton } from "./IconButton";
+import { InteractiveIcon } from "./InteractiveIcon";
 import { reducer, Action } from "../lib/reducer";
 import { Week } from "./Week";
 import { Workout } from "./Workout";
@@ -266,23 +266,23 @@ function renderActions(
 
   return (
     <>
-      <IconButton
+      <InteractiveIcon
         onClick={toggleEdit}
         title={`${isEditMode ? "Cancel" : "Edit"} (Alt+E)`}
         icon={isEditMode ? "times" : "edit"}
-        buttonClassName={buttonClassName}
+        className={buttonClassName}
         iconClassName={iconClassName}
-        buttonRef={toggleEditButton}
+        elementRef={toggleEditButton}
       />
       {isEditMode && (
-        <IconButton
+        <InteractiveIcon
           title="Save (Alt+S)"
           onClick={() => {
             saveEdit();
             toggleEditButton.current?.focus();
           }}
           icon="save"
-          buttonClassName={buttonClassName}
+          className={buttonClassName}
           iconClassName={iconClassName}
         />
       )}

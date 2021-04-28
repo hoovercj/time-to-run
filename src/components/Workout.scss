@@ -44,8 +44,19 @@
   }
 
   &.edit {
-    &:not(:last-child) {
-      border-bottom: 1px solid #d2d0ce;
+    border: 1px solid transparent;
+
+    &:not(:first-child) {
+      border-color: 1px solid #d2d0ce;
+    }
+
+    &.drag-hover {
+      border-color: var(--color-primary);
+      background-color: rgba(var(--color-primary-rgb), 0.1);
+
+      * {
+        pointer-events: none;
+      }
     }
 
     .date-string {

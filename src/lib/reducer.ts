@@ -1,5 +1,5 @@
 import { Workout, Plan } from "./workout";
-import { getGuid, DisplayMode } from "./utils";
+import { getGuid, DisplayMode, moveWithinArray } from "./utils";
 
 export interface PlanState {
   displayMode: DisplayMode;
@@ -172,6 +172,39 @@ export function reducer(
         focusedElement: { elementId: payload as string},
       }
     }
+    case "dropWorkout": {
+      const { dragId, dropId } = (payload as { dragId: string, dropId: string });
+      const newState = {
+        ...state,
+        workoutToActivate: dragId,
+        activationReason: { reason: type },
+        focusedElement: undefined,
+        editedPlan: {
+          ...state.editedPlan,
+          workouts: [...state.editedPlan.workouts],
+        },
+      };
+
+      const currentIndex = newState.editedPlan.workouts.findIndex(
+        (w: Workout) => w.id === dragId
+      );
+
+      const destinationIndex = newState.editedPlan.workouts.findIndex(
+        (w: Workout) => w.id === dropId
+      );
+
+      if (currentIndex < 0 || currentIndex >= newState.editedPlan.workouts.length) {
+        return state;
+      }
+
+      if (destinationIndex < 0 || destinationIndex >= newState.editedPlan.workouts.length) {
+        return state;
+      }
+
+      newState.editedPlan.workouts = moveWithinArray(newState.editedPlan.workouts, currentIndex, destinationIndex);
+
+      return newState;
+    }
     default:
       throw new Error("Unsupported action type dispatched.");
   }
@@ -187,7 +220,8 @@ export type ActionType =
   | "moveWorkoutUp"
   | "deleteWorkout"
   | "insertWorkout"
-  | "notifyFocusedElementUnmounted";
+  | "notifyFocusedElementUnmounted"
+  | "dropWorkout";
 
 export interface Action {
   type: ActionType;

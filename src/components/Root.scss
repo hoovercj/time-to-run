@@ -1,5 +1,13 @@
 @import "../lib/milligram/milligram";
 
+:root {
+  --color-primary: #{$color-primary};
+  --color-primary-rgb: #{$color-primary-rgb};
+  --color-neutral-primary: #{$color-neutral-primary};
+  --color-neutral-secondary: #{$color-neutral-secondary};
+  --color-dark: #{$color-dark};
+}
+
 html {
   font-size: 90%;
 }
@@ -13,25 +21,25 @@ a.active {
 }
 
 .primary {
-  color: $color-primary;
+  color: var(--color-primary);
 }
 
 .react-datepicker {
   .react-datepicker__day--keyboard-selected,
   .react-datepicker__month-text--keyboard-selected,
   .react-datepicker__quarter-text--keyboard-selected {
-    background-color: $color-neutral-secondary;
+    background-color: var(--color-neutral-secondary);
 
     &:hover {
-      background-color: $color-neutral-primary;
+      background-color: var(--color-neutral-primary);
     }
   }
 
   .react-datepicker__day--selected {
-    background-color: $color-primary;
+    background-color: var(--color-primary);
 
     &:hover {
-      background-color: $color-dark;
+      background-color: var(--color-dark);
     }
   }
 }

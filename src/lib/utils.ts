@@ -9,6 +9,11 @@ export type func<T> = (value: T) => void;
 export type DisplayMode = "edit" | "view";
 export const DEFAULT_DISPLAYMODE: DisplayMode = "view";
 
+export function moveWithinArray<T=any>(array: T[], fromIndex: number, toIndex: number): T[] {
+  const ret = [...array];
+  ret.splice(toIndex, 0, ret.splice(fromIndex, 1)[0]);
+  return ret;
+}
 
 // via https://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
 export function getGuid() {
