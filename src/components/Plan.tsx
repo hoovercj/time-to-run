@@ -74,6 +74,13 @@ export function Plan({
   }, [focusedElement]);
 
   const toggleEdit = useCallback(() => {
+    if (isEditMode && JSON.stringify(plan) !== JSON.stringify(editedPlan)) {
+      let discardChanges = window.confirm("Your unsaved changes will be lost. Press OK to discard these changes and stop editing, otherwise click cancel.");
+      if (!discardChanges) {
+        return;
+      }
+    }
+
     // If the focus is on some element before the save and
     // the focus is lost during the save, set the focus somewhere
     // predictable.
@@ -89,7 +96,7 @@ export function Plan({
       : { type: "beginEdit" };
 
     dispatch(action);
-  }, [isEditMode, dispatch]);
+  }, [isEditMode, dispatch, plan, editedPlan]);
 
   const performSave = useCallback(() => {
     // If the focus is on some element before the save and
