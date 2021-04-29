@@ -44,9 +44,17 @@ a.active {
   }
 }
 
+$max-width-pixels: 1000px;
+$max-width-percentage-decimal: 0.95;
+$max-width-percentage: #{100% * $max-width-percentage-decimal};
+
 .root {
-  max-width: 80%;
+  max-width: $max-width-pixels;
   margin: calc(2.0rem * .625) auto;
+
+  @media (max-width: #{$max-width-pixels / $max-width-percentage-decimal}) {
+    max-width: $max-width-percentage;
+  }
 }
 
 .header {

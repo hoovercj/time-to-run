@@ -17,6 +17,7 @@ import {
   getShortDateString,
   getDistanceString,
   scrollIntoViewIfNeeded,
+  getShortDateStringWithoutYear,
 } from "../lib/utils";
 import { formatWorkoutFromTemplate } from "../lib/formatter";
 import { InteractiveIcon } from "./InteractiveIcon";
@@ -36,6 +37,7 @@ export interface WorkoutProps {
   canMoveDown: boolean;
   canDelete: boolean;
   activationReason?: { reason: ActionType };
+  renderAsGrid: boolean;
 }
 
 export const Workout = React.memo(function (props: WorkoutProps) {
@@ -52,13 +54,14 @@ export const Workout = React.memo(function (props: WorkoutProps) {
     canMoveUp,
     canDelete,
     activationReason,
+    renderAsGrid,
   } = props;
 
   const dateMemo = useMemo(() => new Date(date), [date]);
   const dayOfWeekString = useMemo(() => getDayOfWeekString(dateMemo), [
     dateMemo,
   ]);
-  const shortDateString = useMemo(() => getShortDateString(dateMemo), [
+  const shortDateString = useMemo(() => getShortDateStringWithoutYear(dateMemo), [
     dateMemo,
   ]);
   const formattedDescription = useMemo(
@@ -86,7 +89,7 @@ export const Workout = React.memo(function (props: WorkoutProps) {
     });
   };
 
-  const onDescriptionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onDescriptionChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const newDescription = e.target.value;
     dispatch({
       type: "editWorkout",
@@ -181,7 +184,7 @@ export const Workout = React.memo(function (props: WorkoutProps) {
   }, [dispatch, id]);
 
   const container = useRef<HTMLDivElement>(null);
-  const descriptionInput = useRef<HTMLInputElement>(null);
+  const descriptionInput = useRef<HTMLTextAreaElement>(null);
   const moveUpButton = useRef<HTMLButtonElement>(null);
   const moveDownButton = useRef<HTMLButtonElement>(null);
   const insertButton = useRef<HTMLButtonElement>(null);
@@ -254,7 +257,7 @@ export const Workout = React.memo(function (props: WorkoutProps) {
       <div className="my-row edit-workout-action-container">
         <DragHandle
           id={id}
-          buttonClassName={buttonClassName}
+          className={`drag-button ${buttonClassName}`}
           iconClassName={iconClassName}
           draggableElement={container.current}
         />
@@ -263,7 +266,7 @@ export const Workout = React.memo(function (props: WorkoutProps) {
           onClick={() => onMove(false)}
           title="Move up (Alt+Up)"
           icon="chevronup"
-          className={buttonClassName}
+          className={`move-up-button ${buttonClassName}`}
           iconClassName={iconClassName}
           disabled={!canMoveUp}
           elementRef={moveUpButton}
@@ -273,7 +276,7 @@ export const Workout = React.memo(function (props: WorkoutProps) {
           onClick={() => onMove(true)}
           title="Move down (Alt+Down)"
           icon="chevrondown"
-          className={buttonClassName}
+          className={`move-down-button ${buttonClassName}`}
           iconClassName={iconClassName}
           disabled={!canMoveDown}
           elementRef={moveDownButton}
@@ -283,7 +286,7 @@ export const Workout = React.memo(function (props: WorkoutProps) {
           onClick={onInsert}
           title="Add new workout (Alt+N)"
           icon="plus"
-          className={buttonClassName}
+          className={`insert-button ${buttonClassName}`}
           iconClassName={iconClassName}
           elementRef={insertButton}
         />
@@ -292,7 +295,7 @@ export const Workout = React.memo(function (props: WorkoutProps) {
           onClick={onDelete}
           title="Delete (Alt+D)"
           icon="minus"
-          className={buttonClassName}
+          className={`delete-button ${buttonClassName}`}
           iconClassName={iconClassName}
           disabled={!canDelete}
           elementRef={deleteButton}
@@ -303,7 +306,7 @@ export const Workout = React.memo(function (props: WorkoutProps) {
   return (
     <div
       ref={container}
-      className={`workout ${displayMode} ${dragHover ? "drag-hover" : ""}`}
+      className={`workout ${displayMode} ${dragHover ? "drag-hover" : ""} ${renderAsGrid ? "grid" : ""}`}
       onKeyDown={onKeyDown}
       onDragOver={onDragOver}
       onDragEnter={onDragEnter}
@@ -312,7 +315,7 @@ export const Workout = React.memo(function (props: WorkoutProps) {
     >
       <div className="date-column">
         <div className="my-row date-string primary">
-          {dayOfWeekString} - {shortDateString}
+          {dayOfWeekString}
         </div>
         {renderActions()}
       </div>
@@ -331,14 +334,14 @@ export const Workout = React.memo(function (props: WorkoutProps) {
               <span>{distanceString}</span>
             </div>
             <div className="my-row description-row">
-              <input
+              <textarea
                 id={`description-input-${id}`}
-                type="text"
                 className={"description-input"}
                 value={description}
                 onChange={onDescriptionChange}
                 ref={descriptionInput}
-              />
+              >
+              </textarea>
             </div>
           </>
         )}

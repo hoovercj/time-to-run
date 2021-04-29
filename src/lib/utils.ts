@@ -146,6 +146,10 @@ export function getLongDateString(date: Date): string {
   return date.toLocaleDateString("en-US", options); // Saturday, September 17, 2016
 }
 
+export function getShortDateStringWithoutYear(date: Date): string {
+  return date.toLocaleDateString("en-US", { month: "numeric", day: "numeric"}); // 9/17
+}
+
 export function getShortDateString(date: Date): string {
   return date.toLocaleDateString("en-US"); // 9/17/2016
 }

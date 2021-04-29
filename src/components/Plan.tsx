@@ -17,6 +17,9 @@ import {
   getVolumeStringFromWorkouts,
   addDays,
   getVolumeFromWorkouts,
+  getShortDateString,
+  getShortDateStringWithoutYear,
+  getDayOfWeekString,
 } from "../lib/utils";
 
 import { InteractiveIcon } from "./InteractiveIcon";
@@ -51,6 +54,8 @@ export function Plan({
   const { units } = plan;
   // Properties that are editable
   const { displayMode, editedPlan, focusedElement } = state;
+
+  const renderAsGrid = true;
 
   const editCancelButton = useRef<HTMLButtonElement>(null);
   const workoutsContainer = useRef<HTMLDivElement>(null);
@@ -177,12 +182,10 @@ export function Plan({
     const volume = getVolumeFromWorkouts(workouts, units, displayUnits);
 
     const weekTitle = `Week ${weekNumber}`;
-    let weekSubtitle = undefined;
-
-    if (volume > 0) {
-      const volumeString = getVolumeStringFromWorkouts(weekWorkouts, units, displayUnits);
-      weekSubtitle = `Total Volume: ${volumeString}`;
-    }
+    const volumeString = volume > 0 ? getVolumeStringFromWorkouts(weekWorkouts, units, displayUnits) : undefined;
+    const weekStartDate = addDays(goalDate, (tempWorkouts.length + weekWorkouts.length - 1) * -1);
+    const weekEndDate = addDays(weekStartDate, 6);
+    const dateString = `${getShortDateStringWithoutYear(weekStartDate)}-${getShortDateStringWithoutYear(weekEndDate)}`;
 
     const renderedWorkouts = weekWorkouts.map((w, indexInWeek) => {
       const isFirst = weekNumber === 1 && indexInWeek === 0;
@@ -208,7 +211,8 @@ export function Plan({
             state.workoutToActivate === w.id
               ? state.activationReason
               : undefined
-          }
+            }
+          renderAsGrid={renderAsGrid}
         />
       );
     });
@@ -217,7 +221,9 @@ export function Plan({
       <Week
         key={weekNumber}
         title={weekTitle}
-        subtitle={weekSubtitle}
+        dateString={dateString}
+        volumeString={volumeString}
+        renderAsGrid={renderAsGrid}
       >
         {renderedWorkouts}
       </Week>

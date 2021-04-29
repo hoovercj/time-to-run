@@ -135,13 +135,14 @@ export const Settings = React.memo(function(props: SettingsProps) {
           >
             csv
           </button>
-          <button
+          {/* Hide this button until it can provide more value */}
+          {/* <button
             className="download-button"
             onClick={() => onDownload("link")}
             disabled={isEditMode}
           >
             Copy link
-          </button>
+          </button> */}
         </div>
       </div>
     </Card>

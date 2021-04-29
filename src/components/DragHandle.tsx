@@ -3,7 +3,7 @@ import { InteractiveIcon } from "./InteractiveIcon";
 
 export interface DragHandleProps {
   id: string;
-  buttonClassName?: string;
+  className?: string;
   iconClassName?: string;
   draggableElement?: HTMLElement | null;
 }
@@ -15,7 +15,7 @@ export function DragHandle(props: DragHandleProps) {
       title="Drag to reorder workouts"
       icon="arrows"
       as="div"
-      className={props.buttonClassName}
+      className={props.className}
       iconClassName={props.iconClassName}
       onDragStart={(event: React.DragEvent) => {
         event.dataTransfer.setData("id", props.id);
