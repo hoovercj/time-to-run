@@ -17,9 +17,7 @@ import {
   getVolumeStringFromWorkouts,
   addDays,
   getVolumeFromWorkouts,
-  getShortDateString,
   getShortDateStringWithoutYear,
-  getDayOfWeekString,
 } from "../lib/utils";
 
 import { InteractiveIcon } from "./InteractiveIcon";

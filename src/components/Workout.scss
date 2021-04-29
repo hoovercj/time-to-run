@@ -13,7 +13,7 @@ $grid-padding: 10px;
     @media (min-width: $grid-breakpoint) {
       .date-column {
         flex-grow: 0;
-        margin-right: auto;
+        text-align: left;
         padding-top: 1px; // Manually align with the basline of the Week number
 
 

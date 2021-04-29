@@ -14,10 +14,8 @@ import {
   func,
   DisplayMode,
   getDayOfWeekString,
-  getShortDateString,
   getDistanceString,
   scrollIntoViewIfNeeded,
-  getShortDateStringWithoutYear,
 } from "../lib/utils";
 import { formatWorkoutFromTemplate } from "../lib/formatter";
 import { InteractiveIcon } from "./InteractiveIcon";
@@ -59,9 +57,6 @@ export const Workout = React.memo(function (props: WorkoutProps) {
 
   const dateMemo = useMemo(() => new Date(date), [date]);
   const dayOfWeekString = useMemo(() => getDayOfWeekString(dateMemo), [
-    dateMemo,
-  ]);
-  const shortDateString = useMemo(() => getShortDateStringWithoutYear(dateMemo), [
     dateMemo,
   ]);
   const formattedDescription = useMemo(
