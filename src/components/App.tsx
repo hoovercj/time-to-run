@@ -29,15 +29,8 @@ PLANS.forEach(p => {
   };
 });
 
-function useQuery() {
-  return new URLSearchParams(useLocation().search);
-}
-
 function App() {
-  const query = useQuery();
-
-  const planIdQuery = query.get("plan");
-  const defaultPlanId = planIdQuery && !!initialPlans[planIdQuery] ? planIdQuery : Object.keys(initialPlans)[0];
+  const defaultPlanId = Object.keys(initialPlans)[0];
   const [selectedPlanId, setSelectedPlanId] = useState(defaultPlanId);
   const [plans, setPlans] = useState(initialPlans);
   const [planDisplayMode, setPlanDisplayMode] = useState(DEFAULT_DISPLAYMODE);
@@ -61,21 +54,8 @@ function App() {
 
   const selectedPlan = plans[selectedPlanId];
 
-  const tryGetDateFromQuery = () => {
-    const dateString = query.get("date");
-    if (dateString) {
-      const parsedDate = parseDateString(dateString);
-      if (parsedDate) {
-        return parsedDate;
-      }
-    }
-
-    return null;
-  }
-
   const defaultGoalDate = addDays(new Date(), selectedPlan.workouts.length - 1);
-
-  const [goalDate, setGoalDate] = useState(tryGetDateFromQuery() ?? defaultGoalDate);
+  const [goalDate, setGoalDate] = useState(defaultGoalDate);
 
   const defaultUnits = selectedPlan.units;
   const [displayUnits, setDisplayUnits] = useState(defaultUnits);
