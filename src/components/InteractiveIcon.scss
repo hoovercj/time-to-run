@@ -1,0 +1,34 @@
+button, div {
+  &.interactive-icon {
+    display: inline-block;
+    padding: 0;
+
+    .icon {
+      padding: 3px;
+    }
+
+    &,
+    & .icon {
+      height: 23px;
+      width: 23px;
+      margin: 0;
+    }
+
+    &:focus {
+      outline: 0;
+
+      .icon {
+        outline: 1px solid;
+        outline-color: currentColor;
+      }
+    }
+
+    &[draggable="true"] {
+      cursor: move;
+
+      @media (hover: none) {
+        display: none;
+      }
+    }
+  }
+}

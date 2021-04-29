@@ -1,0 +1,70 @@
+@import "globals";
+
+.week {
+  display: flex;
+  flex-direction: column;
+
+  &:not(.grid) {
+    .subtitle.grid {
+      display: none;
+    }
+  }
+
+  &.grid {
+    .subtitle:not(.grid) {
+      display: none;
+    }
+
+    @media (max-width: $hide-grid-title-breakpoint) {
+      .subtitle:not(.grid) {
+        display: initial;
+      }
+
+      .subtitle.grid {
+        display: none;
+      }
+    }
+  }
+
+  .subtitle {
+    padding-left: 1ch;
+  }
+
+  .workouts-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &.grid {
+
+    h3 {
+      font-size: 1.25rem;
+      margin: 0 10px 0 0;
+    }
+
+    @media (min-width: $grid-breakpoint) {
+      h3 {
+        flex-shrink: 0;
+      }
+
+      .workouts-container {
+        flex-direction: row;
+      }
+    }
+
+    @media (min-width: $hide-grid-title-breakpoint) {
+      flex-direction: row;
+
+      h3 {
+        // Used to ensure the week "column" has a uniform width
+        // across all rows
+        flex-basis: 9ch;
+      }
+
+      .title, .subtitle {
+        display: block;
+        padding-left: 0;
+      }
+    }
+  }
+}

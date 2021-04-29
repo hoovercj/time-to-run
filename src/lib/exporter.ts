@@ -7,10 +7,11 @@ import {
   getDateWithoutTime,
   getVolumeStringFromWorkouts,
   getDateForWorkout,
-  getVolumeFromWorkouts
+  getVolumeFromWorkouts,
+  getDateInputValueString
 } from "../lib/utils";
 
-export type Filetype = "ical" | "json" | "csv";
+export type Filetype = "ical" | "json" | "csv" | "link";
 
 export function downloadPlanTemplate(plan: Plan, filetype: Filetype) {
   const { raceDistance, raceType, title, units, workouts } = plan;
@@ -97,4 +98,26 @@ function downloadCsv(plan: ExternalPlan) {
 
 function downloadCore(file: string, filename: string) {
   saveAs!(new Blob([file]), filename);
+}
+
+export function copyPlanLink(plan: Plan, isBuiltIn: boolean, goalDate?: Date) {
+  if (!isBuiltIn) {
+    // TODO: Support encoding custom plans
+    return;
+  }
+  const location = window.location;
+  const url = `${location.origin}${location.pathname}`;
+  const params = new URLSearchParams();
+  params.append("plan", plan.id);
+  if (goalDate) {
+    params.append("date", getDateInputValueString(goalDate));
+  }
+
+  const inputField = document.createElement("input");
+  document.body.appendChild(inputField);
+  inputField.value = `${url}?${params.toString()}`;
+  inputField.select();
+  document.execCommand("copy", true);
+  // TODO: Show a "toast" message saying "link copied"
+  document.body.removeChild(inputField);
 }

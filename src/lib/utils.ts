@@ -9,6 +9,11 @@ export type func<T> = (value: T) => void;
 export type DisplayMode = "edit" | "view";
 export const DEFAULT_DISPLAYMODE: DisplayMode = "view";
 
+export function moveWithinArray<T=any>(array: T[], fromIndex: number, toIndex: number): T[] {
+  const ret = [...array];
+  ret.splice(toIndex, 0, ret.splice(fromIndex, 1)[0]);
+  return ret;
+}
 
 // via https://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
 export function getGuid() {
@@ -17,6 +22,27 @@ export function getGuid() {
     var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
     return v.toString(16);
   });
+}
+
+/**
+ * Takes a date string and returns a date
+ * @param dateString A date string in the format YYYY-MM-DD
+ */
+export function parseDateString(dateString: string): Date | null {
+  const results = /(\d{4})-(\d{2})-(\d{2})/.exec(dateString);
+  if (results?.length !== 4) {
+    return null;
+  }
+
+  const [_, year, month, day] = results.map(Number);
+
+  // Intentionally incomplete validation just for sanity checking.
+  if (month < 1 || month > 12 || day < 0 || day > 31) {
+    return null;
+  }
+
+  // Note: month is parsed as 1-12 but the Date constructor expects 0-11
+  return new Date(year, month - 1, Number(results[3]));
 }
 
 export function getDateWithoutTime(date: Date): Date {
@@ -118,6 +144,10 @@ export function getLongDateString(date: Date): string {
     day: "numeric"
   };
   return date.toLocaleDateString("en-US", options); // Saturday, September 17, 2016
+}
+
+export function getShortDateStringWithoutYear(date: Date): string {
+  return date.toLocaleDateString("en-US", { month: "numeric", day: "numeric"}); // 9/17
 }
 
 export function getShortDateString(date: Date): string {

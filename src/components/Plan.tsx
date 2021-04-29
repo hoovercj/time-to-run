@@ -17,9 +17,10 @@ import {
   getVolumeStringFromWorkouts,
   addDays,
   getVolumeFromWorkouts,
+  getShortDateStringWithoutYear,
 } from "../lib/utils";
 
-import { IconButton } from "./IconButton";
+import { InteractiveIcon } from "./InteractiveIcon";
 import { reducer, Action } from "../lib/reducer";
 import { Week } from "./Week";
 import { Workout } from "./Workout";
@@ -52,6 +53,8 @@ export function Plan({
   // Properties that are editable
   const { displayMode, editedPlan, focusedElement } = state;
 
+  const renderAsGrid = true;
+
   const editCancelButton = useRef<HTMLButtonElement>(null);
   const workoutsContainer = useRef<HTMLDivElement>(null);
   const { title, workouts } = editedPlan;
@@ -74,6 +77,13 @@ export function Plan({
   }, [focusedElement]);
 
   const toggleEdit = useCallback(() => {
+    if (isEditMode && JSON.stringify(plan) !== JSON.stringify(editedPlan)) {
+      let discardChanges = window.confirm("Your unsaved changes will be lost. Press OK to discard these changes and stop editing, otherwise click cancel.");
+      if (!discardChanges) {
+        return;
+      }
+    }
+
     // If the focus is on some element before the save and
     // the focus is lost during the save, set the focus somewhere
     // predictable.
@@ -89,7 +99,7 @@ export function Plan({
       : { type: "beginEdit" };
 
     dispatch(action);
-  }, [isEditMode, dispatch]);
+  }, [isEditMode, dispatch, plan, editedPlan]);
 
   const performSave = useCallback(() => {
     // If the focus is on some element before the save and
@@ -170,12 +180,10 @@ export function Plan({
     const volume = getVolumeFromWorkouts(workouts, units, displayUnits);
 
     const weekTitle = `Week ${weekNumber}`;
-    let weekSubtitle = undefined;
-
-    if (volume > 0) {
-      const volumeString = getVolumeStringFromWorkouts(weekWorkouts, units, displayUnits);
-      weekSubtitle = `Total Volume: ${volumeString}`;
-    }
+    const volumeString = volume > 0 ? getVolumeStringFromWorkouts(weekWorkouts, units, displayUnits) : undefined;
+    const weekStartDate = addDays(goalDate, (tempWorkouts.length + weekWorkouts.length - 1) * -1);
+    const weekEndDate = addDays(weekStartDate, 6);
+    const dateString = `${getShortDateStringWithoutYear(weekStartDate)}-${getShortDateStringWithoutYear(weekEndDate)}`;
 
     const renderedWorkouts = weekWorkouts.map((w, indexInWeek) => {
       const isFirst = weekNumber === 1 && indexInWeek === 0;
@@ -201,7 +209,8 @@ export function Plan({
             state.workoutToActivate === w.id
               ? state.activationReason
               : undefined
-          }
+            }
+          renderAsGrid={renderAsGrid}
         />
       );
     });
@@ -210,7 +219,9 @@ export function Plan({
       <Week
         key={weekNumber}
         title={weekTitle}
-        subtitle={weekSubtitle}
+        dateString={dateString}
+        volumeString={volumeString}
+        renderAsGrid={renderAsGrid}
       >
         {renderedWorkouts}
       </Week>
@@ -259,23 +270,23 @@ function renderActions(
 
   return (
     <>
-      <IconButton
+      <InteractiveIcon
         onClick={toggleEdit}
         title={`${isEditMode ? "Cancel" : "Edit"} (Alt+E)`}
         icon={isEditMode ? "times" : "edit"}
-        buttonClassName={buttonClassName}
+        className={buttonClassName}
         iconClassName={iconClassName}
-        buttonRef={toggleEditButton}
+        elementRef={toggleEditButton}
       />
       {isEditMode && (
-        <IconButton
+        <InteractiveIcon
           title="Save (Alt+S)"
           onClick={() => {
             saveEdit();
             toggleEditButton.current?.focus();
           }}
           icon="save"
-          buttonClassName={buttonClassName}
+          className={buttonClassName}
           iconClassName={iconClassName}
         />
       )}

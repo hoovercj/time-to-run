@@ -4,6 +4,7 @@ import React, {
   useRef,
   useCallback,
   useEffect,
+  useState,
 } from "react";
 
 import "./Workout.scss";
@@ -13,12 +14,12 @@ import {
   func,
   DisplayMode,
   getDayOfWeekString,
-  getShortDateString,
   getDistanceString,
   scrollIntoViewIfNeeded,
 } from "../lib/utils";
 import { formatWorkoutFromTemplate } from "../lib/formatter";
-import { IconButton } from "./IconButton";
+import { InteractiveIcon } from "./InteractiveIcon";
+import { DragHandle } from "./DragHandle";
 import { Action, ActionType } from "../lib/reducer";
 
 export interface WorkoutProps {
@@ -34,6 +35,7 @@ export interface WorkoutProps {
   canMoveDown: boolean;
   canDelete: boolean;
   activationReason?: { reason: ActionType };
+  renderAsGrid: boolean;
 }
 
 export const Workout = React.memo(function (props: WorkoutProps) {
@@ -50,13 +52,11 @@ export const Workout = React.memo(function (props: WorkoutProps) {
     canMoveUp,
     canDelete,
     activationReason,
+    renderAsGrid,
   } = props;
 
   const dateMemo = useMemo(() => new Date(date), [date]);
   const dayOfWeekString = useMemo(() => getDayOfWeekString(dateMemo), [
-    dateMemo,
-  ]);
-  const shortDateString = useMemo(() => getShortDateString(dateMemo), [
     dateMemo,
   ]);
   const formattedDescription = useMemo(
@@ -84,7 +84,7 @@ export const Workout = React.memo(function (props: WorkoutProps) {
     });
   };
 
-  const onDescriptionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onDescriptionChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const newDescription = e.target.value;
     dispatch({
       type: "editWorkout",
@@ -147,8 +147,39 @@ export const Workout = React.memo(function (props: WorkoutProps) {
     [canDelete, canMoveDown, canMoveUp, displayMode, onDelete, onInsert, onMove]
   );
 
+  const [dragHover, setDragHover] = useState(false);
+
+  const onDragOver = useCallback((event: React.DragEvent) => {
+    event.preventDefault();
+  }, []);
+
+  const onDragEnter = useCallback((event: React.DragEvent) => {
+    event.preventDefault();
+    setDragHover(true);
+  }, []);
+
+  const onDragLeave = useCallback((event: React.DragEvent) => {
+    if (!container.current?.contains(event.relatedTarget as HTMLElement)) {
+      setDragHover(false);
+    }
+  }, []);
+
+  const onDrop = useCallback((event: React.DragEvent) => {
+    event.preventDefault();
+    setDragHover(false);
+    const dragId = event.dataTransfer.getData("id");
+    console.log("dropped", id);
+    dispatch({
+      type: "dropWorkout",
+      payload: {
+        dragId: dragId,
+        dropId: id,
+      },
+    });
+  }, [dispatch, id]);
+
   const container = useRef<HTMLDivElement>(null);
-  const descriptionInput = useRef<HTMLInputElement>(null);
+  const descriptionInput = useRef<HTMLTextAreaElement>(null);
   const moveUpButton = useRef<HTMLButtonElement>(null);
   const moveDownButton = useRef<HTMLButtonElement>(null);
   const insertButton = useRef<HTMLButtonElement>(null);
@@ -219,44 +250,50 @@ export const Workout = React.memo(function (props: WorkoutProps) {
   const renderActions = () =>
     displayMode === "edit" && (
       <div className="my-row edit-workout-action-container">
-        <IconButton
+        <DragHandle
+          id={id}
+          className={`drag-button ${buttonClassName}`}
+          iconClassName={iconClassName}
+          draggableElement={container.current}
+        />
+        <InteractiveIcon
           id={`move-up-${id}`}
           onClick={() => onMove(false)}
           title="Move up (Alt+Up)"
           icon="chevronup"
-          buttonClassName={buttonClassName}
+          className={`move-up-button ${buttonClassName}`}
           iconClassName={iconClassName}
           disabled={!canMoveUp}
-          buttonRef={moveUpButton}
+          elementRef={moveUpButton}
         />
-        <IconButton
+        <InteractiveIcon
           id={`move-down-${id}`}
           onClick={() => onMove(true)}
           title="Move down (Alt+Down)"
           icon="chevrondown"
-          buttonClassName={buttonClassName}
+          className={`move-down-button ${buttonClassName}`}
           iconClassName={iconClassName}
           disabled={!canMoveDown}
-          buttonRef={moveDownButton}
+          elementRef={moveDownButton}
         />
-        <IconButton
+        <InteractiveIcon
           id={`insert-${id}`}
           onClick={onInsert}
           title="Add new workout (Alt+N)"
           icon="plus"
-          buttonClassName={buttonClassName}
+          className={`insert-button ${buttonClassName}`}
           iconClassName={iconClassName}
-          buttonRef={insertButton}
+          elementRef={insertButton}
         />
-        <IconButton
+        <InteractiveIcon
           id={`delete-${id}`}
           onClick={onDelete}
           title="Delete (Alt+D)"
           icon="minus"
-          buttonClassName={buttonClassName}
+          className={`delete-button ${buttonClassName}`}
           iconClassName={iconClassName}
           disabled={!canDelete}
-          buttonRef={deleteButton}
+          elementRef={deleteButton}
         />
       </div>
     );
@@ -264,12 +301,16 @@ export const Workout = React.memo(function (props: WorkoutProps) {
   return (
     <div
       ref={container}
-      className={`workout ${displayMode}`}
+      className={`workout ${displayMode} ${dragHover ? "drag-hover" : ""} ${renderAsGrid ? "grid" : ""}`}
       onKeyDown={onKeyDown}
+      onDragOver={onDragOver}
+      onDragEnter={onDragEnter}
+      onDragLeave={onDragLeave}
+      onDrop={onDrop}
     >
       <div className="date-column">
         <div className="my-row date-string primary">
-          {dayOfWeekString} - {shortDateString}
+          {dayOfWeekString}
         </div>
         {renderActions()}
       </div>
@@ -288,14 +329,14 @@ export const Workout = React.memo(function (props: WorkoutProps) {
               <span>{distanceString}</span>
             </div>
             <div className="my-row description-row">
-              <input
+              <textarea
                 id={`description-input-${id}`}
-                type="text"
                 className={"description-input"}
                 value={description}
                 onChange={onDescriptionChange}
                 ref={descriptionInput}
-              />
+              >
+              </textarea>
             </div>
           </>
         )}

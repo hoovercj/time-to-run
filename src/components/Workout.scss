@@ -1,10 +1,66 @@
+@import "globals";
+
+$border-color: #d2d0ce;
+$grid-padding: 10px;
+
 .workout {
   display: flex;
   flex-direction: row;
-  padding: 10px 0;
+  padding: 5px 0;
 
-  &:not(:focus-within):not(:hover) .edit-workout-action-container {
-    opacity: 0;
+  &.grid {
+
+    @media (min-width: $grid-breakpoint) {
+      .date-column {
+        flex-grow: 0;
+        text-align: left;
+        padding-top: 1px; // Manually align with the basline of the Week number
+
+
+        .edit-workout-action-container {
+          margin-bottom: 0 !important;
+          padding-top: 0;
+
+          .workout-action-button {
+            margin-left: 0;
+          }
+        }
+      }
+
+      .move-up-button, .move-down-button {
+        display: none;
+      }
+    }
+
+    &, &.edit {
+      @media(min-width: $grid-breakpoint) {
+        flex-direction: column;
+        flex: 0 0 calc(100% / 7);
+        padding: 0 $grid-padding;
+        border-right: 1px solid $border-color;
+
+        &:first-child {
+          border-left: 1px solid $border-color;
+        }
+        &:last-child {
+          border-color: transparent;
+          padding-right: 0;
+        }
+      }
+
+      @media(min-width: $grid-breakpoint) and (max-width: $hide-grid-title-breakpoint) {
+        &:first-child {
+          border-left: 1px solid transparent;
+          padding-left: 0;
+        }
+      }
+    }
+  }
+
+  @media (hover: hover) {
+    &:not(:focus-within):not(:hover) .edit-workout-action-container {
+      opacity: 0;
+    }
   }
 
   .edit-workout-action-container {
@@ -22,28 +78,48 @@
     }
   }
 
-  input {
+  input.total-distance-input {
     margin-bottom: 0;
-
-    &.total-distance-input {
-      /* 3 chars + up/down toggle in some browsers  */
-      width: 5em;
-      margin: 0 5px;
-    }
-
-    &.description-input {
-      width: 100%;
-      display: block;
-    }
+    /* 3 chars + up/down toggle in some browsers  */
+    max-width: 5em;
+    margin: 0 5px;
   }
 
-  .date-string {
-    font-weight: bold;
+  textarea.description-input {
+    margin-bottom: 0;
+    width: 100%;
+    display: block;
+    font-family: "Arial";
+    min-height: 1rem;
+    resize: vertical;
+  }
+
+  &.grid .description-input {
+    @media (min-width: $grid-breakpoint) {
+      height: 8rem;
+    }
   }
 
   &.edit {
-    &:not(:last-child) {
-      border-bottom: 1px solid #d2d0ce;
+    border: 1px solid transparent;
+
+    &:not(:first-child) {
+      border-top: 1px solid $border-color;
+    }
+
+    @media(min-width: $grid-breakpoint) {
+      &.grid {
+        border-top: 1px solid transparent;
+      }
+    }
+
+    &.drag-hover {
+      border-color: var(--color-primary);
+      background-color: rgba(var(--color-primary-rgb), 0.1);
+
+      * {
+        pointer-events: none;
+      }
     }
 
     .date-string {
@@ -68,13 +144,9 @@
   }
 }
 
-@media (max-width: 800px) {
+@media (max-width: $grid-breakpoint) {
   .workout {
     display: block;
-
-    &:not(:focus-within):not(:hover) .edit-workout-action-container {
-      visibility: visible;
-    }
 
     .edit-workout-action-container {
       padding-top: 0px;

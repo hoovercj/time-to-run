@@ -18,8 +18,12 @@ function About() {
       <p>
         Choose the plan you want as a base (or the "New" plans if you want a
         blank slate) and then click the edit icon next to the title of the plan
-        to begin editing. You can change the title, add and remove workouts, and
-        even reorder them to tailor the workout exactly how you want them.
+        to begin editing, or press "alt+e". You can change the title,
+        add and remove workouts with the icons or "alt+n" and "alt+d",
+        and even reorder them to tailor the workout exactly how you want them
+        by dragging on the "arrows" icon or pressing "alt+up" or "alt+down".
+        To reorder workouts in edit mode, simply drag the "arrows" icon or use
+        the keyboard shortcuts "alt+up arrow" or "alt+down arrow".
       </p>
       <p>
         You can also edit the description of the workouts to change the mileage

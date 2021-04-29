@@ -1,5 +1,13 @@
 @import "../lib/milligram/milligram";
 
+:root {
+  --color-primary: #{$color-primary};
+  --color-primary-rgb: #{$color-primary-rgb};
+  --color-neutral-primary: #{$color-neutral-primary};
+  --color-neutral-secondary: #{$color-neutral-secondary};
+  --color-dark: #{$color-dark};
+}
+
 html {
   font-size: 90%;
 }
@@ -13,32 +21,40 @@ a.active {
 }
 
 .primary {
-  color: $color-primary;
+  color: var(--color-primary);
 }
 
 .react-datepicker {
   .react-datepicker__day--keyboard-selected,
   .react-datepicker__month-text--keyboard-selected,
   .react-datepicker__quarter-text--keyboard-selected {
-    background-color: $color-neutral-secondary;
+    background-color: var(--color-neutral-secondary);
 
     &:hover {
-      background-color: $color-neutral-primary;
+      background-color: var(--color-neutral-primary);
     }
   }
 
   .react-datepicker__day--selected {
-    background-color: $color-primary;
+    background-color: var(--color-primary);
 
     &:hover {
-      background-color: $color-dark;
+      background-color: var(--color-dark);
     }
   }
 }
 
+$max-width-pixels: 1000px;
+$max-width-percentage-decimal: 0.95;
+$max-width-percentage: #{100% * $max-width-percentage-decimal};
+
 .root {
-  max-width: 80%;
+  max-width: $max-width-pixels;
   margin: calc(2.0rem * .625) auto;
+
+  @media (max-width: #{$max-width-pixels / $max-width-percentage-decimal}) {
+    max-width: $max-width-percentage;
+  }
 }
 
 .header {

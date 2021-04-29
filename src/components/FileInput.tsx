@@ -25,7 +25,7 @@ export function FileInput({ text, disabled, onChange, id, accept, className: str
         disabled={disabled}
         className={"file-input"}
       />
-      <label htmlFor={id} className="button">{text}</label>
+      <label htmlFor={id} className="button upload-button">{text}</label>
     </>
   );
 }

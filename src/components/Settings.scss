@@ -1,5 +1,7 @@
 @import "../lib/milligram/Color";
 
+$field-horizontal-margin: 10px;
+
 .settings {
   display: flex;
   justify-content: space-between;
@@ -8,27 +10,30 @@
 .field {
   display: flex;
   flex-direction: column;
-  margin: 0 10px;
+  margin: 0 $field-horizontal-margin;
+
+  min-width: 100px;
+
+  .download-button {
+    margin: 5px 0;
+    padding: 0;
+  }
 }
 
 select {
-  max-width: 200px;
+  max-width: 100%;
 }
 
-.download-button {
-  margin: 5px 0;
+.upload-button {
+  margin-right: auto;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 650px) {
   .settings {
-    flex-direction: column;
+    flex-wrap: wrap;
   }
 
   .field {
-    margin: 10px 10px;
-  }
-
-  select {
-    max-width: 100%;
+    flex-basis: calc(50% - #{2 * $field-horizontal-margin});
   }
 }

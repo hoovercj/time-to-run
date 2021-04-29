@@ -15,7 +15,10 @@ export interface Workout {
   totalDistance: number;
 }
 
-export interface ExternalPlan extends Omit<Plan, "id" | "workouts"> {
+export interface BuiltInPlan extends Omit<Plan, "workouts"> {
   workouts: ExternalWorkout[];
 }
+
+export interface ExternalPlan extends Omit<BuiltInPlan, "id"> {}
+
 export type ExternalWorkout = Omit<Workout, "id">;
