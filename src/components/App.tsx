@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from "react";
 import { Plan as IPlan } from "../lib/workout";
-import { addDays, getGuid, DEFAULT_DISPLAYMODE, parseDateString, getDateInputValueString } from "../lib/utils";
+import { addDays, getGuid, DEFAULT_DISPLAYMODE, getDateInputValueString } from "../lib/utils";
 import { Settings } from "./Settings";
 import { Plan } from "./Plan";
 import { PLANS } from "../workouts/workouts";
@@ -11,7 +11,6 @@ import {
   copyPlanLink
 } from "../lib/exporter";
 import { importFile } from "../lib/importer";
-import { useLocation } from "react-router";
 
 // TODO: Add support for IE / Edge
 // TODO: Read additional / modified plans from local storage
