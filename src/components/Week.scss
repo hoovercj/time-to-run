@@ -1,4 +1,7 @@
-@import "globals";
+// @import "globals";
+
+$grid-breakpoint: 700px;
+$hide-grid-title-breakpoint: 1000px;
 
 .week {
   display: flex;
