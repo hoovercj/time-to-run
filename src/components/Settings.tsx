@@ -78,6 +78,9 @@ export const Settings = React.memo(function(props: SettingsProps) {
             onChange={date => date && onDateChange(date)}
             onSelect={onDatepickerSelect}
             onKeyDown={onDatepickerInputKeyDown}
+            customInput={<input
+              inputMode="none"
+            />}
           />
         </div>
         <div className="field" title={disabledTitle}>
