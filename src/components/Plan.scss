@@ -39,6 +39,12 @@ button.heading-action-button {
   }
 }
 
+@media print {
+  .plan-heading button.heading-action-button {
+    display: none;
+  }
+}
+
 .goal-race, .plan-heading {
   margin-bottom: 10px;
 }

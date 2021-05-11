@@ -13,7 +13,7 @@ $grid-padding: 10px;
 
   &.grid {
 
-    @media (min-width: $grid-breakpoint) {
+    @media print, (min-width: $grid-breakpoint) {
       .date-column {
         flex-grow: 0;
         text-align: left;
@@ -36,7 +36,7 @@ $grid-padding: 10px;
     }
 
     &, &.edit {
-      @media(min-width: $grid-breakpoint) {
+      @media print, (min-width: $grid-breakpoint) {
         flex-direction: column;
         flex: 0 0 calc(100% / 7);
         padding: 0 $grid-padding;
@@ -51,7 +51,7 @@ $grid-padding: 10px;
         }
       }
 
-      @media(min-width: $grid-breakpoint) and (max-width: $hide-grid-title-breakpoint) {
+      @media screen and (min-width: $grid-breakpoint) and (max-width: $hide-grid-title-breakpoint) {
         &:first-child {
           border-left: 1px solid transparent;
           padding-left: 0;
@@ -98,7 +98,7 @@ $grid-padding: 10px;
   }
 
   &.grid .description-input {
-    @media (min-width: $grid-breakpoint) {
+    @media print, (min-width: $grid-breakpoint) {
       height: 8rem;
     }
   }
@@ -110,7 +110,7 @@ $grid-padding: 10px;
       border-top: 1px solid $border-color;
     }
 
-    @media(min-width: $grid-breakpoint) {
+    @media print, (min-width: $grid-breakpoint) {
       &.grid {
         border-top: 1px solid transparent;
       }
@@ -139,7 +139,6 @@ $grid-padding: 10px;
   .date-column {
     flex: 1;
     text-align: right;
-    margin-right: 20px;
   }
 
   .description-column {
@@ -147,7 +146,7 @@ $grid-padding: 10px;
   }
 }
 
-@media (max-width: $grid-breakpoint) {
+@media screen and (max-width: $grid-breakpoint) {
   .workout {
     display: block;
 
@@ -156,7 +155,6 @@ $grid-padding: 10px;
     }
 
     .date-column {
-      margin-right: 0px;
       text-align: left;
     }
   }

@@ -143,6 +143,15 @@ export const Settings = React.memo(function(props: SettingsProps) {
           >
             Copy link
           </button> */}
+          <button
+            className="download-button"
+            aria-labelledby="download-label download-print-button"
+            id="download-print-button"
+            onClick={() => onDownload("print")}
+            disabled={isEditMode}
+          >
+            print
+          </button>
         </div>
       </div>
     </Card>

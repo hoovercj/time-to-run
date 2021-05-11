@@ -10,6 +10,10 @@
 
 html {
   font-size: 90%;
+
+  @media print {
+    font-size: 70%;
+  }
 }
 
 body {
@@ -49,10 +53,13 @@ $max-width-percentage-decimal: 0.95;
 $max-width-percentage: #{100% * $max-width-percentage-decimal};
 
 .root {
-  max-width: $max-width-pixels;
   margin: calc(2.0rem * .625) auto;
 
-  @media (max-width: #{$max-width-pixels / $max-width-percentage-decimal}) {
+  @media screen {
+    max-width: $max-width-pixels;
+  }
+
+  @media screen and (max-width: #{$max-width-pixels / $max-width-percentage-decimal}) {
     max-width: $max-width-percentage;
   }
 }
@@ -64,4 +71,10 @@ $max-width-percentage: #{100% * $max-width-percentage-decimal};
 
 .about-link {
   font-weight: bold;
+}
+
+@media print {
+  .root > :not(.plan)  {
+    display: none;
+  }
 }

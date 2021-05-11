@@ -1,0 +1,17 @@
+.card {
+  background-color: white;
+
+  @media screen {
+    box-shadow: 0 1.6px 3.6px 0 rgba(0,0,0,0.132), 0 0.3px 0.9px 0 rgba(0,0,0,0.108);
+    padding: 15px;
+    margin-bottom: 10px;
+  }
+
+  @media print {
+    page-break-inside: avoid;
+    box-shadow: 0;
+    border: 1px solid #d2d0ce;
+    padding: 5px;
+    margin-bottom: 5px;
+  }
+}

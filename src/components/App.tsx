@@ -8,6 +8,7 @@ import {
   Filetype,
   downloadPlanCalendar,
   downloadPlanTemplate,
+  printPlanCalendar,
   copyPlanLink
 } from "../lib/exporter";
 import { importFile } from "../lib/importer";
@@ -75,6 +76,9 @@ function App() {
           switch (filetype) {
             case "ical":
               downloadPlanCalendar(selectedPlan, goalDate, displayUnits);
+              break;
+            case "print":
+              printPlanCalendar();
               break;
             case "link":
               const isDefaultDateSelected = getDateInputValueString(goalDate) === getDateInputValueString(defaultGoalDate);

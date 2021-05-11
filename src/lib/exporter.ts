@@ -11,7 +11,7 @@ import {
   getDateInputValueString
 } from "../lib/utils";
 
-export type Filetype = "ical" | "json" | "csv" | "link";
+export type Filetype = "ical" | "json" | "csv" | "link" | "print";
 
 export function downloadPlanTemplate(plan: Plan, filetype: Filetype) {
   const { raceDistance, raceType, title, units, workouts } = plan;
@@ -40,6 +40,10 @@ export function downloadPlanTemplate(plan: Plan, filetype: Filetype) {
 }
 
 const WEEK_LENGTH = 7;
+
+export function printPlanCalendar() {
+    window.print();
+}
 
 export function downloadPlanCalendar(plan: Plan, goalDate: Date, displayUnits: Units) {
   const calendar = ics();
