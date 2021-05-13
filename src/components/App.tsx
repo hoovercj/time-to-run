@@ -54,7 +54,13 @@ function App() {
 
   const selectedPlan = plans[selectedPlanId];
 
-  const defaultGoalDate = addDays(new Date(), selectedPlan.workouts.length - 1);
+  let defaultGoalDate = addDays(new Date(), selectedPlan.workouts.length - 1);
+  // Most races are on Sunday, so default to setting the initial goal date to Sunday
+  if (defaultGoalDate.getDay() !== 0) {
+    // 6 - 0
+    defaultGoalDate = addDays(defaultGoalDate, 7 - defaultGoalDate.getDay());
+  }
+
   const [goalDate, setGoalDate] = useState(defaultGoalDate);
 
   const defaultUnits = selectedPlan.units;
