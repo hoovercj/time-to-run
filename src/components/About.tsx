@@ -5,7 +5,7 @@ function About() {
   return (
     <div>
       <p>
-        Running a marathon is hard. Setting up your training plan shouldn't be.
+        Running a marathon is hard. Setting up your training plan shouldn't be. Save time on planning and give yourself more <span className={"primary"}><b>Time to Run</b></span>.
       </p>
       <ol>
         <li>Set the date of your race</li>
@@ -104,7 +104,7 @@ function About() {
         <a href="https://www.fontawesome.com">www.fontawesome.com</a>.
       </p>
       <h2>Contact Me</h2>
-      <p>If you have made a plan that you think others might benefit from or if you have issues, questions, or suggestions on how I can make this project work better for you, reach out via <a href="mailto:calendarhack@codyhoover.com">email</a> or <a href="https://github.com/hoovercj/calendar-hack/issues">on github</a>.</p>
+      <p>If you have made a plan that you think others might benefit from or if you have issues, questions, or suggestions on how I can make this project work better for you, reach out via <a href="mailto:timetorun@codyhoover.com">email</a> or <a href="https://github.com/hoovercj/time-to-run/issues">on github</a>.</p>
     </div>
   );
 }

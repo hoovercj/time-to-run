@@ -17,7 +17,7 @@ function Root() {
       basename={`${process.env.PUBLIC_URL}`}
     >
       <div className="root">
-        <h1 className="header"><NavLink exact to="/" className="primary">Calendar Hack</NavLink></h1>
+        <h1 className="header"><NavLink exact to="/" className="primary">Time to Run</NavLink></h1>
         <NavLink exact to="/about" className="about-link inverted">About</NavLink>
         <Switch>
           <Route path="/about" component={About} />

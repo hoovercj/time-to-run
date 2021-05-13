@@ -1,7 +1,7 @@
 {
-  "name": "my-calendar-hack",
-  "homepage": "https://www.codyhoover.com/calendar-hack",
-  "version": "0.1.0",
+  "name": "time-to-run",
+  "homepage": "https://www.codyhoover.com/time-to-run",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "4.2.4",

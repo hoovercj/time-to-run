@@ -7,7 +7,7 @@ Running a marathon is hard. Setting up your training plan shouldn't be.
 3. Choose miles or kilometers
 4. Download the plan and add it to your calendar
 
-It really is that easy. [Get started now!](https://www.codyhoover.com/calendar-hack)
+It really is that easy. [Get started now!](https://www.codyhoover.com/time-to-run)
 
 ## Acknowledgements
 
@@ -21,4 +21,4 @@ All other icons made by Font Awesome from [www.fontawesome.com](https://www.font
 
 ## Contact
 
-If you have made a plan that you think others might benefit from or if you have issues, questions, or suggestions on how I can make this project work better for you, reach out via email (calendarhack at codyhoover dot com) or [on github](https://github.com/hoovercj/calendar-hack/issues).
+If you have made a plan that you think others might benefit from or if you have issues, questions, or suggestions on how I can make this project work better for you, reach out via email (timetorun at codyhoover dot com) or [on github](https://github.com/hoovercj/time-to-run/issues).
