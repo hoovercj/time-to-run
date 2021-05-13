@@ -234,10 +234,20 @@ export function Plan({
         {renderTitle(title, dispatch, isEditMode)}
         {renderActions(isEditMode, toggleEdit, performSave, editCancelButton)}
       </h2>
+      {renderSource(state.plan.sourceName, state.plan.sourceUrl)}
       <div className="goal-race">Goal Race: {getLongDateString(goalDate)}</div>
       <div ref={workoutsContainer}>{renderedWeeks}</div>
     </div>
   );
+}
+
+function renderSource(name?: string, url?: string): JSX.Element | null {
+  if (!name) {
+    return null;
+  }
+
+  // eslint-disable-next-line react/jsx-no-target-blank
+  return <div className="goal-race">Source: {url ? (<a target="_blank" rel="noopener" href={url}>{name}</a>) : name}</div>;
 }
 
 function renderTitle(

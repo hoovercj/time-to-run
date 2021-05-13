@@ -4,6 +4,8 @@ export interface Plan {
   id: string;
   title: string;
   raceType: string;
+  sourceName?: string;
+  sourceUrl?: string;
   raceDistance: number;
   units: Units;
   workouts: Workout[];

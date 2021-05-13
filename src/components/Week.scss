@@ -52,6 +52,7 @@ $hide-grid-title-breakpoint: 1000px;
 
       .workouts-container {
         flex-direction: row;
+        flex-grow: 1;
       }
     }
 

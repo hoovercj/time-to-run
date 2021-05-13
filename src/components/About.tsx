@@ -74,19 +74,19 @@ function About() {
       </p>
       <p>
         This project includes a few popular training plans from{" "}
-        <a href="http://www.amazon.com/Advanced-Marathoning-Edition-Pete-Pfitzinger/dp/0736074600">
+        <a href="https://www.amazon.com/gp/product/B07PPRH66H/ref=as_li_tl?ie=UTF8&tag=codyhoover-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=B07PPRH66H&linkId=2d5713afeeff31d780b3522d13c240fd">
           Advanced Marathoning
         </a>{" "}
         by Pete Pfitzinger and Scott Douglas,{" "}
-        <a href="https://www.amazon.com/Faster-Road-Racing-Half-Marathon/dp/1450470459">
-          Faster Road Racing
+        <a href="https://www.amazon.com/gp/product/1450470459/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1450470459&linkCode=as2&tag=codyhoover-20&linkId=6107e4706a5e1cc10836339bd7b312e0">
+          Faster Road Racing: 5K to Half Marathon
         </a>{" "}
         by Pete Pfitzinger and Philip Latter,{" "}
-        <a href="https://hansons-running.com/collections/hansons-swag/products/hansons-method-hansons-method-mara%22">
+        <a href="https://www.amazon.com/gp/product/1937715485/ref=as_li_tl?ie=UTF8&tag=codyhoover-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=1937715485&linkId=f9fc64ec3ea36b0f6abbf4aeb66257f5">
           Hansons Marathon Method
         </a>{" "}
         by Kieth and Kevin Hanson, and{" "}
-        <a href="http://www.amazon.com/Marathon-Ultimate-Training-Programs-Marathons/dp/1609612248">
+        <a href="https://www.amazon.com/gp/product/1609612248/ref=as_li_tl?ie=UTF8&tag=codyhoover-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=1609612248&linkId=026cfc4ad84ba7eddeb14093ab2d8689">
           Marathon: The Ultimate Training Guide
         </a>{" "}
         by Hal Higdon. The plans are not intended to be used on their own and
