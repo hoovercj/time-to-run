@@ -64,8 +64,9 @@ export function downloadPlanCalendar(plan: Plan, goalDate: Date, displayUnits: U
     const weekStartDate = getDateForWorkout(weekStartWorkoutIndex, workoutCount, goalDateWithoutTime);
     const weekEndDate = getDateForWorkout(weekEndWorkoutIndex, workoutCount, goalDateWithoutTime);
 
-
-    let weekTitle = `${weeks.length - index} Weeks to Goal`;
+    // For a 12 week plan, the first week should say "11 Weeks to Goal"
+    const weeksLeft = weeks.length - (index + 1);
+    let weekTitle = weeksLeft === 0 ? "Race week!" : `${weeksLeft} Weeks to Goal`;
 
     const weeklyVolume = getVolumeFromWorkouts(workouts, units, displayUnits);
     if (weeklyVolume > 0) {
