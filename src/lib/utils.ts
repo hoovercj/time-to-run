@@ -89,6 +89,13 @@ export function scaleNumber(
   }
 }
 
+export function sameDay(a: Date, b: Date): boolean {
+  return a.getDate() === b.getDate()
+      && a.getMonth() === b.getMonth()
+      && a.getFullYear() === b.getFullYear();
+}
+
+
 export function addDays(date: Date, days: number): Date {
   const newDate = new Date(date);
   newDate.setDate(newDate.getDate() + days);

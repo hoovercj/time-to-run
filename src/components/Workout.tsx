@@ -63,10 +63,6 @@ export const Workout = React.memo(function (props: WorkoutProps) {
     () => formatWorkoutFromTemplate(description, units, displayUnits),
     [description, units, displayUnits]
   );
-  const distanceString = useMemo(
-    () => getDistanceString(totalDistance, units, displayUnits),
-    [totalDistance, units, displayUnits]
-  );
 
   const onDistanceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let newTotalDistance = Number.parseFloat(e.target.value);
@@ -318,6 +314,7 @@ export const Workout = React.memo(function (props: WorkoutProps) {
         {displayMode === "edit" && (
           <>
             <div className="my-row total-distance-row">
+              {/* This should be a label for the input field */}
               Total Distance:
               <input
                 id={`total-distance-input-${id}`}
@@ -326,7 +323,7 @@ export const Workout = React.memo(function (props: WorkoutProps) {
                 onChange={onDistanceChange}
                 className="total-distance-input"
               />
-              <span>{distanceString}</span>
+              <span>{displayUnits}</span>
             </div>
             <div className="my-row description-row">
               <textarea
