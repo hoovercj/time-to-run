@@ -15,7 +15,7 @@
     "@types/react-dom": "16.9.5",
     "@types/react-router-dom": "5.1.4",
     "gh-pages": "2.2.0",
-    "node-sass": "4.13.1",
+    "node-sass": "7.0.0",
     "papaparse": "5.1.1",
     "react": "16.13.1",
     "react-datepicker": "2.14.1",
