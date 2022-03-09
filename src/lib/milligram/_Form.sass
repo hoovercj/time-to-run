@@ -18,51 +18,51 @@ input[type='datetime-local'],
 input:not([type]),
 textarea,
 select
-	appearance: none // Removes awkward default styles on some inputs for iOS
-	background-color: transparent
-	border: calc(.1rem * .625) solid $color-neutral-tertiary
-	border-radius: calc(.4rem * .625)
-	box-shadow: none
-	box-sizing: inherit // Forced to replace inherit values of the normalize.css
-	height: calc(3.2rem * .625)
-	padding: calc(.6rem * .625) calc(1.0rem * .625) // The calc(.6rem * .625) vertically centers text on FF, ignored by Webkit
-	width: 100%
-	color: $color-neutral-primary
+    appearance: none // Removes awkward default styles on some inputs for iOS
+    background-color: transparent
+    border: calc(.1rem * .625) solid $color-neutral-tertiary
+    border-radius: calc(.4rem * .625)
+    box-shadow: none
+    box-sizing: inherit // Forced to replace inherit values of the normalize.css
+    height: calc(3.2rem * .625)
+    padding: calc(.6rem * .625) calc(1.0rem * .625) // The calc(.6rem * .625) vertically centers text on FF, ignored by Webkit
+    width: 100%
+    color: $color-neutral-primary
 
-	&:not(:disabled)
-		&:hover,
-		&:focus
-			border-color: $color-primary
-			outline: 0
+    &:not(:disabled)
+        &:hover,
+        &:focus
+            border-color: $color-primary
+            outline: 0
 
 select
-	background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="14" viewBox="0 0 29 14" width="29"><path fill="%23' + str-slice(inspect($color-neutral-secondary), 2) + '" d="M9.37727 3.625l5.08154 6.93523L19.54036 3.625"/></svg>') center right no-repeat
-	padding-right: calc(3.0rem * .625)
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="14" viewBox="0 0 29 14" width="29"><path fill="%23' + str-slice(inspect($color-neutral-secondary), 2) + '" d="M9.37727 3.625l5.08154 6.93523L19.54036 3.625"/></svg>') center right no-repeat
+    padding-right: calc(3.0rem * .625)
 
-	&:not(:disabled)
-		&:hover,
-		&:focus
-			background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="14" viewBox="0 0 29 14" width="29"><path fill="%23' + str-slice(inspect($color-primary), 2) + '" d="M9.37727 3.625l5.08154 6.93523L19.54036 3.625"/></svg>')
+    &:not(:disabled)
+        &:hover,
+        &:focus
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="14" viewBox="0 0 29 14" width="29"><path fill="%23' + str-slice(inspect($color-primary), 2) + '" d="M9.37727 3.625l5.08154 6.93523L19.54036 3.625"/></svg>')
 
 textarea
-	min-height: calc(6.5rem * .625)
+    min-height: calc(6.5rem * .625)
 
 label,
 legend
-	display: block
-	font-size: calc(1.6rem * .625)
-	font-weight: 700
-	margin-bottom: calc(.5rem * .625)
+    display: block
+    font-size: calc(1.6rem * .625)
+    font-weight: 700
+    margin-bottom: calc(.5rem * .625)
 
 fieldset
-	border-width: 0
-	padding: 0
+    border-width: 0
+    padding: 0
 
 input[type='checkbox'],
 input[type='radio']
-	display: inline
+    display: inline
 
 .label-inline
-	display: inline-block
-	font-weight: normal
-	margin-left: calc(.5rem * .625)
+    display: inline-block
+    font-weight: normal
+    margin-left: calc(.5rem * .625)

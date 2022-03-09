@@ -1,51 +1,51 @@
 @import "../lib/milligram/milligram";
 
 :root {
-  --color-primary: #{$color-primary};
-  --color-primary-rgb: #{$color-primary-rgb};
-  --color-neutral-primary: #{$color-neutral-primary};
-  --color-neutral-secondary: #{$color-neutral-secondary};
-  --color-dark: #{$color-dark};
+    --color-primary: #{$color-primary};
+    --color-primary-rgb: #{$color-primary-rgb};
+    --color-neutral-primary: #{$color-neutral-primary};
+    --color-neutral-secondary: #{$color-neutral-secondary};
+    --color-dark: #{$color-dark};
 }
 
 html {
-  font-size: 90%;
+    font-size: 90%;
 
-  @media print {
-    font-size: 70%;
-  }
+    @media print {
+        font-size: 70%;
+    }
 }
 
 body {
-  background-color: #faf9f8;
+    background-color: #faf9f8;
 }
 
 a.active {
-  text-decoration: underline;
+    text-decoration: underline;
 }
 
 .primary {
-  color: var(--color-primary);
+    color: var(--color-primary);
 }
 
 .react-datepicker {
-  .react-datepicker__day--keyboard-selected,
-  .react-datepicker__month-text--keyboard-selected,
-  .react-datepicker__quarter-text--keyboard-selected {
-    background-color: var(--color-neutral-secondary);
+    .react-datepicker__day--keyboard-selected,
+    .react-datepicker__month-text--keyboard-selected,
+    .react-datepicker__quarter-text--keyboard-selected {
+        background-color: var(--color-neutral-secondary);
 
-    &:hover {
-      background-color: var(--color-neutral-primary);
+        &:hover {
+            background-color: var(--color-neutral-primary);
+        }
     }
-  }
 
-  .react-datepicker__day--selected {
-    background-color: var(--color-primary);
+    .react-datepicker__day--selected {
+        background-color: var(--color-primary);
 
-    &:hover {
-      background-color: var(--color-dark);
+        &:hover {
+            background-color: var(--color-dark);
+        }
     }
-  }
 }
 
 $max-width-pixels: 1000px;
@@ -53,28 +53,28 @@ $max-width-percentage-decimal: 0.95;
 $max-width-percentage: #{100% * $max-width-percentage-decimal};
 
 .root {
-  margin: calc(2.0rem * .625) auto;
+    margin: calc(2.0rem * .625) auto;
 
-  @media screen {
-    max-width: $max-width-pixels;
-  }
+    @media screen {
+        max-width: $max-width-pixels;
+    }
 
-  @media screen and (max-width: #{$max-width-pixels / $max-width-percentage-decimal}) {
-    max-width: $max-width-percentage;
-  }
+    @media screen and (max-width: #{$max-width-pixels / $max-width-percentage-decimal}) {
+        max-width: $max-width-percentage;
+    }
 }
 
 .header {
-  display: inline-block;
-  margin-right: 10px;
+    display: inline-block;
+    margin-right: 10px;
 }
 
 .about-link {
-  font-weight: bold;
+    font-weight: bold;
 }
 
 @media print {
-  .root > :not(.plan)  {
-    display: none;
-  }
+    .root > :not(.plan)    {
+        display: none;
+    }
 }

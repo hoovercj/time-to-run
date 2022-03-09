@@ -1,0 +1,30 @@
+
+// Base
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+
+// Set box-sizing globally to handle padding and border widths
+*,
+*:after,
+*:before {
+    box-sizing: inherit;
+}
+
+// The base font-size is set at 62.5% for having the convenience
+// of sizing rems in a way that is similar to using px: calc(1.6rem * .625) = 16px
+html {
+    box-sizing: border-box;
+    font-size: 100%;
+}
+
+// Default body styles
+body {
+    color: $color-neutral-primary;
+    font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: calc(1.6em * .625); // Currently ems cause chrome bug misinterpreting rems on body element
+    font-weight: 300;
+    letter-spacing: calc(.01em * .625);
+    line-height: 1.6;
+    margin: 0;
+}

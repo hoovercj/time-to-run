@@ -1,0 +1,14 @@
+
+// Blockquote
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+
+blockquote {
+    border-left: calc(.3rem * .625) solid $color-neutral-quaternary;
+    margin-left: 0;
+    margin-right: 0;
+    padding: calc(1rem * .625) calc(1.5rem * .625);
+
+    *:last-child {
+        margin-bottom: 0;
+    }
+}

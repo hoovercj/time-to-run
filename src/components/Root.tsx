@@ -1,7 +1,7 @@
 import React from "react";
 import {
   BrowserRouter as Router,
-  Switch,
+  Routes,
   Route,
   NavLink
 } from "react-router-dom";
@@ -17,12 +17,12 @@ function Root() {
       basename={`${process.env.PUBLIC_URL}`}
     >
       <div className="root">
-        <h1 className="header"><NavLink exact to="/" className="primary">Time to Run</NavLink></h1>
-        <NavLink exact to="/about" className="about-link inverted">About</NavLink>
-        <Switch>
-          <Route path="/about" component={About} />
-          <Route path="/" component={App} />
-        </Switch>
+        <h1 className="header"><NavLink end to="/" className="primary">Time to Run</NavLink></h1>
+        <NavLink end to="/about" className="about-link inverted">About</NavLink>
+        <Routes>
+          <Route path="/about" element={<About/>} />
+          <Route path="/" element={<App/>} />
+        </Routes>
       </div>
     </Router>
   );

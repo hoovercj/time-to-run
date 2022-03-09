@@ -44,7 +44,7 @@ export const planToCsv = (plan: ExternalPlan): string => {
 
 export const csvToPlan = (file: string): ExternalPlan | null => {
   try {
-    const result = parseCsv(file, { skipEmptyLines: true, comments: COMMENT });
+    const result = parseCsv<string[]>(file, { skipEmptyLines: true, comments: COMMENT });
     const filteredResult = result.data.filter((line: string[]) => {
       const isCommentLine = line[0].indexOf("//") === 0;
       if (isCommentLine) {
