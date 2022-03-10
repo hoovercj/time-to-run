@@ -37,6 +37,18 @@ export const convertWorkoutDescription = (description: string, inputUnits: Units
     return description.replace(DESCRIPTION_REGEX, replacer);
 }
 
+/**
+ * Generate a styled html string from a template string
+ * @param template A template string such as "Run #5_D (5 x #1d)"
+ * @param inputUnits The units used in the input, i.e. #1d represents 1 mile or 1 km depending on the input unit
+ * @param outputUnits The units for the output, i.e. #3.1d -> 5 km if the input unit is miles and the output is kilometers
+ * @returns An output string such as "Run <span>5 miles</span> (1 x <span>1mi</span>)"
+ */
+ export const formatHtmlFromTemplate = (template: string, inputUnits: Units = "miles", outputUnits: Units = inputUnits): string => {
+    const formattedWorkout = convertWorkoutDescription(template, inputUnits, outputUnits);
+    return `<span style="text-decoration: underline">${formattedWorkout}</span>`
+}
+
 const convertDistance = (input: string, inputUnits: Units, outputUnits: Units): string => {
     // NOTE: There are a lot of edge cases around decimals that lead to erratic behavior.
     // The following code is only a best-effort attempt at allowing SOME decimal behavior.
