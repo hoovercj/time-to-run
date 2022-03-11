@@ -6,6 +6,7 @@ import React, {
   useEffect,
   useState,
 } from "react";
+import ContentEditable, { ContentEditableEvent } from 'react-contenteditable'
 
 import "./Workout.scss";
 
@@ -17,7 +18,8 @@ import {
   getDistanceString,
   scrollIntoViewIfNeeded,
 } from "../lib/utils";
-import { convertWorkoutDescription } from "../lib/formatter";
+// import { convertWorkoutDescription } from "../lib/formatter";
+import * as Formatter from "../lib/formatter";
 import { InteractiveIcon } from "./InteractiveIcon";
 import { DragHandle } from "./DragHandle";
 import { Action, ActionType } from "../lib/reducer";
@@ -59,14 +61,39 @@ export const Workout = React.memo(function (props: WorkoutProps) {
   const dayOfWeekString = useMemo(() => getDayOfWeekString(dateMemo), [
     dateMemo,
   ]);
-  const formattedDescription = useMemo(
-    () => convertWorkoutDescription(description, units, displayUnits),
-    [description, units, displayUnits]
-  );
-  const distanceString = useMemo(
-    () => getDistanceString(totalDistance, units, displayUnits),
-    [totalDistance, units, displayUnits]
-  );
+  // const formattedDescription = useMemo(
+  //   () => convertWorkoutDescription(description, units, displayUnits),
+  //   [description, units, displayUnits]
+  // );
+  // const distanceString = useMemo(
+  //   () => getDistanceString(totalDistance, units, displayUnits),
+  //   [totalDistance, units, displayUnits]
+  // );
+
+  const formattedHTMLValue = React.useMemo(() => {
+    return Formatter.formatHtmlFromTemplate(description, units, displayUnits);
+  }, [description, displayUnits, units]);
+  const onContentEditableChanged = React.useCallback((event: ContentEditableEvent) => {
+    if (!contentEditableRef.current) {
+      return;
+    }
+
+    dispatch({
+      type: "editWorkout",
+      payload: {
+        date,
+        totalDistance,
+        // TODO: this will cause problems due to precision loss when converting back and forth
+        description: Formatter.convertWorkoutDescription(contentEditableRef.current.innerText, displayUnits, units),
+        id: id,
+      },
+    });
+  }, [date, dispatch, id, totalDistance]);
+
+  // const distanceString = useMemo(
+  //   () => getDistanceString(totalDistance, units, displayUnits),
+  //   [totalDistance, units, displayUnits]
+  // );
 
   const onDistanceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let newTotalDistance = Number.parseFloat(e.target.value);
@@ -80,19 +107,6 @@ export const Workout = React.memo(function (props: WorkoutProps) {
         description,
         totalDistance: newTotalDistance,
         id,
-      },
-    });
-  };
-
-  const onDescriptionChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const newDescription = e.target.value;
-    dispatch({
-      type: "editWorkout",
-      payload: {
-        date,
-        totalDistance,
-        description: newDescription,
-        id: id,
       },
     });
   };
@@ -298,6 +312,8 @@ export const Workout = React.memo(function (props: WorkoutProps) {
       </div>
     );
 
+  const contentEditableRef = React.useRef<HTMLElement>(null);
+
   return (
     <div
       ref={container}
@@ -326,22 +342,18 @@ export const Workout = React.memo(function (props: WorkoutProps) {
                 onChange={onDistanceChange}
                 className="total-distance-input"
               />
-              <span>{distanceString}</span>
-            </div>
-            <div className="my-row description-row">
-              <textarea
-                id={`description-input-${id}`}
-                className={"description-input"}
-                value={description}
-                onChange={onDescriptionChange}
-                ref={descriptionInput}
-              >
-              </textarea>
+              <span>{displayUnits}</span>
             </div>
           </>
         )}
         <div className="my-row formatted-description-row">
-          {formattedDescription}
+          {/* {formattedDescription} */}
+          <ContentEditable
+            innerRef={contentEditableRef}
+            html={formattedHTMLValue}
+            disabled={displayMode !== "edit"}
+            onChange={onContentEditableChanged}
+          />
         </div>
       </div>
     </div>

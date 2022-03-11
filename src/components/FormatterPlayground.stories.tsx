@@ -13,5 +13,6 @@ export const Formatter = Template.bind({});
 Formatter.args = {
   defaultValue: "Run #5D (5 x #1d)",
   inputUnits: 'miles',
-  outputUnits: 'kilometers'
+  outputUnits: 'miles',
+  editable: true,
 }
