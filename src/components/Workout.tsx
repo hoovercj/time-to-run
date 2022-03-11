@@ -10,6 +10,7 @@ import ContentEditable, { ContentEditableEvent } from 'react-contenteditable'
 
 import "./Workout.scss";
 
+import { ISelection, saveSelection, restoreSelection } from "../lib/selection";
 import { Units } from "../lib/workout";
 import {
   func,
@@ -70,12 +71,25 @@ export const Workout = React.memo(function (props: WorkoutProps) {
   //   [totalDistance, units, displayUnits]
   // );
 
+  const selectionToRestore = React.useRef<ISelection | null>(null);
+
   const formattedHTMLValue = React.useMemo(() => {
     return Formatter.formatHtmlFromTemplate(description, units, displayUnits);
   }, [description, displayUnits, units]);
+
   const onContentEditableChanged = React.useCallback((event: ContentEditableEvent) => {
     if (!contentEditableRef.current) {
       return;
+    }
+
+    const eventHtml = event.target.value;
+    const newHtml = Formatter.formatTemplateFromText(contentEditableRef.current.innerText);
+
+    if (newHtml !== eventHtml) {
+      selectionToRestore.current = saveSelection(contentEditableRef.current);
+    } else {
+      // TODO: is this correct?
+      selectionToRestore.current = null;
     }
 
     dispatch({
@@ -90,10 +104,14 @@ export const Workout = React.memo(function (props: WorkoutProps) {
     });
   }, [date, dispatch, id, totalDistance]);
 
-  // const distanceString = useMemo(
-  //   () => getDistanceString(totalDistance, units, displayUnits),
-  //   [totalDistance, units, displayUnits]
-  // );
+  React.useEffect(() => {
+    if (!contentEditableRef.current || !selectionToRestore.current) {
+      return;
+    }
+
+    restoreSelection(contentEditableRef.current, selectionToRestore.current);
+    selectionToRestore.current = null;
+  }, [description]);
 
   const onDistanceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let newTotalDistance = Number.parseFloat(e.target.value);
@@ -334,7 +352,7 @@ export const Workout = React.memo(function (props: WorkoutProps) {
         {displayMode === "edit" && (
           <>
             <div className="my-row total-distance-row">
-              Total Distance:
+              <label htmlFor={`total-distance-input-${id}`}>Total Distance:</label>
               <input
                 id={`total-distance-input-${id}`}
                 value={totalDistance}
@@ -342,7 +360,7 @@ export const Workout = React.memo(function (props: WorkoutProps) {
                 onChange={onDistanceChange}
                 className="total-distance-input"
               />
-              <span>{displayUnits}</span>
+              <span>{units}</span>
             </div>
           </>
         )}
