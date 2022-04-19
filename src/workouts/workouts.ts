@@ -3,6 +3,7 @@ import base_pfitzinger_60 from "./plans/base_pfitzinger_60";
 import five_couch from "./plans/five_couch";
 import half_hansons_advanced from "./plans/half_hansons_advanced";
 import half_hansons_beginner from "./plans/half_hansons_beginner";
+import half_pfitzinger_12_63 from "./plans/half_pfitzinger_12_63";
 import half_pfitzinger_12_84 from "./plans/half_pfitzinger_12_84";
 import marathon_hansons_advanced from "./plans/marathon_hansons_advanced";
 import marathon_hansons_beginner from "./plans/marathon_hansons_beginner";
@@ -34,6 +35,7 @@ export const PLANS: BuiltInPlan[] = [
   marathon_higdon_intermediate_2,
   marathon_higdon_advanced_1,
   marathon_higdon_advanced_2,
+  half_pfitzinger_12_63,
   half_pfitzinger_12_84,
   half_hansons_beginner,
   half_hansons_advanced,
