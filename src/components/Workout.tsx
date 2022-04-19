@@ -16,7 +16,6 @@ import {
   func,
   DisplayMode,
   getDayOfWeekString,
-  getDistanceString,
   scrollIntoViewIfNeeded,
 } from "../lib/utils";
 // import { convertWorkoutDescription } from "../lib/formatter";
