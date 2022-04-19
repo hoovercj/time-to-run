@@ -9,8 +9,7 @@ const WHITESPACE_MATCH_INDEX = 5;
 const UNITS_MATCH_INDEX = 6;
 const DESCRIPTION_REGEX = /((\d+(\.\d*)?)?|(\.\d+))(\s?)(mi|mile|miles|km|kilometer|kilometers)\b/gi;
 
-// export const convertWorkoutDescription = (description: string, inputUnits: Units = "miles", outputUnits: Units = inputUnits): string => {
-export const convertWorkoutDescription = (description: string, inputUnits: Units = "miles", outputUnits: Units = inputUnits): string => {
+export const convertWorkoutDescription = (description: string, inputUnits: Units = "miles", outputUnits: Units = inputUnits, wrapper?: (match: string) => string): string => {
     if (inputUnits === outputUnits) {
         return description;
     }
@@ -31,7 +30,8 @@ export const convertWorkoutDescription = (description: string, inputUnits: Units
         const convertedDistance = hasDistance ? convertDistance(distance, inputUnits, outputUnits) : "";
         const convertedUnits = convertUnits(units, hasDistance ? Number.parseFloat(convertedDistance) : undefined);
 
-        return `${convertedDistance}${whitespace}${convertedUnits}`;
+        const replacement = `${convertedDistance}${whitespace}${convertedUnits}`;
+        return wrapper ? wrapper(replacement) : replacement;
     }
 
     return description.replace(DESCRIPTION_REGEX, replacer);
@@ -45,8 +45,7 @@ export const convertWorkoutDescription = (description: string, inputUnits: Units
  * @returns An output string such as "Run <span>5 miles</span> (1 x <span>1mi</span>)"
  */
  export const formatHtmlFromTemplate = (template: string, inputUnits: Units = "miles", outputUnits: Units = inputUnits): string => {
-    const formattedWorkout = convertWorkoutDescription(template, inputUnits, outputUnits);
-    return `<span style="text-decoration: underline">${formattedWorkout}</span>`
+    return formatWorkoutFromTemplate(template, inputUnits, outputUnits, (match) => `<span style="text-decoration: underline">${match}</span>`);
 }
 
 const convertDistance = (input: string, inputUnits: Units, outputUnits: Units): string => {
