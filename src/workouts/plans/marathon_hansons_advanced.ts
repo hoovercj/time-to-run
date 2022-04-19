@@ -8,32 +8,32 @@ export default {
   raceDistance: 26.2,
   workouts: [
     {
-      description: "#6D Easy",
+      description: "#6_D Easy",
       totalDistance: 6,
     },
     {
-      description: "#6D Easy",
+      description: "#6_D Easy",
       totalDistance: 6,
     },
     { description: "Rest or Cross-Train", totalDistance: 0 },
     {
-      description: "#6D Easy",
+      description: "#6_D Easy",
       totalDistance: 6,
     },
     {
-      description: "#6D Easy",
+      description: "#6_D Easy",
       totalDistance: 6,
     },
     {
-      description: "#6D Easy",
+      description: "#6_D Easy",
       totalDistance: 6,
     },
     {
-      description: "#8D Easy",
+      description: "#8_D Easy",
       totalDistance: 8,
     },
     {
-      description: "#6D Easy",
+      description: "#6_D Easy",
       totalDistance: 6,
     },
     {
@@ -43,23 +43,23 @@ export default {
     },
     { description: "Rest or Cross-Train", totalDistance: 0 },
     {
-      description: "#6D Easy",
+      description: "#6_D Easy",
       totalDistance: 6,
     },
     {
-      description: "#6D Easy",
+      description: "#6_D Easy",
       totalDistance: 6,
     },
     {
-      description: "#6D Easy",
+      description: "#6_D Easy",
       totalDistance: 6,
     },
     {
-      description: "#8D Easy",
+      description: "#8_D Easy",
       totalDistance: 8,
     },
     {
-      description: "#6D Easy",
+      description: "#6_D Easy",
       totalDistance: 6,
     },
     {
@@ -69,23 +69,23 @@ export default {
     },
     { description: "Rest or Cross-Train", totalDistance: 0 },
     {
-      description: "#1D Warm Up\n#6D Tempo @ Goal MP\n#1D Cool Down",
+      description: "#1_D Warm Up\n#6_D Tempo @ Goal MP\n#1_D Cool Down",
       totalDistance: 8,
     },
     {
-      description: "#7D Easy",
+      description: "#7_D Easy",
       totalDistance: 7,
     },
     {
-      description: "#6D Easy",
+      description: "#6_D Easy",
       totalDistance: 6,
     },
     {
-      description: "#10D Long Run",
+      description: "#10_D Long Run",
       totalDistance: 10,
     },
     {
-      description: "#6D Easy",
+      description: "#6_D Easy",
       totalDistance: 6,
     },
     {
@@ -95,23 +95,23 @@ export default {
     },
     { description: "Rest or Cross-Train", totalDistance: 0 },
     {
-      description: "#1D Warm Up\n#6D Tempo @ Goal MP\n#1D Cool Down",
+      description: "#1_D Warm Up\n#6_D Tempo @ Goal MP\n#1_D Cool Down",
       totalDistance: 8,
     },
     {
-      description: "#6D Easy",
+      description: "#6_D Easy",
       totalDistance: 6,
     },
     {
-      description: "#8D Easy",
+      description: "#8_D Easy",
       totalDistance: 8,
     },
     {
-      description: "#10D Long Run",
+      description: "#10_D Long Run",
       totalDistance: 10,
     },
     {
-      description: "#6D Easy",
+      description: "#6_D Easy",
       totalDistance: 6,
     },
     {
@@ -121,23 +121,23 @@ export default {
     },
     { description: "Rest or Cross-Train", totalDistance: 0 },
     {
-      description: "#1D Warm Up\n#6D Tempo @ Goal MP\n#1D Cool Down",
+      description: "#1_D Warm Up\n#6_D Tempo @ Goal MP\n#1_D Cool Down",
       totalDistance: 8,
     },
     {
-      description: "#7D Easy",
+      description: "#7_D Easy",
       totalDistance: 7,
     },
     {
-      description: "#8D Easy",
+      description: "#8_D Easy",
       totalDistance: 8,
     },
     {
-      description: "#12D Long Run",
+      description: "#12_D Long Run",
       totalDistance: 12,
     },
     {
-      description: "#6D Easy",
+      description: "#6_D Easy",
       totalDistance: 6,
     },
     {
@@ -147,49 +147,49 @@ export default {
     },
     { description: "Rest or Cross-Train", totalDistance: 0 },
     {
-      description: "#1D Warm Up\n#7D Tempo @ Goal MP\n#1D Cool Down",
+      description: "#1_D Warm Up\n#7_D Tempo @ Goal MP\n#1_D Cool Down",
       totalDistance: 9,
     },
     {
-      description: "#6D Easy",
+      description: "#6_D Easy",
       totalDistance: 6,
     },
     {
-      description: "#8D Easy",
+      description: "#8_D Easy",
       totalDistance: 8,
     },
     {
-      description: "#10D Easy",
+      description: "#10_D Easy",
       totalDistance: 10,
     },
     {
-      description: "#6D Easy",
+      description: "#6_D Easy",
       totalDistance: 6,
     },
     {
       description:
-        "#1.5D Warm Up\n3x#1D @ 5k-10k Pace w. 800m jog rest\n#1.5D Cool Down",
+        "#1.5D Warm Up\n3x#1_D @ 5k-10k Pace w. 800m jog rest\n#1.5D Cool Down",
       totalDistance: 8,
     },
     { description: "Rest or Cross-Train", totalDistance: 0 },
     {
-      description: "#1D Warm Up\n#7D Tempo @ Goal MP\n#1D Cool Down",
+      description: "#1_D Warm Up\n#7_D Tempo @ Goal MP\n#1_D Cool Down",
       totalDistance: 9,
     },
     {
-      description: "#7D Easy",
+      description: "#7_D Easy",
       totalDistance: 7,
     },
     {
-      description: "#8D Easy",
+      description: "#8_D Easy",
       totalDistance: 8,
     },
     {
-      description: "#4D Long Run",
+      description: "#4_D Long Run",
       totalDistance: 14,
     },
     {
-      description: "#6D Easy",
+      description: "#6_D Easy",
       totalDistance: 6,
     },
     {
@@ -199,23 +199,23 @@ export default {
     },
     { description: "Rest or Cross-Train", totalDistance: 0 },
     {
-      description: "#1D Warm Up\n#7D Tempo @ Goal MP\n#1D Cool Down",
+      description: "#1_D Warm Up\n#7_D Tempo @ Goal MP\n#1_D Cool Down",
       totalDistance: 9,
     },
     {
-      description: "#6D Easy",
+      description: "#6_D Easy",
       totalDistance: 6,
     },
     {
-      description: "#10D Easy",
+      description: "#10_D Easy",
       totalDistance: 10,
     },
     {
-      description: "#10D Long Run",
+      description: "#10_D Long Run",
       totalDistance: 10,
     },
     {
-      description: "#8D Easy",
+      description: "#8_D Easy",
       totalDistance: 8,
     },
     {
@@ -225,23 +225,23 @@ export default {
     },
     { description: "Rest or Cross-Train", totalDistance: 0 },
     {
-      description: "#1D Warm Up\n#8D Tempo @ Goal MP\n#1D Cool Down",
+      description: "#1_D Warm Up\n#8_D Tempo @ Goal MP\n#1_D Cool Down",
       totalDistance: 10,
     },
     {
-      description: "#7D Easy",
+      description: "#7_D Easy",
       totalDistance: 7,
     },
     {
-      description: "#8D Easy",
+      description: "#8_D Easy",
       totalDistance: 8,
     },
     {
-      description: "#15D Long Run",
+      description: "#15_D Long Run",
       totalDistance: 15,
     },
     {
-      description: "#6D Easy",
+      description: "#6_D Easy",
       totalDistance: 6,
     },
     {
@@ -251,49 +251,49 @@ export default {
     },
     { description: "Rest or Cross-Train", totalDistance: 0 },
     {
-      description: "#1D Warm Up\n#8D Tempo @ Goal MP\n#1D Cool Down",
+      description: "#1_D Warm Up\n#8_D Tempo @ Goal MP\n#1_D Cool Down",
       totalDistance: 10,
     },
     {
-      description: "#6D Easy",
+      description: "#6_D Easy",
       totalDistance: 6,
     },
     {
-      description: "#10D Easy",
+      description: "#10_D Easy",
       totalDistance: 10,
     },
     {
-      description: "#10D Long Run",
+      description: "#10_D Long Run",
       totalDistance: 10,
     },
     {
-      description: "#8D Easy",
+      description: "#8_D Easy",
       totalDistance: 8,
     },
     {
       description:
-        "#1.5D Warm Up\n6x#1D @ MP - 10s w. 400m jog rest\n#1.5D Cool Down",
+        "#1.5D Warm Up\n6x#1_D @ MP - 10s w. 400m jog rest\n#1.5D Cool Down",
       totalDistance: 10.5,
     },
     { description: "Rest or Cross-Train", totalDistance: 0 },
     {
-      description: "#1D Warm Up\n#8D Tempo @ Goal MP\n#1D Cool Down",
+      description: "#1_D Warm Up\n#8_D Tempo @ Goal MP\n#1_D Cool Down",
       totalDistance: 10,
     },
     {
-      description: "#7D Easy",
+      description: "#7_D Easy",
       totalDistance: 7,
     },
     {
-      description: "#8D Easy",
+      description: "#8_D Easy",
       totalDistance: 8,
     },
     {
-      description: "#16D Long Run",
+      description: "#16_D Long Run",
       totalDistance: 16,
     },
     {
-      description: "#6D Easy",
+      description: "#6_D Easy",
       totalDistance: 6,
     },
     {
@@ -303,101 +303,101 @@ export default {
     },
     { description: "Rest or Cross-Train", totalDistance: 0 },
     {
-      description: "#1D Warm Up\n#9D Tempo @ Goal MP\n#1D Cool Down",
+      description: "#1_D Warm Up\n#9_D Tempo @ Goal MP\n#1_D Cool Down",
       totalDistance: 11,
     },
     {
-      description: "#6D Easy",
+      description: "#6_D Easy",
       totalDistance: 6,
     },
     {
-      description: "#10D Easy",
+      description: "#10_D Easy",
       totalDistance: 10,
     },
     {
-      description: "#10D Long Run",
+      description: "#10_D Long Run",
       totalDistance: 10,
     },
     {
-      description: "#8D Easy",
+      description: "#8_D Easy",
       totalDistance: 8,
     },
     {
       description:
-        "#1.5D Warm Up\n3x#2D @ MP - 10s w. 800m jog rest\n#1.5D Cool Down",
+        "#1.5D Warm Up\n3x#2_D @ MP - 10s w. 800m jog rest\n#1.5D Cool Down",
       totalDistance: 10.5,
     },
     { description: "Rest or Cross-Train", totalDistance: 0 },
     {
-      description: "#1D Warm Up\n#9D Tempo @ Goal MP\n#1D Cool Down",
+      description: "#1_D Warm Up\n#9_D Tempo @ Goal MP\n#1_D Cool Down",
       totalDistance: 11,
     },
     {
-      description: "#7D Easy",
+      description: "#7_D Easy",
       totalDistance: 7,
     },
     {
-      description: "#8D Easy",
+      description: "#8_D Easy",
       totalDistance: 8,
     },
     {
-      description: "#6D Long Run",
+      description: "#6_D Long Run",
       totalDistance: 16,
     },
     {
-      description: "#6D Easy",
+      description: "#6_D Easy",
       totalDistance: 6,
     },
     {
       description:
-        "#1.5D Warm Up\n2x#3D @ MP - 10s w. #1D jog rest\n#1.5D Cool Down",
+        "#1.5D Warm Up\n2x#3_D @ MP - 10s w. #1_D jog rest\n#1.5D Cool Down",
       totalDistance: 10,
     },
     { description: "Rest or Cross-Train", totalDistance: 0 },
     {
-      description: "#1D Warm Up\n#9D Tempo @ Goal MP\n#1D Cool Down",
+      description: "#1_D Warm Up\n#9_D Tempo @ Goal MP\n#1_D Cool Down",
       totalDistance: 11,
     },
     {
-      description: "#6D Easy",
+      description: "#6_D Easy",
       totalDistance: 6,
     },
     {
-      description: "#10D Easy",
+      description: "#10_D Easy",
       totalDistance: 10,
     },
     {
-      description: "#10D Long Run",
+      description: "#10_D Long Run",
       totalDistance: 10,
     },
     {
-      description: "#8D Easy",
+      description: "#8_D Easy",
       totalDistance: 8,
     },
     {
       description:
-        "#1.5D Warm Up\n3x#2D @ MP - 10s w. 800m jog rest\n#1.5D Cool Down",
+        "#1.5D Warm Up\n3x#2_D @ MP - 10s w. 800m jog rest\n#1.5D Cool Down",
       totalDistance: 10.5,
     },
     { description: "Rest or Cross-Train", totalDistance: 0 },
     {
-      description: "#1D Warm Up\n#10D Tempo @ Goal MP\n#1D Cool Down",
+      description: "#1_D Warm Up\n#10_D Tempo @ Goal MP\n#1_D Cool Down",
       totalDistance: 12,
     },
     {
-      description: "#7D Easy",
+      description: "#7_D Easy",
       totalDistance: 7,
     },
     {
-      description: "#8D Easy",
+      description: "#8_D Easy",
       totalDistance: 8,
     },
     {
-      description: "#6D Long Run",
+      description: "#6_D Long Run",
       totalDistance: 16,
     },
     {
-      description: "#6D Easy",
+      description: "#6_D Easy",
       totalDistance: 6,
     },
     {
@@ -407,15 +407,15 @@ export default {
     },
     { description: "Rest or Cross-Train", totalDistance: 0 },
     {
-      description: "#1D Warm Up\n#10D Tempo @ Goal MP\n#1D Cool Down",
+      description: "#1_D Warm Up\n#10_D Tempo @ Goal MP\n#1_D Cool Down",
       totalDistance: 12,
     },
     {
-      description: "#6D Easy",
+      description: "#6_D Easy",
       totalDistance: 6,
     },
     {
-      description: "#10D Easy",
+      description: "#10_D Easy",
       totalDistance: 10,
     },
     {
@@ -423,50 +423,50 @@ export default {
       totalDistance: 10,
     },
     {
-      description: "#8D Easy",
+      description: "#8_D Easy",
       totalDistance: 8,
     },
     {
       description:
-        "#1.5D Warm Up\n6x#1D @ MP - 10s w. 400m jog rest\n#1.5D Cool Down",
+        "#1.5D Warm Up\n6x#1_D @ MP - 10s w. 400m jog rest\n#1.5D Cool Down",
       totalDistance: 10.5,
     },
     { description: "Rest or Cross-Train", totalDistance: 0 },
     {
-      description: "#1D Warm Up\n#10D Tempo @ Goal MP\n#1D Cool Down",
+      description: "#1_D Warm Up\n#10_D Tempo @ Goal MP\n#1_D Cool Down",
       totalDistance: 12,
     },
     {
-      description: "#7D Easy",
+      description: "#7_D Easy",
       totalDistance: 7,
     },
     {
-      description: "#8D Easy",
+      description: "#8_D Easy",
       totalDistance: 8,
     },
     {
-      description: "#8D Easy",
+      description: "#8_D Easy",
       totalDistance: 8,
     },
     {
-      description: "#6D Easy",
+      description: "#6_D Easy",
       totalDistance: 6,
     },
     {
-      description: "#5D Easy",
+      description: "#5_D Easy",
       totalDistance: 5,
     },
     { description: "Rest", totalDistance: 0 },
     {
-      description: "#6D Easy",
+      description: "#6_D Easy",
       totalDistance: 6,
     },
     {
-      description: "#6D Easy",
+      description: "#6_D Easy",
       totalDistance: 6,
     },
     {
-      description: "#3D Easy",
+      description: "#3_D Easy",
       totalDistance: 3,
     },
     { description: "Race Day!", totalDistance: 26.2 },

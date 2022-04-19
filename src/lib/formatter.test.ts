@@ -1,5 +1,4 @@
 import { formatWorkoutFromTemplate } from "./formatter";
-import { Units } from "./workout";
 
 describe("formatWorkout", () => {
     it("returns the input string if no placeholders found", () => {
@@ -20,12 +19,17 @@ describe("formatWorkout", () => {
         expect(formatWorkoutFromTemplate("#3", "miles", "kilometers")).toBe("5");
     });
 
-    it("formats distance and unit placeholders", () => {
-        expect(formatWorkoutFromTemplate("#123D", "miles")).toBe("123 miles");
+    it("formats distance and unit placeholders without spaces", () => {
+        expect(formatWorkoutFromTemplate("#123D", "miles")).toBe("123miles");
         expect(formatWorkoutFromTemplate("#12.3d", "kilometers")).toBe("12.3km");
     });
 
+    it("formats distance and unit placeholders with spaces", () => {
+        expect(formatWorkoutFromTemplate("#123_D", "miles")).toBe("123 miles");
+        expect(formatWorkoutFromTemplate("#12.3_d", "kilometers")).toBe("12.3 km");
+    });
+
     it("formats placeholders with text", () => {
-        expect(formatWorkoutFromTemplate("General Aerobic: #10D and 10x100m strides")).toBe("General Aerobic: 10 miles and 10x100m strides");
+        expect(formatWorkoutFromTemplate("General Aerobic: #10_D and 10x100m strides")).toBe("General Aerobic: 10 miles and 10x100m strides");
     });
 });

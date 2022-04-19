@@ -28,7 +28,7 @@ export default {
       totalDistance: 0,
     },
     {
-      description: "Walk #5d",
+      description: "Walk #5_D",
       totalDistance: 0,
     },
     {
@@ -57,7 +57,7 @@ export default {
       totalDistance: 0,
     },
     {
-      description: "Walk #5d (aim to beat previous week's time)",
+      description: "Walk #5_D (aim to beat previous week's time)",
       totalDistance: 0,
     },
     {
@@ -86,7 +86,7 @@ export default {
       totalDistance: 0,
     },
     {
-      description: "Walk #5d (aim to beat previous week's time)",
+      description: "Walk #5_D (aim to beat previous week's time)",
       totalDistance: 0,
     },
     {
@@ -115,7 +115,7 @@ export default {
       totalDistance: 0,
     },
     {
-      description: "Run #1d, walk #4d",
+      description: "Run #1_D, walk #4_D",
       totalDistance: 0,
     },
     {
@@ -144,7 +144,7 @@ export default {
       totalDistance: 0,
     },
     {
-      description: "Run #2d, walk #3d",
+      description: "Run #2_D, walk #3_D",
       totalDistance: 0,
     },
     {
@@ -173,7 +173,7 @@ export default {
       totalDistance: 0,
     },
     {
-      description: "Run #3d, walk #2d",
+      description: "Run #3_D, walk #2_D",
       totalDistance: 0,
     },
     {
@@ -202,7 +202,7 @@ export default {
       totalDistance: 0,
     },
     {
-      description: "Run #4d, walk #1d",
+      description: "Run #4_D, walk #1_D",
       totalDistance: 0,
     },
     {

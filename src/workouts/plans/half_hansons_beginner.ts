@@ -11,108 +11,108 @@ export default {
     { description: "Rest or Cross-Train", totalDistance: 0 },
     { description: "Rest or Cross-Train", totalDistance: 0 },
     {
-      description: "Easy #3D",
+      description: "Easy #3_D",
       totalDistance: 3,
     },
     { description: "Rest or Cross-Train", totalDistance: 0 },
     {
-      description: "Easy #3D",
+      description: "Easy #3_D",
       totalDistance: 3,
     },
     {
-      description: "Easy #4D",
+      description: "Easy #4_D",
       totalDistance: 4,
     },
     { description: "Rest or Cross-Train", totalDistance: 0 },
     {
-      description: "Easy #2D",
+      description: "Easy #2_D",
       totalDistance: 2,
     },
     { description: "Rest or Cross-Train", totalDistance: 0 },
     {
-      description: "Easy #3D",
+      description: "Easy #3_D",
       totalDistance: 3,
     },
     {
-      description: "Easy #3D",
+      description: "Easy #3_D",
       totalDistance: 3,
     },
     {
-      description: "Easy #3D",
+      description: "Easy #3_D",
       totalDistance: 3,
     },
     {
-      description: "Easy #4D",
+      description: "Easy #4_D",
       totalDistance: 4,
     },
     { description: "Rest or Cross-Train", totalDistance: 0 },
     {
-      description: "Easy #4D",
+      description: "Easy #4_D",
       totalDistance: 4,
     },
     { description: "Rest or Cross-Train", totalDistance: 0 },
     {
-      description: "Easy #4D",
+      description: "Easy #4_D",
       totalDistance: 4,
     },
     {
-      description: "Easy #4D",
+      description: "Easy #4_D",
       totalDistance: 4,
     },
     {
-      description: "Easy #4D",
+      description: "Easy #4_D",
       totalDistance: 4,
     },
     {
-      description: "Easy #5D",
+      description: "Easy #5_D",
       totalDistance: 5,
     },
     { description: "Rest or Cross-Train", totalDistance: 0 },
     {
-      description: "Easy #5D",
+      description: "Easy #5_D",
       totalDistance: 5,
     },
     { description: "Rest or Cross-Train", totalDistance: 0 },
     {
-      description: "Easy #3D",
+      description: "Easy #3_D",
       totalDistance: 3,
     },
     {
-      description: "Easy #3D",
+      description: "Easy #3_D",
       totalDistance: 3,
     },
     {
-      description: "Easy #5D",
+      description: "Easy #5_D",
       totalDistance: 5,
     },
     {
-      description: "Easy #6D",
+      description: "Easy #6_D",
       totalDistance: 6,
     },
     { description: "Rest or Cross-Train", totalDistance: 0 },
     {
-      description: "Easy #5D",
+      description: "Easy #5_D",
       totalDistance: 5,
     },
     { description: "Rest or Cross-Train", totalDistance: 0 },
     {
-      description: "#1.5D Warm Up\n#3D @ HMP\n#1.5D Cool Down",
+      description: "#1.5D Warm Up\n#3_D @ HMP\n#1.5D Cool Down",
       totalDistance: 6,
     },
     {
-      description: "Easy #5D",
+      description: "Easy #5_D",
       totalDistance: 5,
     },
     {
-      description: "Easy #4D",
+      description: "Easy #4_D",
       totalDistance: 4,
     },
     {
-      description: "#8D Long Run",
+      description: "#8_D Long Run",
       totalDistance: 8,
     },
     {
-      description: "Easy #4D",
+      description: "Easy #4_D",
       totalDistance: 4,
     },
     {
@@ -122,23 +122,23 @@ export default {
     },
     { description: "Rest or Cross-Train", totalDistance: 0 },
     {
-      description: "#1.5D Warm Up\n#3D@ HMP\n#1.5D Cool Down",
+      description: "#1.5D Warm Up\n#3_D@ HMP\n#1.5D Cool Down",
       totalDistance: 6,
     },
     {
-      description: "Easy #4D",
+      description: "Easy #4_D",
       totalDistance: 4,
     },
     {
-      description: "Easy #5D",
+      description: "Easy #5_D",
       totalDistance: 5,
     },
     {
-      description: "#9D Long Run",
+      description: "#9_D Long Run",
       totalDistance: 9,
     },
     {
-      description: "Easy #4D",
+      description: "Easy #4_D",
       totalDistance: 4,
     },
     {
@@ -148,23 +148,23 @@ export default {
     },
     { description: "Rest or Cross-Train", totalDistance: 0 },
     {
-      description: "#1.5D Warm Up\n#3D@ HMP\n#1.5D Cool Down",
+      description: "#1.5D Warm Up\n#3_D@ HMP\n#1.5D Cool Down",
       totalDistance: 6,
     },
     {
-      description: "Easy #4D",
+      description: "Easy #4_D",
       totalDistance: 4,
     },
     {
-      description: "Easy #6D",
+      description: "Easy #6_D",
       totalDistance: 6,
     },
     {
-      description: "#10D Long Run",
+      description: "#10_D Long Run",
       totalDistance: 0,
     },
     {
-      description: "Easy #6D",
+      description: "Easy #6_D",
       totalDistance: 6,
     },
     {
@@ -174,23 +174,23 @@ export default {
     },
     { description: "Rest or Cross-Train", totalDistance: 0 },
     {
-      description: "#1.5D Warm Up\n#4D@ HMP\n#1.5D Cool Down",
+      description: "#1.5D Warm Up\n#4_D@ HMP\n#1.5D Cool Down",
       totalDistance: 7,
     },
     {
-      description: "Easy #5D",
+      description: "Easy #5_D",
       totalDistance: 5,
     },
     {
-      description: "Easy #6D",
+      description: "Easy #6_D",
       totalDistance: 6,
     },
     {
-      description: "#10D Long Run",
+      description: "#10_D Long Run",
       totalDistance: 10,
     },
     {
-      description: "Easy #5D",
+      description: "Easy #5_D",
       totalDistance: 5,
     },
     {
@@ -200,23 +200,23 @@ export default {
     },
     { description: "Rest or Cross-Train", totalDistance: 0 },
     {
-      description: "#1.5D Warm Up\n#4D@ HMP\n#1.5D Cool Down",
+      description: "#1.5D Warm Up\n#4_D@ HMP\n#1.5D Cool Down",
       totalDistance: 7,
     },
     {
-      description: "Easy #6D",
+      description: "Easy #6_D",
       totalDistance: 6,
     },
     {
-      description: "Easy #5D",
+      description: "Easy #5_D",
       totalDistance: 5,
     },
     {
-      description: "#10D Long Run",
+      description: "#10_D Long Run",
       totalDistance: 10,
     },
     {
-      description: "Easy #6D",
+      description: "Easy #6_D",
       totalDistance: 6,
     },
     {
@@ -226,49 +226,49 @@ export default {
     },
     { description: "Rest or Cross-Train", totalDistance: 0 },
     {
-      description: "#1.5D Warm Up\n#4D@ HMP\n#1.5D Cool Down",
+      description: "#1.5D Warm Up\n#4_D@ HMP\n#1.5D Cool Down",
       totalDistance: 7,
     },
     {
-      description: "Easy #5D",
+      description: "Easy #5_D",
       totalDistance: 5,
     },
     {
-      description: "Easy #5D",
+      description: "Easy #5_D",
       totalDistance: 5,
     },
     {
-      description: "#12D Long Run",
+      description: "#12_D Long Run",
       totalDistance: 12,
     },
     {
-      description: "Easy #5D",
+      description: "Easy #5_D",
       totalDistance: 5,
     },
     {
       description:
-        "#1.5D Warm Up\n6x#1D @ HMP -10s w. 400m jog rest\n#1.5D Cool Down",
+        "#1.5D Warm Up\n6x#1_D @ HMP -10s w. 400m jog rest\n#1.5D Cool Down",
       totalDistance: 10,
     },
     { description: "Rest or Cross-Train", totalDistance: 0 },
     {
-      description: "#1.5D Warm Up\n#5D@ HMP\n#1.5D Cool Down",
+      description: "#1.5D Warm Up\n#5_D@ HMP\n#1.5D Cool Down",
       totalDistance: 8,
     },
     {
-      description: "Easy #6D",
+      description: "Easy #6_D",
       totalDistance: 6,
     },
     {
-      description: "Easy #5D",
+      description: "Easy #5_D",
       totalDistance: 5,
     },
     {
-      description: "#10D Long Run",
+      description: "#10_D Long Run",
       totalDistance: 10,
     },
     {
-      description: "Easy #5D",
+      description: "Easy #5_D",
       totalDistance: 5,
     },
     {
@@ -278,101 +278,101 @@ export default {
     },
     { description: "Rest or Cross-Train", totalDistance: 0 },
     {
-      description: "#1.5D Warm Up\n#5D@ HMP\n#1.5D Cool Down",
+      description: "#1.5D Warm Up\n#5_D@ HMP\n#1.5D Cool Down",
       totalDistance: 8,
     },
     {
-      description: "Easy #5D",
+      description: "Easy #5_D",
       totalDistance: 5,
     },
     {
-      description: "Easy #6D",
+      description: "Easy #6_D",
       totalDistance: 6,
     },
     {
-      description: "#12D Long Run",
+      description: "#12_D Long Run",
       totalDistance: 12,
     },
     {
-      description: "Easy #6D",
+      description: "Easy #6_D",
       totalDistance: 6,
     },
     {
       description:
-        "#1.5D Warm Up\n3x#2D @ HMP -10s w. 800m jog rest\n#1.5D Cool Down",
+        "#1.5D Warm Up\n3x#2_D @ HMP -10s w. 800m jog rest\n#1.5D Cool Down",
       totalDistance: 10,
     },
     { description: "Rest or Cross-Train", totalDistance: 0 },
     {
-      description: "#1.5D Warm Up\n#5D@ HMP\n#1.5D Cool Down",
+      description: "#1.5D Warm Up\n#5_D@ HMP\n#1.5D Cool Down",
       totalDistance: 8,
     },
     {
-      description: "Easy #6D",
+      description: "Easy #6_D",
       totalDistance: 6,
     },
     {
-      description: "Easy #5D",
+      description: "Easy #5_D",
       totalDistance: 5,
     },
     {
-      description: "#10D Long Run",
+      description: "#10_D Long Run",
       totalDistance: 10,
     },
     {
-      description: "Easy #5D",
+      description: "Easy #5_D",
       totalDistance: 5,
     },
     {
       description:
-        "#1.5D Warm Up\n2x#3D @ HMP -10s w. #1D jog rest\n#1.5D Cool Down",
+        "#1.5D Warm Up\n2x#3_D @ HMP -10s w. #1_D jog rest\n#1.5D Cool Down",
       totalDistance: 10,
     },
     { description: "Rest or Cross-Train", totalDistance: 0 },
     {
-      description: "#1.5D Warm Up\n#6D@ HMP\n#1.5D Cool Down",
+      description: "#1.5D Warm Up\n#6_D@ HMP\n#1.5D Cool Down",
       totalDistance: 9,
     },
     {
-      description: "Easy #5D",
+      description: "Easy #5_D",
       totalDistance: 5,
     },
     {
-      description: "Easy #6D",
+      description: "Easy #6_D",
       totalDistance: 6,
     },
     {
-      description: "#12D Long Run",
+      description: "#12_D Long Run",
       totalDistance: 12,
     },
     {
-      description: "Easy #7D",
+      description: "Easy #7_D",
       totalDistance: 7,
     },
     {
       description:
-        "#1.5D Warm Up\n3x#2D @ HMP -10s w. 800m jog rest\n#1.5D Cool Down",
+        "#1.5D Warm Up\n3x#2_D @ HMP -10s w. 800m jog rest\n#1.5D Cool Down",
       totalDistance: 10,
     },
     { description: "Rest or Cross-Train", totalDistance: 0 },
     {
-      description: "#1.5D Warm Up\n#6D@ HMP\n#1.5D Cool Down",
+      description: "#1.5D Warm Up\n#6_D@ HMP\n#1.5D Cool Down",
       totalDistance: 9,
     },
     {
-      description: "Easy #6D",
+      description: "Easy #6_D",
       totalDistance: 6,
     },
     {
-      description: "Easy #5D",
+      description: "Easy #5_D",
       totalDistance: 5,
     },
     {
-      description: "#10D Long Run",
+      description: "#10_D Long Run",
       totalDistance: 10,
     },
     {
-      description: "Easy #5D",
+      description: "Easy #5_D",
       totalDistance: 5,
     },
     {
@@ -382,66 +382,66 @@ export default {
     },
     { description: "Rest or Cross-Train", totalDistance: 0 },
     {
-      description: "#1.5D Warm Up\n#6D@ HMP\n#1.5D Cool Down",
+      description: "#1.5D Warm Up\n#6_D@ HMP\n#1.5D Cool Down",
       totalDistance: 9,
     },
     {
-      description: "Easy #5D",
+      description: "Easy #5_D",
       totalDistance: 5,
     },
     {
-      description: "Easy #6D",
+      description: "Easy #6_D",
       totalDistance: 6,
     },
     {
-      description: "#12D Long Run",
+      description: "#12_D Long Run",
       totalDistance: 12,
     },
     {
-      description: "Easy #5D",
+      description: "Easy #5_D",
       totalDistance: 5,
     },
     {
       description:
-        "#1.5D Warm Up\n6x#1D @ HMP -10s w. 400m jog rest\n#1.5D Cool Down",
+        "#1.5D Warm Up\n6x#1_D @ HMP -10s w. 400m jog rest\n#1.5D Cool Down",
       totalDistance: 10,
     },
     { description: "Rest or Cross-Train", totalDistance: 0 },
     {
-      description: "#1.5D Warm Up\n#5D@ HMP\n#1.5D Cool Down",
+      description: "#1.5D Warm Up\n#5_D@ HMP\n#1.5D Cool Down",
       totalDistance: 8,
     },
     {
-      description: "Easy #6D",
+      description: "Easy #6_D",
       totalDistance: 6,
     },
     {
-      description: "Easy #5D",
+      description: "Easy #5_D",
       totalDistance: 5,
     },
     {
-      description: "Easy #8D",
+      description: "Easy #8_D",
       totalDistance: 8,
     },
     {
-      description: "Easy #5D",
+      description: "Easy #5_D",
       totalDistance: 5,
     },
     {
-      description: "Easy #5D",
+      description: "Easy #5_D",
       totalDistance: 5,
     },
     { description: "Rest or Cross-Train", totalDistance: 0 },
     {
-      description: "Easy #6D",
+      description: "Easy #6_D",
       totalDistance: 6,
     },
     {
-      description: "Easy #5D",
+      description: "Easy #5_D",
       totalDistance: 5,
     },
     {
-      description: "Easy #3D",
+      description: "Easy #3_D",
       totalDistance: 3,
     },
     { description: "Race Day!", totalDistance: 26.2 },

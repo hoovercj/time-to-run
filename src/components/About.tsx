@@ -39,12 +39,12 @@ function About() {
       <ol>
         <li>
           Use the "#" symbol before values that should display in the selected
-          units, and the letters "D" and "d" to show "long" or "short" units
+          units and the letters "D" and "d" to show "long" or "short" units
           after the values.<br />
           For example, if you have a plan written in miles, you can write a
           workout that automatically gets converted to kilometers like this:
           <ul>
-            <li><b>Input:</b> Warmup #2D, 4x800m, Cooldown #2d</li>
+            <li><b>Input:</b> Warmup #2_D, 4x800m, Cooldown #2d</li>
             <li><b>Output in Miles:</b> Warmup 2 miles, 4x800m, Cooldown 2mi</li>
             <li><b>Output in Kilometers:</b> Warmup 3 kilometers, 4x800m, Cooldown 3km</li>
           </ul>
@@ -56,6 +56,14 @@ function About() {
             <li><b>Input:</b> #3 without units, #D without a number</li>
             <li><b>Output in Miles:</b> 3 without units, miles without a number</li>
             <li><b>Output in Kilometers:</b> 5 without units, kilometers without a number</li>
+          </ul>
+        </li>
+        <li>
+          Use an underscore "_" between the number and the units to add a space:
+          <ul>
+            <li><b>Input:</b> #3d without a space, #3_D with a space</li>
+            <li><b>Output in Miles:</b> 3mi without a space, 3 miles with a space</li>
+            <li><b>Output in Kilometers:</b> 5km without units, 5 kilometers with a space</li>
           </ul>
         </li>
       </ol>
