@@ -86,6 +86,8 @@ $grid-padding: 10px;
     /* 3 chars + up/down toggle in some browsers  */
     max-width: 5em;
     margin: 0 5px;
+    /* Reset value from default styles */
+    margin-left: 0px;
   }
 
   textarea.description-input {

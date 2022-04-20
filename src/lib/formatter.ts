@@ -10,7 +10,7 @@ const UNITS_MATCH_INDEX = 6;
 const DESCRIPTION_REGEX = /((\d+(\.\d*)?)?|(\.\d+))(\s?)(mi|mile|miles|km|kilometer|kilometers)\b/gi;
 
 export const convertWorkoutDescription = (description: string, inputUnits: Units = "miles", outputUnits: Units = inputUnits, wrapper?: (match: string) => string): string => {
-    if (inputUnits === outputUnits) {
+    if (inputUnits === outputUnits && wrapper == null) {
         return description;
     }
 
@@ -28,7 +28,7 @@ export const convertWorkoutDescription = (description: string, inputUnits: Units
         const hasDistance = distance !== "";
 
         const convertedDistance = hasDistance ? convertDistance(distance, inputUnits, outputUnits) : "";
-        const convertedUnits = convertUnits(units, hasDistance ? Number.parseFloat(convertedDistance) : undefined);
+        const convertedUnits = inputUnits === outputUnits ? units : convertUnits(units, hasDistance ? Number.parseFloat(convertedDistance) : undefined);
 
         const replacement = `${convertedDistance}${whitespace}${convertedUnits}`;
         return wrapper ? wrapper(replacement) : replacement;
@@ -45,10 +45,15 @@ export const convertWorkoutDescription = (description: string, inputUnits: Units
  * @returns An output string such as "Run <span>5 miles</span> (1 x <span>1mi</span>)"
  */
  export const formatHtmlFromTemplate = (template: string, inputUnits: Units = "miles", outputUnits: Units = inputUnits): string => {
-    return formatWorkoutFromTemplate(template, inputUnits, outputUnits, (match) => `<span style="text-decoration: underline">${match}</span>`);
+    // TODO: Add a "title" attribute which says what the value is in the other unit?
+    return convertWorkoutDescription(template, inputUnits, outputUnits, (match) => `<span class="highlight">${match}</span>`);
 }
 
 const convertDistance = (input: string, inputUnits: Units, outputUnits: Units): string => {
+    if (inputUnits === outputUnits) {
+        return input;
+    }
+
     // NOTE: There are a lot of edge cases around decimals that lead to erratic behavior.
     // The following code is only a best-effort attempt at allowing SOME decimal behavior.
     // Integers are preferred
@@ -60,10 +65,18 @@ const convertDistance = (input: string, inputUnits: Units, outputUnits: Units): 
         : 0;
 
     const scaledInput = scaleNumber(parseFloat(input), inputUnits, outputUnits);
-    const fixedInput = scaledInput.toFixed(numDecimalPoints);
-    return fixedInput.startsWith("0") && !input.startsWith("0")
-        ? fixedInput.substring(1)
-        : fixedInput;
+    let fixedInput = scaledInput.toFixed(numDecimalPoints);
+    // Only preserve a leading 0 if the input had a leading zero
+    if (fixedInput.startsWith("0") && !input.startsWith("0")) {
+        fixedInput = fixedInput.substring(1);
+    }
+
+    // Only preserve a trailing 0 if the input had a trailing zero
+    if (fixedInput.endsWith("0") && !input.endsWith("0")) {
+        fixedInput = fixedInput.substring(0, fixedInput.length - 1);
+    }
+
+    return fixedInput;
 }
 
 /**

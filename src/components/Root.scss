@@ -80,11 +80,7 @@ $max-width-percentage: #{100% * $max-width-percentage-decimal};
 }
 
 // TODO: Extract to a component?
-div[contenteditable="true"]:focus-within {
-    // TODO: Consider "outline: 1px solid var(--color-primary)"
-    outline-color: var(--color-primary);
-    outline-offset: 5px;
-
+div[contenteditable="true"] {
     .highlight {
         text-decoration: underline;
     }

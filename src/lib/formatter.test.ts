@@ -1,6 +1,6 @@
-import { convertWorkoutDescription } from "./formatter";
+import { convertWorkoutDescription, formatHtmlFromTemplate } from "./formatter";
 
-describe("formatWorkout", () => {
+describe("formatWorkoutFromTemplate", () => {
     it("returns the input string if no placeholders found", () => {
         expect(convertWorkoutDescription("input string")).toBe("input string");
     });
@@ -27,8 +27,8 @@ describe("formatWorkout", () => {
         expect(convertWorkoutDescription("123 miles", "miles", "kilometers")).toBe("198 kilometers");
         expect(convertWorkoutDescription("12.3 miles", "miles", "kilometers")).toBe("19.8 kilometers");
         expect(convertWorkoutDescription("1.23 miles", "miles", "kilometers")).toBe("1.98 kilometers");
-        expect(convertWorkoutDescription(".123 miles", "miles", "kilometers")).toBe(".20 kilometers");
-        expect(convertWorkoutDescription("0.123 miles", "miles", "kilometers")).toBe("0.20 kilometers");
+        expect(convertWorkoutDescription(".123 miles", "miles", "kilometers")).toBe(".2 kilometers");
+        expect(convertWorkoutDescription("0.1230 miles", "miles", "kilometers")).toBe("0.20 kilometers");
     });
 
     it("converts units without distances", () => {
@@ -42,5 +42,16 @@ describe("formatWorkout", () => {
 
     it("converts multiple units with additional text and non-convertible numbers", () => {
         expect(convertWorkoutDescription("General Aerobic: 10 miles and 10x100m strides, total 11 miles", "miles", "kilometers")).toBe("General Aerobic: 16 kilometers and 10x100m strides, total 18 kilometers");
+    });
+});
+
+describe("formatHtmlFromTemplate", () => {
+    it("returns the input string if no placeholders found", () => {
+        expect(formatHtmlFromTemplate("input string")).toBe("input string");
+    });
+
+    it("formats placeholders with text", () => {
+        expect(formatHtmlFromTemplate("General Aerobic: 10 miles and 10x100m strides")).toBe('General Aerobic: <span class="highlight">10 miles</span> and 10x100m strides');
+        expect(formatHtmlFromTemplate("General Aerobic: 10 miles and 10x100m strides", "miles", "kilometers")).toBe('General Aerobic: <span class="highlight">16 kilometers</span> and 10x100m strides');
     });
 });

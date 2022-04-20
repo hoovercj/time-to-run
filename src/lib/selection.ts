@@ -7,8 +7,6 @@ export interface ISelection {
 }
 
 export const saveSelection = (container: HTMLElement): ISelection => {
-  // TODO: Default to an empty range at the END instead of the start
-  // TODO: Why? What is the impact if I don't?
   const range =
     window.getSelection()?.getRangeAt(0) ?? createEmptyRangeAtStart(container);
   const preSelectionRange = range.cloneRange();
