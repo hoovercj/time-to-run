@@ -8,7 +8,7 @@ export default {
   raceDistance: 0,
   workouts: [
     {
-      description: "Easy #5_D",
+      description: "Easy 5 kilometers",
       totalDistance: 5,
     },
   ],

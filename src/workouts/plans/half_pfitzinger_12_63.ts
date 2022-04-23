@@ -16,15 +16,15 @@ export default {
     },
     {
       totalDistance: 9,
-      description: "General aerobic #9D"
+      description: "General aerobic 9 miles"
     },
     {
       totalDistance: 8,
-      description: "Lacate threshold #8D w/ 15 min LT interval (jog 4 min recovery), 12 min LT interval"
+      description: "Lacate threshold 8 miles w/ 15 min LT interval (jog 4 min recovery), 12 min LT interval"
     },
     {
       totalDistance: 10,
-      description: "Endurance #10D"
+      description: "Endurance 10 miles"
     },
     {
       totalDistance: 0,
@@ -32,11 +32,11 @@ export default {
     },
     {
       totalDistance: 7,
-      description: "General aerobic + speed #7D w/ 2 sets of 6x100m strides (jog 3 min between sets)"
+      description: "General aerobic + speed 7 miles w/ 2 sets of 6x100m strides (jog 3 min between sets)"
     },
     {
       totalDistance: 12,
-      description: "Endurance #12D"
+      description: "Endurance 12 miles"
     },
     {
       totalDistance: 0,
@@ -44,15 +44,15 @@ export default {
     },
     {
       totalDistance: 9,
-      description: "General aerobic #9D"
+      description: "General aerobic 9 miles"
     },
     {
       totalDistance: 9,
-      description: "Lacate threshold #9D w/ 18 min LT interval (jog 4 min recovery), 14 min LT interval"
+      description: "Lacate threshold 9 miles w/ 18 min LT interval (jog 4 min recovery), 14 min LT interval"
     },
     {
       totalDistance: 11,
-      description: "Endurance #11D"
+      description: "Endurance 11 miles"
     },
     {
       totalDistance: 0,
@@ -60,11 +60,11 @@ export default {
     },
     {
       totalDistance: 7,
-      description: "General aerobic + speed #7D w/ 6x12 sec uphill followed by 8x100m strides"
+      description: "General aerobic + speed 7 miles w/ 6x12 sec uphill followed by 8x100m strides"
     },
     {
       totalDistance: 13,
-      description: "Endurance #13D"
+      description: "Endurance 13 miles"
     },
     {
       totalDistance: 0,
@@ -72,15 +72,15 @@ export default {
     },
     {
       totalDistance: 9,
-      description: "General aerobic #9D"
+      description: "General aerobic 9 miles"
     },
     {
       totalDistance: 10,
-      description: "Lacate threshold #10D w/ 20min LT interval (jog 4 min recovery), 16 min LT interval"
+      description: "Lacate threshold 10 miles w/ 20min LT interval (jog 4 min recovery), 16 min LT interval"
     },
     {
       totalDistance: 11,
-      description: "Endurance #11D"
+      description: "Endurance 11 miles"
     },
     {
       totalDistance: 0,
@@ -88,11 +88,11 @@ export default {
     },
     {
       totalDistance: 8,
-      description: "General aerobic + speed #8D w/ 6x12 sec uphill followed by 8x100m strides"
+      description: "General aerobic + speed 8 miles w/ 6x12 sec uphill followed by 8x100m strides"
     },
     {
       totalDistance: 14,
-      description: "Progression long run #14D, last #2D @ LT"
+      description: "Progression long run 14 miles, last 2 miles @ LT"
     },
     {
       totalDistance: 0,
@@ -100,15 +100,15 @@ export default {
     },
     {
       totalDistance: 8,
-      description: "General aerobic #8D"
+      description: "General aerobic 8 miles"
     },
     {
       totalDistance: 10,
-      description: "General aerobic #10D"
+      description: "General aerobic 10 miles"
     },
     {
       totalDistance: 9,
-      description: "General aerobic + speed #9D w/ 2 sets of 5x150m strides (jog 250m between intervals and 4 min between sets)"
+      description: "General aerobic + speed 9 miles w/ 2 sets of 5x150m strides (jog 250m between intervals and 4 min between sets)"
     },
     {
       totalDistance: 0,
@@ -116,11 +116,11 @@ export default {
     },
     {
       totalDistance: 9,
-      description: "General aerobic #9D"
+      description: "General aerobic 9 miles"
     },
     {
       totalDistance: 11,
-      description: "Endurance #11D"
+      description: "Endurance 11 miles"
     },
     {
       totalDistance: 0,
@@ -128,27 +128,27 @@ export default {
     },
     {
       totalDistance: 9,
-      description: "General aerobic #9D"
+      description: "General aerobic 9 miles"
     },
     {
       totalDistance: 10,
-      description: "Lacate threshold #10D w/ 22 min LT interval (jog 4 min recovery), 18 min LT interval"
+      description: "Lacate threshold 10 miles w/ 22 min LT interval (jog 4 min recovery), 18 min LT interval"
     },
     {
       totalDistance: 11,
-      description: "Endurance #11D"
+      description: "Endurance 11 miles"
     },
     {
       totalDistance: 3,
-      description: "Recovery #3D"
+      description: "Recovery 3 miles"
     },
     {
       totalDistance: 8,
-      description: "General aerobic + speed #8D w/ 2 sets of 6x100m strides (jog 3 min between sets)"
+      description: "General aerobic + speed 8 miles w/ 2 sets of 6x100m strides (jog 3 min between sets)"
     },
     {
       totalDistance: 14,
-      description: "Progression long run #14D, last #3D @ LT"
+      description: "Progression long run 14 miles, last 3 miles @ LT"
     },
     {
       totalDistance: 0,
@@ -156,27 +156,27 @@ export default {
     },
     {
       totalDistance: 9,
-      description: "General aerobic #19D"
+      description: "General aerobic 19 miles"
     },
     {
       totalDistance: 10,
-      description: "V02Max #10D w/ 3x1,200m, 3x1,000m @ 3k-5k race pace (jog 50-90% interval time recovery)"
+      description: "V02Max 10 miles w/ 3x1,200m, 3x1,000m @ 3k-5k race pace (jog 50-90% interval time recovery)"
     },
     {
       totalDistance: 12,
-      description: "Endurance #12D"
+      description: "Endurance 12 miles"
     },
     {
       totalDistance: 4,
-      description: "Recovery #4D"
+      description: "Recovery 4 miles"
     },
     {
       totalDistance: 8,
-      description: "General aerobic + speed #8D w/ 8x12 sec uphill followed by 8x100m strides"
+      description: "General aerobic + speed 8 miles w/ 8x12 sec uphill followed by 8x100m strides"
     },
     {
       totalDistance: 15,
-      description: "Endurance #15D"
+      description: "Endurance 15 miles"
     },
     {
       totalDistance: 0,
@@ -184,27 +184,27 @@ export default {
     },
     {
       totalDistance: 9,
-      description: "General aerobic #9D"
+      description: "General aerobic 9 miles"
     },
     {
       totalDistance: 10,
-      description: "Lactate Threshold #10D, 40 min tempo run."
+      description: "Lactate Threshold 10 miles, 40 min tempo run."
     },
     {
       totalDistance: 12,
-      description: "Endurance #12D"
+      description: "Endurance 12 miles"
     },
     {
       totalDistance: 5,
-      description: "Recovery #5D"
+      description: "Recovery 5 miles"
     },
     {
       totalDistance: 9,
-      description: "General aerobic + speed #9D w/ 10x100m strides"
+      description: "General aerobic + speed 9 miles w/ 10x100m strides"
     },
     {
       totalDistance: 16,
-      description: "Progression long run #16D, last #3D @ LT"
+      description: "Progression long run 16 miles, last 3 miles @ LT"
     },
     {
       totalDistance: 0,
@@ -212,27 +212,27 @@ export default {
     },
     {
       totalDistance: 10,
-      description: "General aerobic + speed #10D w/ 2 sets of 5x150m strides (jog 250m between intervals and 4 min between sets)"
+      description: "General aerobic + speed 10 miles w/ 2 sets of 5x150m strides (jog 250m between intervals and 4 min between sets)"
     },
     {
       totalDistance: 9,
-      description: "General aerobic #9D"
+      description: "General aerobic 9 miles"
     },
     {
       totalDistance: 7,
-      description: "Recovery #7D"
+      description: "Recovery 7 miles"
     },
     {
       totalDistance: 4,
-      description: "Recovery #4D w/ 4x100m strides"
+      description: "Recovery 4 miles w/ 4x100m strides"
     },
     {
       totalDistance: 10,
-      description: "8k-10k tune-up race, #10D"
+      description: "8k-10k tune-up race, 10 miles"
     },
     {
       totalDistance: 12,
-      description: "Endurance #12D"
+      description: "Endurance 12 miles"
     },
     {
       totalDistance: 0,
@@ -240,27 +240,27 @@ export default {
     },
     {
       totalDistance: 9,
-      description: "General aerobic #9D"
+      description: "General aerobic 9 miles"
     },
     {
       totalDistance: 11,
-      description: "Endurance #11D"
+      description: "Endurance 11 miles"
     },
     {
       totalDistance: 11,
-      description: "V02Max #11D w/ 6x1,200m @ 3k-5k race pace (jog 50-90% interval time recovery)"
+      description: "V02Max 11 miles w/ 6x1,200m @ 3k-5k race pace (jog 50-90% interval time recovery)"
     },
     {
       totalDistance: 6,
-      description: "Recovery #6D"
+      description: "Recovery 6 miles"
     },
     {
       totalDistance: 10,
-      description: "General aerobic #10D"
+      description: "General aerobic 10 miles"
     },
     {
       totalDistance: 16,
-      description: "Endurance #16D"
+      description: "Endurance 16 miles"
     },
     {
       totalDistance: 0,
@@ -268,27 +268,27 @@ export default {
     },
     {
       totalDistance: 10,
-      description: "General aerobic + speed #10D w/ 2 sets of 5x150m strides (jog 250m between intervals and 4 min between sets)"
+      description: "General aerobic + speed 10 miles w/ 2 sets of 5x150m strides (jog 250m between intervals and 4 min between sets)"
     },
     {
       totalDistance: 9,
-      description: "General aerobic #9D"
+      description: "General aerobic 9 miles"
     },
     {
       totalDistance: 7,
-      description: "Recovery #7D "
+      description: "Recovery 7 miles "
     },
     {
       totalDistance: 4,
-      description: "Recovery #4D w/ 4x100m strides"
+      description: "Recovery 4 miles w/ 4x100m strides"
     },
     {
       totalDistance: 10,
-      description: "8k-10k tune-up race, #10D"
+      description: "8k-10k tune-up race, 10 miles"
     },
     {
       totalDistance: 12,
-      description: "Endurance #12D"
+      description: "Endurance 12 miles"
     },
     {
       totalDistance: 0,
@@ -296,27 +296,27 @@ export default {
     },
     {
       totalDistance: 7,
-      description: "General aerobic #7D"
+      description: "General aerobic 7 miles"
     },
     {
       totalDistance: 5,
-      description: "Recovery #5D"
+      description: "Recovery 5 miles"
     },
     {
       totalDistance: 10,
-      description: "V02Max #10D w/ 2x1,200m, 4x800m @ 3k-5k race pace (jog 50-90% interval time recovery)"
+      description: "V02Max 10 miles w/ 2x1,200m, 4x800m @ 3k-5k race pace (jog 50-90% interval time recovery)"
     },
     {
       totalDistance: 4,
-      description: "Recovery #4D"
+      description: "Recovery 4 miles"
     },
     {
       totalDistance: 6,
-      description: "General aerobic + speed #6D w/ 2 sets of 6x100m strides (jog 3 min between sets)"
+      description: "General aerobic + speed 6 miles w/ 2 sets of 6x100m strides (jog 3 min between sets)"
     },
     {
       totalDistance: 11,
-      description: "Endurance #11D"
+      description: "Endurance 11 miles"
     },
     {
       totalDistance: 0,
@@ -324,15 +324,15 @@ export default {
     },
     {
       totalDistance: 8,
-      description: "Race pace + speed #8D w/ #2D @ half marathon race pace and 6x100m strides"
+      description: "Race pace + speed 8 miles w/ 2 miles @ half marathon race pace and 6x100m strides"
     },
     {
       totalDistance: 7,
-      description: "Recovery #7D"
+      description: "Recovery 7 miles"
     },
     {
       totalDistance: 6,
-      description: "Recovery #6D"
+      description: "Recovery 6 miles"
     },
     {
       totalDistance: 0,
@@ -340,11 +340,11 @@ export default {
     },
     {
       totalDistance: 4,
-      description: "Recovery #4D w/ 4x100m strides"
+      description: "Recovery 4 miles w/ 4x100m strides"
     },
     {
       totalDistance: 17,
-      description: "Half Marathon goal race #17D"
+      description: "Half Marathon goal race 17 miles"
     }
   ]
 } as BuiltInPlan;
