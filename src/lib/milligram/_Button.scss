@@ -47,13 +47,16 @@ input[type='file'] {
     }
 
     &[disabled] {
-        cursor: default;
-        opacity: .5;
+        &,
+        & + label.button {
+            cursor: default;
+            opacity: .5;
 
-        &:focus,
-        &:hover {
-            background-color: $color-neutral-secondary;
-            border-color: $color-neutral-secondary;
+            &:focus,
+            &:hover {
+                background-color: $color-neutral-secondary;
+                border-color: $color-neutral-secondary;
+            }
         }
     }
 

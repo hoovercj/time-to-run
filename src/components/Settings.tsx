@@ -37,9 +37,12 @@ export const Settings = React.memo(function(props: SettingsProps) {
     displayMode
   } = props;
 
-  const renderedUnits = useMemo(() => renderUnits(units, onUnitsChange), [
+  const isEditMode = displayMode === "edit";
+
+  const renderedUnits = useMemo(() => renderUnits(units, onUnitsChange, isEditMode), [
     units,
-    onUnitsChange
+    onUnitsChange,
+    isEditMode
   ]);
 
   const datepicker = useRef<DatePicker>(null);
@@ -62,7 +65,6 @@ export const Settings = React.memo(function(props: SettingsProps) {
     }
   }, [datepicker]);
 
-  const isEditMode = displayMode === "edit";
   const disabledTitle = isEditMode
     ? "Finish editing before changing or downloading plans."
     : "";
@@ -78,9 +80,8 @@ export const Settings = React.memo(function(props: SettingsProps) {
             onChange={date => date && onDateChange(date)}
             onSelect={onDatepickerSelect}
             onKeyDown={onDatepickerInputKeyDown}
-            customInput={<input
-              inputMode="none"
-            />}
+            customInput={<input inputMode="none" />}
+            disabled={isEditMode}
           />
         </div>
         <div className="field" title={disabledTitle}>
@@ -161,7 +162,7 @@ export const Settings = React.memo(function(props: SettingsProps) {
   );
 });
 
-function renderUnits(units: string, onUnitsChange: func<Units>) {
+function renderUnits(units: string, onUnitsChange: func<Units>, disabled?: boolean) {
   return (
     <RadioGroup
       label="3. Set Distance Units"
@@ -178,6 +179,7 @@ function renderUnits(units: string, onUnitsChange: func<Units>) {
         }
       ]}
       onSelectedChange={onUnitsChange}
+      disabled={disabled}
     />
   );
 }
@@ -188,10 +190,11 @@ interface RadioGroupProps {
   selectedValue: string;
   onSelectedChange: func<any>;
   values: { value: string; label: string }[];
+  disabled?: boolean;
 }
 
 const RadioGroup = React.memo(function(props: RadioGroupProps) {
-  const { label, name, selectedValue, values, onSelectedChange } = props;
+  const { label, name, selectedValue, values, onSelectedChange, disabled } = props;
 
   const labelId = `${name}-group-label`;
 
@@ -216,6 +219,7 @@ const RadioGroup = React.memo(function(props: RadioGroupProps) {
             name={name}
             checked={value === selectedValue}
             onChange={onRadioItemChange}
+            disabled={disabled}
           />
         );
       })}
@@ -228,6 +232,7 @@ interface RadioItemProps {
   name: string;
   value: string;
   checked: boolean;
+  disabled?: boolean;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -236,6 +241,7 @@ const RadioItem = React.memo(function({
   name,
   value,
   checked,
+  disabled,
   onChange
 }: RadioItemProps) {
   const id = `${name}-input-${value}`;
@@ -249,6 +255,7 @@ const RadioItem = React.memo(function({
         value={value}
         checked={checked}
         onChange={onChange}
+        disabled={disabled}
       />
       <label htmlFor={id} className="label-inline">
         {label}
