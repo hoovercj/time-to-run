@@ -37,7 +37,6 @@ export const FormatterPlayground = (props: FormatterPlaygroundProps) => {
     if (newHtml !== eventHtml) {
       selectionToRestore.current = saveSelection(contentEditableRef.current);
     } else {
-      // TODO: is this correct?
       selectionToRestore.current = null;
     }
 

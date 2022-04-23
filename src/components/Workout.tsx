@@ -81,14 +81,15 @@ export const Workout = React.memo(function (props: WorkoutProps) {
       return;
     }
 
+    // TODO: Should I always save?
+    selectionToRestore.current = saveSelection(contentEditableRef.current)
+
     const eventHtml = event.target.value;
-    const newHtml = Formatter.formatTemplateFromText(contentEditableRef.current.innerText);
+    // const sanitizedEventHtml = eventHtml.replaceAll("&nbsp;","");
+    const newHtml = Formatter.formatHtmlFromTemplate(contentEditableRef.current.innerText, units, displayUnits);
 
     if (newHtml !== eventHtml) {
       selectionToRestore.current = saveSelection(contentEditableRef.current);
-    } else {
-      // TODO: is this correct?
-      selectionToRestore.current = null;
     }
 
     dispatch({
@@ -101,7 +102,7 @@ export const Workout = React.memo(function (props: WorkoutProps) {
         id: id,
       },
     });
-  }, [date, dispatch, id, totalDistance]);
+  }, [date, dispatch, displayUnits, id, totalDistance, units]);
 
   React.useEffect(() => {
     if (!contentEditableRef.current || !selectionToRestore.current) {

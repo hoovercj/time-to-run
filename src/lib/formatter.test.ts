@@ -46,11 +46,15 @@ describe("formatWorkoutFromTemplate", () => {
 });
 
 describe("formatHtmlFromTemplate", () => {
-    it("returns the input string if no placeholders found", () => {
+    it("returns the input string if required placeholders aren't found", () => {
         expect(formatHtmlFromTemplate("input string")).toBe("input string");
+        expect(formatHtmlFromTemplate("5")).toBe("5");
+        expect(formatHtmlFromTemplate("5 mil")).toBe("5 mil");
     });
 
     it("formats placeholders with text", () => {
+        // TODO: better handling of whitespace for unit-only matches?
+        expect(formatHtmlFromTemplate("number miles")).toBe('number<span class="highlight"> miles</span>');
         expect(formatHtmlFromTemplate("General Aerobic: 10 miles and 10x100m strides")).toBe('General Aerobic: <span class="highlight">10 miles</span> and 10x100m strides');
         expect(formatHtmlFromTemplate("General Aerobic: 10 miles and 10x100m strides", "miles", "kilometers")).toBe('General Aerobic: <span class="highlight">16 kilometers</span> and 10x100m strides');
     });
