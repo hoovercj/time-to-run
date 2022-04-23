@@ -18,7 +18,6 @@ import {
   getDayOfWeekString,
   scrollIntoViewIfNeeded,
 } from "../lib/utils";
-// import { convertWorkoutDescription } from "../lib/formatter";
 import * as Formatter from "../lib/formatter";
 import { InteractiveIcon } from "./InteractiveIcon";
 import { DragHandle } from "./DragHandle";
@@ -27,7 +26,6 @@ import { Action, ActionType } from "../lib/reducer";
 export interface WorkoutProps {
   id: string;
   units: Units;
-  displayUnits: Units;
   description: string;
   totalDistance: number;
   dispatch: func<Action>;
@@ -42,11 +40,10 @@ export interface WorkoutProps {
 
 export const Workout = React.memo(function (props: WorkoutProps) {
   const {
-    units,
-    displayUnits,
     dispatch,
     id,
     description,
+    units,
     totalDistance,
     displayMode,
     date,
@@ -61,48 +58,32 @@ export const Workout = React.memo(function (props: WorkoutProps) {
   const dayOfWeekString = useMemo(() => getDayOfWeekString(dateMemo), [
     dateMemo,
   ]);
-  // const formattedDescription = useMemo(
-  //   () => convertWorkoutDescription(description, units, displayUnits),
-  //   [description, units, displayUnits]
-  // );
-  // const distanceString = useMemo(
-  //   () => getDistanceString(totalDistance, units, displayUnits),
-  //   [totalDistance, units, displayUnits]
-  // );
 
   const selectionToRestore = React.useRef<ISelection | null>(null);
 
   const formattedHTMLValue = React.useMemo(() => {
-    return Formatter.formatHtmlFromTemplate(description, units, displayUnits);
-  }, [description, displayUnits, units]);
+    return Formatter.convertDescriptionToHtml(description);
+  }, [description]);
 
   const onContentEditableChanged = React.useCallback((event: ContentEditableEvent) => {
     if (!contentEditableRef.current) {
       return;
     }
 
-    // TODO: Should I always save?
+    // TODO: Should I always save the selection? Or only when something changes?
+    // Or do I even need this at all?
     selectionToRestore.current = saveSelection(contentEditableRef.current)
-
-    const eventHtml = event.target.value;
-    // const sanitizedEventHtml = eventHtml.replaceAll("&nbsp;","");
-    const newHtml = Formatter.formatHtmlFromTemplate(contentEditableRef.current.innerText, units, displayUnits);
-
-    if (newHtml !== eventHtml) {
-      selectionToRestore.current = saveSelection(contentEditableRef.current);
-    }
 
     dispatch({
       type: "editWorkout",
       payload: {
         date,
         totalDistance,
-        // TODO: this will cause problems due to precision loss when converting back and forth
-        description: Formatter.convertWorkoutDescription(contentEditableRef.current.innerText, displayUnits, units),
+        description: contentEditableRef.current.innerText,
         id: id,
       },
     });
-  }, [date, dispatch, displayUnits, id, totalDistance, units]);
+  }, [date, dispatch, id, totalDistance]);
 
   React.useEffect(() => {
     if (!contentEditableRef.current || !selectionToRestore.current) {
@@ -365,7 +346,6 @@ export const Workout = React.memo(function (props: WorkoutProps) {
           </>
         )}
         <div className="my-row formatted-description-row">
-          {/* {formattedDescription} */}
           <ContentEditable
             innerRef={contentEditableRef}
             html={formattedHTMLValue}

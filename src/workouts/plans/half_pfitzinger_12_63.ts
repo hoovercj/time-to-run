@@ -3,7 +3,7 @@ import { BuiltInPlan } from "../../lib/workout";
 export default {
   id: "e4d80b18-a1e2-4e98-8948-0b2e0acdb64e",
   title:
-    "Half Marathon: Pfitzinger/Latter: 46 to 63 miles per week, 12-week schedule",
+    "Pfitzinger/Latter: 46 to 63 miles per week, 12-week schedule",
   sourceName: "Faster Road Racing: 5K to Half Marathon",
   sourceUrl: "https://www.amazon.com/gp/product/1450470459/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1450470459&linkCode=as2&tag=codyhoover-20&linkId=6107e4706a5e1cc10836339bd7b312e0",
   raceType: "Half Marathon",

@@ -2,7 +2,7 @@ import { BuiltInPlan } from "../../lib/workout";
 
 export default {
   id: "f408afd6-8521-4b54-9e59-6c0cbda813bb",
-  title: "Marathon: Pfitzinger/Douglas: 55 to 70 miles per week, 18-week schedule",
+  title: "Pfitzinger/Douglas: 55 to 70 miles per week, 18-week schedule",
   sourceName: "Advanced Marathoning",
   sourceUrl: "https://www.amazon.com/gp/product/B07PPRH66H/ref=as_li_tl?ie=UTF8&tag=codyhoover-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=B07PPRH66H&linkId=2d5713afeeff31d780b3522d13c240fd",
   raceType: "Marathon",

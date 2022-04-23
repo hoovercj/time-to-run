@@ -2,7 +2,7 @@ import { BuiltInPlan } from "../../lib/workout";
 
 export default {
   id: "ccdda323-79d9-409c-ad48-6fba09474b2e",
-  title: "Marathon: Hansons Beginner Marathon",
+  title: "Hansons Beginner Marathon",
   raceType: "Marathon",
   units: "miles",
   raceDistance: 26.2,

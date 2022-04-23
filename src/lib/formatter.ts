@@ -1,4 +1,4 @@
-import { Units } from "./workout";
+import { Units, Plan } from "./workout";
 import { scaleNumber } from "./utils";
 
 // Match values similar to:
@@ -9,8 +9,26 @@ const WHITESPACE_MATCH_INDEX = 5;
 const UNITS_MATCH_INDEX = 6;
 const DESCRIPTION_REGEX = /((\d+(\.\d*)?)?|(\.\d+))(\s?)(mi|mile|miles|km|kilometer|kilometers)\b/gi;
 
-export const convertWorkoutDescription = (description: string, inputUnits: Units = "miles", outputUnits: Units = inputUnits, wrapper?: (match: string) => string): string => {
-    if (inputUnits === outputUnits && wrapper == null) {
+export const convertPlanUnits = (plan: Plan, outputUnits: Units): Plan => {
+    if (plan.units === outputUnits) {
+        return plan;
+    }
+
+    return {
+        ...plan,
+        units: outputUnits,
+        workouts: plan.workouts.map(({ id, totalDistance, description }) => {
+          return {
+            id,
+            totalDistance: Math.round(scaleNumber(totalDistance, plan.units, outputUnits)),
+            description: convertWorkoutDescriptionUnits(description, plan.units, outputUnits),
+          };
+        }),
+    };
+}
+
+export const convertWorkoutDescriptionUnits = (description: string, inputUnits: Units = "miles", outputUnits: Units = inputUnits): string => {
+    if (inputUnits === outputUnits) {
         return description;
     }
 
@@ -30,23 +48,31 @@ export const convertWorkoutDescription = (description: string, inputUnits: Units
         const convertedDistance = hasDistance ? convertDistance(distance, inputUnits, outputUnits) : "";
         const convertedUnits = inputUnits === outputUnits ? units : convertUnits(units, hasDistance ? Number.parseFloat(convertedDistance) : undefined);
 
-        const replacement = `${convertedDistance}${whitespace}${convertedUnits}`;
-        return wrapper ? wrapper(replacement) : replacement;
+        return `${convertedDistance}${whitespace}${convertedUnits}`;
     }
 
     return description.replace(DESCRIPTION_REGEX, replacer);
 }
 
 /**
- * Generate a styled html string from a template string
- * @param template A template string such as "Run #5_D (5 x #1d)"
- * @param inputUnits The units used in the input, i.e. #1d represents 1 mile or 1 km depending on the input unit
- * @param outputUnits The units for the output, i.e. #3.1d -> 5 km if the input unit is miles and the output is kilometers
- * @returns An output string such as "Run <span>5 miles</span> (1 x <span>1mi</span>)"
+ * Generate a styled html string from a workout description
+ * @param description A workout description string such as "Run 5 miles"
+ * @returns An output string such as "Run <span>5 miles</span>"
  */
- export const formatHtmlFromTemplate = (template: string, inputUnits: Units = "miles", outputUnits: Units = inputUnits): string => {
+ export const convertDescriptionToHtml = (description: string): string => {
     // TODO: Add a "title" attribute which says what the value is in the other unit?
-    return convertWorkoutDescription(template, inputUnits, outputUnits, (match) => `<span class="highlight">${match}</span>`);
+    const replacer = (...args: any[]): string => {
+        const match = args[0];
+        const input = args[args.length - 1];
+
+        if (!match) {
+            return input;
+        }
+
+        return `<span class="highlight">${match}</span>`;
+    }
+
+    return description.replace(DESCRIPTION_REGEX, replacer);
 }
 
 const convertDistance = (input: string, inputUnits: Units, outputUnits: Units): string => {

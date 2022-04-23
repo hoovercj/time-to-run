@@ -3,7 +3,7 @@ import { BuiltInPlan } from "../../lib/workout";
 export default {
   id: "c03adcfc-d1c8-4c55-a4f6-641407c68aec",
   title: "New (km)",
-  raceType: "",
+  raceType: "Template",
   units: "kilometers",
   raceDistance: 0,
   workouts: [

@@ -106,7 +106,7 @@ export const Settings = React.memo(function (props: SettingsProps) {
                 return groups;
               }, {} as Record<string, JSX.Element[]>)
             ).map(([raceType, options]) => {
-              return <optgroup label={raceType}>{options}</optgroup>;
+              return <optgroup label={raceType} key={raceType}>{options}</optgroup>;
             })}
           </select>
           <label>Or Upload your Own</label>

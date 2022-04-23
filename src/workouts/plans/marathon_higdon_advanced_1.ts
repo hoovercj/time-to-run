@@ -2,7 +2,7 @@ import { BuiltInPlan } from "../../lib/workout";
 
 export default {
   id: "d05e8c67-0f5e-4478-b854-2c7486634744",
-  title: "Marathon: Hal Higdon: Advanced 1",
+  title: "Hal Higdon: Advanced 1",
   raceType: "Marathon",
   units: "miles",
   raceDistance: 26.2,

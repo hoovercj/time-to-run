@@ -4,7 +4,7 @@ export default {
   "id": "9c0dbc4c-9c09-4840-bf24-36cd575c0b23",
   "raceDistance": 26.2,
   "raceType": "Marathon",
-  "title": "Marathon: Pfitzinger/Douglas: 70 to 85 miles per week, 12-week schedule",
+  "title": "Pfitzinger/Douglas: 70 to 85 miles per week, 12-week schedule",
   sourceName: "Advanced Marathoning",
   sourceUrl: "https://www.amazon.com/gp/product/B07PPRH66H/ref=as_li_tl?ie=UTF8&tag=codyhoover-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=B07PPRH66H&linkId=2d5713afeeff31d780b3522d13c240fd",
   "units": "miles",

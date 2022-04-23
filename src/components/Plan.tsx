@@ -8,7 +8,7 @@ import React, {
 
 import "./Plan.scss";
 
-import { Plan as IPlan, Units } from "../lib/workout";
+import { Plan as IPlan } from "../lib/workout";
 import {
   func,
   getLongDateString,
@@ -29,7 +29,6 @@ export interface PlanProps {
   plan: IPlan;
   goalDate: Date;
   savePlan: func<IPlan>;
-  displayUnits: Units;
   onDisplayModeChanged?: func<DisplayMode>;
 }
 
@@ -39,7 +38,6 @@ export function Plan({
   plan,
   savePlan,
   goalDate,
-  displayUnits,
   onDisplayModeChanged,
 }: PlanProps) {
   const [state, dispatch] = useReducer(reducer, {
@@ -177,10 +175,10 @@ export function Plan({
   ) {
     const weekWorkouts = tempWorkouts.splice(0, WEEK_LENGTH);
 
-    const volume = getVolumeFromWorkouts(workouts, units, displayUnits);
+    const volume = getVolumeFromWorkouts(workouts, units, units);
 
     const weekTitle = `Week ${weekNumber}`;
-    const volumeString = volume > 0 ? getVolumeStringFromWorkouts(weekWorkouts, units, displayUnits) : undefined;
+    const volumeString = volume > 0 ? getVolumeStringFromWorkouts(weekWorkouts, units, units) : undefined;
     const weekStartDate = addDays(goalDate, (tempWorkouts.length + weekWorkouts.length - 1) * -1);
     const weekEndDate = addDays(weekStartDate, 6);
     const dateString = `${getShortDateStringWithoutYear(weekStartDate)}-${getShortDateStringWithoutYear(weekEndDate)}`;
@@ -199,7 +197,6 @@ export function Plan({
           key={w.id}
           dispatch={dispatch}
           units={units}
-          displayUnits={displayUnits}
           displayMode={displayMode}
           canDelete={!isOnly}
           canMoveUp={!isFirst}

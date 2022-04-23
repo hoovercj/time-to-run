@@ -2,7 +2,7 @@ import { BuiltInPlan } from "../../lib/workout";
 
 export default {
   id: "1f16b01b-3dd4-498b-96b8-17b6c304288b",
-  title: "Half Marathon: Hansons Beginner Half Marathon",
+  title: "Hansons Beginner Half Marathon",
   raceType: "Half Marathon",
   units: "miles",
   raceDistance: 13.1,
