@@ -5,7 +5,6 @@ export default {
   title: "New (miles)",
   raceType: "Template",
   units: "miles",
-  raceDistance: 0,
   workouts: [
     {
       description: "Easy 5 miles",

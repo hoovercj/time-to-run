@@ -4,7 +4,6 @@ export default {
   id: "957bd5e2-a307-4b29-91eb-fffb29fe28f7",
   title: "Base Training: Pfitzinger/Latter: Up to 60 miles per week, 10-week schedule",
   raceType: "Base",
-  raceDistance: 0,
   units: "miles",
   workouts: [
     {

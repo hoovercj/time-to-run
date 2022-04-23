@@ -5,7 +5,6 @@ export default {
   title: "Hansons Advanced Half Marathon",
   raceType: "Half Marathon",
   units: "miles",
-  raceDistance: 13.1,
   workouts: [
     { description: "Rest or Cross-Train", totalDistance: 0 },
     { description: "Rest or Cross-Train", totalDistance: 0 },

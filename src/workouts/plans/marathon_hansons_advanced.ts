@@ -5,7 +5,6 @@ export default {
   title: "Hansons Advanced Marathon",
   raceType: "Marathon",
   units: "miles",
-  raceDistance: 26.2,
   workouts: [
     {
       description: "6 miles Easy",

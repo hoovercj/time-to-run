@@ -231,6 +231,8 @@ export function Plan({
         {renderTitle(title, dispatch, isEditMode)}
         {renderActions(isEditMode, toggleEdit, performSave, editCancelButton)}
       </h2>
+      {renderRaceType(state.plan.raceType)}
+      {/* TODO: Improve the rendering of this data */}
       {renderSource(state.plan.sourceName, state.plan.sourceUrl)}
       <div className="goal-race">Goal Race: {getLongDateString(goalDate)}</div>
       <div ref={workoutsContainer}>{renderedWeeks}</div>
@@ -238,7 +240,17 @@ export function Plan({
   );
 }
 
+function renderRaceType(raceType?: string) {
+  // TODO: make this editable
+  if (!raceType) {
+    return null;
+  }
+
+  return <div className="goal-race">Race Type: {raceType}</div>;
+}
+
 function renderSource(name?: string, url?: string): JSX.Element | null {
+  // TODO: make this editable
   if (!name) {
     return null;
   }

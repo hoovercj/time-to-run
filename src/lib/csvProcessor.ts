@@ -14,7 +14,6 @@ type WorkoutHeadings = keyof Workout;
 const PLAN_HEADINGS: PlanHeadings[] = [
   "title",
   "raceType",
-  "raceDistance",
   "units"
 ];
 const NEWLINE = "\r\n";
@@ -30,7 +29,7 @@ export const planToCsv = (plan: ExternalPlan): string => {
 
   const planInfoData = [
     PLAN_HEADINGS,
-    [planInfo.title, planInfo.raceType, planInfo.raceDistance, planInfo.units]
+    [planInfo.title, planInfo.raceType, planInfo.units]
   ];
 
   const csv = [
@@ -74,7 +73,6 @@ export const csvToPlan = (file: string): ExternalPlan | null => {
     // Get column order from the file
     const titleIndex = planHeadings.indexOf("title");
     const raceTypeIndex = planHeadings.indexOf("raceType");
-    const raceDistanceIndex = planHeadings.indexOf("raceDistance");
     const unitsIndex = planHeadings.indexOf("units");
     const descriptionIndex = workoutHeadings.indexOf("description");
     const workoutDistanceIndex = workoutHeadings.indexOf("totalDistance");
@@ -83,7 +81,6 @@ export const csvToPlan = (file: string): ExternalPlan | null => {
     const plan: ExternalPlan = {
       title: planValues[titleIndex],
       raceType: planValues[raceTypeIndex],
-      raceDistance: parseFloat(planValues[raceDistanceIndex]),
       units: planValues[unitsIndex] as Units,
       workouts: workouts.map(
         workout => {

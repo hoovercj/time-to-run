@@ -4,7 +4,6 @@ export default {
   id: "e81a807f-0e3d-47c4-8d63-9cfc1b948174",
   title: "Couch to 5K",
   raceType: "5K",
-  raceDistance: 5,
   units: "kilometers",
   workouts: [
     {

@@ -5,7 +5,6 @@ export default {
   title: "Hal Higdon: Novice 1",
   raceType: "Marathon",
   units: "miles",
-  raceDistance: 26.2,
   workouts: [
     { description: "Rest", totalDistance: 0 },
     {

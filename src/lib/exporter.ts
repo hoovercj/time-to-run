@@ -14,10 +14,9 @@ import {
 export type Filetype = "ical" | "json" | "csv" | "link" | "print";
 
 export function downloadPlanTemplate(plan: Plan, filetype: Filetype) {
-  const { raceDistance, raceType, title, units, workouts } = plan;
+  const { raceType, title, units, workouts } = plan;
 
   const planToExport: ExternalPlan = {
-    raceDistance,
     raceType,
     title,
     units,

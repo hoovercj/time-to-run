@@ -7,7 +7,6 @@ export default {
   sourceName: "Faster Road Racing: 5K to Half Marathon",
   sourceUrl: "https://www.amazon.com/gp/product/1450470459/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1450470459&linkCode=as2&tag=codyhoover-20&linkId=6107e4706a5e1cc10836339bd7b312e0",
   raceType: "Half Marathon",
-  raceDistance: 13.1,
   units: "miles",
   workouts: [
     {

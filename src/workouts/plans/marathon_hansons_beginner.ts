@@ -5,7 +5,6 @@ export default {
   title: "Hansons Beginner Marathon",
   raceType: "Marathon",
   units: "miles",
-  raceDistance: 26.2,
   workouts: [
     { description: "Rest or Cross-Train", totalDistance: 0 },
     {

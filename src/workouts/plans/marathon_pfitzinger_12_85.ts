@@ -2,7 +2,6 @@ import { BuiltInPlan } from "../../lib/workout";
 
 export default {
   id: "9c0dbc4c-9c09-4840-bf24-36cd575c0b23",
-  raceDistance: 26.2,
   raceType: "Marathon",
   title: "Pfitzinger/Douglas: 70 to 85 miles per week, 12-week schedule",
   sourceName: "Advanced Marathoning",
