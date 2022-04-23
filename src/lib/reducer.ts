@@ -38,12 +38,12 @@ export function reducer(
       };
     }
     case "insertWorkout": {
-      const id = payload as string;
+      const typedPayload = payload as InsertWorkoutPayload;
       const newWorkouts = [...state.editedPlan.workouts];
       let insertIndex =
-        id === undefined
+        typedPayload?.id === undefined
           ? newWorkouts.length
-          : newWorkouts.findIndex((w: Workout) => w.id === id) + 1;
+          : newWorkouts.findIndex((w: Workout) => w.id === typedPayload.id) + (typedPayload.before ? 0 : 1);
 
       const newId = getGuid();
       newWorkouts.splice(insertIndex, 0, {
@@ -226,4 +226,9 @@ export type ActionType =
 export interface Action {
   type: ActionType;
   payload?: any;
+}
+
+export interface InsertWorkoutPayload {
+  id: string,
+  before: boolean,
 }

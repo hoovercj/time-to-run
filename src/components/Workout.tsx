@@ -17,11 +17,14 @@ import {
   DisplayMode,
   getDayOfWeekString,
   scrollIntoViewIfNeeded,
+  getPreviousElement,
+  getNextElement,
+  selectText,
 } from "../lib/utils";
 import * as Formatter from "../lib/formatter";
 import { InteractiveIcon } from "./InteractiveIcon";
 import { DragHandle } from "./DragHandle";
-import { Action, ActionType } from "../lib/reducer";
+import { Action, ActionType, InsertWorkoutPayload } from "../lib/reducer";
 
 export interface WorkoutProps {
   id: string;
@@ -126,11 +129,43 @@ export const Workout = React.memo(function (props: WorkoutProps) {
   );
 
   const onInsert = useCallback(
-    () => dispatch({ type: "insertWorkout", payload: id }),
+    (before: boolean) => dispatch({ type: "insertWorkout", payload: {
+      id,
+      before,
+    } as InsertWorkoutPayload}),
     [id, dispatch]
   );
 
-  const onKeyDown = useCallback(
+  const onWorkoutKeyDown = useCallback(
+    (event: React.KeyboardEvent<HTMLElement>) => {
+      const isWorkoutInputPredicate = (element: HTMLElement) => element.hasAttribute("data-workoutinput");
+      if (event.code === "Enter") {
+        event.preventDefault();
+        event.stopPropagation();
+        const target = event.currentTarget;
+        if (event.shiftKey) {
+          const previousInput = getPreviousElement(document.body, target, isWorkoutInputPredicate);
+          if (previousInput) {
+            previousInput.focus();
+            selectText(previousInput);
+          } else {
+            onInsert(true);
+          }
+        } else {
+          const nextInput = getNextElement(document.body, target, isWorkoutInputPredicate);
+          if (nextInput) {
+            nextInput.focus();
+            selectText(nextInput);
+          } else {
+            onInsert(false);
+          }
+        }
+      }
+    },
+    [onInsert]
+  );
+
+  const onContainerKeyDown = useCallback(
     (event: React.KeyboardEvent<HTMLDivElement>) => {
       if (displayMode === "edit" && event.altKey) {
         if (event.key === "d" && canDelete) {
@@ -142,7 +177,7 @@ export const Workout = React.memo(function (props: WorkoutProps) {
           event.preventDefault();
           event.stopPropagation();
           console.log("Workout insert shortcut");
-          onInsert();
+          onInsert(false);
           return;
         } else if (event.key === "ArrowUp" && canMoveUp) {
           event.preventDefault();
@@ -192,11 +227,12 @@ export const Workout = React.memo(function (props: WorkoutProps) {
   }, [dispatch, id]);
 
   const container = useRef<HTMLDivElement>(null);
-  const descriptionInput = useRef<HTMLTextAreaElement>(null);
   const moveUpButton = useRef<HTMLButtonElement>(null);
   const moveDownButton = useRef<HTMLButtonElement>(null);
   const insertButton = useRef<HTMLButtonElement>(null);
   const deleteButton = useRef<HTMLButtonElement>(null);
+  const totalDistanceInputRef = useRef<HTMLInputElement>(null);
+  const contentEditableRef = React.useRef<HTMLElement>(null);
 
   useLayoutEffect(() => {
     // Don't change focus if this already contains it
@@ -206,7 +242,8 @@ export const Workout = React.memo(function (props: WorkoutProps) {
           deleteButton.current?.focus();
           break;
         case "insertWorkout":
-          descriptionInput.current?.focus();
+          totalDistanceInputRef.current?.focus();
+          totalDistanceInputRef.current?.select();
           break;
         case "moveWorkoutUp":
           if (canMoveUp) {
@@ -291,7 +328,7 @@ export const Workout = React.memo(function (props: WorkoutProps) {
         />
         <InteractiveIcon
           id={`insert-${id}`}
-          onClick={onInsert}
+          onClick={() => onInsert(false)}
           title="Add new workout (Alt+N)"
           icon="plus"
           className={`insert-button ${buttonClassName}`}
@@ -311,18 +348,17 @@ export const Workout = React.memo(function (props: WorkoutProps) {
       </div>
     );
 
-  const contentEditableRef = React.useRef<HTMLElement>(null);
-
   return (
     <div
       ref={container}
       className={`workout ${displayMode} ${dragHover ? "drag-hover" : ""} ${renderAsGrid ? "grid" : ""}`}
-      onKeyDown={onKeyDown}
+      onKeyDown={onContainerKeyDown}
       onDragOver={onDragOver}
       onDragEnter={onDragEnter}
       onDragLeave={onDragLeave}
       onDrop={onDrop}
     >
+      {/* TODO: Add an absolutely-positioned "insert workout" action here */}
       <div className="date-column">
         <div className="my-row date-string primary">
           {dayOfWeekString}
@@ -340,6 +376,9 @@ export const Workout = React.memo(function (props: WorkoutProps) {
                 type="number"
                 onChange={onDistanceChange}
                 className="total-distance-input"
+                data-workoutinput="true"
+                onKeyDown={onWorkoutKeyDown}
+                ref={totalDistanceInputRef}
               />
               <span>{units}</span>
             </div>
@@ -351,9 +390,13 @@ export const Workout = React.memo(function (props: WorkoutProps) {
             html={formattedHTMLValue}
             disabled={displayMode !== "edit"}
             onChange={onContentEditableChanged}
+            data-workoutinput="true"
+            onKeyDown={onWorkoutKeyDown}
+
           />
         </div>
       </div>
+      {/* TODO: Add an absolutely-positioned "insert workout" action here */}
     </div>
   );
 });

@@ -179,3 +179,165 @@ export function scrollIntoViewIfNeeded(target: Element) {
     target.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "nearest" });
   }
 }
+
+export function getNextElement(
+  rootElement: HTMLElement,
+  currentElement: HTMLElement | null,
+  predicate: (element: HTMLElement) => boolean,
+  checkNode?: boolean,
+  suppressParentTraversal?: boolean,
+  suppressChildTraversal?: boolean,
+  includeRoot?: boolean,
+): HTMLElement | null {
+  if (!currentElement || (currentElement === rootElement && suppressChildTraversal && !includeRoot)) {
+    return null;
+  }
+
+  let isCurrentElementVisible = isElementVisible(currentElement);
+
+  // Check the current node, if it's not the first traversal.
+  if (checkNode && isCurrentElementVisible && predicate(currentElement)) {
+    return currentElement;
+  }
+
+  // Check its children.
+  if (!suppressChildTraversal && isCurrentElementVisible) {
+    const childMatch = getNextElement(
+      rootElement,
+      currentElement.firstElementChild as HTMLElement,
+      predicate,
+      true,
+      true,
+      false,
+      includeRoot,
+    );
+
+    if (childMatch) {
+      return childMatch;
+    }
+  }
+
+  if (currentElement === rootElement) {
+    return null;
+  }
+
+  // Check its sibling.
+  const siblingMatch = getNextElement(
+    rootElement,
+    currentElement.nextElementSibling as HTMLElement,
+    predicate,
+    true,
+    true,
+    false,
+    includeRoot,
+  );
+
+  if (siblingMatch) {
+    return siblingMatch;
+  }
+
+  if (!suppressParentTraversal) {
+    return getNextElement(
+      rootElement,
+      currentElement.parentElement,
+      predicate,
+      false,
+      false,
+      true,
+      includeRoot,
+    );
+  }
+
+  return null;
+}
+
+export function selectText(target: HTMLElement) {
+  if (target instanceof HTMLInputElement) {
+    target.select();
+  } else {
+    window.getSelection()?.selectAllChildren(target);
+  }
+}
+
+export function getPreviousElement(
+  rootElement: HTMLElement,
+  currentElement: HTMLElement | null,
+  predicate: (element: HTMLElement) => boolean,
+  checkNode?: boolean,
+  suppressParentTraversal?: boolean,
+  traverseChildren?: boolean,
+  allowFocusRoot?: boolean,
+): HTMLElement | null {
+  if (!currentElement || (!allowFocusRoot && currentElement === rootElement)) {
+    return null;
+  }
+
+  let isCurrentElementVisible = isElementVisible(currentElement);
+
+  // Check its children.
+  if (
+    traverseChildren &&
+    isCurrentElementVisible
+  ) {
+    const childMatch = getPreviousElement(
+      rootElement,
+      currentElement.lastElementChild as HTMLElement,
+      predicate,
+      true,
+      true,
+      true,
+      allowFocusRoot
+    );
+
+    if (childMatch) {
+      return childMatch;
+    }
+  }
+
+  // Check the current node, if it's not the first traversal.
+  if (checkNode && isCurrentElementVisible && predicate(currentElement)) {
+    return currentElement;
+  }
+
+  // Check its previous sibling.
+  const siblingMatch = getPreviousElement(
+    rootElement,
+    currentElement.previousElementSibling as HTMLElement,
+    predicate,
+    true,
+    true,
+    true,
+    allowFocusRoot,
+  );
+
+  if (siblingMatch) {
+    return siblingMatch;
+  }
+
+  // Check its parent.
+  if (!suppressParentTraversal) {
+    return getPreviousElement(
+      rootElement,
+      currentElement.parentElement,
+      predicate,
+      true,
+      false,
+      false,
+      allowFocusRoot,
+    );
+  }
+
+  return null;
+}
+
+export function isElementVisible(element: HTMLElement | undefined | null): boolean {
+  // If the element is not valid, return false.
+  if (!element || !element.getAttribute) {
+    return false;
+  }
+
+  return (
+    element.offsetHeight !== 0 ||
+    element.offsetParent !== null
+  );
+}
