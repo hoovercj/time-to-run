@@ -72,8 +72,8 @@ function App() {
         date={goalDate}
         units={displayUnits}
         selectedPlan={selectedPlanId}
-        plans={Object.values(plans).map(({ id, title }) => {
-          return { id, title };
+        plans={Object.values(plans).map(({ id, title, raceType }) => {
+          return { id, title, raceType };
         })}
         onDateChange={setGoalDate}
         onPlanChange={setSelectedPlanId}
