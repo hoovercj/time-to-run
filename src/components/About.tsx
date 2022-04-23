@@ -26,47 +26,9 @@ function About() {
         the keyboard shortcuts "alt+up arrow" or "alt+down arrow".
       </p>
       <p>
-        You can also edit the description of the workouts to change the mileage
-        or add/remove details. If you don't care about switching between miles
-        and kilometers, or you don't plan on sharing the plan with anybody else
-        who might, you can remove/ignore all the "#" symbols and write whatever
-        you want there.
+        <strong>Note:</strong> As you edit plans in the website, you'll see certain values underlined such as <u>8 miles</u> or <u>5km</u>.
+        These underlines indicate values that can be translated back-and-forth between units so that anybody can use them.
       </p>
-      <p>
-        If you do want the plan to work for everyone, though, then here's what
-        the "#" symbols are for:
-      </p>
-      <ol>
-        <li>
-          Use the "#" symbol before values that should display in the selected
-          units and the letters "D" and "d" to show "long" or "short" units
-          after the values.<br />
-          For example, if you have a plan written in miles, you can write a
-          workout that automatically gets converted to kilometers like this:
-          <ul>
-            <li><b>Input:</b> Warmup #2_D, 4x800m, Cooldown #2d</li>
-            <li><b>Output in Miles:</b> Warmup 2 miles, 4x800m, Cooldown 2mi</li>
-            <li><b>Output in Kilometers:</b> Warmup 3 kilometers, 4x800m, Cooldown 3km</li>
-          </ul>
-        </li>
-        <li>
-          The letters "D" and "d" can be omitted or they can be used on their
-          own:
-          <ul>
-            <li><b>Input:</b> #3 without units, #D without a number</li>
-            <li><b>Output in Miles:</b> 3 without units, miles without a number</li>
-            <li><b>Output in Kilometers:</b> 5 without units, kilometers without a number</li>
-          </ul>
-        </li>
-        <li>
-          Use an underscore "_" between the number and the units to add a space:
-          <ul>
-            <li><b>Input:</b> #3d without a space, #3_D with a space</li>
-            <li><b>Output in Miles:</b> 3mi without a space, 3 miles with a space</li>
-            <li><b>Output in Kilometers:</b> 5km without units, 5 kilometers with a space</li>
-          </ul>
-        </li>
-      </ol>
       <h2>Save Your Plan For Later</h2>
       <p>
         Once you've created a plan that you might want to use again in the

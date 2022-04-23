@@ -1,12 +1,9 @@
-title,raceType,raceDistance,units
+title,raceType,units
 Plan Template,Marathon,26.2,miles
 ,,,
 description,totalDistance,,
-Use the hash symbol before numbers that should convert between miles and kilometers. #5,3.1,,
-"Use the letters D and d after a hash+number for ""long"" (#5D) and ""short"" (#5d) units",13.1,,
-Letters can be used without the hash as well if you only need the units (#D and #d),20,,
 ,,,
 // Blank lines and lines that start with two forward slashes will be ignored,,,
 "// raceType can be anything like Marathon, 5k, practice race, etc.",,,
-// units must be miles or kilometers. This defines what units the # numbers and the totalDistance are written in so they can be converted correctly,,,
+// units must be miles or kilometers
 "// Each line is one day. If there are multiple workouts in a day, they must be in one line. If there is no workout that day, describe it as a rest day.",,,

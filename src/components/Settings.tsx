@@ -13,7 +13,7 @@ import { FileInput } from "./FileInput";
 export interface SettingsProps {
   date: Date;
   onDateChange: func<Date>;
-  plans: Array<{ id: string; title: string }>;
+  plans: Array<{ id: string; title: string; raceType: string }>;
   selectedPlan: string;
   onPlanChange: func<string>;
   units: Units;
@@ -23,7 +23,7 @@ export interface SettingsProps {
   displayMode: DisplayMode;
 }
 
-export const Settings = React.memo(function(props: SettingsProps) {
+export const Settings = React.memo(function (props: SettingsProps) {
   const {
     date,
     onDateChange,
@@ -34,13 +34,15 @@ export const Settings = React.memo(function(props: SettingsProps) {
     onUnitsChange,
     onDownload,
     onFileChange,
-    displayMode
+    displayMode,
   } = props;
 
-  const renderedUnits = useMemo(() => renderUnits(units, onUnitsChange), [
-    units,
-    onUnitsChange
-  ]);
+  const isEditMode = displayMode === "edit";
+
+  const renderedUnits = useMemo(
+    () => renderUnits(units, onUnitsChange, isEditMode),
+    [units, onUnitsChange, isEditMode]
+  );
 
   const datepicker = useRef<DatePicker>(null);
   const onDatepickerSelect = useCallback(() => {
@@ -49,20 +51,22 @@ export const Settings = React.memo(function(props: SettingsProps) {
     setTimeout(() => datepicker.current && datepicker.current.setFocus(), 0);
   }, [datepicker]);
 
-  const onDatepickerInputKeyDown = useCallback((event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === "Escape") {
-      // By default, the datepicker loses focus when the input is focused
-      // and the escape key is pressed. this ensures focus is preserved
-      setTimeout(() => {
-        if (datepicker.current) {
-          datepicker.current.setFocus();
-          datepicker.current.setOpen(false, true)
-        }
-      }, 0);
-    }
-  }, [datepicker]);
+  const onDatepickerInputKeyDown = useCallback(
+    (event: React.KeyboardEvent<HTMLInputElement>) => {
+      if (event.key === "Escape") {
+        // By default, the datepicker loses focus when the input is focused
+        // and the escape key is pressed. this ensures focus is preserved
+        setTimeout(() => {
+          if (datepicker.current) {
+            datepicker.current.setFocus();
+            datepicker.current.setOpen(false, true);
+          }
+        }, 0);
+      }
+    },
+    [datepicker]
+  );
 
-  const isEditMode = displayMode === "edit";
   const disabledTitle = isEditMode
     ? "Finish editing before changing or downloading plans."
     : "";
@@ -75,12 +79,11 @@ export const Settings = React.memo(function(props: SettingsProps) {
             id={"date-input"}
             ref={datepicker}
             selected={date}
-            onChange={date => date && onDateChange(date)}
+            onChange={(date) => date && onDateChange(date)}
             onSelect={onDatepickerSelect}
             onKeyDown={onDatepickerInputKeyDown}
-            customInput={<input
-              inputMode="none"
-            />}
+            customInput={<input inputMode="none" />}
+            disabled={isEditMode}
           />
         </div>
         <div className="field" title={disabledTitle}>
@@ -88,15 +91,22 @@ export const Settings = React.memo(function(props: SettingsProps) {
           <select
             id="plan-input"
             value={selectedPlan}
-            onChange={e => onPlanChange(e.target.value)}
+            onChange={(e) => onPlanChange(e.target.value)}
             disabled={isEditMode}
           >
-            {plans.map(({ id, title }) => {
-              return (
-                <option key={id} value={id}>
-                  {title}
-                </option>
-              );
+            {Object.entries(
+              plans.reduce((groups, { id, raceType, title }) => {
+                const group = groups[raceType] ?? [];
+                group.push(
+                  <option key={id} value={id}>
+                    {title}
+                  </option>
+                );
+                groups[raceType] = group;
+                return groups;
+              }, {} as Record<string, JSX.Element[]>)
+            ).map(([raceType, options]) => {
+              return <optgroup label={raceType} key={raceType}>{options}</optgroup>;
             })}
           </select>
           <label>Or Upload your Own</label>
@@ -161,7 +171,11 @@ export const Settings = React.memo(function(props: SettingsProps) {
   );
 });
 
-function renderUnits(units: string, onUnitsChange: func<Units>) {
+function renderUnits(
+  units: string,
+  onUnitsChange: func<Units>,
+  disabled?: boolean
+) {
   return (
     <RadioGroup
       label="3. Set Distance Units"
@@ -170,14 +184,15 @@ function renderUnits(units: string, onUnitsChange: func<Units>) {
       values={[
         {
           label: "Miles",
-          value: "miles"
+          value: "miles",
         },
         {
           label: "Kilometers",
-          value: "kilometers"
-        }
+          value: "kilometers",
+        },
       ]}
       onSelectedChange={onUnitsChange}
+      disabled={disabled}
     />
   );
 }
@@ -188,10 +203,12 @@ interface RadioGroupProps {
   selectedValue: string;
   onSelectedChange: func<any>;
   values: { value: string; label: string }[];
+  disabled?: boolean;
 }
 
-const RadioGroup = React.memo(function(props: RadioGroupProps) {
-  const { label, name, selectedValue, values, onSelectedChange } = props;
+const RadioGroup = React.memo(function (props: RadioGroupProps) {
+  const { label, name, selectedValue, values, onSelectedChange, disabled } =
+    props;
 
   const labelId = `${name}-group-label`;
 
@@ -216,6 +233,7 @@ const RadioGroup = React.memo(function(props: RadioGroupProps) {
             name={name}
             checked={value === selectedValue}
             onChange={onRadioItemChange}
+            disabled={disabled}
           />
         );
       })}
@@ -228,15 +246,17 @@ interface RadioItemProps {
   name: string;
   value: string;
   checked: boolean;
+  disabled?: boolean;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const RadioItem = React.memo(function({
+const RadioItem = React.memo(function ({
   label,
   name,
   value,
   checked,
-  onChange
+  disabled,
+  onChange,
 }: RadioItemProps) {
   const id = `${name}-input-${value}`;
 
@@ -249,6 +269,7 @@ const RadioItem = React.memo(function({
         value={value}
         checked={checked}
         onChange={onChange}
+        disabled={disabled}
       />
       <label htmlFor={id} className="label-inline">
         {label}

@@ -8,10 +8,9 @@ import React, {
 
 import "./Plan.scss";
 
-import { Plan as IPlan, Units } from "../lib/workout";
+import { Plan as IPlan } from "../lib/workout";
 import {
   func,
-  getLongDateString,
   DisplayMode,
   DEFAULT_DISPLAYMODE,
   getVolumeStringFromWorkouts,
@@ -29,7 +28,6 @@ export interface PlanProps {
   plan: IPlan;
   goalDate: Date;
   savePlan: func<IPlan>;
-  displayUnits: Units;
   onDisplayModeChanged?: func<DisplayMode>;
 }
 
@@ -39,7 +37,6 @@ export function Plan({
   plan,
   savePlan,
   goalDate,
-  displayUnits,
   onDisplayModeChanged,
 }: PlanProps) {
   const [state, dispatch] = useReducer(reducer, {
@@ -177,10 +174,10 @@ export function Plan({
   ) {
     const weekWorkouts = tempWorkouts.splice(0, WEEK_LENGTH);
 
-    const volume = getVolumeFromWorkouts(workouts, units, displayUnits);
+    const volume = getVolumeFromWorkouts(workouts, units, units);
 
     const weekTitle = `Week ${weekNumber}`;
-    const volumeString = volume > 0 ? getVolumeStringFromWorkouts(weekWorkouts, units, displayUnits) : undefined;
+    const volumeString = volume > 0 ? getVolumeStringFromWorkouts(weekWorkouts, units, units) : undefined;
     const weekStartDate = addDays(goalDate, (tempWorkouts.length + weekWorkouts.length - 1) * -1);
     const weekEndDate = addDays(weekStartDate, 6);
     const dateString = `${getShortDateStringWithoutYear(weekStartDate)}-${getShortDateStringWithoutYear(weekEndDate)}`;
@@ -199,7 +196,6 @@ export function Plan({
           key={w.id}
           dispatch={dispatch}
           units={units}
-          displayUnits={displayUnits}
           displayMode={displayMode}
           canDelete={!isOnly}
           canMoveUp={!isFirst}
@@ -234,14 +230,25 @@ export function Plan({
         {renderTitle(title, dispatch, isEditMode)}
         {renderActions(isEditMode, toggleEdit, performSave, editCancelButton)}
       </h2>
+      {renderRaceType(state.plan.raceType)}
+      {/* TODO: Improve the rendering of this data */}
       {renderSource(state.plan.sourceName, state.plan.sourceUrl)}
-      <div className="goal-race">Goal Race: {getLongDateString(goalDate)}</div>
       <div ref={workoutsContainer}>{renderedWeeks}</div>
     </div>
   );
 }
 
+function renderRaceType(raceType?: string) {
+  // TODO: make this editable
+  if (!raceType || raceType === "Template") {
+    return null;
+  }
+
+  return <div className="goal-race">Race Type: {raceType}</div>;
+}
+
 function renderSource(name?: string, url?: string): JSX.Element | null {
+  // TODO: make this editable
   if (!name) {
     return null;
   }

@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { Plan as IPlan } from "../lib/workout";
 import { addDays, getGuid, DEFAULT_DISPLAYMODE, getDateInputValueString } from "../lib/utils";
 import { Settings } from "./Settings";
@@ -12,8 +12,8 @@ import {
   copyPlanLink
 } from "../lib/exporter";
 import { importFile } from "../lib/importer";
+import { convertPlanUnits } from "../lib/formatter";
 
-// TODO: Add support for IE / Edge
 // TODO: Read additional / modified plans from local storage
 const initialPlans: { [key: string]: IPlan } = {};
 PLANS.forEach(p => {
@@ -30,9 +30,27 @@ PLANS.forEach(p => {
 });
 
 function App() {
-  const defaultPlanId = Object.keys(initialPlans)[0];
-  const [selectedPlanId, setSelectedPlanId] = useState(defaultPlanId);
   const [plans, setPlans] = useState(initialPlans);
+  const [selectedPlanId, setSelectedPlanId] = useState(Object.keys(plans)[0]);
+
+  const selectedPlan = plans[selectedPlanId];
+  const [displayUnits, setDisplayUnits] = useState(selectedPlan.units);
+  useEffect(() => {
+    const newSelectedPlan = plans[selectedPlanId];
+    setDisplayUnits(newSelectedPlan.units);
+  }, [plans, selectedPlanId]);
+
+  const [displayPlan, setDisplayPlan] = useState(selectedPlan);
+
+  useEffect(() => {
+    if (displayUnits !== selectedPlan.units) {
+      const convertedPlan = convertPlanUnits(selectedPlan, displayUnits);
+      setDisplayPlan(convertedPlan);
+    } else {
+      setDisplayPlan(selectedPlan);
+    }
+  }, [displayUnits, selectedPlan]);
+
   const [planDisplayMode, setPlanDisplayMode] = useState(DEFAULT_DISPLAYMODE);
 
   // TODO: when adding or updating plan, persist it to local storage
@@ -52,8 +70,6 @@ function App() {
     [setPlans, setSelectedPlanId]
   );
 
-  const selectedPlan = plans[selectedPlanId];
-
   let defaultGoalDate = addDays(new Date(), selectedPlan.workouts.length - 1);
   // Most races are on Sunday, so default to setting the initial goal date to Sunday
   if (defaultGoalDate.getDay() !== 0) {
@@ -63,17 +79,14 @@ function App() {
 
   const [goalDate, setGoalDate] = useState(defaultGoalDate);
 
-  const defaultUnits = selectedPlan.units;
-  const [displayUnits, setDisplayUnits] = useState(defaultUnits);
-
   return (
     <>
       <Settings
         date={goalDate}
         units={displayUnits}
         selectedPlan={selectedPlanId}
-        plans={Object.values(plans).map(({ id, title }) => {
-          return { id, title };
+        plans={Object.values(plans).map(({ id, title, raceType }) => {
+          return { id, title, raceType };
         })}
         onDateChange={setGoalDate}
         onPlanChange={setSelectedPlanId}
@@ -81,6 +94,7 @@ function App() {
         onDownload={(filetype: Filetype) => {
           switch (filetype) {
             case "ical":
+              // TODO: Make sure this works. Simplify if needed
               downloadPlanCalendar(selectedPlan, goalDate, displayUnits);
               break;
             case "print":
@@ -99,10 +113,9 @@ function App() {
         displayMode={planDisplayMode}
       />
       <Plan
-        plan={selectedPlan}
+        plan={displayPlan}
         savePlan={addOrUpdatePlan}
         goalDate={goalDate}
-        displayUnits={displayUnits}
         onDisplayModeChanged={setPlanDisplayMode}
       />
     </>

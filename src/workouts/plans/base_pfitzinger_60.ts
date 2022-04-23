@@ -4,7 +4,6 @@ export default {
   id: "957bd5e2-a307-4b29-91eb-fffb29fe28f7",
   title: "Base Training: Pfitzinger/Latter: Up to 60 miles per week, 10-week schedule",
   raceType: "Base",
-  raceDistance: 0,
   units: "miles",
   workouts: [
     {
@@ -12,15 +11,15 @@ export default {
       totalDistance: 0,
     },
     {
-      description: "General aerobic #8_D",
+      description: "General aerobic 8 miles",
       totalDistance: 8,
     },
     {
-      description: "General aerobic #4_D",
+      description: "General aerobic 4 miles",
       totalDistance: 4,
     },
     {
-      description: "Endurance #9_D",
+      description: "Endurance 9 miles",
       totalDistance: 9,
     },
     {
@@ -28,11 +27,11 @@ export default {
       totalDistance: 0,
     },
     {
-      description: "General aerobic #6_D",
+      description: "General aerobic 6 miles",
       totalDistance: 6,
     },
     {
-      description: "Endurance #11_D",
+      description: "Endurance 11 miles",
       totalDistance: 11,
     },
     {
@@ -40,15 +39,15 @@ export default {
       totalDistance: 0,
     },
     {
-      description: "General aerobic #8_D",
+      description: "General aerobic 8 miles",
       totalDistance: 8,
     },
     {
-      description: "General aerobic #4_D",
+      description: "General aerobic 4 miles",
       totalDistance: 4,
     },
     {
-      description: "Endurance #10_D",
+      description: "Endurance 10 miles",
       totalDistance: 10,
     },
     {
@@ -56,11 +55,11 @@ export default {
       totalDistance: 0,
     },
     {
-      description: "General aerobic #7_D",
+      description: "General aerobic 7 miles",
       totalDistance: 7,
     },
     {
-      description: "Endurance #12_D",
+      description: "Endurance 12 miles",
       totalDistance: 12,
     },
     {
@@ -68,15 +67,15 @@ export default {
       totalDistance: 0,
     },
     {
-      description: "General aerobic #8_D",
+      description: "General aerobic 8 miles",
       totalDistance: 8,
     },
     {
-      description: "General aerobic #4_D",
+      description: "General aerobic 4 miles",
       totalDistance: 4,
     },
     {
-      description: "Endurance #10_D",
+      description: "Endurance 10 miles",
       totalDistance: 10,
     },
     {
@@ -84,11 +83,11 @@ export default {
       totalDistance: 0,
     },
     {
-      description: "General aerobic #7_D",
+      description: "General aerobic 7 miles",
       totalDistance: 7,
     },
     {
-      description: "Endurance #12_D",
+      description: "Endurance 12 miles",
       totalDistance: 12,
     },
     {
@@ -96,27 +95,27 @@ export default {
       totalDistance: 0,
     },
     {
-      description: "General aerobic #8_D",
+      description: "General aerobic 8 miles",
       totalDistance: 8,
     },
     {
-      description: "General aerobic #4_D",
+      description: "General aerobic 4 miles",
       totalDistance: 4,
     },
     {
-      description: "Endurance #10_D",
+      description: "Endurance 10 miles",
       totalDistance: 10,
     },
     {
-      description: "Recovery #4_D",
+      description: "Recovery 4 miles",
       totalDistance: 4,
     },
     {
-      description: "General aerobic + speed #7_D w/ 8x100m strides",
+      description: "General aerobic + speed 7 miles w/ 8x100m strides",
       totalDistance: 7,
     },
     {
-      description: "Endurance #13_D",
+      description: "Endurance 13 miles",
       totalDistance: 13,
     },
     {
@@ -124,27 +123,27 @@ export default {
       totalDistance: 0,
     },
     {
-      description: "General aerobic #9_D",
+      description: "General aerobic 9 miles",
       totalDistance: 9,
     },
     {
-      description: "General aerobic #5_D",
+      description: "General aerobic 5 miles",
       totalDistance: 5,
     },
     {
-      description: "Endurance #11_D",
+      description: "Endurance 11 miles",
       totalDistance: 11,
     },
     {
-      description: "Recovery #4_D",
+      description: "Recovery 4 miles",
       totalDistance: 4,
     },
     {
-      description: "Lactate threshold #7_D w/ 20 min tempo",
+      description: "Lactate threshold 7 miles w/ 20 min tempo",
       totalDistance: 7,
     },
     {
-      description: "Endurance #13_D",
+      description: "Endurance 13 miles",
       totalDistance: 13,
     },
     {
@@ -152,27 +151,27 @@ export default {
       totalDistance: 0,
     },
     {
-      description: "General aerobic #9_D",
+      description: "General aerobic 9 miles",
       totalDistance: 9,
     },
     {
-      description: "General aerobic #5_D",
+      description: "General aerobic 5 miles",
       totalDistance: 5,
     },
     {
-      description: "Endurance #11_D",
+      description: "Endurance 11 miles",
       totalDistance: 11,
     },
     {
-      description: "Recovery #4_D",
+      description: "Recovery 4 miles",
       totalDistance: 4,
     },
     {
-      description: "General aerobic + speed #7_D w/ 8x100m strides",
+      description: "General aerobic + speed 7 miles w/ 8x100m strides",
       totalDistance: 7,
     },
     {
-      description: "Endurance #13_D",
+      description: "Endurance 13 miles",
       totalDistance: 13,
     },
     {
@@ -180,27 +179,27 @@ export default {
       totalDistance: 0,
     },
     {
-      description: "General aerobic #10_D",
+      description: "General aerobic 10 miles",
       totalDistance: 10,
     },
     {
-      description: "General aerobic #5_D",
+      description: "General aerobic 5 miles",
       totalDistance: 5,
     },
     {
-      description: "Endurance #12_D",
+      description: "Endurance 12 miles",
       totalDistance: 12,
     },
     {
-      description: "Recovery #4_D",
+      description: "Recovery 4 miles",
       totalDistance: 4,
     },
     {
-      description: "Lactate threshold #8_D w/ 22 min tempo",
+      description: "Lactate threshold 8 miles w/ 22 min tempo",
       totalDistance: 8,
     },
     {
-      description: "Endurance #14_D",
+      description: "Endurance 14 miles",
       totalDistance: 14,
     },
     {
@@ -208,27 +207,27 @@ export default {
       totalDistance: 0,
     },
     {
-      description: "General aerobic #10_D",
+      description: "General aerobic 10 miles",
       totalDistance: 10,
     },
     {
-      description: "General aerobic #6_D",
+      description: "General aerobic 6 miles",
       totalDistance: 6,
     },
     {
-      description: "Endurance #12_D",
+      description: "Endurance 12 miles",
       totalDistance: 12,
     },
     {
-      description: "Recovery #5_D",
+      description: "Recovery 5 miles",
       totalDistance: 5,
     },
     {
-      description: "General aerobic + speed #9_D w/ 10x100m strides",
+      description: "General aerobic + speed 9 miles w/ 10x100m strides",
       totalDistance: 9,
     },
     {
-      description: "Endurance #14_D",
+      description: "Endurance 14 miles",
       totalDistance: 14,
     },
     {
@@ -236,27 +235,27 @@ export default {
       totalDistance: 0,
     },
     {
-      description: "General aerobic #10_D",
+      description: "General aerobic 10 miles",
       totalDistance: 10,
     },
     {
-      description: "General aerobic #6_D",
+      description: "General aerobic 6 miles",
       totalDistance: 6,
     },
     {
-      description: "Endurance #12_D",
+      description: "Endurance 12 miles",
       totalDistance: 12,
     },
     {
-      description: "Recovery #5_D",
+      description: "Recovery 5 miles",
       totalDistance: 5,
     },
     {
-      description: "Lactate threshold #9_D w/ 24 min tempo",
+      description: "Lactate threshold 9 miles w/ 24 min tempo",
       totalDistance: 9,
     },
     {
-      description: "Endurance #14_D",
+      description: "Endurance 14 miles",
       totalDistance: 14,
     },
     {
@@ -264,27 +263,27 @@ export default {
       totalDistance: 0,
     },
     {
-      description: "General aerobic #11_D",
+      description: "General aerobic 11 miles",
       totalDistance: 11,
     },
     {
-      description: "General aerobic #7_D",
+      description: "General aerobic 7 miles",
       totalDistance: 7,
     },
     {
-      description: "Endurance #12_D",
+      description: "Endurance 12 miles",
       totalDistance: 12,
     },
     {
-      description: "Recovery #6_D",
+      description: "Recovery 6 miles",
       totalDistance: 6,
     },
     {
-      description: "General aerobic + speed #10_D w/ 10x100m strides",
+      description: "General aerobic + speed 10 miles w/ 10x100m strides",
       totalDistance: 10,
     },
     {
-      description: "Endurance #14_D",
+      description: "Endurance 14 miles",
       totalDistance: 14,
     },
   ]

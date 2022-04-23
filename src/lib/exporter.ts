@@ -1,5 +1,5 @@
 import { planToCsv } from "./csvProcessor";
-import { formatWorkoutFromTemplate } from "./formatter";
+import { convertWorkoutDescriptionUnits } from "./formatter";
 import { ExternalPlan, Plan, Units } from "./workout";
 import { ics, saveAs } from "../lib/ics";
 import {
@@ -14,10 +14,9 @@ import {
 export type Filetype = "ical" | "json" | "csv" | "link" | "print";
 
 export function downloadPlanTemplate(plan: Plan, filetype: Filetype) {
-  const { raceDistance, raceType, title, units, workouts } = plan;
+  const { raceType, title, units, workouts } = plan;
 
   const planToExport: ExternalPlan = {
-    raceDistance,
     raceType,
     title,
     units,
@@ -81,7 +80,7 @@ export function downloadPlanCalendar(plan: Plan, goalDate: Date, displayUnits: U
 
     week.forEach((workout, index) => {
       const workoutDate = getDateForWorkout(weekStartWorkoutIndex + index, workoutCount, goalDateWithoutTime);
-      const workoutTitle = formatWorkoutFromTemplate(
+      const workoutTitle = convertWorkoutDescriptionUnits(
         workout.description,
         units,
         displayUnits

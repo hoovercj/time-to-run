@@ -17,6 +17,7 @@ input[type='datetime'],
 input[type='datetime-local'],
 input:not([type]),
 textarea,
+div[contenteditable="true"],
 select
     appearance: none // Removes awkward default styles on some inputs for iOS
     background-color: transparent
@@ -29,11 +30,17 @@ select
     width: 100%
     color: $color-neutral-primary
 
+    &:disabled
+        opacity: 0.7
+
     &:not(:disabled)
         &:hover,
         &:focus
             border-color: $color-primary
             outline: 0
+
+div[contenteditable="true"]
+    height: initial
 
 select
     background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="14" viewBox="0 0 29 14" width="29"><path fill="%23' + str-slice(inspect($color-neutral-secondary), 2) + '" d="M9.37727 3.625l5.08154 6.93523L19.54036 3.625"/></svg>') center right no-repeat

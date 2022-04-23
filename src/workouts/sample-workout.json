@@ -1,7 +1,6 @@
 {
     "title": "Marathon: Pfitzinger/Douglas: Up to 55 miles per week, 12-week schedule",
     "raceType": "Marathon",
-    "raceDistance": 26.2,
     "units": "miles",
     "workouts": [{
         "description": "Rest or cross-training",
