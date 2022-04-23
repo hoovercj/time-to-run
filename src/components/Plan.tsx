@@ -11,7 +11,6 @@ import "./Plan.scss";
 import { Plan as IPlan } from "../lib/workout";
 import {
   func,
-  getLongDateString,
   DisplayMode,
   DEFAULT_DISPLAYMODE,
   getVolumeStringFromWorkouts,
@@ -234,7 +233,6 @@ export function Plan({
       {renderRaceType(state.plan.raceType)}
       {/* TODO: Improve the rendering of this data */}
       {renderSource(state.plan.sourceName, state.plan.sourceUrl)}
-      <div className="goal-race">Goal Race: {getLongDateString(goalDate)}</div>
       <div ref={workoutsContainer}>{renderedWeeks}</div>
     </div>
   );
@@ -242,7 +240,7 @@ export function Plan({
 
 function renderRaceType(raceType?: string) {
   // TODO: make this editable
-  if (!raceType) {
+  if (!raceType || raceType === "Template") {
     return null;
   }
 
