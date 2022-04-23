@@ -17,7 +17,7 @@ import {
   getDistanceString,
   scrollIntoViewIfNeeded,
 } from "../lib/utils";
-import { formatWorkoutFromTemplate } from "../lib/formatter";
+import { convertWorkoutDescription } from "../lib/formatter";
 import { InteractiveIcon } from "./InteractiveIcon";
 import { DragHandle } from "./DragHandle";
 import { Action, ActionType } from "../lib/reducer";
@@ -60,7 +60,7 @@ export const Workout = React.memo(function (props: WorkoutProps) {
     dateMemo,
   ]);
   const formattedDescription = useMemo(
-    () => formatWorkoutFromTemplate(description, units, displayUnits),
+    () => convertWorkoutDescription(description, units, displayUnits),
     [description, units, displayUnits]
   );
   const distanceString = useMemo(

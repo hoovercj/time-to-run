@@ -1,5 +1,5 @@
 import { planToCsv } from "./csvProcessor";
-import { formatWorkoutFromTemplate } from "./formatter";
+import { convertWorkoutDescription } from "./formatter";
 import { ExternalPlan, Plan, Units } from "./workout";
 import { ics, saveAs } from "../lib/ics";
 import {
@@ -81,7 +81,7 @@ export function downloadPlanCalendar(plan: Plan, goalDate: Date, displayUnits: U
 
     week.forEach((workout, index) => {
       const workoutDate = getDateForWorkout(weekStartWorkoutIndex + index, workoutCount, goalDateWithoutTime);
-      const workoutTitle = formatWorkoutFromTemplate(
+      const workoutTitle = convertWorkoutDescription(
         workout.description,
         units,
         displayUnits
