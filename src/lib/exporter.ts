@@ -8,7 +8,8 @@ import {
   getVolumeStringFromWorkouts,
   getDateForWorkout,
   getVolumeFromWorkouts,
-  getDateInputValueString
+  getDateInputValueString,
+  getGuid
 } from "../lib/utils";
 
 export type Filetype = "ical" | "json" | "csv" | "link" | "print";
@@ -45,7 +46,7 @@ export function printPlanCalendar() {
 }
 
 export function downloadPlanCalendar(plan: Plan, goalDate: Date, displayUnits: Units) {
-  const calendar = ics();
+  const calendar = ics(getGuid());
 
   if (!calendar) {
     return;
