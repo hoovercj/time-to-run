@@ -139,7 +139,7 @@ export const Workout = React.memo(function (props: WorkoutProps) {
   const onWorkoutKeyDown = useCallback(
     (event: React.KeyboardEvent<HTMLElement>) => {
       const isWorkoutInputPredicate = (element: HTMLElement) => element.hasAttribute("data-workoutinput");
-      if (event.code === "Enter") {
+      if (event.keyCode === 13) {
         event.preventDefault();
         event.stopPropagation();
         const target = event.currentTarget;
