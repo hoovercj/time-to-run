@@ -1,4 +1,6 @@
 import { BuiltInPlan } from "../lib/workout";
+import base_pfitzinger_30 from "./plans/base_pfitzinger_30";
+import base_pfitzinger_45 from "./plans/base_pfitzinger_45";
 import base_pfitzinger_60 from "./plans/base_pfitzinger_60";
 import five_couch from "./plans/five_couch";
 import half_hansons_advanced from "./plans/half_hansons_advanced";
@@ -40,6 +42,8 @@ export const PLANS: BuiltInPlan[] = [
   half_hansons_beginner,
   half_hansons_advanced,
   five_couch,
+  base_pfitzinger_30,
+  base_pfitzinger_45,
   base_pfitzinger_60,
   template_miles,
   template_kms,
