@@ -97,8 +97,9 @@ const convertDistance = (input: string, inputUnits: Units, outputUnits: Units): 
         fixedInput = fixedInput.substring(1);
     }
 
+    const fixedInputHasDecimal = fixedInput.indexOf(".") >= 0;
     // Only preserve a trailing 0 if the input had a trailing zero
-    if (fixedInput.endsWith("0") && !input.endsWith("0")) {
+    if (fixedInputHasDecimal && fixedInput.endsWith("0") && !input.endsWith("0")) {
         fixedInput = fixedInput.substring(0, fixedInput.length - 1);
     }
 

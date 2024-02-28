@@ -17,6 +17,7 @@ describe("convertWorkoutDescriptionUnits", () => {
         expect(convertWorkoutDescriptionUnits("123miles", "miles", "kilometers")).toBe("198kilometers");
         expect(convertWorkoutDescriptionUnits("123 mi", "miles", "kilometers")).toBe("198 km");
         expect(convertWorkoutDescriptionUnits("123mi", "miles", "kilometers")).toBe("198km");
+        expect(convertWorkoutDescriptionUnits("6 miles", "miles", "kilometers")).toBe("10 kilometers");
         expect(convertWorkoutDescriptionUnits("198 kilometers", "kilometers", "miles")).toBe("123 miles");
         expect(convertWorkoutDescriptionUnits("198kilometers", "kilometers", "miles")).toBe("123miles");
         expect(convertWorkoutDescriptionUnits("198 km", "kilometers", "miles")).toBe("123 mi");
